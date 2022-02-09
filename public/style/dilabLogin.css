@@ -1,0 +1,214 @@
+html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: 'Montserrat';
+    overflow-x: hidden;
+}
+body {
+    background: linear-gradient(to top right, rgb(255, 238, 0), rgb(255, 0, 170));
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.loginContainer {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    font-size: 2em;
+    background: rgba(255,255,255,0.5);
+    padding: 40px;
+    border-radius: 4px/4px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.575);
+    display: flex;
+    max-width: 400px;
+    width : calc(95% - 80px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login input[type=text], .login input[type=password] {
+    background : rgba(255,255,255,0.7);
+    border : none;
+    outline: none;
+    margin: 5px;
+    height : 1.2em;
+    font-size: 1em;
+    max-width: 100%;
+    border-radius: 4px/4px;
+    opacity: 0.6;
+    transition: 0.2s;
+    border-bottom: 2px solid purple;
+}
+
+.login input[type=text]:hover, .login input[type=password]:hover, .login input[type=text]:focus, .login input[type=password]:focus  {
+    border-bottom: 2px solid rgb(55, 0, 128);
+    opacity: 1;
+}
+
+.loginTitle > h2 {
+    font-size: 2em;
+    padding-right: 4px;
+    transform : skew(-0.12turn,0deg) translate(10px);
+    background: linear-gradient(to top right,  #ff6b08, #f32170);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    /* color : linear-gradient(to top right, orange, red) */
+}
+
+h4 {
+    font-size: 1em;
+}
+
+p {
+    font-size: 20px;
+}
+
+.loginTitle {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: center;
+}
+
+.loginTitle > * {
+    margin-top : 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.credits {
+    height: 10%;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: left;
+    align-items: flex-end;
+}
+
+.button {
+    padding: 0.2em 0.6em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 1em;
+  }
+  
+  .button:before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingbn5 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  @keyframes glowingbn5 {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .button:active {
+    color: #000;
+  }
+  
+  .button:active:after {
+    background: transparent;
+  }
+  
+  .button:hover:before {
+    opacity: 1;
+  }
+  
+  .button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+/*.button {
+    background : rgb(189, 3, 189);
+    border-left: rgb(231, 106, 231) 4px solid;
+    border-bottom: rgb(231, 106, 231) 4px solid;
+    border-right: none;
+    border-top: none;
+    font-size: 1em;
+    transition : 0.2s;
+    border-radius: 4px/4px;
+    outline: none;
+    color: white;
+    user-select: none;
+}
+
+.button:hover {
+    border-left: rgb(231, 106, 231) 0 solid;
+    margin-right: 4px;
+    margin-top : 4px;
+    border-bottom: rgb(231, 106, 231) 0 solid;
+}
+
+.button:active {
+    opacity: 0.6;
+    border-left: rgb(231, 106, 231) 0 solid;
+    margin-right: 4px;
+    margin-top : 4px;
+    border-bottom: rgb(231, 106, 231) 0 solid;
+}*/
