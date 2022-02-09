@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dilab (by Diskloud)</title>
+		<meta charset='utf-8' />
+        <link rel='icon' href="https://dev.diskloud.fr/mediaCE/gifgit%20(3).png" />
+        <link rel="stylesheet" media="screen" type="text/css" href="https://www.diskloud.fr/node/style/dilab.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="https://www.diskloud.fr/node/style/dilabAdditionalComponents.css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://e.diskloud.fr/scripts/sweetalert2@10.js"></script>
+	</head>
+	<body>
+		<div class="box-container">
+			<div class="top-nav">
+				<div class=left-menu>
+					<h4 class="title">Dilab</h4>
+					<h4 class="opt">Releases</h4>
+					<h4 class="opt">Projects</h4>
+					<h5 class="opt">Groups</h5>
+				</div>
+				<div class=right-menu>
+					<div class=search-container>
+						<input class=search-field maxlength="40" type=text placeholder="Search content..">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</div>
+					<% if (connected==false) {%>
+						<button class="button loginButton">Login</button>
+					<% } else { %>
+						<div class="notificationsButton">
+							<i class="bi bi-bell"></i>
+						</div>
+						<div class=notificationsMenu>
+							<h2>Notifications</h1>
+							<div class=notificationsList>
+								<div class="notification">
+									<div class=icon>
+										<i class="bi bi-person-plus-fill"></i>
+									</div>
+									<div class=text>
+										<strong>Jaja</strong> wants to join your group <strong>Croum Crawm</strong>
+									</div>
+									<div class=options>
+										<div class=accept>
+											<i class="bi bi-check2"></i>
+										</div>
+										<div class=deny>
+											<i class="bi bi-x"></i>
+										</div>
+									</div>
+								</div>
+								<hr />
+								<div class="aButton"><i class="bi bi-person-plus-fill"></i>Log Out</div>
+							</div>
+						</div>
+						<div class=userProfileCircleButton><img class=userPPImg src=/dilab/user/person-circle.svg /></div>
+						<div class=userMainMenu></a><div class=menuPP><img class=menuPPImg src=/dilab/user/person-circle.svg /></div><div class=infoText>Welcome,<br /><span class=nameAndSurname></span> !</div><div class="settingsBtn aButton"><i class="bi bi-gear-fill"></i>Settings</div><div class="aButton disconnectBtn"><i class="bi bi-power"></i>Log Out</div></div>
+					<%}%>
+				</div>
+				<div class=progress-load></div>
+			</div>
+			<div class=main-content>
+				<div class="kabobloader">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				  </div>
+			</div>
+			<div class=player>
+				<div class="musicInfos">
+					<div class="cover">
+						<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+					</div>
+					<div class=description>
+						<div class=songTitle>
+							No song playing
+						</div>
+						<div class=songGroup>
+							No group chosen
+						</div>
+					</div>
+					<div class=likeIt>
+						<i class="bi bi-heart"></i>
+					</div>
+				</div>
+				<div draggable="false" class=musicControls>
+					<div class=musicButtons>
+						<div class=musicButton>
+							<i class="bi bi-skip-backward"></i>
+						</div>
+						<div class=musicButton>
+							<i class="bi bi-play-circle"></i>
+						</div>
+						<div class=musicButton>
+							<i class="bi bi-skip-forward"></i>
+						</div>
+					</div>
+					<div class=musicBar>
+						<div class=musicProgressTime>
+							0:30
+						</div>
+						<div class="progressBarContainer">
+							<div class="progressBar">
+								<div class=filledPart>
+									<div class=dotPosition></div>
+								</div>
+							</div>
+						</div>
+						<div class=musicDuration>
+							2:35
+						</div>
+					</div>
+				</div>
+				<div draggable="false" class=soundControl>
+					<div class=playlistIcon>
+						<i class="bi bi-music-note-list"></i>
+						<div class="playlistMenu">
+							<div class=playlistMenuHeader>
+								<svg class=icon xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
+									<path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+									<path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+									<path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+								</svg>
+								<h2>Playlist</h2>
+							</div>
+							<div class=playElements>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+											<div class="playingIcon">
+												<div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+											</div>	
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 1</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 2</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>									
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 3</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 4</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+											<div class="playingIcon">
+												<div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+											</div>										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 5</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 6</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>									
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 7</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+								<div class=playlistElement>
+									<div class=left>
+										<div class="cover">
+											<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+										</div>
+										<div class=soundName>
+											<span class="soundTitle">Title 8</span>
+											<span class=soundAuthor>Author1</span>
+										</div>
+									</div>
+									<span class="duration">02:00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class=soundIcon>
+						<i class="bi bi-volume-mute-fill"></i>
+					</div>
+					<div class="progressBarContainer">
+						<div class="progressBar">
+							<div class=filledPart>
+								<div class=dotPosition></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class=popUpWindowContainer>
+			<div class="popUpWindow">
+				<div class=popUpHeader>
+					<span class=popUpTitle>Pop Up Title</span>
+					<div class=popUpCloseBtn>
+						<i class="bi bi-x"></i>
+					</div>
+				</div>
+				<div class=popUpMainContent>
+					This is the pop up's main content.
+				</div>
+			</div>
+		</div>
+		<div class=fullScreen>
+			<img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+			<h2 class=soundName>The best sound ever</h2>
+			<h4 class=soundAuthor>Croum Crawm CLAIREDOUEOO</h4>
+			<div draggable="false" class=musicControls>
+				<div class=musicButtons>
+					<div class=musicButton>
+						<i class="bi bi-skip-backward"></i>
+					</div>
+					<div class=musicButton>
+						<i class="bi bi-play-circle"></i>
+					</div>
+					<div class=musicButton>
+						<i class="bi bi-skip-forward"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script src="https://e.diskloud.fr/scripts/dilab.js"></script>
+	</body>
+</html>	
