@@ -1,0 +1,39 @@
+<div class=releasePage>
+    <div class=styledHead>
+        <div class=styledHeadCover>
+            <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+        </div>
+        <h2 class="main-content-header"><div style="width:5em; background : #f4f4f4;" class="skeletonLoader"></div></h2><h4><i class="bi bi-dot"></i>by&nbsp;<span class=releaseName><div style="width:5em; background : #f4f4f4;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class=releaseYear><div style="width:2em; background : #f4f4f4;" class="skeletonLoader"></div></span></h4>
+    </div>
+    <div class=release>
+        <div class=left-content>
+            <div class=control>
+                <i class="bi bi-play-circle-fill"></i>
+            </div>
+            <div class=cover>
+                <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+            </div>
+            <div class=infos>
+                <div class=title title="The best hit ever">
+                    <div style="width:5em;" class="skeletonLoader"></div>
+                </div>
+                <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                    <span class=groupName>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </span>
+                    <i class="bi bi-dot"></i>
+                    <span class=authors>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class=streams>
+            <div style="width:5em;" class="skeletonLoader"></div>
+        </div>
+        <div class=duration>
+            <div style="width:3em;" class="skeletonLoader"></div>
+        </div>
+    </div>
+    <h3 class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</h3>
+</div>

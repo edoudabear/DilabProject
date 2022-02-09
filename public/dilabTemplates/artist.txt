@@ -1,0 +1,511 @@
+<div class=artistPage>
+    <div class=styledHead>
+        <div class=styledHeadPP>
+            <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+        </div>
+        <h2 class="main-content-header">
+            <div style="width:5em;" class="skeletonLoader">
+        </div>
+        </h2>
+        <h4>
+            <i class="bi bi-dot"></i>registered since&nbsp;<span class=registrationDate>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </span></h4>
+    </div>
+    <h4>Releases where he participated</h4>
+    <div class=releases>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+    </div>
+    <div class=artistInformations>
+        <div class=infos>
+            <div class=groups>
+                <h4>Groups he's in</h4>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>                
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>                
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=chatContainer>
+            <div class=artistCard>
+                <h2>Informations about the artist</h2>
+                <hr />
+                <div class="infoElement">
+                    Favorite genres :&nbsp;<span class=userGenres><div style="width:5em;" class="skeletonLoader"></div></span>
+                </div>
+                <div class="infoElement">
+                    Biography :&nbsp;
+                    <span class=userBio>
+                        <div style="width:6em;" class="skeletonLoader"></div>
+                    </span>
+                </div>
+                <div class="infoElement">
+                    He is part of&nbsp;<span class=nGroups><div style="width:2em;" class="skeletonLoader"></div></span>&nbsp;groups
+                </div>
+                <div class="infoElement">
+                    Joined Dilab the&nbsp;<span class=userJoinDate><div style="width:6em;" class="skeletonLoader"></div></span>
+                </div>
+            </div>
+            <div class=chat>
+                <div class=messagesHeader>
+                    <h4>Chat with&nbsp;<span class=userChat>
+                        <div style="width:4em;" class="skeletonLoader"></div>
+                    </span></h4>
+                </div>
+                <div class="messagesContainer">
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:5em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p><div style="width:5em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                </div>
+                <div class=chatInputContainer>
+                    <input type=text class=chatInput placeholder="message.." />
+                    <div class=chatSendBtn>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                          </svg>
+                    </div>
+                    <div class=chatAttachBtn>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                            <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                          </svg>
+                          <input type=file class=chatFileInput />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

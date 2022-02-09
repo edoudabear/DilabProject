@@ -1,0 +1,287 @@
+<div class="releasesTemplate">
+    <div>
+        <h1 class=main-content-header>Releases</h1>
+        <h2><i class="bi bi-stars"></i>&nbsp;Last releases</h2>
+        <div class=releases>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+        </div>
+        <h2><i class="bi bi-graph-up-arrow"></i>&nbsp;Most popular releases</h2>
+        <div class=releases>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+        </div>
+        <h2><i class="bi bi-vinyl"></i>&nbsp;Releases of your genre</h2>
+        <div class=releases>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+            <div class=release>
+                <div class=left-content>
+                    <div class=control>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=infos>
+                        <div class=title title="The best hit ever">
+                            The best hit ever
+                        </div>
+                        <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                            <span class=groupName>
+                                CroumCrawm
+                            </span>
+                            <i class="bi bi-dot"></i>
+                            <span class=authors>
+                                Lala Lili, Lolo Lulu, Pété Samére
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class=streams>
+                    340 212 streams
+                </div>
+                <div class=duration>
+                    2:36
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=bottom>
+        Want to be part of a coming release ?&nbsp;<a class=projectLink>Join a project !</a>
+    </div>
+</div>

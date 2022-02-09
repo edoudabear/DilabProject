@@ -1,0 +1,26 @@
+<div class=settingsPage>
+<h3 class="main-content-header">User Settings</h3>
+<div class=profilePicture>
+    <img src="https://s2.qwant.com/thumbr/0x380/d/a/112b69910eb686a6235a2d07e834811174390e1df76466d217a8ba1505ed6b/xsullo-eyesee.jpg?u=https%3A%2F%2Fwowxwow.com%2Fwp-content%2Fuploads%2F2018%2F02%2Fxsullo-eyesee.jpg&q=0&b=1&p=0&a=0" />
+    <div title="Change profile picture" class=svgContainer>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+            <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+            <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+        </svg>
+    </div>
+    <input class=profilePictureInput type=file />
+</div>
+<button class="button pictureRemButton" onclick=settingsPageUnloadImage()>Remove Picture</button>
+<h4>Change Username</h4>
+<input type=text class=usernameInput value="" placeholder="username" />
+<h4>Change Name</h4>
+<input type=text class=nameInput value="" placeholder="name" />
+<h4>Change Surname</h4>
+<input type=text value="" class=surnameInput placeholder="surname" />
+<h4>Change biography</h4>
+<textarea class=biographyInput type=text placeholder="biography" ></textarea>
+<div class="buttonContainer">
+    <button class="button inputConfirm">Apply changes</button>
+    <button class="button changePswdBtn">Change Password</button>
+</div>
+</div>

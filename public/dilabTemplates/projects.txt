@@ -1,0 +1,379 @@
+<div class="projectsPage">
+<h1 class=main-content-header>Projects</h1>
+    <h2><i class="bi bi-award"></i>&nbsp;Top projects</h2>
+    <div class=projectsContainer>
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class=rightBtn>
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=projects>
+            <div class=projectsWrapper>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>  
+                </div>      
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>  
+                </div>    
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>  
+                </div>               
+            </div>
+        </div>
+    </div>
+    <h2><i class="bi bi-vinyl"></i>&nbsp;Projects of your genre</h2>
+    <div class=projectsContainer>
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class=rightBtn>
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=projects>
+            <div class=projectsWrapper>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre !
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre !
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre ! Nous aurions besoin d'un bassiste, difufzhiuhf zefieuz fzeifuzefuzehg   feuzyfzefzef efizezezef zefiefezfiefg eifugsczz eifuzegfyfzee fuyge ziufzef fizeufezifuzefez fe zeifuefez
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                Project title
+                            </div>
+                            <div class="projectGroup">
+                                by <span class="groupName">Group name</span><i class="bi bi-dot"></i><span class="nCollaborators">35</span> collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            Nous sommes intéressés par la musique conrète et ses aspacts encore peu connus de l'humanité. Venez nous rejoindre !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2><i class="bi bi-plus-circle"></i>&nbsp;Create your own project</h2>
+    <div class=newProject>
+        <div class=newProjectIcon>
+            <i class="bi bi-plus"></i>
+        </div>
+        New Project
+    </div>
+    <div class="bottom"></div>
+</div>

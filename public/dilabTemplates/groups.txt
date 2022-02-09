@@ -1,0 +1,349 @@
+<div class="groupsPage">
+    <h1 class="main-content-header">&nbsp;Groups</h1>
+    <h2>&nbsp;<i class="bi bi-award"></i>&nbsp;Major groups</h2>
+    <div class=groupsContainer>
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class="rightBtn">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=groups>
+            <div class=groupsWrapper>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span>&nbsp;projects (<span class=nReleases>1</span>&nbsp;released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>&nbsp;<i class="bi bi-vinyl"></i>&nbsp;Groups like you</h2>
+    <div class=groupsContainer>
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class="rightBtn">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=groups>
+            <div class=groupsWrapper>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span>&nbsp;projects (<span class=nReleases>1</span>&nbsp;released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>&nbsp;<i class="bi bi-plus-circle"></i>&nbsp;Create your own group</h2>
+    <div class="newGroup">
+        <div class="newGroupIcon">
+            <i class="bi bi-plus"></i>
+        </div>
+        New Group
+    </div>
+    <div class="bottom"></div>
+</div>

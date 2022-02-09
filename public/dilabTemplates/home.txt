@@ -1,0 +1,11 @@
+<div class="defaultPage">
+    <div class=defaultPage-title>
+        <h1>Dilab</h1>
+        <h3>Rising music through collaboration</h3>
+    </div>
+    <div class=welcome-buttons>
+        <button class="button">Join a project</button>
+        &nbsp;&nbsp;
+        <button class="button">Discover the latest releases</button>
+    </div>
+</div>

@@ -1,0 +1,668 @@
+<div class="search-results">
+    <h1 class="main-content-header">Search results for </h1>
+    <h2>Projects</h2>
+    <div class="projectsContainer">
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class="rightBtn">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=projects>
+            <div class=projectsWrapper>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>                
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>                
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="cover">
+                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <div class="playBtn">
+                            <i class="bi bi-play-circle-fill"></i>
+                        </div>
+                    </div>
+                    <div class="mainDescription">
+                        <div class="header">
+                            <div class="title">
+                                <div style="width:8em;" class="skeletonLoader"></div>
+                            </div>
+                            <div class="projectGroup">
+                                by&nbsp;<span class="groupName"><div style="width:5em;" class="skeletonLoader"></div></span><i class="bi bi-dot"></i><span class="nCollaborators"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;collaborators
+                            </div>
+                        </div>
+                        <div class="projectProgress">
+                            Project Launch
+                            <div class="stationProgressWrapper">
+                                <div class="stationProgressContainer">
+                                    <div class="progressStationBar">
+                                        <div class="percent"></div>
+                                    </div>
+                                    <div class="steps">
+                                        <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                                        <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            Project Release
+                        </div>
+                        <div class="description">
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:90%;" class="skeletonLoader"></div>
+                            <div style="width:60%;" class="skeletonLoader"></div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Releases</h2>
+    <div class=releases>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+    </div>
+    <h2>Groups</h2>
+    <div class=groupsContainer>
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class="rightBtn">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=groups>
+            <div class=groupsWrapper>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            <div style="width:7em;" class="skeletonLoader"></div>
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+                <div class=group>
+                    <div class=cover>
+                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                    </div>
+                    <div class=textContent>
+                        <div class=title>
+                            CroumCrawm
+                        </div>                    
+                        <div class=infos>
+                            <div class=genre>
+                                Hip/Hop
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=members>
+                                <span class=nMembers>36</span> members
+                            </div>
+                            <i class="bi bi-dot"></i>
+                            <div class=groupProjects>
+                                <span class="nProjects">2</span>&nbsp;projects (<span class=nReleases>1</span>&nbsp;released)
+                            </div>
+                        </div>
+                        <div class=biography>
+                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Artists</h2>
+    <div class="artistsContainer">
+        <div class=leftBtn>
+            <i class="bi bi-caret-left-fill"></i>
+        </div>
+        <div class="rightBtn">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <div class=artists>
+            <div class=artistsWrapper>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        <div style="width:4em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=pseudo>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers><div style="width:1em;" class="skeletonLoader"></div></span> Followers <i class="bi bi-dot"></i>&nbsp;
+                        Registered since&nbsp;<span class="yearOfRegistration"><div style="width:2em;" class="skeletonLoader"></div></span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        <div style="width:4em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=pseudo>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers><div style="width:1em;" class="skeletonLoader"></div></span> Followers <i class="bi bi-dot"></i>&nbsp;
+                        Registered since&nbsp;<span class="yearOfRegistration"><div style="width:2em;" class="skeletonLoader"></div></span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        <div style="width:4em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=pseudo>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers><div style="width:1em;" class="skeletonLoader"></div></span> Followers <i class="bi bi-dot"></i>&nbsp;
+                        Registered since&nbsp;<span class="yearOfRegistration"><div style="width:2em;" class="skeletonLoader"></div></span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        <div style="width:4em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=pseudo>
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers><div style="width:1em;" class="skeletonLoader"></div></span> Followers <i class="bi bi-dot"></i>&nbsp;
+                        Registered since&nbsp;<span class="yearOfRegistration"><div style="width:2em;" class="skeletonLoader"></div></span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        Artist 1
+                    </div>
+                    <div class=pseudo>
+                        @artisteuOne
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers>34</span> Followers <i class="bi bi-dot"></i>
+                        Registered since <span class="yearOfRegistration">2020</span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        Artist 1
+                    </div>
+                    <div class=pseudo>
+                        @artisteuOne
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers>34</span> Followers <i class="bi bi-dot"></i>
+                        Registered since <span class="yearOfRegistration">2020</span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        Artist 1
+                    </div>
+                    <div class=pseudo>
+                        @artisteuOne
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers>34</span> Followers <i class="bi bi-dot"></i>
+                        Registered since <span class="yearOfRegistration">2020</span>
+                    </div>
+                </div>
+                <div class=artist>
+                    <div class=cover>
+                        <img class=artistCover src="https://s1.qwant.com/thumbr/0x380/1/d/154de7a4f4161e8311dd6e235e56a5414ef5ea6c57b0c4ea93bdd1092128b5/392095a816c2c910256603cdbdf14877.jpg?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F39%2F20%2F95%2F392095a816c2c910256603cdbdf14877.jpg&q=0&b=1&p=0&a=0">
+                    </div>
+                    <div class=title>
+                        Artist 1
+                    </div>
+                    <div class=pseudo>
+                        @artisteuOne
+                    </div>
+                    <div class=furtherInfos>
+                        <span class=nFollowers>34</span> Followers <i class="bi bi-dot"></i>
+                        Registered since <span class="yearOfRegistration">2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=bottom>
+        Didn't find what you want ? Try again !
+    </div>

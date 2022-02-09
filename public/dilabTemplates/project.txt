@@ -1,0 +1,264 @@
+<div class=projectPage>
+    <div class=styledHead>
+        <div class=styledHeadPP>
+            <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+        </div>
+        <h2 class="main-content-header">
+            <div style="width:5em;" class="skeletonLoader"></div>
+        </h2><h4><i class="bi bi-dot"></i>created in&nbsp;<span class=registrationDate>
+            <div style="width:5em;" class="skeletonLoader"></div>
+        </span></h4>
+    </div>
+    <div class=artistInformations>
+        <div class=infos>
+            <h4>Production stage</h4>
+            <div class=progressPart>
+                <div class="projectProgress">
+                    <div class="stationProgressWrapper">
+                        <div class="stationProgressContainer">
+                            <div class="progressStationBar">
+                                <div class="percent"></div>
+                            </div>
+                            <div class="steps">
+                                <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i>
+                                    <div class=stage>
+                                        Project Launch
+                                    </div>
+                                </div>
+                                <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i>
+                                    <div class=stage>
+                                        Instrumental part
+                                    </div>
+                                </div>
+                                <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i>
+                                    <div class=stage>
+                                        vocals
+                                    </div>
+                                </div>
+                                <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i>
+                                    <div class=stage>
+                                        Project Release
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Files</h4>
+            <div class=fileContainer>
+                <div class="file projectFile">
+                    <div class=projectFileInfos>
+                        <h4>Project file</h4>
+                        <div class=infoWrapper>
+                            <span class=projectFileName>
+                                <div style="width:6em;" class="skeletonLoader"></div>
+                            </span><i class="bi bi-dot"></i><span class=projectFileType>
+                                <div style="width:4em;" class="skeletonLoader"></div>
+                            </span><i class="bi bi-dot"></i>Last update the <span class=updateDate>
+                                <div style="width:7em;" class="skeletonLoader"></div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class=optBtns>
+                        <button class=button>Download</button>
+                    </div>
+                </div>
+                <div class="file audioFile">
+                    <div class=projectFileInfos>
+                        <h4>Audio file</h4>
+                        <div class=infoWrapper>
+                            <span class=projectFileName>
+                                <div style="width:6em;" class="skeletonLoader"></div>
+                            </span><i class="bi bi-dot"></i><span class=projectFileType>
+                                <div style="width:6em;" class="skeletonLoader"></div>
+                            </span><i class="bi bi-dot"></i>Last update the&nbsp;<span class=updateDate>
+                                <div style="width:6em;" class="skeletonLoader"></div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class=optBtns>
+                        <button class=button>Play</button>
+                        <div class=separator></div>
+                        <button class=button>Download</button>
+                    </div>
+                </div>
+            </div>
+            <div class=chat>
+                <div class=messagesHeader>
+                    <h4>Chat</h4>
+                </div>
+                <div class="messagesContainer">
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:5em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p class=author><div style="width:3em;" class="skeletonLoader"></div></p>
+                                <p><div style="width:5em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p class=author><div style="width:3em;" class="skeletonLoader"></div></p>
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p class=author><div style="width:3em;" class="skeletonLoader"></div></p>
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p class=author><div style="width:3em;" class="skeletonLoader"></div></p>
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage local">
+                        <div class="messageWrapper">
+                            <div class="message local">
+                                <p><div style="width:2em;" class="skeletonLoader"></div></p>
+                            </div>                 
+                        </div>
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="globalMessage dist">
+                        <div class="messageWrapper">
+                            <div class="message">
+                                <p class=author><div style="width:3em;" class="skeletonLoader"></div></p>
+                                <p><div style="width:10em;" class="skeletonLoader"></div></p>
+                            </div>    
+                        </div> 
+                        <div class="messageTimeWrapper">
+                            <div class=messageTime>
+                                <div style="width:3em; background : #f4f4f4;" class="skeletonLoader"></div>
+                            </div>    
+                        </div> 
+                    </div>
+                </div>
+                <div class=chatInputContainer>
+                    <input type=text class=chatInput placeholder="message.." />
+                    <div class=chatSendBtn>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                          </svg>
+                    </div>
+                    <div class=chatAttachBtn>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                            <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                          </svg>
+                          <input type=file class=chatFileInput />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=chatContainer>
+            <div class=artistCard>
+                <h2>Informations about the project</h2>
+                <hr />
+                <div class="infoElement">
+                    The project is an initiative of&nbsp;<span class=groupsFounder><div style="width:5em;" class="skeletonLoader"></div></span>&nbsp;(group)
+                </div>
+                <div class="infoElement">
+                    Description :&nbsp;<span class=projectDescription><div style="width:7em;" class="skeletonLoader"></div></span></p>
+                </div>
+                <div class="infoElement">
+                    Main genres : <span class=userGenres><div style="width:5em;" class="skeletonLoader"></div></span>
+                </div>
+                <div class="infoElement">
+                    Set up on Dilab the&nbsp;<span class=projectBeginDate><div style="width:6em;" class="skeletonLoader"></div></span>
+                </div>
+            </div>
+            <div class=lyricsCard>
+                <h2>Lyrics</h2><button class="button">Edit lyrics</button>
+                <hr />
+                <div class="lyricsContent">
+                    <div style="width:90%; background : #f4f4f4;" class="skeletonLoader"></div>
+                    <div style="width:80%; background : #f4f4f4;" class="skeletonLoader"></div>
+                    <div style="width:95%; background : #f4f4f4;" class="skeletonLoader"></div>
+                    <div style="width:40%; background : #f4f4f4;" class="skeletonLoader"></div>
+                </div>
+            </div>
+            <h3 class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</h3>
+        </div>
+    </div>
+</div>
