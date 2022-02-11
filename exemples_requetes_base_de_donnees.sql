@@ -1,12 +1,12 @@
 use DilabProject;
 -- User connect
-select nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="Bert2" AND motDePasse=aes_encrypt("bonsoir2","dilabSecret");
+select nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="Bert2" AND motDePasse=aes_encrypt("bonsoir2",/*Clé secrète*/);
 
 -- Dilab Activity
 insert into DilabActivity (user,activity,location) VALUES (2,"connect","109.11.41.250");
 
 -- Decryption example
-select CAST(aes_decrypt(motDePasse,"dilabSecret") AS CHAR(128) CHARACTER SET utf8) AS mdp FROM DilabUser WHERE 1 ORDER BY id
+select CAST(aes_decrypt(motDePasse,/*Clé secrète*/) AS CHAR(128) CHARACTER SET utf8) AS mdp FROM DilabUser WHERE 1 ORDER BY id
 
 /* set session values on node.js server */
 /*
