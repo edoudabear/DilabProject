@@ -36,3 +36,5 @@ SELECT message,CONCAT(prenom," ",nom) AS auteur,groupProjectPvChatId,isGroupOrPr
 
 USE DilabProject;
 INSERT INTO `DilabProject` (`id`, `dateOfBirth`, `name`, `groupAuthor`, `genres`, `currentPhase`, `phases`, `projectPicture`, `audioFileDir`, `projectFileDir`, `lastAudioFileUpdate`, `lastProjectFileUpdate`) VALUES ('1', current_timestamp(), 'BROBROBRO', '1', 'BRORBORBOR on soutient les BRO MAIS PAS LES CRUCHES (LES PICHETS CA VA)', '2', '', 'disc.svg', '', '', current_timestamp(), current_timestamp()) 
+
+-- Fin du document..
