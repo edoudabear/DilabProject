@@ -1,7 +1,14 @@
+/*
+Attention : ce code est en réalité une portion du code qui tourne sur le serveur accessible à l'adresse https://e.diskloud.fr. Cette portion du code correspond à l'ensemble des fonctions cruciales pour le fonctionnement du projet Web Dilab
+Le code ne fonctionne cependant pas de manière indépendante, car il y a certaines librairies qui ne sont pas initialisées dans ce script.
+
+Ne vous laissez pas faire impressionner ! Cela a pris des mois de développement et même si le code est très conséquent, il n'est finalement pas si compliqué. Avec le club Web, vous aurez le moyens de tout comprendre :)
+*/
+
 var dilabConnection = mysql.createConnection({
     host: 'localhost',
-    user: 'phpadmin',
-    password: '244272',
+    user: 'dilabAdmin',
+    password: /*Mot de passe masqué*/,
     database: 'DilabProject',
     multipleStatements:true,
 });
