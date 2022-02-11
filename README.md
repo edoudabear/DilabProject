@@ -22,7 +22,7 @@ C'est la seule exigence dans ce projet. _Tout le monde_ est la bienvenue dans le
 # Horaires club (susceptibles d'évoluer) :
 + Le vendredi de 13h25 à 14h20
 # La présentation du club aura lieu le vendredi 11 février en salle 202
-+ Pour ceux qui sont intéressés, ce sera l'occasion de développer le concept du club et de voir si d'autres horaires pourraient être ouverts
++ Pour ceux qui sont intéressés, ce sera l'occasion de discuter sur le club et de voir si d'autres horaires pourraient être ouverts
 # Contact
 Le projet est géré par Claire D'Iorio (T°9) et Edouard Aubert (T°7) n'hésitez pas à nous voir en cas de questions \
 Sinon, vous pouvez également nous contacter à l'adresse support@diskloud.fr
