@@ -5,13 +5,6 @@ Le code ne fonctionne cependant pas de manière indépendante, car il y a certai
 Ne vous laissez pas faire impressionner ! Cela a pris des mois de développement et même si le code est très conséquent, il n'est finalement pas si compliqué. Avec le club Web, vous aurez le moyens de tout comprendre :)
 */
 
-var dilabConnection = mysql.createConnection({
-    host: 'localhost',
-    user: 'dilabAdmin',
-    password: /*Mot de passe masqué*/,
-    database: 'DilabProject',
-    multipleStatements:true,
-});
 dilabConnection.connect();
 // node native promisify -> Creates an async query function (for "await query()")
 const dilabQuery = util.promisify(dilabConnection.query).bind(dilabConnection);
