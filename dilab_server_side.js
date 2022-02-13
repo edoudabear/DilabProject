@@ -24,6 +24,8 @@ app.get("/Dilab/:action",function(req,res) {
             res.render("dilabLogin.ejs")
         else
             res.redirect("/Dilab");
+    } else if (req.params.action.toLowerCase()=="infos") {
+        res.render("dilabProjectInfos.ejs")
     } else if (req.params.action.toLowerCase()=="signup") {
         res.render("dilabSignUp.ejs");
     } else {
