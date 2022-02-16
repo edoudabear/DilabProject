@@ -6,7 +6,7 @@ Ne vous laissez pas faire impressionner ! Cela a pris des mois de développement
 */
 
 dilabConnection.connect();
-var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt'));
+var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt')).replace(/\n/g,'');
 // node native promisify -> Creates an async query function (for "await query()")
 const dilabQuery = util.promisify(dilabConnection.query).bind(dilabConnection);
 
