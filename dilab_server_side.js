@@ -6,6 +6,7 @@ Ne vous laissez pas faire impressionner ! Cela a pris des mois de développement
 */
 
 dilabConnection.connect();
+var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt'));
 // node native promisify -> Creates an async query function (for "await query()")
 const dilabQuery = util.promisify(dilabConnection.query).bind(dilabConnection);
 
@@ -75,7 +76,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     }
     if (req.params.action=="connect") { // Path sort, THEN POST body analysis
         if (req.body.username && req.body.password) {
-            dilabConnection.query(`SELECT id,nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.username)}" AND motDePasse=aes_encrypt("${mysql_real_escape_string(req.body.password)}","dilabSecret");`,(err,results,fields) => {
+            dilabConnection.query(`SELECT id,nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.username)}" AND motDePasse=aes_encrypt("${mysql_real_escape_string(req.body.password)}","${cryptoKey}");`,(err,results,fields) => {
                 if (err) throw err;
 
                 if (results.length!=0) {
@@ -244,7 +245,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                             "status" : false
                                         }));
                 } else {
-                    dilabConnection.query(`UPDATE DilabUser SET motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.newPassword)}","dilabSecret") WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.prevPassword)}","dilabSecret");`,(err,results,fields) => {
+                    dilabConnection.query(`UPDATE DilabUser SET motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.newPassword)}","${cryptoKey}") WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.prevPassword)}","${cryptoKey}");`,(err,results,fields) => {
                         if (err) {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
@@ -561,7 +562,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             for (var i=0;i<req.files.length;i++)
                             fs.unlink(req.files[i].path,()=>{return;});
                         }
-                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","dilabSecret"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}", "${mysql_real_escape_string(req.body.username)}.png")`).catch((err) => {serverError(res,err)})
+                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}", "${mysql_real_escape_string(req.body.username)}.png")`).catch((err) => {serverError(res,err)})
                         .then(()=> {
                             res.end('{ "return" : "ok","status" : true, "data" : "Account created ! Make sure you confirm your account by mail."}')
                             transporter.sendMail(mailOptions, function(error, info) {
@@ -574,7 +575,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         });
                     });
                 } else { //Query for no personalized profile picture
-                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","dilabSecret"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}")`).catch((err) => {serverError(res,err)})
+                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}")`).catch((err) => {serverError(res,err)})
                     .then(()=> {
                         res.end('{ "return": "ok","status" : true, "data":"Account Created ! Make sure you confirm your account by email." }');                        
                         transporter.sendMail(mailOptions, function(error, info) {
@@ -721,7 +722,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
-            dilabConnection.query(`SELECT * FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.value)}","dilabSecret");`,(err,results,fields) => {
+            dilabConnection.query(`SELECT * FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.value)}","${cryptoKey}");`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
