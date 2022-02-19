@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel='icon' href="https://dev.diskloud.fr/mediaCE/gifgit%20(3).png" />
+        <title>Infos projet web (the Dilab project)</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            font-family: 'Arial','Abril Fatface','Alfa Slab One';
+            display: flex;
+            font-weight: lighter;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to top right,lightblue,blue);
+            height: 100%;
+            color : white;
+            transition: 0.4s;
+        }
+        h2,h1 {
+            margin-left: 4px ;
+            text-align : center ;
+        }
+        a {
+            color : cyan;
+        }
+        h4 {
+            margin : 0;
+            margin-left: 4px;
+        }
+        .time, h1 {
+            font-size: 4em;
+            font-family: impact, 'Abril Fatface';
+        }
+    </style>
+    <body>
+        <!--h2>Ooopsi, il semblerait que vous soyez plus rapide que nous.. !</h2>
+        <h4>Les informations du projet ne seront publiées qu'à partir de lundi matin</h4>
+        <h4>Le petit compte à rebours vous permet de vous faire une idée du temps restant..</h4>
+        <!--div class="time">
+            <span class="hours">
+
+            </span>
+            :
+            <span class="minutes">
+
+            </span>
+            :
+            <span class="seconds">
+
+            </span>
+        </div>
+        <div class="info">
+
+        </h2-->
+<h1>Atelier WEB</h1>
+<h2>Vous pouvez consulter la <a href=https://edoudabear.github.io/DilabProject/ >page GitHub</a> du projet</h2>
+    </body>
+    <script>
+       
+    </script>
+    <script>
+        const releaseDate=new Date(2022,01,14,8,00);
+        setInterval(() => {
+            var currentMs = Date.now(),
+            delta=releaseDate-currentMs,
+            hours=(delta-delta%(3600*1000))/(3600*1000),
+            minutes=((delta-hours*3600*1000)-(delta-hours*3600*1000)%(60*1000))/(60*1000),
+            seconds=((delta-(hours*60+minutes)*60*1000)-(delta-(hours*60+minutes)*60*1000)%1000)/1000;
+            if (delta<0) {
+                document.querySelector(".hours").innerHTML='0';
+                document.querySelector(".minutes").innerHTML='0'+String(0);
+                document.querySelector(".seconds").innerHTML='0'+String(0);   
+                if (document.querySelector(".info").innerHTML.trim()=="") {
+                    document.querySelector("h2").innerHTML="C'est bon !";
+                    document.querySelectorAll("h4")[0].innerHTML="";
+                    document.querySelectorAll("h4")[1].innerHTML="";
+                    document.querySelector(".info").innerHTML="Pour consulter la présentation du projet, vous pouvez consulter notre page GitHub :<br /><a href=https://edoudabear.github.io/DilabProject>Lien</a>"         
+                    document.body.style.background="linear-gradient(to top right,purple,pink)";
+                }
+            } else {
+                if (hours<10) {
+                    hours='0'+String(hours);
+                } else {
+                    hours=String(hours);
+                } if (minutes<10) {
+                    minutes='0'+String(minutes);
+                } else {
+                    minutes=String(minutes);
+                } if (seconds<10) {
+                    seconds='0'+String(seconds);
+                } else {
+                    seconds=String(seconds);
+                }
+                document.querySelector(".hours").innerHTML=hours
+                document.querySelector(".minutes").innerHTML=minutes;
+                document.querySelector(".seconds").innerHTML=seconds;
+            }
+        })
+    </script>
+</html>
