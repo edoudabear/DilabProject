@@ -836,7 +836,7 @@ function loadTemplate(link,callBack) {
     loadBar.style.display="block";
     loadBar.style.width="5%";
     xhr= new XMLHttpRequest;
-    xhr.open("GET","https://e.diskloud.fr/dilabTemplates/"+link+".txt");
+    xhr.open("GET","https://e.diskloud.fr/DilabRessources/dilabTemplates/"+link+".txt");
     xhr.onload=function() {
         if (xhr.statusCode!=200) {
             mainContent.innerHTML="<h2>There is no internet connection..</h2>"
