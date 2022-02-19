@@ -41,9 +41,9 @@ function goToPage(address) {
 }
 
 // Audio object
-var soundUrls=["https://dev.diskloud.fr/audios/MEUPE3.mp3","https://dev.diskloud.fr/audios/RUMSTEK2.mp3","https://dev.diskloud.fr/audios/SACRIFICEMEREMIX.mp3","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
-var soundTitles=["REUMSTEIKE (2020)","REMSTEK2","SACRIFICE ME (REMIX)","Dimm"];
-var soundAuthors=["Nourch,Claire,Edoubear (contenu sponsorisé)","Nourch,Claire,Edouda","Nourch, Claire","Nourch"];
+var soundUrls=["https://dev.diskloud.fr/audios/MEUPE3.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/SACRIFICEMEREMIX.mp3","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
+var soundTitles=["REUMSTEIKE (2020)","Project 1.2","SACRIFICE ME (REMIX)","Dimm"];
+var soundAuthors=["Nourch,Claire,Edoubear (contenu sponsorisé)","Various artists","Nourch, Claire","Nourch"];
 var audioObj = new Audio();
 var soundTitleObj = document.querySelector(".player .songTitle");
 var soundAuthorsObj = document.querySelector(".player .songGroup")
@@ -76,20 +76,19 @@ function loadSound(url) {
     document.querySelector(".fullScreen .soundName").innerHTML=soundTitles[playlistIndex];
     document.querySelector(".fullScreen  .soundAuthor").innerHTML=soundAuthors[playlistIndex];
     playlistContainer.innerHTML="";
-    for (var i=playlistIndex;i<soundUrls.length;i++) {
+    for (var i=0;i<soundUrls.length;i++) {
       playlistContainer.innerHTML+=`<div class="playlistElement" onclick=playSound(${i},true)>
                                         <div class=left>\
-                                            <div class=\"cover\">\
-                                                <img src=\"https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0\" />\
+                                            <div class="cover">\
+                                                <img src="https://s2.qwant.com/thumbr/0x380/f/5/dbce0635e640ca091402fdddcfdf40d7ac1c55479ecd8dda70d406470d9887/D20wpr7U2u7RvmAt__LsRVqeHttNywSURXBN4XSPeA1sIIB-0bjUx7WYGnXxyIIc4uNShCLzC-qXWZkZ7D0u_0Z6uLh2Miwf6FKGPA=w1400-k.jpg?u=https%3A%2F%2Flh3.googleusercontent.com%2FD20wpr7U2u7RvmAt__LsRVqeHttNywSURXBN4XSPeA1sIIB-0bjUx7WYGnXxyIIc4uNShCLzC-qXWZkZ7D0u_0Z6uLh2Miwf6FKGPA%3Dw1400-k&q=0&b=1&p=0&a=0" />\
                                             </div>\
                                             <div class=soundName>\
-                                                <span class=\"soundTitle\">${soundTitles[i]}</span>\
+                                                <span class="soundTitle">${soundTitles[i]}</span>\
                                                 <span class=soundAuthor>${soundAuthors[i]}</span>\
                                             </div>\
                                         </div>\
-                                        <span class=\"duration\">02:00</span>\
+                                        <span class="duration">02:00</span>\
                                     </div>`;
-      console.log(playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex])
       /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
         playlistIndex=i;
         loadSound(soundUrls[playlistIndex]);
