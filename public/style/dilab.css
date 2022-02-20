@@ -1893,9 +1893,10 @@ body {
 .playingIcon .bar{
     height:100%;
     width:18%;
-    margin-left : 2px;
-    margin-right: 2px;
-    margin:0;
+    margin-left : 4px;
+    margin-right: 4px;
+    margin-top:0;
+    margin-bottom : 0;
     background-color:rgb(216, 25, 200);
     animation:wobble 0.8s infinite;
     animation-timing-function:cubic-bezier(0.4, 0.2, 0.6, 0.8);
