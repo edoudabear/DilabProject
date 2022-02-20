@@ -16,23 +16,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -42,23 +45,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -68,23 +74,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -94,23 +103,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -120,49 +132,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
-                        </div>
-                    </div>
-                </div>
-                <div class=group>
-                    <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
-                    </div>
-                    <div class=textContent>
-                        <div class=title>
-                            CroumCrawm
-                        </div>                    
-                        <div class=infos>
-                            <div class=genre>
-                                Hip/Hop
-                            </div>
-                            <i class="bi bi-dot"></i>
-                            <div class=members>
-                                <span class=nMembers>36</span> members
-                            </div>
-                            <i class="bi bi-dot"></i>
-                            <div class=groupProjects>
-                                <span class="nProjects">2</span>&nbsp;projects (<span class=nReleases>1</span>&nbsp;released)
-                            </div>
-                        </div>
-                        <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -185,23 +174,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -211,23 +203,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -237,23 +232,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -263,23 +261,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>
@@ -289,49 +290,26 @@
                     </div>
                     <div class=textContent>
                         <div class=title>
-                            CroumCrawm
+                            <div style="width:7em;" class="skeletonLoader"></div>
                         </div>                    
                         <div class=infos>
                             <div class=genre>
-                                Hip/Hop
+                                <div style="width:7em;" class="skeletonLoader"></div>
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=members>
-                                <span class=nMembers>36</span> members
+                                <span class=nMembers><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;members
                             </div>
                             <i class="bi bi-dot"></i>
                             <div class=groupProjects>
-                                <span class="nProjects">2</span> projects (<span class=nReleases>1</span> released)
+                                <span class="nProjects"><div style="width:1em;" class="skeletonLoader"></div></span>&nbsp;projects (<span class=nReleases><div style="width:1em;" class="skeletonLoader"></div></span> released)
                             </div>
                         </div>
                         <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
-                        </div>
-                    </div>
-                </div>
-                <div class=group>
-                    <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
-                    </div>
-                    <div class=textContent>
-                        <div class=title>
-                            CroumCrawm
-                        </div>                    
-                        <div class=infos>
-                            <div class=genre>
-                                Hip/Hop
-                            </div>
-                            <i class="bi bi-dot"></i>
-                            <div class=members>
-                                <span class=nMembers>36</span> members
-                            </div>
-                            <i class="bi bi-dot"></i>
-                            <div class=groupProjects>
-                                <span class="nProjects">2</span>&nbsp;projects (<span class=nReleases>1</span>&nbsp;released)
-                            </div>
-                        </div>
-                        <div class=biography>
-                            A group making some fun projects together. Check out our new releases REUMSTEIKE and CHEVILLE !!
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:95%;" class="skeletonLoader"></div>
+                            <div style="width:20%;" class="skeletonLoader"></div>
                         </div>
                     </div>
                 </div>

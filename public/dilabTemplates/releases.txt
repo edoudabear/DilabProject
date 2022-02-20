@@ -13,24 +13,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
             <div class=release>
@@ -43,24 +43,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
             <div class=release>
@@ -73,24 +73,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
         </div>
@@ -106,24 +106,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
             <div class=release>
@@ -136,24 +136,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
             <div class=release>
@@ -166,24 +166,24 @@
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
-                            The best hit ever
+                            <div style="width:5em;" class="skeletonLoader"></div>
                         </div>
                         <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
                             <span class=groupName>
-                                CroumCrawm
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                             <i class="bi bi-dot"></i>
                             <span class=authors>
-                                Lala Lili, Lolo Lulu, Pété Samére
+                                <div style="width:5em;" class="skeletonLoader"></div>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class=streams>
-                    340 212 streams
+                    <div style="width:5em;" class="skeletonLoader"></div>
                 </div>
                 <div class=duration>
-                    2:36
+                    <div style="width:3em;" class="skeletonLoader"></div>
                 </div>
             </div>
         </div>
