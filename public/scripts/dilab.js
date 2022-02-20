@@ -1048,6 +1048,7 @@ function setVolume(x) { // x stands for audio intensity level
     updateSoundIcon(x);
 }
 
+//Synchronisation of sound level with value stored inside cookie
 if (localStorage.getItem("DilabVolumeLevel")!=null && localStorage.getItem("DilabVolumeLevel")!="") {
     setVolume(localStorage.getItem("DilabVolumeLevel"));
 }
