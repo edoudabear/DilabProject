@@ -1174,7 +1174,7 @@ function displayPopUp(title,content,callBack=(e)=>{}) {
     document.querySelector(".popUpWindowContainer").style.display="block";
     document.querySelector(".popUpWindowContainer > .popUpWindow > .popUpHeader > .popUpTitle").innerHTML=title;
     document.querySelector(".popUpWindowContainer > .popUpWindow > .popUpMainContent").innerHTML="<div class=\"kabobloader\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>";
-    fetch("https://e.diskloud.fr/dilabTemplates/popUp/"+content).then(output=>
+    fetch("https://e.diskloud.fr/dilabRessources/dilabTemplates/popUp/"+content).then(output=>
     {
         if (output.status!=200) {
             document.querySelector(".popUpWindowContainer > .popUpWindow > .popUpMainContent").innerHTML="Error "+output.status;
