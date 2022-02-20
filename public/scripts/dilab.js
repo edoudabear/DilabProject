@@ -1040,6 +1040,18 @@ document.querySelector(".progressBarContainer").addEventListener('click', e => {
 }); 
 
 //Sound Control
+
+function setVolume(value) {
+    document.querySelectorAll(".progressBarContainer")[1].querySelector(".filledPart").style.width = String(x*100)+"%";
+    audioObj.volume=x;
+    localStorage.setItem("DilabVolumeLevel",x);
+    updateSoundIcon(x*100);
+}
+
+if (localStorage.getItem("DilabVolumeLevel")!=null && localStorage.getItem("DilabVolumeLevel")!="") {
+    setVolume(localStorage.getItem("DilabVolumeLevel"));
+}
+
 document.querySelectorAll(".progressBarContainer")[1].addEventListener('click', e => {
     var progress=document.querySelectorAll(".progressBarContainer")[1].querySelector(".progressBar")
     /*while (document.querySelectorAll(".progressBar")[1]!=progress && progress!=document.body) {
@@ -1063,6 +1075,7 @@ document.querySelectorAll(".progressBarContainer")[1].addEventListener('click', 
     //y = e.clientY - bounds.top;
     progress.querySelector(".filledPart").style.width = x+"%";
     audioObj.volume=x/100;
+    localStorage.setItem("DilabVolumeLevel",x);
     updateSoundIcon(x);
 });
 
