@@ -1041,7 +1041,7 @@ document.querySelector(".progressBarContainer").addEventListener('click', e => {
 
 //Sound Control
 
-function setVolume(value) {
+function setVolume(x) { // x stands for audio intensity level
     document.querySelectorAll(".progressBarContainer")[1].querySelector(".filledPart").style.width = String(x*100)+"%";
     audioObj.volume=x;
     localStorage.setItem("DilabVolumeLevel",x);
