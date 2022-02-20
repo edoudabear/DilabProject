@@ -1173,6 +1173,7 @@ document.querySelector(".soundIcon").addEventListener('click',e => {
             audioObj.volume=0.2;
         }
     }
+    localStorage.setItem("DilabVolumeLevel",audioObj.volume);
 })
 
 /* FURTHER TECHNICAL FUNCTIONS */
