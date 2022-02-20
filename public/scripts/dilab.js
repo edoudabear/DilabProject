@@ -1042,10 +1042,10 @@ document.querySelector(".progressBarContainer").addEventListener('click', e => {
 //Sound Control
 
 function setVolume(x) { // x stands for audio intensity level
-    document.querySelectorAll(".progressBarContainer")[1].querySelector(".filledPart").style.width = String(x*100)+"%";
-    audioObj.volume=x;
+    document.querySelectorAll(".progressBarContainer")[1].querySelector(".filledPart").style.width = String(x)+"%";
+    audioObj.volume=x/100;
     localStorage.setItem("DilabVolumeLevel",x);
-    updateSoundIcon(x*100);
+    updateSoundIcon(x);
 }
 
 if (localStorage.getItem("DilabVolumeLevel")!=null && localStorage.getItem("DilabVolumeLevel")!="") {
