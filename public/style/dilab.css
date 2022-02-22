@@ -330,6 +330,13 @@ body {
         position : static;
         height : 40px;
     }
+    .box-container .player .musicInfos .description > * {
+        white-space: nowrap;
+        user-select: none;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        max-width: 80%;
+    }
     .box-container .player {
         padding: 4px;
         box-shadow: none ;
