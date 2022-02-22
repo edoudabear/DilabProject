@@ -60,7 +60,22 @@ playingIcon.classList.add("playingIcon");
 playingIcon.innerHTML="<div class=\"bar\"></div>\
                         <div class=\"bar\"></div>\
                         <div class=\"bar\"></div>\
-                        <div class=\"bar\"></div>";		
+                        <div class=\"bar\"></div>";
+
+const image = document.querySelector(".player .cover img");
+
+function printPipWindowDimensions(evt) {
+  const pipWindow = evt.target;
+  console.log(`The floating window dimensions are: ${pipWindow.width}x${pipWindow.height}px`);
+  // will print:
+  // The floating window dimensions are: 640x360px
+}
+
+function pipLoad() {
+  image.requestPictureInPicture().then(pictureInPictureWindow => {
+    pictureInPictureWindow.onresize = printPipWindowDimensions;
+  });
+};
 
 updateSoundIcon(audioObj.volume*100);
 soundBar.style.width = audioObj.volume*100+"%";
