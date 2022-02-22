@@ -60,7 +60,7 @@ playingIcon.classList.add("playingIcon");
 playingIcon.innerHTML="<div class=\"bar\"></div>\
                         <div class=\"bar\"></div>\
                         <div class=\"bar\"></div>\
-                        <div class=\"bar\"></div>";		
+                        <div class=\"bar\"></div>";
 
 updateSoundIcon(audioObj.volume*100);
 soundBar.style.width = audioObj.volume*100+"%";
