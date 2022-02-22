@@ -1947,6 +1947,10 @@ body {
     visibility: hidden;
 }
 
+.fullScreen:not(:fullscreen) * {
+    width: 0;
+}
+
 @keyframes linear_gradient_bg_animation {
     0% {background-position: left}
     50% {background-position: right}
