@@ -41,9 +41,9 @@ function goToPage(address) {
 }
 
 // Audio object
-var soundUrls=["https://dev.diskloud.fr/audios/MEUPE3.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/SACRIFICEMEREMIX.mp3","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
-var soundTitles=["REUMSTEIKE (2020)","Project 1.2","SACRIFICE ME (REMIX)","Dimm"];
-var soundAuthors=["Nourch,Claire,Edoubear (contenu sponsorisé)","Various artists","Nourch, Claire","Nourch"];
+var soundUrls=["https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/SACRIFICEMEREMIX.mp3","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
+var soundTitles=["Redlight (2022)","Project 1.2","SACRIFICE ME (REMIX)","Dimm"];
+var soundAuthors=["Swedish House Mafia","Various artists","Nourch, Claire","Nourch"];
 var audioObj = new Audio();
 var soundTitleObj = document.querySelector(".player .songTitle");
 var soundAuthorsObj = document.querySelector(".player .songGroup")
