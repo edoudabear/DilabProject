@@ -452,18 +452,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
     } else if (req.params.action=="add") {
-         fetch('/Dilab/add', {
-                        headers: {
-                            'Content-Type': 'application/json'
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: 'POST',
-                        body: JSON.stringify({
-                            projectName : "Bonsoir"
-                        }) //data
-                    }).then(out => {
-                        return out.json();
-                    }).then(log => { console.log(log) });
         // Account creation case
         if (req.body.username && req.body.firstName && req.body.lastName && req.body.password && req.files 
             && req.body.email && (req.body.genres || true) && req.body.biography) {
