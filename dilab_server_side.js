@@ -647,7 +647,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         for (var i=0;i<req.files.length;i++)
                         fs.unlink(req.files[i].path,()=>{return;});
                     }
-                    dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupName}.png','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId) VALUES (${req.session.dilab});`,function(err,results,fields) {
+                    dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupName}.png','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}";`,function(err,results,fields) {
                         if (err) {
                             console.log("ERROR : "+err.errno);
                             if (err.errno==1062) {
