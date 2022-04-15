@@ -37,4 +37,13 @@ SELECT message,CONCAT(prenom," ",nom) AS auteur,groupProjectPvChatId,isGroupOrPr
 USE DilabProject;
 INSERT INTO `DilabProject` (`id`, `dateOfBirth`, `name`, `groupAuthor`, `genres`, `currentPhase`, `phases`, `projectPicture`, `audioFileDir`, `projectFileDir`, `lastAudioFileUpdate`, `lastProjectFileUpdate`) VALUES ('1', current_timestamp(), 'BROBROBRO', '1', 'BRORBORBOR on soutient les BRO MAIS PAS LES CRUCHES (LES PICHETS CA VA)', '2', '', 'disc.svg', '', '', current_timestamp(), current_timestamp()) 
 
+-- MOST POPULAR Projects request
+SELECT groupName,groupPicture,dateOfBirth,description,COUNT(*) AS nCollaborators FROM DilabMusicGroups
+    JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id GROUP BY groupName  ORDER BY nCollaborators DESC LIMIT 10;
+
+-- MOST POPULAR Projects request of user's genre
+SELECT groupName,groupPicture,dateOfBirth,description,COUNT(*) AS nCollaborators FROM DilabMusicGroups
+    JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id WHERE genres="" GROUP BY groupName  ORDER BY nCollaborators DESC LIMIT 10;
+
+
 -- Fin du document
