@@ -674,8 +674,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     });
                 });
             } else {
-                console.log(`INSERT INTO DilabMusicGroups (groupName, description, admin, founder, genres) VALUES ('${groupName}','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}')`);
-                dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, description, admin, founder, genres) VALUES ('${groupName}','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}')`,function(err,results,fields) {
+                console.log(`INSERT INTO DilabMusicGroups (groupName,description, admin, founder, genres) VALUES ('${groupName}','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}"`);
+                dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName,description, admin, founder, genres) VALUES ('${groupName}','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}"`,function(err,results,fields) {
                     if (err) {
                         console.log("ERROR : "+err.errno);
                         if (err.errno==1062) {
