@@ -1958,9 +1958,11 @@ body {
 }
 
 .fullScreen .cover {
-    height : 5em;
+    height: 5em;
     border-radius: 8px;
     padding: 5px;
+    transition: 2s cubic-bezier(0.78, -0.01, 0.17, 1);
+    aspect-ratio: 1;
 }
 
 .fullScreen .songInfosCoverWrapper {
