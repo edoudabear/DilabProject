@@ -1959,13 +1959,15 @@ body {
 
 .fullScreen .cover {
     height : 5em;
+    border-radius: 8px;
+    padding: 5px;
 }
 
 .fullScreen .songInfosCoverWrapper {
     display: flex;
     align-items: flex-end;
     font-size: 2em;
-    justify-content: left;
+    justify-content: left; 
 }
 
 .fullScreen:fullscreen  {
@@ -1977,9 +1979,8 @@ body {
     animation : linear_gradient_bg_animation 20s infinite;
     background-size: 300%;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .fullScreen .musicControls {
@@ -1990,6 +1991,7 @@ body {
 
 .fullScreen .bottomEl {
     width: 100%;
+    margin-bottom: 40px;
 }
   
 
