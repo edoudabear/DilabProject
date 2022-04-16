@@ -859,6 +859,7 @@ body {
 .groupsWrapper, .artistsWrapper, .projectsWrapper {
     display: flex;
     width : fit-content;
+    padding-right: 70px;
 }
 
 .groups, .artists, .projects {
@@ -1009,10 +1010,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.projectsPage .projects {
-    padding-right : 70px;
 }
 
 .projectsPage > * {
