@@ -302,6 +302,22 @@ body {
     aspect-ratio: 1;
     margin : 4px;
     cursor: pointer;
+    position: relative;
+}
+
+.box-container .player .musicInfos .cover .musicPlayerCoverHover {
+    opacity: 0;
+    position : absolute;
+    background :rgba(85, 85, 85,0.6);
+    height: 100%;
+    width: 100%;
+    top : 0;
+    left : 0;
+    transition : 0.2s;
+}
+
+.box-container .player .musicInfos .cover .musicPlayerCoverHover {
+    opacity: 0.5;
 }
 
 .box-container .player .musicInfos .cover img {
