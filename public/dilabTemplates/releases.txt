@@ -9,7 +9,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -39,7 +39,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -69,7 +69,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -102,7 +102,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -132,7 +132,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -162,7 +162,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -195,7 +195,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -225,7 +225,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -255,7 +255,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
+                        <img src="https://t2.genius.com/unsafe/324x324/https%3A%2F%2Fimages.genius.com%2F124f7f18e5f3ec87c9a4265007b54bb7.500x500x1.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
