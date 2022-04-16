@@ -308,7 +308,7 @@ body {
 .box-container .player .musicInfos .cover .musicPlayerCoverHover {
     opacity: 0;
     position : absolute;
-    background :rgba(85, 85, 85,0.6);
+    background :rgba(85, 85, 85,0.3);
     height: 100%;
     width: 100%;
     padding : 15%;
@@ -318,7 +318,7 @@ body {
 }
 
 .box-container .player .musicInfos .cover .musicPlayerCoverHover:hover {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .box-container .player .musicInfos .cover img {
