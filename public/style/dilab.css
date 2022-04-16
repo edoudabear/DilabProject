@@ -2024,7 +2024,7 @@ body {
   }*/
   
   
-  .fullScreen .lyricscard {
+  .fullScreen .lyricsCard {
     background: #191c29;
     color : white;
     width: var(--card-width);
@@ -2062,11 +2062,11 @@ body {
     opacity : 0.6;
   }
   
-  .fullScreen .lyricscard .topText, .fullScreen .lyricscard .mainText, .fullScreen .lyricscard .bottomText {
+  .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
     transition : 0.4s;
   }
   
-  .fullScreen .lyricscard::before {
+  .fullScreen .lyricsCard::before {
     content: "";
     width: 102%;
     height: 104%;
