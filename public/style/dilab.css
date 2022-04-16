@@ -1979,7 +1979,9 @@ body {
     background-size: 300%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .fullScreen .musicControls {
@@ -1991,7 +1993,123 @@ body {
 .fullScreen .bottomEl {
     width: 100%;
     margin-bottom: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
+
+/* Fullscreen, lyrics part */
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+  
+  :root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 0.5);
+  }
+  
+  
+  /*body {
+    min-height: 100vh;
+    background: #212534;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+  }*/
+  
+  
+  .fullScreen .lyricscard {
+    background: #191c29;
+    color : white;
+    width: var(--card-width);
+    height: var(--card-height);
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 1.5em;
+    cursor: pointer;
+    font-family: Arial;
+    font-weight : bold;
+    
+    display : flex;
+    flex-direction : column;
+  }
+  
+  .fullScreen .lyricsCard .topText {
+    font-size : 1.5em;
+    opacity : 0.6;
+  }
+  
+  .fullScreen .lyricsCard .mainText {
+    font-size : 1.5em;
+    transform : scale(1.5);
+    margin-top : 5%;
+    margin-bottom : 5%;
+  }
+  
+  .fullScreen .lyricsCard .bottomText {
+    font-size : 1.5em;
+    opacity : 0.6;
+  }
+  
+  .fullScreen .lyricscard .topText, .fullScreen .lyricscard .mainText, .fullScreen .lyricscard .bottomText {
+    transition : 0.4s;
+  }
+  
+  .fullScreen .lyricscard::before {
+    content: "";
+    width: 102%;
+    height: 104%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #5ddcff, #3c67e3 43%, #4e00c2);
+      position: absolute;
+      z-index: -1;
+      top: -2%;
+      left: -1%;
+      animation: spin 2.5s linear infinite;
+  }
+  
+  .fullScreen .lyricsCard::after {
+    position: absolute;
+    content: "";
+    /*top: calc(var(--card-height) / 6);*/
+    top : -10%;
+    left: -20%;
+    right: -20%;
+    z-index: -1;
+    height: 120%;
+    width: 120%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate)
+      , #5ddcff, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
   
 
 /* Notifications menu */
