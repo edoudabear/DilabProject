@@ -2007,8 +2007,8 @@ body {
   }
   
   :root {
-    --card-height: 25%;
-    --card-width: calc(var(--card-height) / 0.3);
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 0.4);
   }
   
   
@@ -2047,9 +2047,13 @@ body {
     margin-bottom: 200px;
   }
   
-  .fullScreen .lyricsCard .topText {
+  .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .bottomText {
     font-size : 1.5em;
     opacity : 0.6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
   }
   
   .fullScreen .lyricsCard .mainText {
@@ -2057,11 +2061,6 @@ body {
     transform : scale(1.5);
     margin-top : 5%;
     margin-bottom : 5%;
-  }
-  
-  .fullScreen .lyricsCard .bottomText {
-    font-size : 1.5em;
-    opacity : 0.6;
   }
   
   .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
