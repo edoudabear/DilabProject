@@ -2029,6 +2029,7 @@ body {
     color : white;
     width: var(--card-width);
     height: var(--card-height);
+    min-height: fit-content;
     padding: 3px;
     position: relative;
     border-radius: 6px;
