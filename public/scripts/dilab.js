@@ -224,6 +224,8 @@ document.querySelector(".player .musicInfos .cover").addEventListener('click',e=
     goFullScreenMode();
 })
 
+// Fullscreen mode
+
 window.onresize = function () {
     if (window.matchMedia('(display-mode: fullscreen)').matches ||
     window.document.fullscreenElement) {
@@ -239,6 +241,34 @@ function goFullScreenMode() {
         Swal.fire("Warning","Your browser does not support fullscreen mode. Doesn't work :(","warning");
     }    
 }
+
+// Lyrics inside fullScreen mode (function to update the lyrics)
+
+function updateLyrics(content) {
+    //document.querySelector(".topText").style.opacity="0";
+    //document.querySelector(".topText").style.height="0";
+    //document.querySelector(".topText").style.transform="translate('-20px')";
+  
+    document.querySelector(".topText").remove();
+    
+    document.querySelector(".mainText").classList.add("topText");
+    document.querySelector(".mainText").classList.remove("mainText");
+    
+    document.querySelector(".bottomText").classList.add("mainText");
+    document.querySelector(".bottomText").classList.remove("bottomText");
+    
+    var nextBottom=document.createElement("div");
+    nextBottom.innerHTML=content;
+    nextBottom.style.opacity = "0";
+    nextBottom.style.transform="translateY(20px)";
+    nextBottom.classList.add("bottomText");
+    document.querySelector(".card").appendChild(nextBottom);
+    nextBottom.style.height="";
+    setTimeout(()=>{
+      nextBottom.style.opacity="";
+      nextBottom.style.transform="";
+    },20);
+  }
 
 audioObj.onpause = function() {
     setPlayIcon(false);
