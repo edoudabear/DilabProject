@@ -262,7 +262,7 @@ function updateLyrics(content) {
     nextBottom.style.opacity = "0";
     nextBottom.style.transform="translateY(20px)";
     nextBottom.classList.add("bottomText");
-    document.querySelector(".card").appendChild(nextBottom);
+    document.querySelector(".lyricsCard").appendChild(nextBottom);
     nextBottom.style.height="";
     setTimeout(()=>{
       nextBottom.style.opacity="";
