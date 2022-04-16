@@ -1974,8 +1974,8 @@ body {
     height: 100%;
     visibility: visible;
     color: white;
-    background: linear-gradient(to top right,rgb(211, 12, 211),rgb(86, 86, 151),green);
-    animation : linear_gradient_bg_animation 20s infinite;
+    background: rgb(3, 25, 71);/*linear-gradient(to top right,rgb(211, 12, 211),rgb(86, 86, 151),green);*/
+    /* animation : linear_gradient_bg_animation 20s infinite;*/
     background-size: 300%;
     display: flex;
     flex-direction: column;
@@ -2007,8 +2007,8 @@ body {
   }
   
   :root {
-    --card-height: 65vh;
-    --card-width: calc(var(--card-height) / 0.5);
+    --card-height: 25%;
+    --card-width: calc(var(--card-height) / 0.3);
   }
   
   
@@ -2043,6 +2043,7 @@ body {
     
     display : flex;
     flex-direction : column;
+    margin-bottom: 200px;
   }
   
   .fullScreen .lyricsCard .topText {
