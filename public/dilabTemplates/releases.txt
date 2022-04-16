@@ -9,7 +9,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -39,7 +39,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -69,7 +69,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -102,7 +102,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -132,7 +132,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -162,7 +162,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -195,7 +195,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -225,7 +225,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
@@ -255,7 +255,7 @@
                         <i class="bi bi-play-circle-fill"></i>
                     </div>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="http://kasbomusic.com/wp-content/uploads/2020/10/KASBO_Single-05-6000px-1-1024x1024.jpg" />
                     </div>
                     <div class=infos>
                         <div class=title title="The best hit ever">
