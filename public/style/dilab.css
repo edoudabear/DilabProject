@@ -376,7 +376,7 @@ body {
         display : none;
     }
     .fullScreen {
-        font-size: 0.6em;
+        font-size: 0.8em;
     }
     .fullScreen .cover {
         display: none;
@@ -384,6 +384,13 @@ body {
 
     .fullScreen .bottomEl {
         margin-bottom: 0;
+    }
+    .fullScreen .mainText {
+        transform: scale(1.2);
+        max-width: calc(100% / 1.2);
+    }
+    .fullScreen .bottom .musicControls {
+        font-size : 1.5em;
     }
 }
 
