@@ -233,13 +233,14 @@ function lyricsPlay(time) {
         if (parseFloat(parsedLyricsTimes[i])>=time) {
             newIndex=i;
             break;
+        } if (i==parsedLyricsTimes.length-1) {
+            newIndex=parsedLyricsTimes.length-1;
         }
     }
     newIndex--;
     if (newIndex<0) {
         return;
-    }
-    if (newIndex==lyricsIndex+1) {
+    } else if (newIndex==lyricsIndex+1) {
         updateLyrics(parsedLyrics[i]);
     } else if (newIndex!=lyricsIndex) {
         if (newIndex>0) {
