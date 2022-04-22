@@ -1958,7 +1958,7 @@ body {
 
 /* Fullscreen mode */
 .fullScreen:not(:fullscreen) {
-    visibility: hidden;
+    display: none;
 }
 
 .fullScreen:not(:fullscreen) * {
