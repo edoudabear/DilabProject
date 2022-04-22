@@ -389,7 +389,7 @@ body {
         transform: scale(1.2);
         max-width: calc(100% / 1.2);
     }
-    .fullScreen .bottom .musicControls {
+    .fullScreen .bottomEl .musicControls {
         font-size : 1.5em;
     }
 }
