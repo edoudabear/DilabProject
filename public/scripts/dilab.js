@@ -233,7 +233,7 @@ audioObj.addEventListener("timeupdate", function() {
     if (clickedElement!=document.querySelector(".progressBarContainer"))
         musicBar.style.width=audioObj.currentTime/audioObj.duration*100+"%";
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
-    lyricsPlay("test",audioObj.currentTime);
+    lyricsPlay(audioObj.currentTime);
 });
 
 document.addEventListener("keypress",e=> {
