@@ -217,7 +217,7 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(time) {
     console.log(time);
-    if (time>=parsedLyricsTimes[0]) {
+    if (time>=parseInt(parsedLyricsTimes[0])) {
         updateLyrics(parsedLyrics[0]);
         parsedLyricsTimes.shift();
         parsedLyrics.shift();
