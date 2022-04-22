@@ -51,13 +51,16 @@ function parseLyrics(data) {
             j++;
         }
         j++;
-        lyricsList[i]=lyricsList[i].splice(j);
+        lyricsList[i]=lyricsList[i].slice(j);
         j=0;
         while (lyricsList[i][j]!=']') {
             j++;
         }
+        console.log(lyricsList[i])
         results[0].push(lyricsList[i].substring(0,j));
-        results[1].push(lyricsList[i].splice(j));
+        j++;
+        console.log(lyricsList[i])
+        results[1].push(lyricsList[i].slice(j));
     }
     return results;
 }
