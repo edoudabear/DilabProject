@@ -199,10 +199,18 @@ document.querySelectorAll(".fullScreen .musicButton")[2].addEventListener("click
 audioObj.addEventListener("canplaythrough", function() {
     updateMusicProgressTime(audioObj.duration,false); //Display the duration of the song
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
+    lyricsPlay("test",audioObj.currentTime);
 });
 audioObj.addEventListener("error",()=> {
     Swal.fire("Error","There was an error while loading your audio file...","error");
 });
+
+function lyricsPlay(file,time) {
+    console.log(time);
+    if (time==4000) {
+        updateLyrics("hello");
+    }
+}
 
 audioObj.addEventListener("stalled",()=> {
     Swal.fire("Error","There was a problem while loading your audio file...","error");
