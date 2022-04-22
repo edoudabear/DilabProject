@@ -220,13 +220,16 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(time) {
     console.log(time);
-    while (parsedLyricsTimes.length>2 && time>parseFloat(parsedLyricsTimes[1])) {
+    var initialLength=parsedLyrics.length;
+    while (parsedLyricsTimes.length>1 && time>parseFloat(parsedLyricsTimes[1])) {
         parsedLyricsTimes.shift();
         parsedLyrics.shift();
     }
-    updateLyrics(parsedLyrics[0]);
-    parsedLyricsTimes.shift();
-    parsedLyrics.shift();
+    if (parsedLyrics.length!=initialLength) {
+        updateLyrics(parsedLyrics[0]);
+        parsedLyricsTimes.shift();
+        parsedLyrics.shift();
+    }
 }
 
 audioObj.addEventListener("stalled",()=> {
