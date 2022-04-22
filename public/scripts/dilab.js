@@ -62,9 +62,11 @@ function parseLyrics(data) {
             j++;
             results[1].push(lyricsList[i].slice(j));
         } else {
+            results[0].push(lyricsList[i].substring(0,j));
             j++;
             console.log(lyricsList[i].slice(j));
             updateLyrics(lyricsList[i].slice(j));
+            console.log("added");
         }
 
     }
