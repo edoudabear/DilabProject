@@ -386,8 +386,8 @@ body {
         margin-bottom: 0;
     }
     .fullScreen .lyricsCard .mainText {
-        transform: scale(1.2);
-        max-width: calc(100% / 1.2);
+        transform: scale(1.3);
+        max-width: calc(100% / 1.3);
     }
     .fullScreen .bottomEl .musicControls {
         font-size : 2em;
