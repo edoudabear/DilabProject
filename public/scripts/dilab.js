@@ -209,7 +209,7 @@ document.querySelectorAll(".fullScreen .musicButton")[2].addEventListener("click
 audioObj.addEventListener("canplaythrough", function() {
     updateMusicProgressTime(audioObj.duration,false); //Display the duration of the song
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
-    lyricsPlay("test",audioObj.currentTime);
+    lyricsPlay(audioObj.currentTime);
 });
 
 audioObj.addEventListener("error",()=> {
