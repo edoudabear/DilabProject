@@ -67,7 +67,8 @@ function parseLyrics(data) {
             console.log(lyricsList[i].slice(j));
             updateLyrics(lyricsList[i].slice(j));
         }
-
+        results[1].push((playlistIndex>=0) ? soundAuthors[playlistIndex] : "");
+        results[1].push("");
     }
     return results;
 }
@@ -209,6 +210,7 @@ document.querySelectorAll(".fullScreen .musicButton")[2].addEventListener("click
 audioObj.addEventListener("canplaythrough", function() {
     updateMusicProgressTime(audioObj.duration,false); //Display the duration of the song
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
+    parseLyrics(lyrics[playlistIndex]);
     lyricsPlay(audioObj.currentTime);
 });
 
@@ -218,11 +220,13 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(time) {
     console.log(time);
-    if (time>=parseFloat(parsedLyricsTimes[0])) {
-        updateLyrics(parsedLyrics[0]);
+    while (parsedLyricsTimes.length>2 && time<parseFloat(parsedLyricsTimes[1])) {
         parsedLyricsTimes.shift();
         parsedLyrics.shift();
     }
+    updateLyrics(parsedLyrics[0]);
+    parsedLyricsTimes.shift();
+    parsedLyrics.shift();
 }
 
 audioObj.addEventListener("stalled",()=> {
