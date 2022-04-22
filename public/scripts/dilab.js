@@ -228,9 +228,9 @@ function lyricsPlay(time) {
             break;
         }
     }
-    if (newIndex==lyricsIndex+1) {
+    if (newIndex==lyricsIndex+2) {
         updateLyrics(parsedLyrics[i]);
-    } else if (newIndex!=lyricsIndex) {
+    } else if (newIndex!=lyricsIndex+1) {
         if (newIndex>0) {
             updateLyrics(parsedLyrics[newIndex-1]);
         } else {
