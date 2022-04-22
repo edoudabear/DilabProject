@@ -23,32 +23,7 @@ var lyrics=["[0.0]🎵\n[30.0]True say\n[67.0]True say\n[107.0]You don't have to
 "",
 "",
 "",
-`[0.0]🎵
-[38.0]Waiting in the car
-[43.0]Waiting for the ride in the dark
-[47.3]At night the city grows
-[52.0]Look at the horizon glow
-[56.0]🎵
-[75.0]Waiting in the car
-[79.5]Waiting for the ride in the dark
-[83.0]Drinking in the lounge
-[88.0]Following the neon signs
-[92.8]Waiting for a word
-[97.8]Looking at the milky skyline
-[102.0]The city is my church
-[107]It wraps me in its blinding twilight
-[110.5]🎵
-[138.0]Waiting in the car
-[143.8]Waiting for the ride in the dark
-[148.5]Waiting in the car (waiting in the car)
-[153]Waiting for the ride in the dark
-[158.0]Waiting in the car
-[161.6]Waiting for the ride in the dark
-[166.0]Waiting in the car (waiting in the car)
-[170.8]Waiting for the ride in the dark
-[175.0]Waiting in the car (waiting in the car)
-[180.0]Waiting for the ride in the dark
-[185.0]🎵`]
+"[0.0]🎵\n[38.0]Waiting in the car\n[43.0]Waiting for the ride in the dark\n[47.3]At night the city grows\n[52.0]Look at the horizon glow\n[56.0]🎵\n[75.0]Waiting in the car\n[79.5]Waiting for the ride in the dark\n[83.0]Drinking in the lounge\n[88.0]Following the neon signs\n[92.8]Waiting for a word\n[97.8]Looking at the milky skyline\n[102.0]The city is my church\n[107]It wraps me in its blinding twilight\n[110.5]🎵\n[138.0]Waiting in the car\n[143.8]Waiting for the ride in the dark\n[148.5]Waiting in the car (waiting in the car)\n[153]Waiting for the ride in the dark\n[158.0]Waiting in the car\n[161.6]Waiting for the ride in the dark\n[166.0]Waiting in the car (waiting in the car)\n[170.8]Waiting for the ride in the dark\n[175.0]Waiting in the car (waiting in the car)\n[180.0]Waiting for the ride in the dark\n[185.0]🎵"]
 var parsedLyrics=[];
 var parsedLyricsTimes=[];
 var lyricsIndex=0;
