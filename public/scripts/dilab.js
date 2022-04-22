@@ -68,9 +68,9 @@ function parseLyrics(data) {
             console.log(lyricsList[i].slice(j));
             updateLyrics(lyricsList[i].slice(j));
         }
-        results[1].push((playlistIndex>=0) ? soundAuthors[playlistIndex] : "");
-        results[1].push("");
     }
+    results[1].push((playlistIndex>=0) ? soundAuthors[playlistIndex] : "");
+    results[1].push("");
     lyricsIndex = 0;
     return results;
 }
