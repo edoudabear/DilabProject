@@ -56,10 +56,8 @@ function parseLyrics(data) {
         while (lyricsList[i][j]!=']') {
             j++;
         }
-        console.log(lyricsList[i])
         results[0].push(lyricsList[i].substring(0,j));
         j++;
-        console.log(lyricsList[i])
         results[1].push(lyricsList[i].slice(j));
     }
     return results;
