@@ -43,6 +43,25 @@ playingIcon.innerHTML="<div class=\"bar\"></div>\
 updateSoundIcon(audioObj.volume*100);
 soundBar.style.width = audioObj.volume*100+"%";
 
+function parseLyrics(data) {
+    var results=[[],[]],lyricsList=data.split('\n');
+    for (var i=0;i<lyricsList.length;i++) {
+        j=0;
+        while (lyricsList[i][j]!='[') {
+            j++;
+        }
+        j++;
+        lyricsList[i]=lyricsList[i].splice(j);
+        j=0;
+        while (lyricsList[i][j]!=']') {
+            j++;
+        }
+        results[0].push(lyricsList[i].substring(0,j));
+        results[1].push(lyricsList[i].splice(j));
+    }
+    return results;
+}
+
 function loadSound(url) {
     audioObj.src=url;
     //audioObj.load();
@@ -51,6 +70,9 @@ function loadSound(url) {
     soundTitleObj.title=soundTitles[playlistIndex];
     soundAuthorsObj.innerHTML=soundAuthors[playlistIndex];
     soundAuthorsObj.title=soundAuthors[playlistIndex];
+    var lyricsData=parseLyrics(lyrics[playlistIndex]);
+    parsedLyrics=lyricsData[1];
+    parsedLyricsTimes=lyricsData[0];
     document.querySelector(".fullScreen .soundName").innerHTML=soundTitles[playlistIndex];
     document.querySelector(".fullScreen  .soundAuthor").innerHTML=soundAuthors[playlistIndex];
     playlistContainer.innerHTML="";
