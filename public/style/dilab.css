@@ -375,6 +375,9 @@ body {
     .box-container .player .soundControl {
         display : none;
     }
+    .fullScreen .cover {
+        display: none;
+    }
 }
 
 .top-nav .left-menu .title {
