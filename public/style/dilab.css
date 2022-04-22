@@ -378,6 +378,10 @@ body {
     .fullScreen .cover {
         display: none;
     }
+
+    .fullScreen .bottomEl {
+        margin-bottom: 0;
+    }
 }
 
 .top-nav .left-menu .title {
