@@ -2087,7 +2087,7 @@ body {
     transform : scale(1.5);
     margin-top : 5%;
     margin-bottom : 5%;
-    max-width: 100%;
+    max-width: calc(100%/1.5);
   }
   
   .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
