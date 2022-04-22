@@ -228,9 +228,10 @@ function lyricsPlay(time) {
             break;
         }
     }
-    if (newIndex==lyricsIndex+2) {
+    newIndex--;
+    if (newIndex==lyricsIndex+1) {
         updateLyrics(parsedLyrics[i]);
-    } else if (newIndex!=lyricsIndex+1) {
+    } else if (newIndex!=lyricsIndex) {
         if (newIndex>0) {
             updateLyrics(parsedLyrics[newIndex-1]);
         } else {
@@ -243,7 +244,7 @@ function lyricsPlay(time) {
             updateLyrics(soundAuthors[playlistIndex]);
         }
     }
-    lyricsIndex=newIndex-1;
+    lyricsIndex=newIndex;
     /*console.log(time);
     var initialLength=parsedLyrics.length;
     while (parsedLyricsTimes.length>1 && time>parseFloat(parsedLyricsTimes[1])) {
