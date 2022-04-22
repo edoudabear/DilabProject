@@ -58,14 +58,10 @@ function parseLyrics(data) {
         while (lyricsList[i][j]!=']') {
             j++;
         }
-        if (i>0) {
-            results[0].push(lyricsList[i].substring(0,j));
-            j++;
-            results[1].push(lyricsList[i].slice(j));
-        } else {
-            results[0].push(lyricsList[i].substring(0,j));
-            j++;
-            console.log(lyricsList[i].slice(j));
+        results[0].push(lyricsList[i].substring(0,j));
+        j++;
+        results[1].push(lyricsList[i].slice(j));
+        if (i==0) {
             updateLyrics(lyricsList[i].slice(j));
         }
     }
