@@ -48,21 +48,23 @@ function parseLyrics(data) {
     var results=[[],[]],lyricsList=data.split('\n');
     updateLyrics((playlistIndex>=0) ? soundTitles[playlistIndex] : "");
     for (var i=0;i<lyricsList.length;i++) {
-        j=0;
-        while (lyricsList[i][j]!='[') {
+        if (lyricsList[i].trim()!="") {
+            j=0;
+            while (lyricsList[i][j]!='[') {
+                j++;
+            }
             j++;
-        }
-        j++;
-        lyricsList[i]=lyricsList[i].slice(j);
-        j=0;
-        while (lyricsList[i][j]!=']') {
+            lyricsList[i]=lyricsList[i].slice(j);
+            j=0;
+            while (lyricsList[i][j]!=']') {
+                j++;
+            }
+            results[0].push(lyricsList[i].substring(0,j));
             j++;
-        }
-        results[0].push(lyricsList[i].substring(0,j));
-        j++;
-        results[1].push(lyricsList[i].slice(j));
-        if (i==0) {
-            updateLyrics(lyricsList[i].slice(j));
+            results[1].push(lyricsList[i].slice(j));
+            if (i==0) {
+                updateLyrics(lyricsList[i].slice(j));
+            }
         }
     }
     results[1].push((playlistIndex>=0) ? soundAuthors[playlistIndex] : "");
