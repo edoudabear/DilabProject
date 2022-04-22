@@ -63,6 +63,7 @@ function parseLyrics(data) {
             results[1].push(lyricsList[i].slice(j));
         } else {
             j++;
+            console.log(lyricsList[i].slice(j));
             updateLyrics(lyricsList[i].slice(j));
         }
 
@@ -216,8 +217,10 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(time) {
     console.log(time);
-    if (time>=4.0 && time<=4.2) {
-        updateLyrics("hello");
+    if (time>=parsedLyricsTimes[0]) {
+        updateLyrics(parsedLyrics[0]);
+        parsedLyricsTimes.shift();
+        parsedLyrics.shift();
     }
 }
 
