@@ -62,7 +62,7 @@ function parseLyrics(data) {
             results[0].push(lyricsList[i].substring(0,j));
             j++;
             results[1].push(lyricsList[i].slice(j));
-            if (i==0) {
+            if (i<2) {
                 updateLyrics(lyricsList[i].slice(j));
             }
         }
@@ -219,7 +219,7 @@ audioObj.addEventListener("error",()=> {
 });
 
 function lyricsPlay(time) {
-    /*var newIndex=0;
+    var newIndex=0;
     for (var i=0;i<parsedLyricsTimes.length;i++) {
         if (parseFloat(parsedLyricsTimes[i])>=time) {
             newIndex=i;
@@ -242,7 +242,7 @@ function lyricsPlay(time) {
             updateLyrics(soundAuthors[playlistIndex]);
         }
     }
-    lyricsIndex=newIndex;*/
+    lyricsIndex=newIndex;
 }
 
 audioObj.addEventListener("stalled",()=> {
