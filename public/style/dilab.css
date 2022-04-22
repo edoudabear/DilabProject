@@ -402,6 +402,7 @@ body {
     }    
     .fullScreen .bottomEl .musicControls {
         font-size : 2em;
+        transform : translate(50px);
     }
 }
 
