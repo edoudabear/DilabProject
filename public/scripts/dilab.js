@@ -19,6 +19,9 @@ function goToPage(address) {
 var soundUrls=["https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
 var soundTitles=["Redlight (2022)","Project 1.2","Dimm"];
 var soundAuthors=["Swedish House Mafia, Sting","Various artists","Nourch"];
+var lyrics=["[0.0]🎵\n[30.0]True say\n[67.0]True say\n[107.0]You don't have to put on the red light\n[113.5]Those days are over\n[116.5]You don't have to sell your body to the night (True say)\n[123.0]You don't have to wear that dress tonight\n[128.0]Those days are over\n[132.5]You don't have to put on the red light (True say)\n[138.5]🎵\n[144.0]Those days are over\n[147.5]You don't have to put on the red light\n[152.0]Those days are over\n[155.5]You don't have to put on the red light\n[159.2]Those days are over\n[162.8]You don't have to put on the red light\n[165.2]🎵\n[189.8]Those days are ovеr\n[193.8]You don't have to put on the red light\n[198.0]Thosе days are over\n[201.8]You don't have to put on the red light","",""]
+parsedLyrics=[];
+parsedLyricsTimes=[];
 var audioObj = new Audio();
 var soundTitleObj = document.querySelector(".player .songTitle");
 var soundAuthorsObj = document.querySelector(".player .songGroup")
@@ -176,11 +179,12 @@ audioObj.addEventListener("canplaythrough", function() {
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
     lyricsPlay("test",audioObj.currentTime);
 });
+
 audioObj.addEventListener("error",()=> {
     Swal.fire("Error","There was an error while loading your audio file...","error");
 });
 
-function lyricsPlay(file,time) {
+function lyricsPlay(time) {
     console.log(time);
     if (time>=4.0 && time<=4.2) {
         updateLyrics("hello");
