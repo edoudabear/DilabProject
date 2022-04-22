@@ -2093,9 +2093,7 @@ body {
   .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
     transition : 0.4s;
   }
-  .fullScreen .lyricsCard::after {
-    position: absolute;
-  }
+
   
   @keyframes spin {
     0% {
