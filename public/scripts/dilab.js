@@ -243,6 +243,7 @@ function lyricsPlay(time) {
             updateLyrics(soundAuthors[playlistIndex]);
         }
     }
+    lyricsIndex=newIndex;
     /*console.log(time);
     var initialLength=parsedLyrics.length;
     while (parsedLyricsTimes.length>1 && time>parseFloat(parsedLyricsTimes[1])) {
