@@ -228,6 +228,9 @@ function lyricsPlay(time) {
         }
     }
     newIndex--;
+    if (newIndex<0) {
+        return;
+    }
     if (newIndex==lyricsIndex+1) {
         updateLyrics(parsedLyrics[i]);
     } else if (newIndex!=lyricsIndex) {
