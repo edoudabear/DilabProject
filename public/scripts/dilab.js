@@ -63,6 +63,7 @@ function parseLyrics(data) {
             j++;
             results[1].push(lyricsList[i].slice(j));
             if (i<2) {
+                console.log("OUTPUT : "+lyricsList[i].slice(j));
                 updateLyrics(lyricsList[i].slice(j));
             }
         }
