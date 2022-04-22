@@ -220,7 +220,7 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(time) {
     console.log(time);
-    while (parsedLyricsTimes.length>2 && time<parseFloat(parsedLyricsTimes[1])) {
+    while (parsedLyricsTimes.length>2 && time>parseFloat(parsedLyricsTimes[1])) {
         parsedLyricsTimes.shift();
         parsedLyrics.shift();
     }
