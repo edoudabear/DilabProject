@@ -45,7 +45,6 @@ soundBar.style.width = audioObj.volume*100+"%";
 
 function parseLyrics(data) {
     var results=[[],[]],lyricsList=data.split('\n');
-    console.log(lyricsList.length);
     for (var i=0;i<lyricsList.length;i++) {
         updateLyrics("");
         j=0;
@@ -67,7 +66,6 @@ function parseLyrics(data) {
             j++;
             console.log(lyricsList[i].slice(j));
             updateLyrics(lyricsList[i].slice(j));
-            console.log("added");
         }
 
     }
