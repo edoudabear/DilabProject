@@ -45,6 +45,12 @@ updateSoundIcon(audioObj.volume*100);
 soundBar.style.width = audioObj.volume*100+"%";
 
 function parseLyrics(data) {
+    if (data.trim()=="") {
+        updateLyrics("You are listening to..");
+        updateLyrics(soundTitles[playlistIndex]);
+        updateLyrics(soundAuthors[playlistIndex]);
+        return [[],[]];
+    }
     var results=[[],[]],lyricsList=data.split('\n');
     updateLyrics(soundTitles[playlistIndex]);
     for (var i=0;i<lyricsList.length;i++) {
@@ -63,7 +69,6 @@ function parseLyrics(data) {
             j++;
             results[1].push(lyricsList[i].slice(j));
             if (i<2) {
-                console.log("OUTPUT : "+lyricsList[i].slice(j));
                 updateLyrics(lyricsList[i].slice(j));
             }
         }
@@ -220,6 +225,9 @@ audioObj.addEventListener("error",()=> {
 });
 
 function lyricsPlay(time) {
+    if (parsedLyricsTimes.length==0) {
+        return;
+    }
     var newIndex=0;
     for (var i=0;i<parsedLyricsTimes.length;i++) {
         if (parseFloat(parsedLyricsTimes[i])>=time) {
