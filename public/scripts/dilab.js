@@ -46,7 +46,7 @@ soundBar.style.width = audioObj.volume*100+"%";
 
 function parseLyrics(data) {
     var results=[[],[]],lyricsList=data.split('\n');
-    updateLyrics((playlistIndex>=0) ? soundTitles[playlistIndex] : "");
+    updateLyrics(soundTitles[playlistIndex]);
     for (var i=0;i<lyricsList.length;i++) {
         if (lyricsList[i].trim()!="") {
             j=0;
