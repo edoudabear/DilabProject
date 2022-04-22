@@ -7,31 +7,6 @@ logoAnimation.from(".title",0,{scale : 1, color : "white", textShadow :"0 0 0 #F
             .to(".title",0.4,{scale : 1,color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", ease : "power3.bounce", rotate: "360deg", transform : "skew(-0.15turn,15deg)"},"+=.1");
 console.log(localStorage.getItem("dilabData"));
 console.log(userData);
-
-var releasesInput = [
-    ["Toi avec Moa","megaCroup","3:20","hip/hop"],
-    ["Yeye","noisyBand","1:26","electro"],
-    ["coco joly","l'empereur","3:40","french pop"],
-    ["Toi avec Moa","megaCroup","3:20","hip/hop"],
-    ["Yeye","noisyBand","1:26","electro"],
-    ["coco joly","l'empereur","3:40","french pop"]
-]
-var groupsInput = [
-    ["megaCroup","hip/hop","143 membres","3 projets","créé le 23 mars 2020"],
-    ["the beiatches","rap","2 membres","1 projet","créé le 4 juin 2021"],
-    ["lala","chant sentimental","18 membres","2 projets","créé le 16 décembre 2022"],
-    ["megaCroup","hip/hop","143 membres","3 projets","créé le 23 mars 2020"],
-    ["the beiatches","rap","2 membres","1 projet","créé le 4 juin 2021"],
-    ["lala","chant sentimental","18 membres","2 projets","créé le 16 décembre 2022"]
-]
-var artistInput = [
-    ["amandineDu38","34 fans","inscrit(e) le 12 juillet 1943","orienté Heavy Rap"],
-    ["theRenéFuture","2 fans","inscrit(e) le 25 août 2021","orienté Classique"],
-    ["GromeleuGromeleuGromeleu","2000 fans","inscrit(e) le 6 avril 2004"],
-    ["amandineDu38","34 fans","inscrit(e) le 12 juillet 1943","orienté Heavy Rap"],
-    ["theRenéFuture","2 fans","inscrit(e) le 25 août 2021","orienté Classique"],
-    ["GromeleuGromeleuGromeleu","2000 fans","inscrit(e) le 6 avril 2004"]
-]
 var userData=localStorage.getItem("dilabData");
 
 function goToPage(address) {
@@ -41,9 +16,9 @@ function goToPage(address) {
 }
 
 // Audio object
-var soundUrls=["https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/SACRIFICEMEREMIX.mp3","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
-var soundTitles=["Redlight (2022)","Project 1.2","SACRIFICE ME (REMIX)","Dimm"];
-var soundAuthors=["Swedish House Mafia, Sting","Various artists","Nourch, Claire","Nourch"];
+var soundUrls=["https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
+var soundTitles=["Redlight (2022)","Project 1.2","Dimm"];
+var soundAuthors=["Swedish House Mafia, Sting","Various artists","Nourch"];
 var audioObj = new Audio();
 var soundTitleObj = document.querySelector(".player .songTitle");
 var soundAuthorsObj = document.querySelector(".player .songGroup")
