@@ -375,6 +375,9 @@ body {
     .box-container .player .soundControl {
         display : none;
     }
+    .fullScreen {
+        font-size: 0.6em;
+    }
     .fullScreen .cover {
         display: none;
     }
@@ -2090,41 +2093,8 @@ body {
   .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
     transition : 0.4s;
   }
-  
-  .fullScreen .lyricsCard::before {
-    content: "";
-    width: 102%;
-    height: 104%;
-    border-radius: 8px;
-    background-image: linear-gradient(
-      var(--rotate)
-      , #5ddcff, #3c67e3 43%, #4e00c2);
-      position: absolute;
-      z-index: -1;
-      top: -2%;
-      left: -1%;
-      animation: spin 2.5s linear infinite;
-  }
-  
   .fullScreen .lyricsCard::after {
     position: absolute;
-    content: "";
-    /*top: calc(var(--card-height) / 6);*/
-    top : -10%;
-    left: -20%;
-    right: -20%;
-    z-index: -1;
-    height: 120%;
-    width: 120%;
-    margin: 0 auto;
-    transform: scale(0.8);
-    filter: blur(calc(var(--card-height) / 6));
-    background-image: linear-gradient(
-      var(--rotate)
-      , #5ddcff, #3c67e3 43%, #4e00c2);
-      opacity: 1;
-    transition: opacity .5s;
-    animation: spin 2.5s linear infinite;
   }
   
   @keyframes spin {
