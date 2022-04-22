@@ -219,7 +219,7 @@ audioObj.addEventListener("error",()=> {
 });
 
 function lyricsPlay(time) {
-    var newIndex=0;
+    /*var newIndex=0;
     for (var i=0;i<parsedLyricsTimes.length;i++) {
         if (parseFloat(parsedLyricsTimes[i])>=time) {
             newIndex=i;
@@ -242,18 +242,7 @@ function lyricsPlay(time) {
             updateLyrics(soundAuthors[playlistIndex]);
         }
     }
-    lyricsIndex=newIndex;
-    /*console.log(time);
-    var initialLength=parsedLyrics.length;
-    while (parsedLyricsTimes.length>1 && time>parseFloat(parsedLyricsTimes[1])) {
-        parsedLyricsTimes.shift();
-        parsedLyrics.shift();
-    }
-    if (parsedLyrics.length!=initialLength) {
-        updateLyrics(parsedLyrics[0]);
-        parsedLyricsTimes.shift();
-        parsedLyrics.shift();
-    }*/
+    lyricsIndex=newIndex;*/
 }
 
 audioObj.addEventListener("stalled",()=> {
