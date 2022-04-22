@@ -20,8 +20,9 @@ var soundUrls=["https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.dis
 var soundTitles=["Redlight (2022)","Project 1.2","Dimm"];
 var soundAuthors=["Swedish House Mafia, Sting","Various artists","Nourch"];
 var lyrics=["[0.0]🎵\n[30.0]True say\n[67.0]True say\n[107.0]You don't have to put on the red light\n[113.5]Those days are over\n[116.5]You don't have to sell your body to the night (True say)\n[123.0]You don't have to wear that dress tonight\n[128.0]Those days are over\n[132.5]You don't have to put on the red light (True say)\n[138.5]🎵\n[144.0]Those days are over\n[147.5]You don't have to put on the red light\n[152.0]Those days are over\n[155.5]You don't have to put on the red light\n[159.2]Those days are over\n[162.8]You don't have to put on the red light\n[165.2]🎵\n[189.8]Those days are ovеr\n[193.8]You don't have to put on the red light\n[198.0]Thosе days are over\n[201.8]You don't have to put on the red light","",""]
-parsedLyrics=[];
-parsedLyricsTimes=[];
+var parsedLyrics=[];
+var parsedLyricsTimes=[];
+var lyricsIndex=0;
 var audioObj = new Audio();
 var soundTitleObj = document.querySelector(".player .songTitle");
 var soundAuthorsObj = document.querySelector(".player .songGroup")
@@ -70,6 +71,7 @@ function parseLyrics(data) {
         results[1].push((playlistIndex>=0) ? soundAuthors[playlistIndex] : "");
         results[1].push("");
     }
+    lyricsIndex = 0;
     return results;
 }
 
@@ -219,7 +221,29 @@ audioObj.addEventListener("error",()=> {
 });
 
 function lyricsPlay(time) {
-    console.log(time);
+    var newIndex=0;
+    for (var i=0;i<parsedLyricsTimes.length;i++) {
+        if (parseFloat(parsedLyricsTimes[i])>=time) {
+            newIndex=i;
+            break;
+        }
+    }
+    if (newIndex==lyricsIndex+1) {
+        updateLyrics(parsedLyrics[i]);
+    } else if (newIndex!=lyricsIndex) {
+        if (newIndex>0) {
+            updateLyrics(parsedLyrics[newIndex-1]);
+        } else {
+            updateLyrics(soundTitles[playlistIndex]);
+        }
+        updateLyrics(parsedLyrics[newIndex]);
+        if (newIndex<parsedLyrics.length) {
+            updateLyrics(parsedLyrics[newIndex+1]);
+        } else {
+            updateLyrics(soundAuthors[playlistIndex]);
+        }
+    }
+    /*console.log(time);
     var initialLength=parsedLyrics.length;
     while (parsedLyricsTimes.length>1 && time>parseFloat(parsedLyricsTimes[1])) {
         parsedLyricsTimes.shift();
@@ -229,7 +253,7 @@ function lyricsPlay(time) {
         updateLyrics(parsedLyrics[0]);
         parsedLyricsTimes.shift();
         parsedLyrics.shift();
-    }
+    }*/
 }
 
 audioObj.addEventListener("stalled",()=> {
