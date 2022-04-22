@@ -207,7 +207,7 @@ audioObj.addEventListener("error",()=> {
 
 function lyricsPlay(file,time) {
     console.log(time);
-    if (time==4000) {
+    if (time>=4.0 && time<=4.2) {
         updateLyrics("hello");
     }
 }
