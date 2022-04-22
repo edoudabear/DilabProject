@@ -234,7 +234,7 @@ function lyricsPlay(time) {
             newIndex=i;
             break;
         } if (i==parsedLyricsTimes.length-1) {
-            newIndex=parsedLyricsTimes.length-1;
+            newIndex=parsedLyricsTimes.length;
         }
     }
     newIndex--;
