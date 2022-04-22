@@ -2089,14 +2089,15 @@ body {
     max-width: 100%;
   }
   
-  .fullScreen .lyricsCard .mainText {
-    font-size : 1.5em;
-    transform : scale(1.5);
-    margin-top : 5%;
-    margin-bottom : 5%;
-    max-width: calc(100%/1.5);
-  }
-  
+@media only screen and (min-width : 700px) {
+    .fullScreen .lyricsCard .mainText {
+        font-size : 1.5em;
+        transform : scale(1.5);
+        margin-top : 5%;
+        margin-bottom : 5%;
+        max-width: calc(100%/1.5);
+    }
+}
   .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
     transition : 0.4s;
   }
