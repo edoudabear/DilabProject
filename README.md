@@ -19,10 +19,8 @@ Cet club peut vous aider à développer et étendre vos compétences en programm
 # Compétences requises
 + Motivation
 C'est la seule exigence dans ce projet. _Tout le monde_ est la bienvenue dans le projet, y compris ceux n'ayant aucune compétence en programmation. Il suffit simplement de faire ce qu'on demande. Il y a de fortes chances qu'on vous proposera de développer des choses hors des sessions du club. C'est en fonction de votre motivation que vous avancerez plus ou moins et que vous tirerez le plus partie du projet. Vous verez, la programmation ce n'est pas si dur, tout est question de pratique et de logique :) 
-# Horaires club (susceptibles d'évoluer) :
+# Horaires club :
 + Le vendredi de 13h25 à 14h20
-# La présentation du club aura lieu le vendredi 18 février en salle 202
-+ Pour ceux qui sont intéressés, ce sera l'occasion de discuter sur le club et de voir si d'autres horaires pourraient être ouverts
 # Contact
 Le projet est géré par Claire D'Iorio (T°9) et Edouard Aubert (T°7) n'hésitez pas à nous voir en cas de questions \
 Sinon, vous pouvez également nous contacter à l'adresse support@diskloud.fr
