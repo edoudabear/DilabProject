@@ -2143,7 +2143,7 @@ body {
 
 .notificationsMenu .notificationsList .notification {
     display: flex;
-    width: fit-content;
+    width: 100%;
 }
 
 .notificationsMenu .notificationsList .notification .icon {
