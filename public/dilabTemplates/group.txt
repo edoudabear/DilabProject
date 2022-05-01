@@ -21,7 +21,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -51,7 +51,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -81,7 +81,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -112,7 +112,7 @@
                 <h4>Current projects</h4>
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -154,7 +154,7 @@
                 </div>                
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -196,7 +196,7 @@
                 </div>                
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -322,7 +322,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
