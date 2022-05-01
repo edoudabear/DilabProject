@@ -1043,13 +1043,13 @@ body {
     box-shadow: 0 0 10px rgb(141, 140, 140);
 }
 
-.search-results .artist .artistCover {
+.search-results .artist .cover {
     width : 100px;
     height : 100px;
     border-radius: 50%;
 }
 
-.search-results .artist .artistCover img {
+.search-results .artist .cover img {
     vertical-align: unset;
 }
 
