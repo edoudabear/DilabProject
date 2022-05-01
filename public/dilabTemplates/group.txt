@@ -1,7 +1,7 @@
 <div class=groupPage>
     <div class=styledHead>
         <div class=styledHeadPP>
-            <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+            <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="profile picture group" />
         </div>
         <h2 class="main-content-header">
             <div style="width:5em;" class="skeletonLoader"></div>
@@ -21,7 +21,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -51,7 +51,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -81,7 +81,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -112,7 +112,7 @@
                 <h4>Current projects</h4>
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -154,7 +154,7 @@
                 </div>                
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -196,7 +196,7 @@
                 </div>                
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>
@@ -322,7 +322,7 @@
                 </div>
                 <div class="project">
                     <div class="cover">
-                        <img src="https://s2.qwant.com/thumbr/0x380/c/4/4baaddf0f8b7e79fd6336ffedac886069dd12cb757303983b7a7ae610ab39e/c1.jpg?u=https%3A%2F%2Fimages.designtrends.com%2Fwp-content%2Fuploads%2F2016%2F01%2F27194119%2Fc1.jpg&q=0&b=1&p=0&a=0">
+                        <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
                         <div class="playBtn">
                             <i class="bi bi-play-circle-fill"></i>
                         </div>

@@ -1,7 +1,7 @@
 <div class=artistPage>
     <div class=styledHead>
         <div class=styledHeadPP>
-            <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+            <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
         </div>
         <h2 class="main-content-header">
             <div style="width:5em;" class="skeletonLoader">
@@ -20,7 +20,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -50,7 +50,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -80,7 +80,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -111,7 +111,7 @@
                 <h4>Groups he's in</h4>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -140,7 +140,7 @@
                 </div>                
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -169,7 +169,7 @@
                 </div>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -198,7 +198,7 @@
                 </div>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -227,7 +227,7 @@
                 </div>                
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -256,7 +256,7 @@
                 </div>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -285,7 +285,7 @@
                 </div>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
@@ -314,7 +314,7 @@
                 </div>
                 <div class=group>
                     <div class=cover>
-                        <img src="https://s2.qwant.com/thumbr/0x380/d/f/cbeb35b1fd309242b552b742bb5438fd9608325152a3c7f07a2f50c6ba7e85/Sgt.%2BPepper%2BCover%2BSmall.jpg?u=https%3A%2F%2F1.bp.blogspot.com%2F-FwlFyUHwzZo%2FX0feEJMQg5I%2FAAAAAAAADQA%2FOmfts5XQiMAIZr775O-rNJFOgm28gVvfwCLcBGAsYHQ%2Fs1600%2FSgt.%252BPepper%252BCover%252BSmall.jpg&q=0&b=1&p=0&a=0" />
+                        <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="group's profile picture" />
                     </div>
                     <div class=textContent>
                         <div class=title>
