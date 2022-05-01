@@ -6,10 +6,6 @@ html {
     padding: 0;
 }
 
-img {
-    background : white ;
-}
-
 .blocker {
     display: none;
     position: absolute;
@@ -1318,6 +1314,7 @@ body {
 
 .groupPage .styledHeadPP img {
     border-radius: 8px/8px;
+    background : white ;
 }
 
 .groupPage .styledHead {
