@@ -124,6 +124,28 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             res.end('{ "return" : "ok", "status" : false, "description" : "already disconnected" }')
         }
     } else if (req.params.action=="get") {
+        if (req.body.type=="mainGroups") {
+            dilabConnection.query(`SELECT groupName,groupPicture,dateOfBirth,description,COUNT(*) AS nCollaborators FROM DilabMusicGroups
+            JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
+            -- WHERE genres=""
+            GROUP BY groupName
+            ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                } if (results.length!=0) {
+                    res.end(JSON.stringify(results));
+                } else {
+                    res.end('{ "return" : "ok", "status" : false, "description" : "internal server error (account is unfindable)" }');
+                }
+            });
+            if (req.files) {
+                for (var i=0;i<req.files.length;i++)
+                fs.unlink(req.files[i].path,()=>{return;});
+            }
+        }
         if (req.body.type=="userData" && req.session.dilab) {
             dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
