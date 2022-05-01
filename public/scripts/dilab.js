@@ -97,6 +97,8 @@ function loadSound(url) {
     parsedLyricsTimes=lyricsData[0];
     document.querySelector(".fullScreen .soundName").innerHTML=soundTitles[playlistIndex];
     document.querySelector(".fullScreen  .soundAuthor").innerHTML=soundAuthors[playlistIndex];
+    document.querySelector(".coverOfCurrentlyPlayingSound").src= soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/"+soundPictures[playlistIndex] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg";
+    document.querySelector(".fullScreen .fullScreenPlayingSoundCover").src= soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/"+soundPictures[playlistIndex] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg";
     playlistContainer.innerHTML="";
     for (var i=0;i<soundUrls.length;i++) {
       playlistContainer.innerHTML+=`<div class="playlistElement" onclick=playSound(${i},true)>
