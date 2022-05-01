@@ -135,9 +135,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         { "return" : "error",
                             "data" : "internal server error",
                         }));
-                } if (results.length!=0) {
-                    console.log('ok');
-                    res.end(JSON.stringify(results.flat()));
+                } else if (results.length!=0) {
+                    res.end("abab"+JSON.stringify(results.flat()));
                 } else {
                     res.end('{ "return" : "ok", "status" : false, "description" : "internal server error (account is unfindable)" }');
                 }
