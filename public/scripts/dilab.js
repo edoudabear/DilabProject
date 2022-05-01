@@ -1554,3 +1554,18 @@ function timestampToNormalTime(timestamp) {
     }
     return time+secs;
 }
+
+fetch('/Dilab/get', {
+    headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    method: 'POST',
+    body: JSON.stringify({
+        type : "mainGroups"
+    }) //data
+}).then(out => {
+    return out.json();
+}).then(log => {
+    console.log(log);
+});

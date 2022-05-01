@@ -146,7 +146,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         }
-        if (req.body.type=="userData" && req.session.dilab) {
+        else if (req.body.type=="userData" && req.session.dilab) {
             dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
