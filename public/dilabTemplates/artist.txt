@@ -1,7 +1,7 @@
 <div class=artistPage>
     <div class=styledHead>
         <div class=styledHeadPP>
-            <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+            <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
         </div>
         <h2 class="main-content-header">
             <div style="width:5em;" class="skeletonLoader">

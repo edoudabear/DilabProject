@@ -542,7 +542,7 @@
             <div class=artistsWrapper>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         <div style="width:4em;" class="skeletonLoader"></div>
@@ -557,7 +557,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         <div style="width:4em;" class="skeletonLoader"></div>
@@ -572,7 +572,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         <div style="width:4em;" class="skeletonLoader"></div>
@@ -587,7 +587,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         <div style="width:4em;" class="skeletonLoader"></div>
@@ -602,7 +602,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         Artist 1
@@ -617,7 +617,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         Artist 1
@@ -632,7 +632,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         Artist 1
@@ -647,7 +647,7 @@
                 </div>
                 <div class=artist>
                     <div class=cover>
-                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/release/person-circle.svg" />
+                        <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
                     </div>
                     <div class=title>
                         Artist 1
