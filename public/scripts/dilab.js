@@ -428,6 +428,7 @@ function pathAnalysis() {
                             data=log.data;
                             document.querySelector(".main-content-header").innerHTML=data[0][0].groupName;
                             var year=new Date(data[0][0].dateOfBirth);
+                            document.querySelector(".styleHead .styledHeadPP img").src=data[0][0].groupPicture;
                             document.querySelector(".registrationDate").innerHTML=year.getFullYear();
                             document.querySelector(".groupGenres").innerHTML=data[0][0].genres;
                             document.querySelector(".groupBio").innerHTML=data[0][0].description;
