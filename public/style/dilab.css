@@ -1047,6 +1047,7 @@ body {
     width : 100px;
     height : 100px;
     border-radius: 50%;
+    vertical-align: unset;
 }
 
 .search-results .artist .furtherInfos {
@@ -1713,7 +1714,6 @@ body {
     height: 100%;
     aspect-ratio: 1;
     border-radius: 50%;
-    vertical-align: unset;
 }
 
 .userMainMenu, .notificationsMenu {
