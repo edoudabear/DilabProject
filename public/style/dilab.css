@@ -1312,11 +1312,11 @@ body {
     justify-content: center;
 }
 
-.styledHeadPP {
+.styledHeadPP, .styledHeadCover {
     border-radius: 8px/8px;
 }
 
-.styledHeadPP img {
+.styledHeadPP img, .styledHeadCover img {
     border-radius: 8px/8px;
     background : white ;
 }
