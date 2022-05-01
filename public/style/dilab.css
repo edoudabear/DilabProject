@@ -1312,11 +1312,11 @@ body {
     justify-content: center;
 }
 
-.groupPage .styledHeadPP {
+.styledHeadPP {
     border-radius: 8px/8px;
 }
 
-.groupPage .styledHeadPP img {
+.styledHeadPP img {
     border-radius: 8px/8px;
     background : white ;
 }
