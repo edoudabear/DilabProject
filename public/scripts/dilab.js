@@ -1502,7 +1502,7 @@ function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
                 <i class="bi bi-play-circle-fill"></i>
             </div>
             <div class=cover>
-                <img src="/Dilab/release/${imagePath}" />
+                <img src="https://e.diskloud.fr/Dilab/release/${imagePath}" />
             </div>
             <div class=infos>
                 <div class=title title="${title}">
