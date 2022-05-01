@@ -1,7 +1,7 @@
 <div class=projectPage>
     <div class=styledHead>
         <div class=styledHeadPP>
-            <img title="Project cover" src="https://e.diskloud.fr/Dilab/release/disc.svg" />
+            <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
         </div>
         <h2 class="main-content-header">
             <div style="width:5em;" class="skeletonLoader"></div>
