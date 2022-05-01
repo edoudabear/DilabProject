@@ -57,7 +57,7 @@ app.get("/Dilab/:action/:file", function(req,res) {
         } else {
             res.status(404).end("No such file");
         }
-    } else if (req.params.action == "user" ) {
+    } else if (req.params.action == "release" ) {
         if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`)) {
             res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`);
         } else {

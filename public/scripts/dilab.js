@@ -440,7 +440,7 @@ function pathAnalysis() {
                             for (var i=0;i<data[1].length;i++) {
                                 console.log(data[1][i].duration);
                                 var duree=timestampToNormalTime(data[1][i].duration);
-                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree)
+                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture);
                             }
                         } else {
                             document.querySelector(".main-content").innerHTML="";
@@ -1494,7 +1494,7 @@ function settingsPageUnloadImage() {
 
 // Element generator
 
-function newReleaseElement(title,group,releaseDate,streams,duration) {
+function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
     return `
     <div class=release>
         <div class=left-content>
@@ -1502,7 +1502,7 @@ function newReleaseElement(title,group,releaseDate,streams,duration) {
                 <i class="bi bi-play-circle-fill"></i>
             </div>
             <div class=cover>
-                <img src="https://s1.qwant.com/thumbr/0x380/0/f/1ce6480f4beb002d638e6c13b0bebb6ff01b173ba92f58e970dfbe324f7306/the-music-5ac7c0b44f3de.jpg?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmusic%2F62cfba2f-d6da-4c93-a2e2-a7922fe47d1b%2Falbumcover%2Fthe-music-5ac7c0b44f3de.jpg&q=0&b=1&p=0&a=0" />
+                <img src="/Dilab/release/${imagePath}" />
             </div>
             <div class=infos>
                 <div class=title title="${title}">
