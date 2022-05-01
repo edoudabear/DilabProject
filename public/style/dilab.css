@@ -2185,11 +2185,7 @@ body {
     background : red;
 }
 
-.notificationsMenu .notificationsList .notification .accept:hover {
-    opacity : 0.8;
-}
-
-.notificationsMenu .notificationsList .notification .deny:hover {
+.notificationsMenu .notificationsList .notification .accept:hover, .notificationsMenu .notificationsList .notification .deny:hover, .notificationsMenu .notificationsList .notification .confirm:hover {
     opacity : 0.8;
 }
 
