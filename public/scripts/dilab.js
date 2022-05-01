@@ -428,7 +428,7 @@ function pathAnalysis() {
                             data=log.data;
                             document.querySelector(".main-content-header").innerHTML=data[0][0].groupName;
                             var year=new Date(data[0][0].dateOfBirth);
-                            document.querySelector(".styledHead .styledHeadPP img").src="https://e.diskloud.fr/Dilab/groupPP/"+data[0][0].groupPicture;
+                            document.querySelector(".styledHead .styledHeadPP img").src="https://e.diskloud.fr/Dilab/group/"+data[0][0].groupPicture;
                             document.querySelector(".registrationDate").innerHTML=year.getFullYear();
                             document.querySelector(".groupGenres").innerHTML=data[0][0].genres;
                             document.querySelector(".groupBio").innerHTML=data[0][0].description;
