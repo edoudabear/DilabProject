@@ -2173,6 +2173,10 @@ body {
     transition : 0.2s;
 }
 
+.notificationsMenu .notificationsList .notification .confirm {
+    background : lightskyblue;
+}
+
 .notificationsMenu .notificationsList .notification .accept {
     background: lightgreen;
 }
