@@ -6,10 +6,6 @@ html {
     padding: 0;
 }
 
-img, svg {
-    vertical-align: unset;
-}
-
 .blocker {
     display: none;
     position: absolute;
@@ -1717,6 +1713,7 @@ body {
     height: 100%;
     aspect-ratio: 1;
     border-radius: 50%;
+    vertical-align: unset;
 }
 
 .userMainMenu, .notificationsMenu {
