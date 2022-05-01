@@ -1036,7 +1036,6 @@ body {
     justify-content: center;
     transition: 0.2s;
     margin : 8px;
-    vertical-align: unset;
 }
 
 .groups .group:hover, .projects .project:hover, .search-results .artist:hover, .newProject:hover, .newGroup:hover {
@@ -1048,6 +1047,10 @@ body {
     width : 100px;
     height : 100px;
     border-radius: 50%;
+}
+
+.search-results .artist .artistCover img {
+    vertical-align: unset;
 }
 
 .search-results .artist .furtherInfos {
