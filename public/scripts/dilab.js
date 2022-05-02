@@ -508,7 +508,6 @@ function pathAnalysis() {
                             }).then(out => {
                                 return out.json();
                             }).then(data => {
-                                console.log(data);
                                 if (data.status==false) {
                                    return;
                                }
@@ -516,10 +515,18 @@ function pathAnalysis() {
                                if (data.length==0) {
                                    Swal.fire({
                                        title : "Warning",
-                                       html : `You can't create a project yet, because you didn't found any group. Create a group before creating a project<br /><button onclick='loadPage("Groups","groups",["action","newProject"]);' class='button'>Create project</button>`,
+                                       html : `You can't create a project yet, because you didn't found any group. Create a group before creating a project`,
                                        icon : "warning",
+                                       showCancelButton : true,
+                                       cancelButtonText : "OK",
+                                       confirmButtonText : "Go to new project page"
                                     }).then(
-                                        () => {document.querySelector(".popUpWindowContainer").style.display="";}
+                                        result => {
+                                            document.querySelector(".popUpWindowContainer").style.display="";
+                                            if (result.isConfirmed) {
+                                                loadPage("Groups","groups",[["action","newProject"]]);
+                                            }
+                                        }
                                     );
                                    return;
                                }
@@ -609,7 +616,6 @@ function pathAnalysis() {
                    data=data.data;
                    document.querySelector(".groupsWrapper").innerHTML="";
                    for (var i=0;i<data.length;i++) {
-                       console.log(data);
                        document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
                     }
                 });
