@@ -518,7 +518,7 @@ function pathAnalysis() {
                                    return;
                                }
                                for (var i=0;i<data.length;i++) {
-                                   document.querySelector(".popUp .groupSelectInput").innerHTML+=`\n<option value="${data[i].groupName}">${data[i].groupName}</option>`;
+                                   document.querySelector(".popUpWindow .groupSelectInput").innerHTML+=`\n<option value="${data[i].groupName}">${data[i].groupName}</option>`;
                                }
                             });
                             var uploadField = elem.querySelector(".profilePictureInput");
