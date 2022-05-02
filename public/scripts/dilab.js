@@ -677,12 +677,12 @@ function pathAnalysis() {
                                     }
                                 });
                             });
-                            query=urlParams.get("action");
-                            if (query=="newGroup") {
-                                document.querySelector(".createGroupBtn").click();
-                            }
                         });
                     });
+                    query=urlParams.get("action");
+                    if (query=="newGroup") {
+                        document.querySelector(".newGroup").click();
+                    }
                 } else {
                     document.querySelector(".newGroup").addEventListener('click',e => {
                         Swal.fire({
