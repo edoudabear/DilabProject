@@ -939,6 +939,7 @@ body {
     flex-shrink: 0;
     margin : 8px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .group .textContent {
