@@ -1579,7 +1579,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         </div>
                         <i class="bi bi-dot"></i>
                         <div class="groupProjects">
-                            <span class="nProjects">${nProjects}</span>&nbsp;projects (<span class="nReleases">${nReleases}</span>&nbsp released)
+                            <span class="nProjects">${nProjects}</span>&nbsp;projects (<span class="nReleases">${nReleases}</span> released)
                         </div>
                     </div>
                     <div class="biography">
