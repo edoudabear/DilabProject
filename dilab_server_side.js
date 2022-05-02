@@ -125,7 +125,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         }
     } else if (req.params.action=="get") {
         if (req.body.type=="mainGroups") {
-            dilabConnection.query(`SELECT groupName,groupGenres,groupPicture,dateOfBirth,description,COUNT(*) AS nCollaborators FROM DilabMusicGroups
+            dilabConnection.query(`SELECT groupName,genres,groupPicture,dateOfBirth,description,COUNT(*) AS nCollaborators FROM DilabMusicGroups
             JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
             -- WHERE genres=""
             GROUP BY groupName
