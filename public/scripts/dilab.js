@@ -1556,7 +1556,7 @@ function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
 }
 
 function newGroupElement(title="",genre="",description="",foundDate="",nCollaborators="",nProjects="",nReleases="",imagePath="people.svg") {
-    return `<div class="group">
+    return `<a href="https://e.diskloud.fr/Dilab/group?g=${encodeURI(title)} class="group">
                 <div class="cover">
                     <img src="https://e.diskloud.fr/Dilab/group/${imagePath}" title="profile picture group">
                 </div>
@@ -1581,7 +1581,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         ${description}
                     </div>
                 </div>
-            </div>`
+            </a>`
 }
 
 // Other algoritmic functions
