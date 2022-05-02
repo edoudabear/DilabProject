@@ -1566,10 +1566,10 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         ${title}
                     </div>                    
                     <div class="infos">
-                        <i class="bi bi-dot"></i>
                         <div class="foundDate">
                             Created in ${foundDate.getFullYear()}
                         </div>
+                        <i class="bi bi-dot"></i>
                         <div class="genre">
                             ${genre}
                         </div>
@@ -1579,7 +1579,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         </div>
                         <i class="bi bi-dot"></i>
                         <div class="groupProjects">
-                            <span class="nProjects">${nProjects}</span>&nbsp;projects (<span class="nReleases">${nReleases}</span> released)
+                            <span class="nProjects">${nProjects}</span>&nbsp;projects (<span class="nReleases">${nReleases}</span>&nbsp released)
                         </div>
                     </div>
                     <div class="biography">
