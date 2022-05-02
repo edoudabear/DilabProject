@@ -518,11 +518,10 @@ function pathAnalysis() {
                                        title : "Warning",
                                        html : "You can't create a project yet, because you didn't found any group yet. Create a group before creating a project",
                                        icon : "warning",
-                                       allowOutsideClick : false,
-                                       onConfirm : () => {
-                                            document.querySelector(".popUpWindowContainer").style.display="";
-                                       }                                       
-                                    });
+                                       allowOutsideClick : false,                                    
+                                    }).then(
+                                        () => {document.querySelector(".popUpWindowContainer").style.display="";}
+                                    );
                                    return;
                                }
                                for (var i=0;i<data.length;i++) {
