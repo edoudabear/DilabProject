@@ -518,7 +518,6 @@ function pathAnalysis() {
                                        title : "Warning",
                                        html : "You can't create a project yet, because you didn't found any group yet. Create a group before creating a project",
                                        icon : "warning",
-                                       allowOutsideClick : false,                                    
                                     }).then(
                                         () => {document.querySelector(".popUpWindowContainer").style.display="";}
                                     );
