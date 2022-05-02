@@ -678,6 +678,7 @@ function pathAnalysis() {
                                 });
                             });
                             query=urlParams.get("action");
+                            console.log(query);
                             if (query=="newGroup") {
                                 document.querySelector(".createGroupBtn").click();
                             }
