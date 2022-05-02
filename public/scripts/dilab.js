@@ -1556,7 +1556,7 @@ function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
 }
 
 function newGroupElement(title="",genre="",description="",foundDate="",nCollaborators="",nProjects="",nReleases="",imagePath="people.svg") {
-    return `<div onclick='loadPage("${encodeURI(title)} Dilab","group",[["g","${encodeURI(title)}"]])' class="group">
+    return `<div onclick='loadPage("${title} Dilab","group",[["g","${title}"]])' class="group">
                 <div class="cover">
                     <img src="https://e.diskloud.fr/Dilab/group/${imagePath}" title="profile picture group">
                 </div>
