@@ -1334,6 +1334,10 @@ body {
     transform: translate(0,150%);
 }
 
+.groupPage .noRelease { /* Only displayed when the group did not release any song yet*/
+    text-align: center;
+}
+
 /* Artist page */
 
 .artistPage .styledHead {
