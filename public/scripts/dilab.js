@@ -496,6 +496,31 @@ function pathAnalysis() {
                 if (!document.querySelector(".loginButton")) {
                     document.querySelector(".newProject").addEventListener('click',e => {
                         displayPopUp("New Project","newProject",elem=>{
+                            fetch('/Dilab/get', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    type : "groupsWhereUserIsAdmin"
+                                }) //data
+                            }).then(out => {
+                                return out.json();
+                            }).then(data => {
+                                console.log(data);
+                                if (data.status==false) {
+                                   return;
+                               }
+                               data=data.data;
+                               if (data.length==0) {
+                                   Swal.fire("Warning","You can't create a project yet, because you didn't found any group yet. Create a group before creating a project","warning");
+                                   return;
+                               }
+                               for (var i=0;i<data.length;i++) {
+                                   document.querySelector(".popUp .groupSelectInput")+=`\n<option value="${data[i].groupName}">${data[i].groupName}</option>`;
+                               }
+                            });
                             var uploadField = elem.querySelector(".profilePictureInput");
                             uploadField.onchange = function() {
                                 elem.querySelector(".pictureRemButton").style.display="none";
@@ -516,23 +541,6 @@ function pathAnalysis() {
                                         unloadImage(0);
                                     });
                                 }
-                                fetch('/Dilab/get', {
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        type : "groupsWhereUserIsAdmin"
-                                    }) //data
-                                }).then(out => {
-                                    return out.json();
-                                }).then(data => {
-                                    console.log(data);
-                                    if (data.status==false) {
-                                       return;
-                                   }
-                                });
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();

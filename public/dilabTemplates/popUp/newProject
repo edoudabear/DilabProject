@@ -5,7 +5,6 @@
             <input type=text placeholder="Project name"/>
             <h4>What group is made for that project ?</h4>
             <select class="groupSelectInput">
-                <!-- <option>Group 1</option> -->
             </select>
             <h4>Project orientation (from a musical perspective, hfgvfhsqf)</h4>
             <input type=text placeholder="Project genres"/>
