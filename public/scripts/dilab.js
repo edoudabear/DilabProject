@@ -553,6 +553,28 @@ function pathAnalysis() {
                 document.querySelectorAll(".groupsContainer .rightBtn")[1].addEventListener("click", () => {
                     document.querySelectorAll(".groupsContainer > .groups")[1].scrollBy(window.innerWidth-200, 0);
                 });
+                fetch('/Dilab/get', {
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        type : "mainGroups"
+                    }) //data
+                }).then(out => {
+                    return out.json();
+                }).then(data => {
+                   console.log(data);
+                   if (!data.status) {
+                       return;
+                   }
+                   data=data.data;
+                   document.querySelector(".groupsWrapper").innerHTML="";
+                   for (var i=0;i<data[1].length;i++) {
+                       document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,"",data[i].description,new Date(data[i].dateOfBirth).getFullYear(),data[i].nCollaborators,"",data[i].groupPicture);
+                    }
+                });
                 if (!document.querySelector(".loginButton")) {
                     document.querySelector(".newGroup").addEventListener('click',e => {
                         displayPopUp("New Group","newGroup",elem=> {
@@ -1497,7 +1519,7 @@ function settingsPageUnloadImage() {
     document.querySelector(".settingsPage .pictureRemButton").style.display="";
 }
 
-// Element generator
+// Element templates
 
 function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
     return `
@@ -1534,6 +1556,35 @@ function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
     `
 }
 
+function newGroupElement(title="",genre="",description="",foundDate="",nCollaborators="",nProjects="",nReleases="",imagePath="people.svg") {
+    return `<div class="group">
+                <div class="cover">
+                    <img src="https://e.diskloud.fr/Dilab/groupPP/${imagePath}" title="profile picture group">
+                </div>
+                <div class="textContent">
+                    <div class="title">
+                        ${title}
+                    </div>                    
+                    <div class="infos">
+                        <div class="genre">
+                            ${genre}
+                        </div>
+                        <i class="bi bi-dot"></i>
+                        <div class="members">
+                            <span class="nMembers">${nCollaborators}</span>&nbsp;members
+                        </div>
+                        <i class="bi bi-dot"></i>
+                        <div class="groupProjects">
+                            <span class="nProjects">${nProjects}</span>&nbsp;projects (<span class="nReleases">${nReleases}</span> released)
+                        </div>
+                    </div>
+                    <div class="biography">
+                        ${description}
+                    </div>
+                </div>
+            </div>`
+}
+
 // Other algoritmic functions
 
 function timestampToNormalTime(timestamp) {
@@ -1554,18 +1605,3 @@ function timestampToNormalTime(timestamp) {
     }
     return time+secs;
 }
-
-fetch('/Dilab/get', {
-    headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-        type : "mainGroups"
-    }) //data
-}).then(out => {
-    return out.json();
-}).then(log => {
-    console.log(log);
-});
