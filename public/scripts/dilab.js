@@ -571,7 +571,7 @@ function pathAnalysis() {
                    data=data.data;
                    document.querySelector(".groupsWrapper").innerHTML="";
                    for (var i=0;i<data.length;i++) {
-                       document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth).getFullYear(),data[i].nCollaborators,"","",data[i].groupPicture);
+                       document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth).getFullYear(),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
                     }
                 });
                 if (!document.querySelector(".loginButton")) {
@@ -1565,6 +1565,10 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         ${title}
                     </div>                    
                     <div class="infos">
+                        <i class="bi bi-dot"></i>
+                        <div class="foundDate">
+                            Created in ${foundDate.getFullYear()}
+                        </div>
                         <div class="genre">
                             ${genre}
                         </div>
