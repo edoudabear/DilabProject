@@ -514,7 +514,15 @@ function pathAnalysis() {
                                }
                                data=data.data;
                                if (data.length==0) {
-                                   Swal.fire("Warning","You can't create a project yet, because you didn't found any group yet. Create a group before creating a project","warning");
+                                   Swal.fire({
+                                       title : "Warning",
+                                       html : "You can't create a project yet, because you didn't found any group yet. Create a group before creating a project",
+                                       icon : "warning",
+                                       allowOutsideClick : false,
+                                       onConfirm : () => {
+                                            document.querySelector(".popUpWindowContainer").style.display="";
+                                       }                                       
+                                    });
                                    return;
                                }
                                for (var i=0;i<data.length;i++) {
