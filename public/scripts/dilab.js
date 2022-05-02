@@ -516,6 +516,23 @@ function pathAnalysis() {
                                         unloadImage(0);
                                     });
                                 }
+                                fetch('/Dilab/get', {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        type : "groupsWhereUserIsAdmin"
+                                    }) //data
+                                }).then(out => {
+                                    return out.json();
+                                }).then(data => {
+                                   if (data.status==false) {
+                                       return;
+                                   }
+                                   console.log(data);
+                                });
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();
