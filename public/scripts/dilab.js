@@ -570,7 +570,7 @@ function pathAnalysis() {
                    }
                    data=data.data;
                    document.querySelector(".groupsWrapper").innerHTML="";
-                   for (var i=0;i<data[1].length;i++) {
+                   for (var i=0;i<data.length;i++) {
                        document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,"",data[i].description,new Date(data[i].dateOfBirth).getFullYear(),data[i].nCollaborators,"",data[i].groupPicture);
                     }
                 });
