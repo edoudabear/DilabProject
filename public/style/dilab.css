@@ -1336,6 +1336,7 @@ body {
 
 .groupPage .noRelease { /* Only displayed when the group did not release any song yet*/
     text-align: center;
+    user-select: none;
 }
 
 /* Artist page */
