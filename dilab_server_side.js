@@ -153,7 +153,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
         else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
-            dilabConnection.query(`SELECT groupName FROM DilabMusicgroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
+            dilabConnection.query(`SELECT groupName FROM DilabMusicGroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
