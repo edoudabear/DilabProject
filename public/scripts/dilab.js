@@ -519,7 +519,7 @@ function pathAnalysis() {
                                        icon : "warning",
                                        showCancelButton : true,
                                        cancelButtonText : "OK",
-                                       confirmButtonText : "Go to new project page"
+                                       confirmButtonText : "Go to new group page"
                                     }).then(
                                         result => {
                                             document.querySelector(".popUpWindowContainer").style.display="";
