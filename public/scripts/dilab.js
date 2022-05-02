@@ -516,7 +516,7 @@ function pathAnalysis() {
                                if (data.length==0) {
                                    Swal.fire({
                                        title : "Warning",
-                                       html : `You can't create a project yet, because you didn't found any group. Create a group before creating a project<br /><button onclick='()=>{loadPage("Groups","groups");}' class='button'>Create project</button>`,
+                                       html : `You can't create a project yet, because you didn't found any group. Create a group before creating a project<br /><button onclick='loadPage("Groups","groups",["action","newProject"]);' class='button'>Create project</button>`,
                                        icon : "warning",
                                     }).then(
                                         () => {document.querySelector(".popUpWindowContainer").style.display="";}
@@ -552,7 +552,11 @@ function pathAnalysis() {
                                 uploadField.click();
                             })
                         });
-                    })
+                    });
+                    query=urlParams.get("action");
+                    if (query=="newProject") {
+                        document.querySelector(".newProject").click();
+                    }
                 } else {
                     document.querySelector(".newProject").addEventListener('click',e => {
                         Swal.fire({
@@ -666,7 +670,11 @@ function pathAnalysis() {
                                         Swal.fire("Error",log.data,"error");
                                     }
                                 });
-                            })
+                            });
+                            query=urlParams.get("action");
+                            if (query=="newGroup") {
+                                document.querySelector(".createGroupBtn").click();
+                            }
                         });
                     });
                 } else {
