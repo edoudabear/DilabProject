@@ -524,7 +524,7 @@ function pathAnalysis() {
                                         result => {
                                             document.querySelector(".popUpWindowContainer").style.display="";
                                             if (result.isConfirmed) {
-                                                loadPage("Groups","groups",[["action","newProject"]]);
+                                                loadPage("Groups","groups",[["action","newGroup"]]);
                                             }
                                         }
                                     );
@@ -678,7 +678,6 @@ function pathAnalysis() {
                                 });
                             });
                             query=urlParams.get("action");
-                            console.log(query);
                             if (query=="newGroup") {
                                 document.querySelector(".createGroupBtn").click();
                             }
