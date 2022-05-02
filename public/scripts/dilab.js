@@ -447,6 +447,9 @@ function pathAnalysis() {
                                 var duree=timestampToNormalTime(data[1][i].duration);
                                 document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture);
                             }
+                            if (data[1].length==0) {
+                                document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
+                            }
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
