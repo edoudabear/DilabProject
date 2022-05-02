@@ -160,6 +160,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "data" : "could not complete the requested task",
                             "status" : false
                         }));
+                        throw err;
                     } else {
                         res.end(JSON.stringify(
                             { "return" : "ok",
