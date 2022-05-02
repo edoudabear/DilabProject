@@ -571,6 +571,7 @@ function pathAnalysis() {
                    data=data.data;
                    document.querySelector(".groupsWrapper").innerHTML="";
                    for (var i=0;i<data.length;i++) {
+                       console.log(data);
                        document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
                     }
                 });
