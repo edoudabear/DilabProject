@@ -157,12 +157,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
-                            "data" : "internal server error",
+                            "data" : "could not complete the requested task",
                             "status" : false
                         }));
                     } else {
                         res.end(JSON.stringify(
-                            { "return" : "error",
+                            { "return" : "ok",
                                 "data" : results,
                                 "status" : true
                             }));
