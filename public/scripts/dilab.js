@@ -528,10 +528,10 @@ function pathAnalysis() {
                                 }).then(out => {
                                     return out.json();
                                 }).then(data => {
-                                   if (data.status==false) {
+                                    console.log(data);
+                                    if (data.status==false) {
                                        return;
                                    }
-                                   console.log(data);
                                 });
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
