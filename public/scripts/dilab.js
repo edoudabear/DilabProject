@@ -509,12 +509,12 @@ function pathAnalysis() {
                                     var filesToUpload = this.files;
                                     var file = filesToUpload[0];
 
-                                    elem.querySelector(".profilePictureEmbedd").src=URL.createObjectURL(file)
+                                    elem.querySelector(".profilePictureEmbedd").src=URL.createObjectURL(file);
                                     isPPChanged=true;
                                     elem.querySelector(".pictureRemButton").style.display="block";
                                     elem.querySelector(".pictureRemButton").addEventListener("click",e=> {
                                         unloadImage(0);
-                                    })
+                                    });
                                 }
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {

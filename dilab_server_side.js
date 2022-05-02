@@ -152,7 +152,23 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         }
-        else if (req.body.type=="userData" && req.session.dilab) {
+        else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
+            dilabConnection.query(`SELECT groupName FROM DilabMusicgroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                            "status" : false
+                        }));
+                    } else {
+                        res.end(JSON.stringify(
+                            { "return" : "error",
+                                "data" : results,
+                                "status" : true
+                            }));
+                    }
+                });
+        } else if (req.body.type=="userData" && req.session.dilab) {
             dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(

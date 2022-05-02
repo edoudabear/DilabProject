@@ -4,11 +4,8 @@
             <h4>Project name</h4>
             <input type=text placeholder="Project name"/>
             <h4>What group is made for that project ?</h4>
-            <select>
-                <option>Group 1</option>
-                <option>Group 2</option>
-                <option>Group 3</option>
-                <option>Answer D</option>
+            <select class="groupSelectInput">
+                <!-- <option>Group 1</option> -->
             </select>
             <h4>Project orientation (from a musical perspective, hfgvfhsqf)</h4>
             <input type=text placeholder="Project genres"/>
@@ -16,14 +13,14 @@
             <textarea resizable=none placeholder="Project description"></textarea>
             <h4>Project phase</h4>
             <select>
-                <option>Project launch</option>
-                <option>Working on instrumental part</option>
-                <option>Working on vocals</option>
-                <option>Releasing project</option>
+                <option value="0">Project launch</option>
+                <option value="1">Working on instrumental part</option>
+                <option value="2">Working on vocals</option>
+                <option value="3">Releasing project</option>
             </select>
             <h4>Preload project files</h4>
-            <input type=file />
-            <input type=file />
+            <input type=file name=ProjectFile />
+            <input type=file name=AudioFile />
         </div>
         <div class=projectPpContainer>
             <h4>Load a profile picture (4MB max)</h4>
