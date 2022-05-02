@@ -516,7 +516,7 @@ function pathAnalysis() {
                                if (data.length==0) {
                                    Swal.fire({
                                        title : "Warning",
-                                       html : "You can't create a project yet, because you didn't found any group yet. Create a group before creating a project",
+                                       html : `You can't create a project yet, because you didn't found any group. Create a group before creating a project<br /><button onclick='e=>{loadPage("Groups","groups");document.querySelector(".newGroup").click();} class='button'>Create project</button>`,
                                        icon : "warning",
                                     }).then(
                                         () => {document.querySelector(".popUpWindowContainer").style.display="";}
@@ -957,7 +957,7 @@ function reloadUserData(firstConnection=false) {
     });
 }
 
-function loadPage(title,url,params) {
+function loadPage(title,url,params=[]) {
     url = 'https://e.diskloud.fr/Dilab/'+url;
     for (var i=0;i<params.length;i++) {
         if (i==0) {
