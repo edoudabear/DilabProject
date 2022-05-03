@@ -2231,7 +2231,7 @@ body {
 
 .popUpWindow textarea {
     width : 300px;
-    height : 60px;
+    height : 100px;
 }
 
 .popUpWindow input[type=text]:hover, .popUpWindow select:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
