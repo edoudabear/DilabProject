@@ -842,7 +842,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         } else if (req.body.type=="projectNameAvailable" && req.body.projectName && req.body.groupName) {
             dilabConnection.query(`SELECT name FROM DilabProject
             JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-            WHERE DilabProject.name="${mysql_real_escape_string(req.body.groupName)}" AND DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
+            WHERE DilabProject.name="${mysql_real_escape_string(req.body.projectName)}" AND DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
