@@ -2244,6 +2244,13 @@ body {
 .popUpWindow .projectInput {
     user-select: none;
     cursor: pointer;
+    margin: 4px;
+    border-radius: 4px;
+    width: 20em;
+}
+
+.popUpWindow .projectInput:hover, .popUpWindow .projectInput:active {
+    opacity: 0.6;
 }
 
 /* Profile picture input style */
