@@ -535,7 +535,7 @@ function pathAnalysis() {
                                }
                             });
                             elem.querySelector("input[name=pName]").addEventListener("focusout",e=> {
-                                checkIfExists("projectNameAvailable",[["groupName",elem.querySelector("input[name=pName]").value],["projectName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                             });
                             var uploadField = elem.querySelector(".profilePictureInput");
                             uploadField.onchange = function() {
