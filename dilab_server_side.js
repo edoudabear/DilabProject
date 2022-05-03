@@ -497,6 +497,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
     } else if (req.params.action=="add") {
+        console.log(req.body);
         // Account creation case
         if (req.body.username && req.body.firstName && req.body.lastName && req.body.password && req.files 
             && req.body.email && (req.body.genres || true) && req.body.biography) {
@@ -635,7 +636,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //EMAILQUERY//USERNAMECHECK (NESTS)
             });}});
         // Group Creation
-        } else if (req.body.groupName && req.body.groupDescription && req.body.groupOrientation) {
+        } else if (req.body.groupName && req.body.groupDescription && req.body.groupOrientation && req.session.dilab) {
             var groupName=mysql_real_escape_string(req.body.groupName),
             groupOrientation=mysql_real_escape_string(req.body.groupOrientation),
             groupDescription=mysql_real_escape_string(req.body.groupDescription);
@@ -750,7 +751,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 })
             }
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
-        } else if (req.body.projectName && req.body.projectDescription && req.body.projectGenre) {
+        } else if (req.body.projectName && req.body.projectDescription && req.body.projectGenre && req.session.dilab) {
             res.end(JSON.stringify({
                 return : "ok",
                 status : true,
