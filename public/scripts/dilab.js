@@ -717,13 +717,7 @@ function pathAnalysis() {
                                                     Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
                                                     return;
                                                 }
-                                                Swal.fire("Good News","Button click detected, and no issue detected in your data !","success");
-                                                // Here we (will) create a JSON object containing the user's input and send it to the server
-                                                var userData={
-                                                    audioFile : null,
-                                                    projectFile : null,
-                                                    projectPP : null,
-                                                }
+                                                // Here we (will) create a FormData object containing the user's input and send it to the server
                                                 var data=new FormData();
                                                 data.append("projectName", elem.querySelector("input[name=pName]").value);
                                                 data.append("projectGenre", elem.querySelector("input[name=pGenre]").value);
