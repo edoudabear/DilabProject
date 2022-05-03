@@ -2,16 +2,17 @@
     <div class=inputFlow>
         <div class=mainInput>
             <h4>Project name</h4>
-            <input type=text placeholder="Project name"/>
+            <input type=text name="pName" placeholder="Project name"/>
+            <div class="error isUsedNotifier">This project name is already used in that group.</div>
             <h4>What group is made for that project ?</h4>
-            <select class="groupSelectInput">
+            <select  class="groupSelectInput">
             </select>
             <h4>Project orientation (from a musical perspective, hfgvfhsqf)</h4>
-            <input type=text placeholder="Project genres"/>
+            <input name="pGenre" type=text placeholder="Project genres"/>
             <h4>Project Description</h4>
             <textarea resizable=none placeholder="Project description"></textarea>
             <h4>Project phase</h4>
-            <select>
+            <select name="pPhase">
                 <option value="0">Project launch</option>
                 <option value="1">Working on instrumental part</option>
                 <option value="2">Working on vocals</option>

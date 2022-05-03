@@ -534,6 +534,9 @@ function pathAnalysis() {
                                    document.querySelector(".popUpWindow .groupSelectInput").innerHTML+=`\n<option value="${data[i].groupName}">${data[i].groupName}</option>`;
                                }
                             });
+                            elem.querySelector("input[name=pName]").addEventListener("focusout",e=> {
+                                checkIfExists("projectNameAvailable",[["groupName",elem.querySelector("input[name=pName]").value],["projectName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                            });
                             var uploadField = elem.querySelector(".profilePictureInput");
                             uploadField.onchange = function() {
                                 elem.querySelector(".pictureRemButton").style.display="none";
@@ -557,7 +560,7 @@ function pathAnalysis() {
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();
-                            })
+                            });
                         });
                     });
                     query=urlParams.get("action");
@@ -1565,6 +1568,54 @@ function settingsPageUnloadImage() {
     document.querySelector(".profilePicture > img").src="/dilab/user/"+userData.profilePicturePath+"?t=" + String(timestamp);
     document.querySelector(".profilePictureInput").value=null;
     document.querySelector(".settingsPage .pictureRemButton").style.display="";
+}
+
+// Existence control
+
+function checkIfExists(what,input,inputElement,errElement) {
+    var data= {
+        type : what
+    }
+    for (var i=0,i<input.length;i++) {
+        data[input[i][0]]=input[i][1];
+    }
+    console.log(data);
+
+    return fetch("https://e.diskloud.fr/dilab/check", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      }).then( response => {
+          response.json().then(json => {
+            console.log(json);
+            if (json.status) { // Valid credentials case
+                if(!json.data) {
+                    inputElement.style.outline="4px solid red";
+                    inputElement.style.opacity="";
+                    errElement.style.display="block";
+                } else {
+                    inputElement.style.outline="4px solid lightgreen";
+                    inputElement.style.opacity="1";
+                    errElement.style.display="";
+                    if (what=="usernameAvailable") {
+                        usernameSet=true;
+                    } else if (what=="emailAvailable") {
+                        emailSet=true;
+                    }
+                }
+            }
+            else {
+                Swal.fire("Server Error","Sorry, it seems to be our fault, but there's an unexplainable problem :( <br /> (try again later)","error");
+                return false;
+            }
+          }); 
+    });
 }
 
 // Element templates
