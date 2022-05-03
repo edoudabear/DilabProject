@@ -535,7 +535,12 @@ function pathAnalysis() {
                                }
                             });
                             elem.querySelector("input[name=pName]").addEventListener("focusout",e=> {
+                                document.querySelector(".nameIsTooLong").style.display="none";
                                 if (elem.querySelector("input[name=pName]").value) {
+                                    if (elem.querySelector("input[name=pName]").value.length>=128) {
+                                        document.querySelector(".nameIsTooLong").style.display="block";
+                                        return;
+                                    }
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 }
                             });
