@@ -721,7 +721,7 @@ function pathAnalysis() {
                                                 var data=new FormData();
                                                 data.append("projectName", elem.querySelector("input[name=pName]").value);
                                                 data.append("projectGenre", elem.querySelector("input[name=pGenre]").value);
-                                                data.append("description", elem.querySelector("textarea[name=pDescription]").value);
+                                                data.append("projectDescription", elem.querySelector("textarea[name=pDescription]").value);
                                                 if (audioUploadField.value=='') {
                                                     data.append("audioFile", 1);
                                                 } else {

@@ -765,7 +765,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;}) ;
             }
-            res.status(400).end('{ "return" : "invalid POST data" }')
+            res.status(400).end('{ "return" : "error", "status" : false, "data" : "invalid POST data" }');
         }
     } else if (req.params.action=="check") {
         if (req.body.type=="password" && req.body.value && req.session.dilab) {
