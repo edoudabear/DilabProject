@@ -691,7 +691,7 @@ function pathAnalysis() {
                                     "projectName" : elem.querySelector("input[name=pName]").value,
                                     "groupName" : elem.querySelector(".groupSelectInput").value
                                 }
-                                fetch("https://e.diskloud.fr/dilab/check", {
+                                return fetch("https://e.diskloud.fr/dilab/check", {
                                     method: 'POST', // *GET, POST, PUT, DELETE, etc.
                                     mode: 'cors', // no-cors, *cors, same-origin
                                     headers: {
