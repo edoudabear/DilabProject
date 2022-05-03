@@ -704,6 +704,7 @@ function pathAnalysis() {
                                   }).then( response => {
                                       response.json()
                                     }).then(json => {
+                                        alert(JSON.stringify(json));
                                         console.log(json);
                                         if (json.status) { // Valid credentials case
                                             if(json.data) {
