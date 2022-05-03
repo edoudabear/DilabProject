@@ -12,7 +12,7 @@
             <input  maxlength="64" name="pGenre" type=text placeholder="Project genres"/>
             <div class="error genreIsTooLong">Genre name is too long</div>
             <h4>Project Description</h4>
-            <textarea resizable=none maxlength="500" placeholder="Project description"></textarea>
+            <textarea resizable=none maxlength="500" name="pDescription" placeholder="Project description"></textarea>
             <div class="error descriptionIsTooLong">Description is too long</div>
             <h4>Project phase</h4>
             <select name="pPhase">
