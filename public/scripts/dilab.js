@@ -606,7 +606,7 @@ function pathAnalysis() {
                                     isPPChanged=true;
                                     elem.querySelector(".audioRem").style.display="block";
                                     elem.querySelector(".audioRem").addEventListener("click",e=> {
-                                        uploadField.value='';
+                                        audioUploadField.value='';
                                         elem.querySelector(".audioFileName").innerHTML="No Project File Uploaded yet";
                                     });
                                 }
