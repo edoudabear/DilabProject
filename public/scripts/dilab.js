@@ -539,7 +539,7 @@ function pathAnalysis() {
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 }
                             });
-                            elem.querySelector(".groupSelectInput").addEventListener("focusout",e=> {
+                            elem.querySelector(".groupSelectInput").addEventListener("change",e=> {
                                 if (elem.querySelector("input[name=pName]").value) {
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 }

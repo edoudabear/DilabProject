@@ -2212,7 +2212,6 @@ body {
 .popUpWindow .error {
     background-color: red;
     color : white;
-    font-size: 0.4em;
     display: none;
     border-radius: 4px/4px;
     max-width: 380px;
