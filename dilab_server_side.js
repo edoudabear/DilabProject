@@ -839,6 +839,35 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }));
                 }
             });
+        } else if (req.body.type=="projectNameAvailable" && req.body.projectName && req.body.groupName) {
+            dilabConnection.query(`SELECT name FROM DilabProject
+            JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
+            WHERE DilabProject.name="${mysql_real_escape_string(req.body.groupName)}" AND DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                }
+                else if (results.length!=0) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : false
+                        }));
+                } else {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : true
+                    }));
+                }
+            });
+            //Temp file cleanup (to avoid keeping ignored files..)
+            if (req.files) {
+                for (var i=0;i<req.files.length;i++)
+                fs.unlink(req.files[i].path,()=>{return;});
+            }
         } else {
             res.status(400).end('{ "return" : "invalid POST data" }')
         }
