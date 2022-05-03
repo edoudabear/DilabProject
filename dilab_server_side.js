@@ -754,7 +754,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             res.end(JSON.stringify({
                 return : "ok",
                 status : true,
-                data : "We received your data, however, the service is not working yet. Don't be afraid, your data won't be sold (it will never be sold !), nor stored on the computer, until the platform becomes fully functionnal"
+                data : "We received your data, however the service is not working yet. Don't be afraid, your data won't be sold (it will never be sold !), nor stored on the computer, until the platform becomes fully functionnal"
             }))
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
