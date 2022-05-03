@@ -711,9 +711,11 @@ function pathAnalysis() {
                                             } else {
                                                 if (elem.querySelector("input[name=pGenre]").value.length>=64) {
                                                     Swal.fire("Not so fast..",`We know genres are complicated to choose, but it's too long here`,"error");
+                                                    return;
                                                 }
                                                 if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
                                                     Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
+                                                    return;
                                                 }
                                                 Swal.fire("Good News","Button click detected, but no issue !","success");
                                             }
