@@ -3,17 +3,17 @@
         <div class=mainInput>
             <h4>Project name</h4>
             <input maxlength="128" type=text name="pName" placeholder="Project name"/>
-            <div class="error isUsedNotifier">This project name is already used in that group.</div>
-            <div class="error nameIsTooLong">This project name is already used in that group.</div>
+            <div class="error isUsedNotifier">This project name is already used in that group</div>
+            <div class="error nameIsTooLong">This project name is too long</div>
             <h4>What group is made for that project ?</h4>
             <select  class="groupSelectInput">
             </select>
             <h4>Project orientation (from a musical perspective, hfgvfhsqf)</h4>
             <input  maxlength="64" name="pGenre" type=text placeholder="Project genres"/>
-            <div class="error genreIsTooLong">This project name is already used in that group.</div>
+            <div class="error genreIsTooLong">Genre name is too long</div>
             <h4>Project Description</h4>
             <textarea resizable=none maxlength="500" placeholder="Project description"></textarea>
-            <div class="error descriptionIsTooLong">This project name is already used in that group.</div>
+            <div class="error descriptionIsTooLong">Description is too long</div>
             <h4>Project phase</h4>
             <select name="pPhase">
                 <option value="0">Project launch</option>
