@@ -628,7 +628,6 @@ function pathAnalysis() {
                             var projectUploadField = elem.querySelector("input[name=projectFile]");
                             projectUploadField.onchange = function() {
                                 elem.querySelector(".projectRem").style.display="none";
-                                alert(this.files[0].type);
                                 if (this.files[0].size > 2097152*4){
                                     Swal.fire("Error","File is too big (8MB max) !","error");
                                     this.value = "";
@@ -678,6 +677,10 @@ function pathAnalysis() {
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 ppUploadField.click();
                             });
+
+                            elem.querySelector(".confirm").addEventListener("click",e=> {
+                                Swal.fire("Good News","Button click detected !","success");
+                            })
                         });
                     });
                     query=urlParams.get("action");
