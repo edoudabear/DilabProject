@@ -29,7 +29,7 @@
                 </svg>
                 <span class="audioFileName">No Project File Uploaded yet</span>
                 <input style="display: none;" type=file name=AudioFile />
-                <button class="button audioRem">Remove audio</button>
+                <button style="display: none;" class="button audioRem">Remove audio</button>
             </div>
             <div class="projectFile projectInput">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note" viewBox="0 0 16 16">
@@ -39,7 +39,7 @@
                 </svg>
                 <span class="projectFileName">No Audio File Uploaded yet</span>
                 <input style="display: none;" type=file name=ProjectFile />
-                <button class="button projectRem">Remove project</button>
+                <button style="display: none;" class="button projectRem">Remove project</button>
             </div>
         </div>
         <div class=projectPpContainer>
