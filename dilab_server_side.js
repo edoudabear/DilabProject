@@ -243,6 +243,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             { "return" : "error",
                                 "data" : "internal server error",
                             }));
+                            throw err;
+                            return;
                     } else {
                         if (results[0].length==0) {
                             console.log("GROUP NOT FOUND..")
