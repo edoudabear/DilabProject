@@ -535,7 +535,14 @@ function pathAnalysis() {
                                }
                             });
                             elem.querySelector("input[name=pName]").addEventListener("focusout",e=> {
-                                checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                if (elem.querySelector("input[name=pName]").length) {
+                                    checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                }
+                            });
+                            elem.querySelector(".groupSelectInput").addEventListener("focusout",e=> {
+                                if (elem.querySelector("input[name=pName]").length) {
+                                    checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                }
                             });
                             var uploadField = elem.querySelector(".profilePictureInput");
                             uploadField.onchange = function() {
