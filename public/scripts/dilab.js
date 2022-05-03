@@ -589,7 +589,7 @@ function pathAnalysis() {
                                 }
                             });
 
-                            var audioUploadField = elem.querySelector(".audioFile");
+                            var audioUploadField = elem.querySelector("input[name=AudioFile]");
                             audioUploadField.onchange = function() {
                                 elem.querySelector(".audioRem").style.display="none";
                                 if (this.files[0].size > 2097152*2){
