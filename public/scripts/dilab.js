@@ -625,8 +625,6 @@ function pathAnalysis() {
                                 if (this.files[0].size > 2097152*2){
                                     Swal.fire("Error","File is too big!","error");
                                     this.value = "";
-                                } else if (this.files[0].type!="audio/flp" && this.files[0].type!="audio/alp") {
-                                    Swal.fire("Error","Invalid file type<br />Must be an audio","error");
                                 } else {
                                     // from an input element
                                     var filesToUpload = this.files;
