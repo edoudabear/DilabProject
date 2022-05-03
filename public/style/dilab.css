@@ -2247,9 +2247,10 @@ body {
     margin: 4px;
     border-radius: 4px;
     width: 20em;
+    transition: 0.2s;
 }
 
-.popUpWindow .projectInput:hover, .popUpWindow .projectInput:active {
+.popUpWindow .projectInput:hover, .popUpWindow .projectInput:focus {
     opacity: 0.6;
 }
 
