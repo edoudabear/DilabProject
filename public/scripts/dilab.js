@@ -1576,7 +1576,7 @@ function checkIfExists(what,input,inputElement,errElement) {
     var data= {
         type : what
     }
-    for (var i=0,i<input.length;i++) {
+    for (var i=0;i<input.length;i++) {
         data[input[i][0]]=input[i][1];
     }
     console.log(data);
