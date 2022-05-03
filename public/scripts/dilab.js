@@ -691,7 +691,7 @@ function pathAnalysis() {
                                     "projectName" : elem.querySelector("input[name=pName]").value,
                                     "groupName" : elem.querySelector(".groupSelectInput").value
                                 }
-                                if (fetch("https://e.diskloud.fr/dilab/check", {
+                                fetch("https://e.diskloud.fr/dilab/check", {
                                     method: 'POST', // *GET, POST, PUT, DELETE, etc.
                                     mode: 'cors', // no-cors, *cors, same-origin
                                     headers: {
@@ -702,24 +702,22 @@ function pathAnalysis() {
                                     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                                     body: JSON.stringify(data) // body data type must match "Content-Type" header
                                   }).then( response => {
-                                      response.json()}).then(json => {
+                                      response.json()
+                                    }).then(json => {
                                         console.log(json);
                                         if (json.status) { // Valid credentials case
                                             if(json.data) {
                                                 Swal.fire("Not so fast..",`You can't use that project name, it's already used for another project in this group (${elem.querySelector(".groupSelectInput").value}) !`,"error");
                                                 return true;
                                             } else {
-                                                return false;
+                                                Swal.fire("Good News","Button click detected, but no issue !","success");
                                             }
                                         }
                                         else {
                                             Swal.fire("Bad news..",`The server couldn't handle your request, try again or try later.`,"error");
                                             return true;
-                                        }})
-                                ) {
-                                    return;
-                                }
-                                Swal.fire("Good News","Button click detected, but no issue !","success");
+                                        }
+                                    });
                             })
                         });
                     });
