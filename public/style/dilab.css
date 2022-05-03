@@ -2233,6 +2233,9 @@ body {
 .popUpWindow input[type=text]:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
     opacity: 1;
 }
+.popUpWindow input[type=text]:focus, .popUpWindow input[type=password]:focus, .popUpWindow input[type=select]:focus,  .popUpWindow input[type=mail]:focus, .popUpWindow textarea:focus {
+    opacity: 1;
+}
 
 /* Profile picture input style */
 
