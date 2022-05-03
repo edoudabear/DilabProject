@@ -679,7 +679,47 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
-                                Swal.fire("Good News","Button click detected !","success");
+                                if (!elem.querySelector("input[name=pName]").value) {
+                                    Swal.fire("Not so fast..","You must specify a project name !","error");
+                                    return;
+                                } if (!(elem.querySelector("input[name=pName]").value.length>0 && elem.querySelector("input[name=pName]").value.length<128)) {
+                                    Swal.fire("Not so fast..","You must specify a valid project name !","error");
+                                    return;
+                                }
+                                data={
+                                    "type" : "projectNameAvailable",
+                                    "projectName" : elem.querySelector("input[name=pName]").value,
+                                    "groupName" : elem.querySelector(".groupSelectInput").value
+                                }
+                                if (fetch("https://e.diskloud.fr/dilab/check", {
+                                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                                    mode: 'cors', // no-cors, *cors, same-origin
+                                    headers: {
+                                      'Content-Type': 'application/json'
+                                      // 'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    redirect: 'follow', // manual, *follow, error
+                                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                                  }).then( response => {
+                                      response.json()}).then(json => {
+                                        console.log(json);
+                                        if (json.status) { // Valid credentials case
+                                            if(json.data) {
+                                                Swal.fire("Not so fast..",`You can't use that project name, it's already used for another project in this group (${elem.querySelector(".groupSelectInput").value}) !`,"error");
+                                                return true;
+                                            } else {
+                                                return false;
+                                            }
+                                        }
+                                        else {
+                                            Swal.fire("Bad news..",`The server couldn't handle your request, try again or try later.`,"error");
+                                            return true;
+                                        }})
+                                ) {
+                                    return;
+                                }
+                                Swal.fire("Good News","Button click detected, but no issue !","success");
                             })
                         });
                     });
