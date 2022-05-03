@@ -2218,7 +2218,7 @@ body {
     max-width: 380px;
 }
 
-.popUpWindow .signUp input[type=text], .popUpWindow .signUp input[type=password], .popUpWindow .signUp input[type=select],  .popUpWindow .signUp input[type=mail] {
+.popUpWindow input[type=text], .popUpWindow input[type=password], .popUpWindow input[type=select],  .popUpWindow input[type=mail] {
     background : rgba(255,255,255,0.7);
     border : none;
     outline: none;
