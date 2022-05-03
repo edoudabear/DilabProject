@@ -1881,6 +1881,7 @@ body {
 }
 
 .popUpWindowContainer .popUpWindow .popUpMainContent  textarea {
+    resize : none;
     font-size: 20px;
 }
   
@@ -2226,6 +2227,11 @@ body {
     opacity: 0.6;
     transition: 0.2s;
     border-bottom: 2px solid purple;
+}
+
+.popUpWindow textarea {
+    width : 300px;
+    height : 60px;
 }
 
 .popUpWindow input[type=text]:hover, .popUpWindow select:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
