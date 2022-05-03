@@ -691,7 +691,7 @@ function pathAnalysis() {
                                     "projectName" : elem.querySelector("input[name=pName]").value,
                                     "groupName" : elem.querySelector(".groupSelectInput").value
                                 }
-                                return fetch("https://e.diskloud.fr/dilab/check", {
+                                fetch("https://e.diskloud.fr/dilab/check", {
                                     method: 'POST', // *GET, POST, PUT, DELETE, etc.
                                     mode: 'cors', // no-cors, *cors, same-origin
                                     headers: {
@@ -702,7 +702,7 @@ function pathAnalysis() {
                                     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                                     body: JSON.stringify(data) // body data type must match "Content-Type" header
                                   }).then( response => {
-                                      response.json()
+                                      return response.json()
                                     }).then(json => {
                                         alert(JSON.stringify(json));
                                         console.log(json);
