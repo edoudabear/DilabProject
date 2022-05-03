@@ -589,7 +589,7 @@ function pathAnalysis() {
                                 }
                             });
 
-                            var audioUploadField = elem.querySelector("input[name=AudioFile]");
+                            var audioUploadField = elem.querySelector("input[name=audioFile]");
                             audioUploadField.onchange = function() {
                                 elem.querySelector(".audioRem").style.display="none";
                                 if (this.files[0].size > 2097152*2){
@@ -616,6 +616,35 @@ function pathAnalysis() {
 
                             elem.querySelector(".audioFile").addEventListener("click",e=> {
                                 audioUploadField.click();
+                            });
+
+                            var projectUploadField = elem.querySelector("input[name=projectFile]");
+                            projectUploadField.onchange = function() {
+                                elem.querySelector(".projectRem").style.display="none";
+                                if (this.files[0].size > 2097152*2){
+                                    Swal.fire("Error","File is too big!","error");
+                                    this.value = "";
+                                } else if (this.files[0].type.slice(0,this.files[0].type.indexOf('/'))!="audio") {
+                                    Swal.fire("Error","Invalid file type<br />Must be an audio","error");
+                                } else {
+                                    // from an input element
+                                    var filesToUpload = this.files;
+                                    var file = filesToUpload[0];
+
+                                    elem.querySelector(".projectFileName").innerHTML=file.name;
+                                    isPPChanged=true;
+                                    elem.querySelector(".projectRem").style.display="block";
+                                    elem.querySelector(".projectRem").addEventListener("click",e=> {
+                                        e.stopPropagation();
+                                        projectUploadField.value='';
+                                        elem.querySelector(".projectFileName").innerHTML="No Project File Uploaded yet";
+                                        elem.querySelector(".projectRem").style.display="none";
+                                    });
+                                }
+                            };
+
+                            elem.querySelector(".projectFile").addEventListener("click",e=> {
+                                projectUploadField.click();
                             });
 
 
