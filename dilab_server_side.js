@@ -233,7 +233,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabReleases.groupAuthor
                 WHERE DilabMusicGroups.groupName="${groupName}" AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
             /*6 (Group's active projects)*/
-            SELECT DilabProject.name,DilabProject.genres,DilabProject.currentPhase,DilabProject.phases,DilabProject.projectPicture,DilabProject.description FROM DilabProject
+            SELECT DilabProject.name,DilabProject.genres,DilabProject.currentPhase,DilabProject.projectPicture,DilabProject.description FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
                 WHERE DilabProject.isReleased=FALSE AND DilabMusicGroups.groupName="${groupName}"
                 ORDER BY DilabProject.dateOfBirth DESC LIMIT 20;
@@ -243,8 +243,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             { "return" : "error",
                                 "data" : "internal server error",
                             }));
-                            throw err;
-                            return;
                     } else {
                         if (results[0].length==0) {
                             console.log("GROUP NOT FOUND..")
@@ -754,7 +752,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.projectDescription && req.body.projectOrientation && req.body.projectGenre) {
             res.end("not developped yet..")
-            //INSTRUCTION : `INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, phases, projectPicture, audioFileDir, projectFileDir, lastAudioFileUpdate`, `lastProjectFileUpdate`)
+            //INSTRUCTION : `INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lastAudioFileUpdate`, `lastProjectFileUpdate`)
             // VALUES ("${projectName}",${groupAuthor},'${genres}',${currentPhase},'',"${projectPicture}","${audioFileDir}","${projectFileDir}", , ) 
         } else {
             if (req.files) {
