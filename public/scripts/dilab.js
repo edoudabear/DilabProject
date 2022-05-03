@@ -575,7 +575,7 @@ function pathAnalysis() {
                                 elem.querySelector("input[name=pGenre]").style.outline="4px solid lightgreen";
                                 elem.querySelector("input[name=pGenre]").style.opacity="1";
                                 if (elem.querySelector("input[name=pGenre]").value) {
-                                    if (elem.querySelector("input[name=pName]").value.length>=64) {
+                                    if (elem.querySelector("input[name=pGenre]").value.length>=64) {
                                         elem.querySelector("input[name=pGenre]").style.outline="4px solid red";
                                         elem.querySelector("input[name=pGenre]").style.opacity="";
                                         document.querySelector(".genreIsTooLong").style.display="block";
@@ -704,13 +704,17 @@ function pathAnalysis() {
                                   }).then( response => {
                                       return response.json()
                                     }).then(json => {
-                                        alert(JSON.stringify(json));
-                                        console.log(json);
                                         if (json.status) { // Valid credentials case
                                             if(json.data) {
                                                 Swal.fire("Not so fast..",`You can't use that project name, it's already used for another project in this group (${elem.querySelector(".groupSelectInput").value}) !`,"error");
                                                 return true;
                                             } else {
+                                                if (elem.querySelector("input[name=pGenre]").value.length>=64) {
+                                                    Swal.fire("Not so fast..",`We know genres are complicated to choose, but it's too long here`,"error");
+                                                }
+                                                if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
+                                                    Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
+                                                }
                                                 Swal.fire("Good News","Button click detected, but no issue !","success");
                                             }
                                         }
