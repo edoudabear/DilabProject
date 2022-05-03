@@ -720,11 +720,47 @@ function pathAnalysis() {
                                                 Swal.fire("Good News","Button click detected, and no issue detected in your data !","success");
                                                 // Here we (will) create a JSON object containing the user's input and send it to the server
                                                 var userData={
-                                                    type:"newProject",
-                                                    projectName : elem.querySelector("input[name=pName]").value,
-                                                    projectGenre : elem.querySelector("input[name=pGenre]").value,
-                                                    description : elem.querySelector("input[pDescription]").value
+                                                    audioFile : null,
+                                                    projectFile : null,
+                                                    projectPP : null,
                                                 }
+                                                var data=new FormData();
+                                                data.append("projectName", elem.querySelector("input[name=pName]").value);
+                                                data.append("projectGenre", elem.querySelector("input[name=pGenre]").value);
+                                                data.append("description", elem.querySelector("input[pDescription]").value);
+                                                if (audioUploadField.value=='') {
+                                                    data.append("audioFile", 1);
+                                                } else {
+                                                    data.append("audioFile",audioUploadField.files[0], audioUploadField.files[0].name);
+                                                }
+                                                if (projectUploadField.value=='') {
+                                                    data.append("projectFile", 1);
+                                                } else {
+                                                    data.append("projectFile",projectUploadField.files[0], projectUploadField.files[0].name);
+                                                }
+                                                if (ppUploadField.value=='') {
+                                                    data.append("projectPPFile", 1);
+                                                } else {
+                                                    data.append("projectPPFile",ppUploadField.files[0], ppUploadField.files[0].name);
+                                                }
+                                            
+                                                fetch('/Dilab/add', {
+                                                    headers: {
+                                                        //'Content-Type': 'application/x-www-form-urlencoded'
+                                                        //'Content-Type': 'multipart/form-data',
+                                                    },
+                                                    method: 'POST',
+                                                    body: data
+                                                }).then(out => {
+                                                    return out.json();
+                                                }).then(log => {
+                                                    console.log(log);
+                                                    if (log.status==true) {
+                                                        Swal.fire("Server received your data",log.data,"success");
+                                                    } else {
+                                                        Swal.fire("Error",log.data,"error");
+                                                    }
+                                                });
                                             }
                                         }
                                         else {

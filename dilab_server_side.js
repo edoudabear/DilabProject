@@ -750,10 +750,16 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 })
             }
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
-        } else if (req.body.projectName && req.body.projectDescription && req.body.projectOrientation && req.body.projectGenre) {
-            res.end("not developped yet..")
-            //INSTRUCTION : `INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lastAudioFileUpdate`, `lastProjectFileUpdate`)
-            // VALUES ("${projectName}",${groupAuthor},'${genres}',${currentPhase},'',"${projectPicture}","${audioFileDir}","${projectFileDir}", , ) 
+        } else if (req.body.projectName && req.body.projectDescription && req.body.projectGenre) {
+            res.end(JSON.stringify({
+                return : "ok",
+                status : true,
+                data : "We received your data, however, the service is not working yet. Don't be afraid, your data won't be sold (it will never be sold !), nor stored on the computer, until the platform becomes fully functionnal"
+            }))
+            if (req.files) {
+                for (var i=0;i<req.files.length;i++)
+                fs.unlink(req.files[i].path,()=>{return;});
+            }
         } else {
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
