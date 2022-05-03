@@ -589,9 +589,36 @@ function pathAnalysis() {
                                 }
                             });
 
+                            var audioUploadField = elem.querySelector("input[name=projectFile]");
+                            audioUploadField.onchange = function() {
+                                elem.querySelector(".audioRem").style.display="none";
+                                if (this.files[0].size > 2097152*2){
+                                    Swal.fire("Error","File is too big!","error");
+                                    this.value = "";
+                                } else if (this.files[0].type.slice(0,this.files[0].type.indexOf('/'))!="image") {
+                                    Swal.fire("Error","Invalid file type<br />Must be a picture","error");
+                                } else {
+                                    // from an input element
+                                    var filesToUpload = this.files;
+                                    var file = filesToUpload[0];
 
-                            var uploadField = elem.querySelector(".profilePictureInput");
-                            uploadField.onchange = function() {
+                                    elem.querySelector(".audioFileName").innerHTML=file.name;
+                                    isPPChanged=true;
+                                    elem.querySelector(".audioRem").style.display="block";
+                                    elem.querySelector(".audioRem").addEventListener("click",e=> {
+                                        uploadField.value='';
+                                        elem.querySelector(".audioFileName").innerHTML="No Project File Uploaded yet";
+                                    });
+                                }
+                            };
+
+                            elem.querySelector(".audioFile").addEventListener("click",e=> {
+                                aduioUploadField.click();
+                            });
+
+
+                            var ppUploadField = elem.querySelector(".profilePictureInput");
+                            ppUploadField.onchange = function() {
                                 elem.querySelector(".pictureRemButton").style.display="none";
                                 if (this.files[0].size > 2097152*2){
                                     Swal.fire("Error","File is too big!","error");
@@ -612,7 +639,7 @@ function pathAnalysis() {
                                 }
                             };
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
-                                uploadField.click();
+                                ppUploadField.click();
                             });
                         });
                     });
