@@ -2248,6 +2248,13 @@ body {
     border-radius: 4px;
     width: 20em;
     transition: 0.2s;
+    display: flex ;
+    justify-content: left;
+    align-items: center;
+}
+
+.popUpWindow .projectInput .button {
+    font-size: 0.8em;
 }
 
 .popUpWindow .projectInput:hover, .popUpWindow .projectInput:focus {
