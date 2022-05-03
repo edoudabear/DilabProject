@@ -613,7 +613,7 @@ function pathAnalysis() {
                             };
 
                             elem.querySelector(".audioFile").addEventListener("click",e=> {
-                                aduioUploadField.click();
+                                audioUploadField.click();
                             });
 
 
