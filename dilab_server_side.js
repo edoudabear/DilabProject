@@ -853,13 +853,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end(JSON.stringify(
                         { "return" : "ok",
                             "status" : true,
-                            "data" : false
+                            "data" : true
                         }));
                 } else {
                     res.end(JSON.stringify(
                         { "return" : "ok",
                             "status" : true,
-                            "data" : true
+                            "data" : false
                     }));
                 }
             });
