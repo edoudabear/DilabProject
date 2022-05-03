@@ -28,7 +28,7 @@
                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                 </svg>
                 <span class="audioFileName">No Project File Uploaded yet</span>
-                <input type=file name=AudioFile />
+                <input style="display: none;" type=file name=AudioFile />
                 <button class="button audioRem">Remove audio</button>
             </div>
             <div class="projectFile projectInput">
@@ -38,7 +38,7 @@
                     <path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"/>
                 </svg>
                 <span class="projectFileName">No Audio File Uploaded yet</span>
-                <input type=file name=ProjectFile />
+                <input style="display: none;" type=file name=ProjectFile />
                 <button class="button projectRem">Remove project</button>
             </div>
         </div>
