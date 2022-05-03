@@ -2245,7 +2245,8 @@ body {
     user-select: none;
     cursor: pointer;
     margin: 4px;
-    border-radius: 4px;
+    border-radius: 10px/10px;
+    padding-left: 5px;
     width: 20em;
     transition: 0.2s;
     display: flex ;
