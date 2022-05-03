@@ -621,10 +621,11 @@ function pathAnalysis() {
                             var projectUploadField = elem.querySelector("input[name=projectFile]");
                             projectUploadField.onchange = function() {
                                 elem.querySelector(".projectRem").style.display="none";
+                                alert(this.files[0].type);
                                 if (this.files[0].size > 2097152*2){
                                     Swal.fire("Error","File is too big!","error");
                                     this.value = "";
-                                } else if (this.files[0].type.slice(0,this.files[0].type.indexOf('/'))!="audio") {
+                                } else if (this.files[0].type!="audio/flp" && this.files[0].type!="audio/alp") {
                                     Swal.fire("Error","Invalid file type<br />Must be an audio","error");
                                 } else {
                                     // from an input element
