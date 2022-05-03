@@ -33,7 +33,7 @@
                     <span class="audioFileName">No Audio File Uploaded yet</span>
                     <input style="display: none;" accept="audio/*" type=file name=audioFile />
                 </div>
-                <button style="display: none;" class="button audioRem"><i class="bi bi-trash"></i></button>
+                <button style="display: none;" class="button audioRem"><i title="Remove file from upload field" class="bi bi-trash"></i></button>
             </div>
             <div class="projectFile projectInput">
                 <div>
@@ -44,7 +44,7 @@
                     <span class="projectFileName">No Project File Uploaded yet</span>
                     <input style="display: none;" accept="flp,alc" type=file name=projectFile />
                 </div>
-                <button style="display: none;" class="button projectRem"><i class="bi bi-trash"></i></button>
+                <button style="display: none;" class="button projectRem"><i title="Remove file from upload field" class="bi bi-trash"></i></button>
             </div>
         </div>
         <div class=projectPpContainer>
