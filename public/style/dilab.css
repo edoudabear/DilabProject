@@ -2218,7 +2218,7 @@ body {
     max-width: 380px;
 }
 
-.popUpWindow input[type=text], .popUpWindow input[type=password], .popUpWindow input[type=select],  .popUpWindow input[type=mail], .popUpWindow textarea {
+.popUpWindow input[type=text], .popUpWindow input[type=select], .popUpWindow input[type=password], .popUpWindow input[type=select],  .popUpWindow input[type=mail], .popUpWindow textarea {
     background : rgba(187, 184, 184, 0.7);
     border : none;
     outline: none;
@@ -2230,10 +2230,10 @@ body {
     border-bottom: 2px solid purple;
 }
 
-.popUpWindow input[type=text]:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
+.popUpWindow input[type=text]:hover, .popUpWindow input[type=select]:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
     opacity: 1;
 }
-.popUpWindow input[type=text]:focus, .popUpWindow input[type=password]:focus, .popUpWindow input[type=select]:focus,  .popUpWindow input[type=mail]:focus, .popUpWindow textarea:focus {
+.popUpWindow input[type=text]:focus, .popUpWindow input[type=select]:focus, .popUpWindow input[type=password]:focus, .popUpWindow input[type=select]:focus,  .popUpWindow input[type=mail]:focus, .popUpWindow textarea:focus {
     opacity: 1;
 }
 
