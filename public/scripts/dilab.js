@@ -548,6 +548,7 @@ function pathAnalysis() {
                                     }
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 } else {
+                                    elem.querySelector("input[name=pName]").style.outline="4px solid red";
                                     document.querySelector(".nameIsMandatory").style.display="block";
                                 }
                             });
