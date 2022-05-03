@@ -2241,6 +2241,11 @@ body {
     opacity: 1;
 }
 
+.popUpWindow .projectInput {
+    user-select: none;
+    cursor: pointer;
+}
+
 /* Profile picture input style */
 
 .ppContainer .profilePicture {
