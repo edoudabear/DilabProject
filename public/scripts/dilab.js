@@ -1579,6 +1579,7 @@ function checkIfExists(what,input,inputElement,errElement) {
     for (var i=0;i<input.length;i++) {
         data[input[i][0]]=input[i][1];
     }
+    console.log(data);
 
     return fetch("https://e.diskloud.fr/dilab/check", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
