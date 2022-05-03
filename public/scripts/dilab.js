@@ -536,6 +536,7 @@ function pathAnalysis() {
                             });
                             elem.querySelector("input[name=pName]").addEventListener("focusout",e=> {
                                 document.querySelector(".nameIsTooLong").style.display="none";
+                                document.querySelector(".nameIsMandatory").style.display="none";
                                 elem.querySelector("input[name=pName]").style.outline="4px solid lightgreen";
                                 elem.querySelector("input[name=pName]").style.opacity="1";
                                 if (elem.querySelector("input[name=pName]").value) {
@@ -546,10 +547,13 @@ function pathAnalysis() {
                                         return;
                                     }
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                } else {
+                                    document.querySelector(".nameIsMandatory").style.display="block";
                                 }
                             });
                             elem.querySelector(".groupSelectInput").addEventListener("change",e=> {
                                 document.querySelector(".nameIsTooLong").style.display="none";
+                                document.querySelector(".nameIsMandatory").style.display="none";
                                 elem.querySelector("input[name=pName]").style.outline="4px solid lightgreen";
                                 elem.querySelector("input[name=pName]").style.opacity="1";
                                 if (elem.querySelector("input[name=pName]").value) {
@@ -560,6 +564,8 @@ function pathAnalysis() {
                                         return;
                                     }
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
+                                } else {
+                                    document.querySelector(".nameIsMandatory").style.display="block";
                                 }
                             });
 

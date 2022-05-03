@@ -5,6 +5,7 @@
             <input maxlength="128" type=text name="pName" placeholder="Project name"/>
             <div class="error isUsedNotifier">This project name is already used in that group</div>
             <div class="error nameIsTooLong">This project name is too long</div>
+            <div class="error nameIsMandatory">We know your project can't be put into words.. but we need a name</div>
             <h4>What group is made for that project ?</h4>
             <select  class="groupSelectInput">
             </select>
