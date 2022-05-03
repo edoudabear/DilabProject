@@ -1579,7 +1579,6 @@ function checkIfExists(what,input,inputElement,errElement) {
     for (var i=0;i<input.length;i++) {
         data[input[i][0]]=input[i][1];
     }
-    console.log(data);
 
     return fetch("https://e.diskloud.fr/dilab/check", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -1595,7 +1594,7 @@ function checkIfExists(what,input,inputElement,errElement) {
           response.json().then(json => {
             console.log(json);
             if (json.status) { // Valid credentials case
-                if(!json.data) {
+                if(json.data) {
                     inputElement.style.outline="4px solid red";
                     inputElement.style.opacity="";
                     errElement.style.display="block";
@@ -1603,11 +1602,6 @@ function checkIfExists(what,input,inputElement,errElement) {
                     inputElement.style.outline="4px solid lightgreen";
                     inputElement.style.opacity="1";
                     errElement.style.display="";
-                    if (what=="usernameAvailable") {
-                        usernameSet=true;
-                    } else if (what=="emailAvailable") {
-                        emailSet=true;
-                    }
                 }
             }
             else {
