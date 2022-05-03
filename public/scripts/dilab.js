@@ -562,6 +562,34 @@ function pathAnalysis() {
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 }
                             });
+
+                            elem.querySelector("input[name=pGenre]").addEventListener("focusout",e=> {
+                                document.querySelector(".genreIsTooLong").style.display="none";
+                                elem.querySelector("input[name=pGenre]").style.outline="4px solid lightgreen";
+                                elem.querySelector("input[name=pGenre]").style.opacity="1";
+                                if (elem.querySelector("input[name=pGenre]").value) {
+                                    if (elem.querySelector("input[name=pName]").value.length>=64) {
+                                        elem.querySelector("input[name=pGenre]").style.outline="4px solid red";
+                                        elem.querySelector("input[name=pGenre]").style.opacity="";
+                                        document.querySelector(".genreIsTooLong").style.display="block";
+                                    }
+                                }
+                            });
+
+                            elem.querySelector("input[name=pDescription]").addEventListener("focusout",e=> {
+                                document.querySelector(".descriptionIsTooLong").style.display="none";
+                                elem.querySelector("input[name=pDescription]").style.outline="4px solid lightgreen";
+                                elem.querySelector("input[name=pDescription]").style.opacity="1";
+                                if (elem.querySelector("input[name=pDescription]").value) {
+                                    if (elem.querySelector("input[name=pDescription]").value.length>=500) {
+                                        elem.querySelector("input[name=pDescription]").style.outline="4px solid red";
+                                        elem.querySelector("input[name=pDescription]").style.opacity="";
+                                        document.querySelector(".descriptionIsTooLong").style.display="block";
+                                    }
+                                }
+                            });
+
+
                             var uploadField = elem.querySelector(".profilePictureInput");
                             uploadField.onchange = function() {
                                 elem.querySelector(".pictureRemButton").style.display="none";
