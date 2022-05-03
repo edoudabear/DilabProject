@@ -576,14 +576,14 @@ function pathAnalysis() {
                                 }
                             });
 
-                            elem.querySelector("input[name=pDescription]").addEventListener("focusout",e=> {
+                            elem.querySelector("textarea[name=pDescription]").addEventListener("focusout",e=> {
                                 document.querySelector(".descriptionIsTooLong").style.display="none";
-                                elem.querySelector("input[name=pDescription]").style.outline="4px solid lightgreen";
-                                elem.querySelector("input[name=pDescription]").style.opacity="1";
-                                if (elem.querySelector("input[name=pDescription]").value) {
-                                    if (elem.querySelector("input[name=pDescription]").value.length>=500) {
-                                        elem.querySelector("input[name=pDescription]").style.outline="4px solid red";
-                                        elem.querySelector("input[name=pDescription]").style.opacity="";
+                                elem.querySelector("textarea[name=pDescription]").style.outline="4px solid lightgreen";
+                                elem.querySelector("textarea[name=pDescription]").style.opacity="1";
+                                if (elem.querySelector("textarea[name=pDescription]").value) {
+                                    if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
+                                        elem.querySelector("textarea[name=pDescription]").style.outline="4px solid red";
+                                        elem.querySelector("textarea[name=pDescription]").style.opacity="";
                                         document.querySelector(".descriptionIsTooLong").style.display="block";
                                     }
                                 }
