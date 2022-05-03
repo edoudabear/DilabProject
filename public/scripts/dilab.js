@@ -549,7 +549,16 @@ function pathAnalysis() {
                                 }
                             });
                             elem.querySelector(".groupSelectInput").addEventListener("change",e=> {
+                                document.querySelector(".nameIsTooLong").style.display="none";
+                                elem.querySelector("input[name=pName]").style.outline="4px solid lightgreen";
+                                elem.querySelector("input[name=pName]").style.opacity="1";
                                 if (elem.querySelector("input[name=pName]").value) {
+                                    if (elem.querySelector("input[name=pName]").value.length>=128) {
+                                        elem.querySelector("input[name=pName]").style.outline="4px solid red";
+                                        elem.querySelector("input[name=pName]").style.opacity="";
+                                        document.querySelector(".nameIsTooLong").style.display="block";
+                                        return;
+                                    }
                                     checkIfExists("projectNameAvailable",[["projectName",elem.querySelector("input[name=pName]").value],["groupName",elem.querySelector(".groupSelectInput").value]],elem.querySelector("input[name=pName]"),elem.querySelector(".isUsedNotifier"));
                                 }
                             });
