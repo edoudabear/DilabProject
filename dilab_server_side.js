@@ -912,10 +912,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             }
                             if (req.files) {
                                 for (var i=0;i<req.files.length;i++)
-                                    if (req.files[i]!=req.files["audioFile"] && req.files[i]!=req.files["projectFile"] && req.files[i]!=req.files["projectPPFile"]) {
-                                        fs.unlinkSync(req.files[i].path,()=>{return;});
-                                        i--;
-                                    }
+                                    fs.unlinkSync(req.files[i].path,()=>{return;});
+                                    i--;
                                 }
                         });
                     }
