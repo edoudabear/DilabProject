@@ -883,13 +883,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         }
-                        console.log(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
-                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  '"' + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
+                        console.log(req.files[0].filename);
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
                         VALUES ("${projectName}",${results[0].id},"${projectGenre}",${projectPhase},"${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
-                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  '"' + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
+                        ${audioFile ? groupName+"/"+filename1 : "NULL"}, "${projectFile ? groupName+"/"+filename1 : "NULL"}","${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
                             if (err) {
                                 res.end(JSON.stringify({
                                     return : "error",
