@@ -690,7 +690,7 @@ function pathAnalysis() {
                                 } if (!(elem.querySelector("input[name=pName]").value.length>0 && elem.querySelector("input[name=pName]").value.length<128)) {
                                     Swal.fire("Not so fast..","You must specify a valid project name !","error");
                                     return;
-                                } if (!elem.querySelector("input[name=pName]").value.indexOf('/')>-1) {
+                                } if (elem.querySelector("input[name=pName]").value.indexOf('/')>-1) {
                                     Swal.fire("Not so fast..","Project name cannot contain the '/' character.","error");
                                     return;
                                 }
