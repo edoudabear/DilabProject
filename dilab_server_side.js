@@ -822,7 +822,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'));
                                 console.log(filename1)
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
@@ -849,7 +849,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename2=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                filename2=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'))
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename2).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
@@ -875,7 +875,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
-                                filename3=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                filename3=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'));
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename3).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });
@@ -884,12 +884,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             }
                         }
                         console.log(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? '"' + groupName+"/"+filename1 + '"' : "disc.svg"}",
-                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  "'" + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
+                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  '"' + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? '"' + groupName+"/"+filename1 + '"' : "disc.svg"}",
-                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  "'" + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
+                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  '"' + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
                             if (err) {
                                 res.end(JSON.stringify({
                                     return : "error",
