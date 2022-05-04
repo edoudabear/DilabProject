@@ -733,20 +733,20 @@ function pathAnalysis() {
                                                 data.append("projectLyrics",elem.querySelector("textarea[name=pLyrics]").value);
                                                 data.append("groupName", elem.querySelector(".groupSelectInput").value);
                                                 data.append("projectPhase", elem.querySelector("select[name=pPhase]").value)
-                                                if (audioUploadField.value=='') {
-                                                    data.append("audioFile", 1);
+                                                if (audioUploadField.value!='') {
+                                                    data.append("files", 1);
                                                 } else {
-                                                    data.append("audioFile",audioUploadField.files[0], audioUploadField.files[0].name);
+                                                    data.append("files",audioUploadField.files[0], audioUploadField.files[0].name);
                                                 }
                                                 if (projectUploadField.value=='') {
-                                                    data.append("projectFile", 1);
+                                                    data.append("files", 1);
                                                 } else {
-                                                    data.append("projectFile",projectUploadField.files[0], projectUploadField.files[0].name);
+                                                    data.append("files",projectUploadField.files[0], projectUploadField.files[0].name);
                                                 }
                                                 if (ppUploadField.value=='') {
-                                                    data.append("projectPPFile", 1);
+                                                    data.append("files", 1);
                                                 } else {
-                                                    data.append("projectPPFile",ppUploadField.files[0], ppUploadField.files[0].name);
+                                                    data.append("files",ppUploadField.files[0], ppUploadField.files[0].name);
                                                 }
                                             
                                                 fetch('/Dilab/add', {
