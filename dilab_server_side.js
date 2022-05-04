@@ -786,7 +786,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }));     
             }
             else {
-                console.log(req.session.dilab);
+                console.log(dilabConnection.escape(groupName));
                 dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${dilabConnection.escape(groupName)}" AND admin=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
                     if (err) {
                         res.end(JSON.stringify({
