@@ -883,26 +883,25 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         }
-                        console.log(req.files[1].originalname);
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
                         VALUES ("${projectName}",${results[0].id},"${projectGenre}",${projectPhase},"${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
-                        "${audioFile ? groupName+"/"+filename1 : "NULL"}", "${projectFile ? groupName+"/"+filename1 : "NULL"}","${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
+                        "${audioFile ? groupName+"/"+filename2 : "NULL"}", "${projectFile ? groupName+"/"+filename3 : "NULL"}","${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
                             if (err) {
-                                res.end(JSON.stringify({
+                                res.send(JSON.stringify({
                                     return : "error",
                                     status : false,
                                     data : "The server is not doing well :("
                                 }));
                                 throw err;
                             } else if (results.affectedRows==1) {
-                                res.end({
+                                res.send({
                                     return : "ok",
                                     status : true,
                                     data : "Project created !"
                                 });
                             } else {
-                                res.end({
+                                res.send({
                                     return : "ok",
                                     status : false,
                                     data : "Seems like you choose a project name that already exists in your group. Find another project name or choose another group for that project."
