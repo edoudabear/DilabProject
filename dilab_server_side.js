@@ -760,9 +760,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
          typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
-            console.log("We passed here");
-            console.log(req.body);
-            return;
             var projectName=mysql_real_escape_string(req.body.projectName),
             projectDescription=mysql_real_escape_string(req.body.projectDescription ? req.body.projectDescription : ""),
             projectGenre=mysql_real_escape_string(req.body.projectGenre ? req.body.projectGenre : ""),
@@ -805,7 +802,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     } else {
                         var audioFile=false,projectFile=false,projectPPFile=false,audioIndex=null,projectIndex=null,projectPPIndex=null;
                         fileIndex=0; //Increments when a file of a searched type has been loaded
-                        if (req.body.audioFile && req.files.length>fileIndex) { // Check if file uploaded
+                        if (req.body.audioFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
                             console.log(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
                             if (req.files[fileIndex].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
@@ -831,7 +828,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 audioFile=true;
                             }
                             fileIndex++;
-                        } if (req.body.projectFile && req.files.length>fileIndex) { // Check if file uploaded
+                        } if (req.body.projectFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
                             if (req.files[fileIndex].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
@@ -857,7 +854,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectFile=true;
                             }
                             fileIndex++;
-                        } if (req.body.projectPPFile && req.files.length>fileIndex) { // Check if file uploaded
+                        } if (req.body.projectPPFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
                             if (req.files[fileIndex].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
