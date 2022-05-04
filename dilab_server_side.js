@@ -761,7 +761,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
          typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
             console.log("We passed here");
-            console.log(req.files);
+            console.log(req.body);
             return;
             var projectName=mysql_real_escape_string(req.body.projectName),
             projectDescription=mysql_real_escape_string(req.body.projectDescription ? req.body.projectDescription : ""),
