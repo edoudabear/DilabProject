@@ -760,7 +760,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" && typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.session.dilab) {
             console.log(req.files);
-            res.end("test");
             return;
             var projectName=mysql_real_escape_string(req.body.projectName),
             projectDescription=mysql_real_escape_string(req.body.projectDescription ? req.body.projectDescription : ""),
@@ -803,7 +802,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }));
                     } else {
                         var audioFile=false,projectFile=false,projectPPFile=false;
-                        if (req.files["audioFile"]) { // Check if file uploaded
+                        if (req.files["files"][0]) { // Check if file uploaded
                             console.log(req.files["audioFile"][0].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files["audioFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
                             if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
@@ -827,7 +826,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 });;
                                 audioFile=true;
                             }
-                        } if (req.files["projectFile"]) { // Check if file uploaded
+                        } if (req.files["files"][1]) { // Check if file uploaded
                             if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
@@ -851,7 +850,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 });;
                                 projectFile=true;
                             }
-                        } if (req.files["projectPPFile"]) { // Check if file uploaded
+                        } if (req.files["projectPPFile"][1]) { // Check if file uploaded
                             if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
