@@ -597,8 +597,8 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector("textarea[name=pLyrics]").addEventListener("focusout",()=> {
-                                elem.querySelector("textarea[name=pDescription]").style.outline="4px solid lightgreen";
-                                elem.querySelector("textarea[name=pDescription]").style.opacity="1";            
+                                elem.querySelector("textarea[name=pLyrics]").style.outline="4px solid lightgreen";
+                                elem.querySelector("textarea[name=pLyrics]").style.opacity="1";            
                             });
 
                             var audioUploadField = elem.querySelector("input[name=audioFile]");
