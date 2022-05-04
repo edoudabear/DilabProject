@@ -800,7 +800,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             data : "Invalid group name : it doesn't exist !"
                         }));
                     } else {
-                        var audioFile=false,projectFile=false,projectPPFile=false,audioIndex=null,projectIndex=null,projectPPIndex=null;
+                        var audioFile=false,projectFile=false,projectPPFile=false,
+                        audioIndex=null,projectIndex=null,projectPPIndex=null,
+                        filename1=null,filename2=null,filename3=null;
                         fileIndex=0; //Increments when a file of a searched type has been loaded
                         if (req.body.audioFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
                             console.log(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
@@ -821,7 +823,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/projectFiles/"+groupName);
                                 }
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)).then(()=>{
+                                filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
                                 audioIndex=fileIndex;
@@ -846,8 +849,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                var filename=groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1);
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename).then(()=>{
+                                filename2=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename2).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
                                 projectIndex=fileIndex;
@@ -872,8 +875,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
-                                var filename=groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1);
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename).then(()=>{
+                                filename3=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename3).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });
                                 projectPPIndex=fileIndex;
@@ -881,14 +884,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             }
                         }
                         console.log(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ?  projectName+req.files[projectPPIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1) : "disc.svg"}",
-                        ${audioFile ?  "'"+projectName+req.files[audioIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},
-                        ${projectFile ?  "'"+projectName+req.files[projectIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? '"' + groupName+"/"+filename1 + '"' : "disc.svg"}",
+                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  "'" + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ?  projectName+req.files[projectPPIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1) : "disc.svg"}",
-                        ${audioFile ?  "'"+projectName+req.files[audioIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},
-                        ${projectFile ?  "'"+projectName+req.files[projectIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ? '"' + groupName+"/"+filename1 + '"' : "disc.svg"}",
+                        ${audioFile ?  '"' + groupName+"/"+filename1 + '"' : "NULL"}, ${projectFile ?  "'" + groupName+"/"+filename1 +'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
                             if (err) {
                                 res.end(JSON.stringify({
                                     return : "error",
