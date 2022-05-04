@@ -812,7 +812,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status" : false,"data" : "Audio File is too big !" }');
                                 return;
-                            } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))!="audio") { // Check file type (image ?)
+                            } else if (req.files[0].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))!="audio") { // Check file type (image ?)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
                                     fs.unlink(req.files[i].path,()=>{return;});
@@ -839,7 +839,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
                                 return;
-                            } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
+                            } else if (req.files[0].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
                                     fs.unlink(req.files[i].path,()=>{return;});
@@ -865,7 +865,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
                                 return;
-                            } else if (req.files[fileIndex].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
+                            } else if (req.files[fileIndex].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
                                     fs.unlink(req.files[i].path,()=>{return;});
