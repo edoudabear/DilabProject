@@ -883,7 +883,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         }
-                        console.log(req.files[1].mimetype);
+                        console.log(req.files[1].originalname);
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
                         VALUES ("${projectName}",${results[0].id},"${projectGenre}",${projectPhase},"${projectPPFile ? groupName+"/"+filename1 : "disc.svg"}",
