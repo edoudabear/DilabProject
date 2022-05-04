@@ -786,7 +786,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }));     
             }
             else {
-                dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${dilabConnection.escape(groupName)}" AND admin=${dilabConnection.escape(req.session.dilab)} LIMIT 1`,(err,results,fields)=> {
+                dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${dilabConnection.escape(groupName)}" AND admin=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
                     if (err) {
                         res.end(JSON.stringify({
                             return : "error",
@@ -885,7 +885,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES ("${dilabConnection.escape(projectName)}",${dilabConnection.escape(results[0].id)},"${dilabConnection.escape(projectGenre)}",${dilabConnection.escape(projectPhase)},"${dilabConnection.escape(projectPPFile ? groupName+"/"+filename1 : "disc.svg")}",
+                        VALUES ("${dilabConnection.escape(projectName)}",${results[0].id},"${dilabConnection.escape(projectGenre)}",${projectPhase},"${dilabConnection.escape(projectPPFile ? groupName+"/"+filename1 : "disc.svg")}",
                         "${dilabConnection.escape(audioFile ? groupName+"/"+filename2 : "NULL")}", "${dilabConnection.escape(projectFile ? groupName+"/"+filename3 : "NULL")}","${dilabConnection.escape(projectLyrics)}","${dilabConnection.escape(projectDescription)}")`,(err,results,fields)=> {
                             if (err) {
                                 res.send(JSON.stringify({
