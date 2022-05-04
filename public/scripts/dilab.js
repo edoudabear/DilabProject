@@ -748,7 +748,7 @@ function pathAnalysis() {
                                                 } else {
                                                     data.append("files",ppUploadField.files[0], ppUploadField.files[0].name);
                                                 }
-                                            
+                                                console.log(FormData);
                                                 fetch('/Dilab/add', {
                                                     headers: {
                                                         //'Content-Type': 'application/x-www-form-urlencoded'
