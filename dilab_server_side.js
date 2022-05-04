@@ -819,12 +819,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Audio file must be.. an audio !" }');
                             } else {
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/projectFiles/"+groupName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/projectFiles/"+groupName);
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
                                 filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
                                 console.log(filename1)
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+filename1).then(()=>{
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
                                 audioIndex=fileIndex;
