@@ -733,7 +733,7 @@ function pathAnalysis() {
                                                 data.append("projectLyrics",elem.querySelector("textarea[name=pLyrics]").value);
                                                 data.append("groupName", elem.querySelector(".groupSelectInput").value);
                                                 data.append("projectPhase", elem.querySelector("select[name=pPhase]").value)
-                                                if (audioUploadField.value!='') {
+                                                if (audioUploadField.value=='') {
                                                     data.append("files", 1);
                                                 } else {
                                                     data.append("files",audioUploadField.files[0], audioUploadField.files[0].name);
