@@ -15,6 +15,7 @@
             <h4>Project Description</h4>
             <textarea resizable=none maxlength="500" name="pDescription" placeholder="Project description"></textarea>
             <div class="error descriptionIsTooLong">Description is too long</div>
+            <textarea resizable=none name="pLyrics" placeholder="Project lyrics"></textarea>
             <h4>Project phase</h4>
             <select name="pPhase">
                 <option value="0">Project launch</option>

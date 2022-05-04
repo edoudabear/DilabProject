@@ -51,20 +51,28 @@ app.get("/Dilab/:action/:file", function(req,res) {
         } else {
             res.status(404).end("No such file");
         }
-    } else if (req.params.action == "project" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${req.params.file}`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${req.params.file}`);
-        } else {
-            res.status(404).end("No such file");
-        }
     } else if (req.params.action == "release" ) {
         if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`)) {
             res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
         }
+    } else if (req.params.action == "project" ) {
+        res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/disc.svg`);
+    } else {
+        res.status(404).end("Bad Path");
+    }
+});
+
+app.get("/Dilab/:action/:groupName/:projectName", function(req,res) {
+    if (req.params.action == "project" ) {
+        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${encodeURI(req.params.file)}/${encodeURI(req.params.projectName)}`)) {
+            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${encodeURI(req.params.file)}/${encodeURI(req.params.projectName)}`);
+        } else {
+            res.status(404).end("No such file");
+        }
     } 
-})
+});
 
 app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     if (err instanceof multer.MulterError) {
@@ -639,7 +647,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             var groupName=mysql_real_escape_string(req.body.groupName),
             groupOrientation=mysql_real_escape_string(req.body.groupOrientation),
             groupDescription=mysql_real_escape_string(req.body.groupDescription);
-            if (groupName.length>122 || groupOrientation > 256 || groupDescription > 512) {
+            if (groupName.length>122 || groupOrientation.length > 256 || groupDescription.length > 512) {
                 res.end(JSON.stringify({
                     return : "error",
                     status : false,
@@ -750,12 +758,200 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 })
             }
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
-        } else if (req.body.projectName && typeof(req.body.projectDescription)!="undefined" && typeof(req.body.projectGenre)!="undefined" && req.session.dilab) {
+        } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" && typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.session.dilab) {
+            var projectName=mysql_real_escape_string(req.body.projectName),
+            projectDescription=mysql_real_escape_string(req.body.projectDescription ? req.body.projectDescription : ""),
+            projectGenre=mysql_real_escape_string(req.body.projectGenre ? req.body.projectGenre : ""),
+            projectLyrics=mysql_real_escape_string(req.body.projectLyrics ? req.body.projectLyrics : ""),
+            groupName=mysql_real_escape_string(req.body.groupName),
+            projectPhase=parseInt(req.body.projectPhase);
+            if (projectName.length>122 || projectDescription.length > 256 || projectDescription.length > 512) {
+                res.end(JSON.stringify({
+                    return : "error",
+                    status : false,
+                    data : "Part of the information you entered was too long. The project's name must not exceed 128 characters (maybe the description or the project genre is too long)."
+                }));
+            } else if (projectPhase<0 || projectPhase>3){
+                res.end(JSON.stringify({
+                    return : "error",
+                    status : false,
+                    data : "The project phase is.. not as expected (should be an int. between 0 and 3)"
+                }));                   
+            } else if (projectName.indexOf('/')>-1) {
+                res.end(JSON.stringify({
+                    return : "error",
+                    status : false,
+                    data : "The project name cannot contain '/' char."
+                }));     
+            }
+            else {
+                dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${groupName}" LIMIT 1`,(err,results,fields)=> {
+                    if (err) {
+                        res.end(JSON.stringify({
+                            return : "error",
+                            status : false,
+                            data : "There was a problem with the server, sorry."
+                        }));
+                    } else if (results.length==0) {
+                        res.end(JSON.stringify({
+                            return : "error",
+                            status : false,
+                            data : "Invalid group name : it doesn't exist !"
+                        }));
+                    } else {
+                        var audioFile=false,projectFile=false,projectPPFile=false;
+                        if (req.files["audioFile"]) { // Check if file uploaded
+                            console.log(req.files["audioFile"][0].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files["audioFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
+                            if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                        fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status" : false,"data" : "Audio File is too big !" }');
+                                return;
+                            } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))!="audio") { // Check file type (image ?)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                    fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status": false,"data" : "Uploaded Audio file must be.. an audio !" }');
+                            } else {
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/projectFiles/"+groupName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/projectFiles/"+groupName);
+                                }
+                                fs.move(req.files["audioFile"][0].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files["audioFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
+                                audioFile=true;
+                            }
+                        } if (req.files["projectFile"]) { // Check if file uploaded
+                            if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                        fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
+                                return;
+                            } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                    fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status": false,"data" : "Uploaded Project file must be.. a project file !" }');
+                            } else {
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
+                                }
+                                var filename=groupName+"/"+projectName+req.files["projectFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1);
+                                fs.move(req.files["projectFile"][0].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename);
+                                projectFile=true;
+                            }
+                        } if (req.files["projectPPFile"]) { // Check if file uploaded
+                            if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                        fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
+                                return;
+                            } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
+                                if (req.files) {
+                                    for (var i=0;i<req.files.length;i++)
+                                    fs.unlink(req.files[i].path,()=>{return;});
+                                }
+                                res.end('{ "return" : "error","status": false,"data" : "Uploaded Project file must be.. a project file !" }');
+                            } else {
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
+                                }
+                                var filename=groupName+"/"+projectName+req.files["projectPPFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1);
+                                fs.move(req.files["projectPPFile"][0].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename);
+                                projectPPFile=true;
+                            }
+                        }
+                        console.log(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ?  projectName+req.files["projectPPFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1) : "disc.svg"}",
+                        ${audioFile ?  "'"+projectName+req.files["audioFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},
+                        ${projectFile ?  "'"+projectName+req.files["projectFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},"${projectLyrics}","${projectDescription}")`);
+
+                        dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
+                        VALUES ("${projectName}","${results[0].id}","${projectGenre}","${projectPhase}","${projectPPFile ?  projectName+req.files["projectPPFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1) : "disc.svg"}",
+                        ${audioFile ?  "'"+projectName+req.files["audioFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},
+                        ${projectFile ?  "'"+projectName+req.files["projectFile"][0].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1)+'"' : "NULL"},"${projectLyrics}","${projectDescription}")`,(err,results,fields)=> {
+                            if (err) {
+                                res.end(JSON.stringify({
+                                    return : "error",
+                                    status : false,
+                                    data : "The server is not doing well :("
+                                }));
+                                throw err;
+                            } else if (results.affectedRows==1) {
+                                res.end({
+                                    return : "ok",
+                                    status : true,
+                                    data : "Project created !"
+                                });
+                            } else {
+                                res.end({
+                                    return : "ok",
+                                    status : false,
+                                    data : "Seems like you choose a project name that already exists in your group. Find another project name or choose another group for that project."
+                                });
+                            }
+                        });
+                    }
+                });
+                    // disc.svg	
+                    /*// Valid Case : converting file
+                    sharp(req.files[0].path)
+                    .resize(1248, 1248)
+                    .toFile("tempUploads/"+req.body.username+'.png', (err, info) => { 
+                        //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
+                        if (err) {
+                            res.end('{"return" : "error", "status" : false, "data":"Could not load your group picture properly"}');
+                            if (req.files) {
+                                for (var i=0;i<req.files.length;i++)
+                                fs.unlink(req.files[i].path,()=>{return;}) ;
+                            }
+                            return;//throw err
+                        }
+                        //console.log("file sharpened !");
+                        fs.move("tempUploads/"+req.body.username+".png","/media/edouda/DiskloudExt/DilabFiles/groupPP/"+groupName+".png",{overwrite : true});
+                        if (req.files) {
+                            for (var i=0;i<req.files.length;i++)
+                            fs.unlink(req.files[i].path,()=>{return;});
+                        }
+                        console.log(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupName}.png','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}";`)
+                        dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupName}.png','${groupDescription}',${req.session.dilab},${req.session.dilab},'${groupOrientation}'); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}";`,function(err,results,fields) {
+                            if (err) {
+                                console.log("ERROR : "+err.errno);
+                                if (err.errno==1062) {
+                                    res.end(JSON.stringify({
+                                        return : "ok",
+                                        status : false,
+                                        data : "You need to choose another music group name : it is already used !"      
+                                    }));
+                                } else {
+                                    res.end(JSON.stringify({
+                                        return : "ok",
+                                        status : false,
+                                        data : "There was an error. Maybe try later.."   
+                                    }));   
+                                }
+                            } else {
+                                res.end(JSON.stringify({
+                                    return : "ok",
+                                    status : true,
+                                    data : "music group created successfully"
+                                }));
+                            }
+                        });
+                    });*/
+            }
+            //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
             res.end(JSON.stringify({
                 return : "ok",
                 status : true,
                 data : "We received your data, however the service is not working yet. Don't be afraid, your data won't be sold (it will never be sold !), nor stored on the computer, until the platform becomes fully functionnal"
-            }))
+            }));
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});

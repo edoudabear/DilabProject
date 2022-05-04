@@ -596,6 +596,11 @@ function pathAnalysis() {
                                 }
                             });
 
+                            elem.querySelector("textarea[name=pLyrics]").addEventListener("focusout",()=> {
+                                elem.querySelector("textarea[name=pDescription]").style.outline="4px solid lightgreen";
+                                elem.querySelector("textarea[name=pDescription]").style.opacity="1";            
+                            });
+
                             var audioUploadField = elem.querySelector("input[name=audioFile]");
                             audioUploadField.onchange = function() {
                                 elem.querySelector(".audioRem").style.display="none";
@@ -685,6 +690,9 @@ function pathAnalysis() {
                                 } if (!(elem.querySelector("input[name=pName]").value.length>0 && elem.querySelector("input[name=pName]").value.length<128)) {
                                     Swal.fire("Not so fast..","You must specify a valid project name !","error");
                                     return;
+                                } if (!elem.querySelector("input[name=pName]").value.indexOf('/')>-1) {
+                                    Swal.fire("Not so fast..","Project name cannot contain the '/' character.","error");
+                                    return;
                                 }
                                 data={
                                     "type" : "projectNameAvailable",
@@ -722,6 +730,9 @@ function pathAnalysis() {
                                                 data.append("projectName", elem.querySelector("input[name=pName]").value);
                                                 data.append("projectGenre", elem.querySelector("input[name=pGenre]").value);
                                                 data.append("projectDescription", elem.querySelector("textarea[name=pDescription]").value);
+                                                data.append("projectLyrics",elem.querySelector("textarea[name=pLyrics]").value);
+                                                data.append("groupName", elem.querySelector(".groupSelectInput").value);
+                                                data.append("projectPhase", elem.querySelector("select[name=pPhase]").value)
                                                 if (audioUploadField.value=='') {
                                                     data.append("audioFile", 1);
                                                 } else {
