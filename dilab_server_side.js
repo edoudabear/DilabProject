@@ -786,7 +786,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }));     
             }
             else {
-                dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${groupName}" LIMIT 1`,(err,results,fields)=> {
+                dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName="${groupName}" AND admin=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
                     if (err) {
                         res.end(JSON.stringify({
                             return : "error",
@@ -822,7 +822,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'));
+                                filename1=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
                                 console.log(filename1)
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
@@ -849,7 +849,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename2=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'))
+                                filename2=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'))
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename2).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
@@ -875,7 +875,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
-                                filename3=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'));
+                                filename3=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename3).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });
