@@ -732,20 +732,23 @@ function pathAnalysis() {
                                                 data.append("projectDescription", elem.querySelector("textarea[name=pDescription]").value);
                                                 data.append("projectLyrics",elem.querySelector("textarea[name=pLyrics]").value);
                                                 data.append("groupName", elem.querySelector(".groupSelectInput").value);
-                                                data.append("projectPhase", elem.querySelector("select[name=pPhase]").value)
+                                                data.append("projectPhase", elem.querySelector("select[name=pPhase]").value);
                                                 if (audioUploadField.value=='') {
-                                                    data.append("files", 1);
+                                                    data.append("audioFile", false);
                                                 } else {
+                                                    data.append("audioFile", true);
                                                     data.append("files",audioUploadField.files[0], audioUploadField.files[0].name);
                                                 }
                                                 if (projectUploadField.value=='') {
-                                                    data.append("files", 1);
+                                                    data.append("projectFile", false);
                                                 } else {
+                                                    data.append("projectFile", true);
                                                     data.append("files",projectUploadField.files[0], projectUploadField.files[0].name);
                                                 }
                                                 if (ppUploadField.value=='') {
-                                                    data.append("files", 1);
+                                                    data.append("projectPPFile", false);
                                                 } else {
+                                                    data.append("projectPPFile", true);
                                                     data.append("files",ppUploadField.files[0], ppUploadField.files[0].name);
                                                 }
                                                 console.log(FormData);
