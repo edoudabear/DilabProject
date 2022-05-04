@@ -805,7 +805,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         filename1=null,filename2=null,filename3=null;
                         fileIndex=0; //Increments when a file of a searched type has been loaded
                         if (req.body.audioFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
-                            console.log(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+projectName+req.files[fileIndex].filename.slice(this.lastIndexOf('.'),this.length-this.lastIndexOf('.')+1));
                             if (req.files[fileIndex].size > 2097152*4){ // Check file size (8MB max)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
@@ -824,6 +823,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/projectFiles/"+groupName);
                                 }
                                 filename1=projectName+req.files[fileIndex].filename.slice(req.files[fileIndex].filename.lastIndexOf('.'),req.files[fileIndex].filename.length-req.files[fileIndex].filename.lastIndexOf('.')+1)
+                                console.log(filename1)
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
