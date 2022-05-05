@@ -288,12 +288,12 @@ document.querySelector(".player .musicInfos .cover").addEventListener('click',e=
 
 // Fullscreen mode
 
-window.onresize = function () {
+/*window.onresize = function () {
     if (window.matchMedia('(display-mode: fullscreen)').matches ||
     window.document.fullscreenElement) {
         goFullScreenMode();
     }
-}
+}*/
 
 function goFullScreenMode() {
     var elem=document.querySelector(".fullScreen");
@@ -308,9 +308,9 @@ function goFullScreenMode() {
 }
 
 
-/*document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
+document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
     document.exitFullscreen();
-});*/
+})
 
 if (document.addEventListener)
 {
