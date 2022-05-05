@@ -851,7 +851,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
                                 filename2=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'))
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+filename2).then(()=>{
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+'/'+filename2).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
                                 projectIndex=fileIndex;
@@ -877,7 +877,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
                                 filename3=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+filename3).then(()=>{
+                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });
                                 projectPPIndex=fileIndex;
