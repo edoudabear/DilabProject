@@ -309,8 +309,11 @@ function goFullScreenMode() {
 
 
 document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
-    document.exitFullscreen();
-    document.querySelector(".fullScreen").style.display="none";
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
 })
 
 if (document.addEventListener)
