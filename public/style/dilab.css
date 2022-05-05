@@ -378,7 +378,7 @@ body {
     }
     .fullScreen {
         font-size: 0.8em;
-    }
+    } 
     .fullScreen .cover {
         display: none;
     }
@@ -2005,6 +2005,12 @@ body {
 .fullScreen {
     display : none;
 }
+
+.fullScreen .fullscreenExit {
+    position: absolute;
+    top : 0;
+    right: 0;
+}  
 
 .fullScreen:not(:fullscreen) * {
     width: 0;
