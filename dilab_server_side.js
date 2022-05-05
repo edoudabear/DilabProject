@@ -870,7 +870,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Project file must be.. a project file !" }');
                             } else {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/ProjectPP/"+groupName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/ProjectPP/"+groupName);
                                 }
                                 filename3=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
                                 filePath3=req.files[fileIndex].path;
