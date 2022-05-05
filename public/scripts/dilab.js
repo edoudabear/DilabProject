@@ -299,6 +299,8 @@ function goFullScreenMode() {
     var elem=document.querySelector(".fullScreen");
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
+    } else if (elem.webkitRequestFullScreen) {
+        elem.webkitRequestFullScreen(); // for Safari
     } else {
         Swal.fire("Warning","Your browser does not support fullscreen mode. Try on Chrome, Edge and Firefox (Safari doesn't support our fullscreen mode). Doesn't work :(","warning");
     }    
