@@ -884,13 +884,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         } if (audioFile) {
-                            fs.move(__dirname+"/"+filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1).then(()=>{
-                                fs.unlink(__dirname+"/"+filePath1);
-                            });
+                            fs.move(__dirname+"/"+filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1);
                         } if (projectFile) {
-                            fs.move(__dirname+"/"+filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2).then(()=>{
-                                fs.unlink(__dirname+"/"+filePath2);
-                            });
+                            fs.move(__dirname+"/"+filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2);
                         } if (projectPPFile) {
                             sharp(__dirname+"/"+filePath3)
                             .resize(1248, 1248)
