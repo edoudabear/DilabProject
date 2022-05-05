@@ -760,7 +760,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
          typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
-            console.log(path.join("."));
+            console.log(__dirname);
             var projectName=req.body.projectName,
             projectDescription=req.body.projectDescription ? req.body.projectDescription : "",
             projectGenre=req.body.projectGenre ? req.body.projectGenre : "",
@@ -885,16 +885,16 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         } if (audioFile) {
-                            fs.move(filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1).then(()=>{
-                                fs.unlink(filePath1);
+                            fs.move("~/server/expressjs/"+filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1).then(()=>{
+                                fs.unlink(""+filePath1);
                             });
                         } if (projectFile) {
-                            fs.move(filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2).then(()=>{
-                                fs.unlink(filePath2);
+                            fs.move(""+filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2).then(()=>{
+                                fs.unlink(""+filePath2);
                             });
                         } if (projectPPFile) {
-                            fs.move(filePath3,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3).then(()=>{
-                                fs.unlink(filePath3,()=>{return;});
+                            fs.move(""+filePath3,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3).then(()=>{
+                                fs.unlink(""+filePath3,()=>{return;});
                             });
                         }
 
