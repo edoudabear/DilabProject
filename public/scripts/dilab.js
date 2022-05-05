@@ -684,7 +684,7 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
-                                elem.querySelector(".confirm").value="Please wait";
+                                elem.querySelector(".confirm").textContent="Please wait";
                                 elem.querySelector(".confirm").style.opacity=0.6;
                                 elem.querySelector(".confirm").style.pointerEvents="none";
                                 elem.querySelector(".confirm").disabled=true;
