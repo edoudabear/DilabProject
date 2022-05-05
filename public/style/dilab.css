@@ -373,6 +373,7 @@ body {
     .box-container .player .musicControls {
         width : 90%;
         max-width: none;
+        height: fit-content;
     }
     .box-container .player .soundControl {
         display : none;
