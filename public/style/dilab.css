@@ -1870,7 +1870,7 @@ body {
     left : 0;*/
     width: 100%;
     min-height: 100px;
-    max-height : 100%;
+    max-height : 70vh;
     overflow : auto;
     padding : 4px;
     transition: elastic 0.2s;
@@ -2309,6 +2309,7 @@ body {
     left: 0;
     border-radius: 50%;
     height : 100%;
+    width: 100%;
     aspect-ratio: 1;
     opacity: 0;
     align-items: center;
