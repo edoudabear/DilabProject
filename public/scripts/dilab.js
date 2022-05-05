@@ -301,10 +301,10 @@ function goFullScreenMode() {
         elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen(); // for Safari
-        document.querySelector(".fullScreen").style.display="block";
     } else {
         Swal.fire("Warning","Your browser does not support fullscreen mode. Try on Chrome, Edge and Firefox (Safari doesn't support our fullscreen mode). Doesn't work :(","warning");
-    }    
+    }
+    document.querySelector(".fullScreen").style.display="block";  
 }
 
 
@@ -324,7 +324,7 @@ function exitHandler()
 {
  if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement)
  {
-    if (document.querySelector(".fullScreen").style.display="block" && document.webkitRequestFullscreen ) { // Contrôle safari
+    if (document.querySelector(".fullScreen").style.display="block") { // Contrôle safari
         document.querySelector(".fullScreen").style.display="none";
     }
  }
