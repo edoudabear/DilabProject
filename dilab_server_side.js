@@ -786,7 +786,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }));     
             }
             else {
-                console.log(dilabConnection.escape(groupName));
                 dilabConnection.query(`SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(groupName)} AND admin=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
                     if (err) {
                         res.end(JSON.stringify({
@@ -828,6 +827,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
                                     fs.unlink(req.files[fileIndex].path,()=>{return;});
                                 });;
+                                console.log(filename3)
                                 audioIndex=fileIndex;
                                 audioFile=true;
                             }
