@@ -802,7 +802,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     } else {
                         var audioFile=false,projectFile=false,projectPPFile=false,
                         audioIndex=null,projectIndex=null,projectPPIndex=null,
-                        filename1=null,filename2=null,filename3=null;
+                        filename1=null,filename2=null,filename3=null,
+                        filePath1=null,filePath2=null,filePath3=null;
                         fileIndex=0; //Increments when a file of a searched type has been loaded
                         if (req.body.audioFile=="true" && req.files.length>fileIndex) { // Check if file uploaded
                             if (req.files[fileIndex].size > 2097152*4){ // Check file size (8MB max)
@@ -823,11 +824,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
                                 filename1=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
-                                console.log(filename1)
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
-                                    fs.unlink(req.files[fileIndex].path,()=>{return;});
-                                });;
-                                console.log(filename3)
+                                filePath1=req.files[fileIndex].path;
+                                console.log(filename1);
                                 audioIndex=fileIndex;
                                 audioFile=true;
                             }
@@ -850,10 +848,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename2=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'))
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+'/'+filename2).then(()=>{
-                                    fs.unlink(req.files[fileIndex].path,()=>{return;});
-                                });;
+                                filename2=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
+                                filePath2=req.files[fileIndex].path;
                                 projectIndex=fileIndex;
                                 projectFile=true;
                             }
@@ -877,12 +873,22 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
                                 filename3=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
-                                fs.move(req.files[fileIndex].path,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3).then(()=>{
-                                    fs.unlink(req.files[fileIndex].path,()=>{return;});
-                                });
+                                filePath3=req.files[fileIndex].path;
                                 projectPPIndex=fileIndex;
                                 projectPPFile=true;
                             }
+                        } if (audioFile) {
+                            fs.move(filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
+                                fs.unlink(filePath1);
+                            });
+                        } if (projectFile) {
+                            fs.move(filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename2).then(()=>{
+                                fs.unlink(filePath2);
+                            });
+                        } if (projectPPFile) {
+                            fs.move(filePath3,"/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3).then(()=>{
+                                fs.unlink(filePath3,()=>{return;});
+                            });
                         }
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
