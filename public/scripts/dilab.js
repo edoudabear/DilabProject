@@ -309,7 +309,8 @@ function goFullScreenMode() {
 
 
 document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
-    document.querySelector(".fullScreen").exitFullscreen();
+    document.exitFullscreen();
+    document.querySelector(".fullScreen").style.display="none";
 })
 
 if (document.addEventListener)
