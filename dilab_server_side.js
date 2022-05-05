@@ -922,7 +922,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             }
                             if (req.files) {
                                 for (var i=0;i<req.files.length;i++) {
-                                    if (req.files[i]!=filePath3 && req.files[i]!=filePath1 && req.files[i]!=filePath2) {
+                                    if (fs.existsSync(req.files[i].path)) {
                                         fs.unlinkSync(req.files[i].path,()=>{return;});
                                         i--;                                      
                                     } 
