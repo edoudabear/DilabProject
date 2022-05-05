@@ -684,16 +684,22 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
-                                e.target.value="Please wait";
-                                e.target.disabled=true;
+                                elem.querySelector(".confirm").value="Please wait";
+                                elem.querySelector(".confirm").disabled=true;
                                 if (!elem.querySelector("input[name=pName]").value) {
                                     Swal.fire("Not so fast..","You must specify a project name !","error");
+                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").disabled=false;
                                     return;
                                 } if (!(elem.querySelector("input[name=pName]").value.length>0 && elem.querySelector("input[name=pName]").value.length<128)) {
                                     Swal.fire("Not so fast..","You must specify a valid project name !","error");
+                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").disabled=false;
                                     return;
                                 } if (elem.querySelector("input[name=pName]").value.indexOf('/')>-1) {
                                     Swal.fire("Not so fast..","Project name cannot contain the '/' character.","error");
+                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").disabled=false;
                                     return;
                                 }
                                 data={
@@ -717,14 +723,20 @@ function pathAnalysis() {
                                         if (json.status) { // Valid credentials case
                                             if(json.data) {
                                                 Swal.fire("Not so fast..",`You can't use that project name, it's already used for another project in this group (${elem.querySelector(".groupSelectInput").value}) !`,"error");
+                                                elem.querySelector(".confirm").value="Create project";
+                                                elem.querySelector(".confirm").disabled=false;
                                                 return true;
                                             } else {
                                                 if (elem.querySelector("input[name=pGenre]").value.length>=64) {
                                                     Swal.fire("Not so fast..",`We know genres are complicated to choose, but it's too long here`,"error");
+                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").disabled=false;
                                                     return;
                                                 }
                                                 if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
                                                     Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
+                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").disabled=false;
                                                     return;
                                                 }
                                                 // Here we (will) create a FormData object containing the user's input and send it to the server
@@ -764,8 +776,8 @@ function pathAnalysis() {
                                                 }).then(out => {
                                                     return out.json();
                                                 }).then(log => {
-                                                    e.target.value="Create project";
-                                                    e.target.disabled=false;
+                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").disabled=false;
                                                     console.log(log);
                                                     if (log.status==true) {
                                                         Swal.fire("Success !",log.data,"success");
