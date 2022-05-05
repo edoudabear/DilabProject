@@ -377,7 +377,6 @@ body {
     }
     .fullScreen {
         font-size: 0.8em;
-        display : none;
     }
     .fullScreen .cover {
         display: none;
@@ -2000,6 +1999,10 @@ body {
 /* Fullscreen mode */
 .fullScreen:not(:fullscreen) {
     display: none;
+}
+
+.fullScreen {
+    display : none;
 }
 
 .fullScreen:not(:fullscreen) * {
