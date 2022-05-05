@@ -768,7 +768,7 @@ function pathAnalysis() {
                                                     e.target.disabled=false;
                                                     console.log(log);
                                                     if (log.status==true) {
-                                                        Swal.fire("Server received your data",log.data,"success");
+                                                        Swal.fire("Success !",log.data,"success");
                                                     } else {
                                                         Swal.fire("Error",log.data,"error");
                                                     }
