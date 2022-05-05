@@ -300,6 +300,7 @@ body {
 .box-container .player .musicInfos .cover {
     height: 80%;
     aspect-ratio: 1;
+    width : fit-content;
     margin : 4px;
     cursor: pointer;
     position: relative;
