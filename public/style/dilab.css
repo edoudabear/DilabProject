@@ -399,6 +399,7 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
         max-width: 100%;
+        display : none;
     }    
     .fullScreen .bottomEl .musicControls {
         font-size : 2em;
