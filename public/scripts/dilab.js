@@ -684,6 +684,8 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
+                                e.target.value="Please wait";
+                                e.target.disabled=true;
                                 if (!elem.querySelector("input[name=pName]").value) {
                                     Swal.fire("Not so fast..","You must specify a project name !","error");
                                     return;
@@ -762,6 +764,8 @@ function pathAnalysis() {
                                                 }).then(out => {
                                                     return out.json();
                                                 }).then(log => {
+                                                    e.target.value="Create project";
+                                                    e.target.disabled=false;
                                                     console.log(log);
                                                     if (log.status==true) {
                                                         Swal.fire("Server received your data",log.data,"success");
