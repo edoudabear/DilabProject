@@ -685,21 +685,29 @@ function pathAnalysis() {
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
                                 elem.querySelector(".confirm").value="Please wait";
+                                elem.querySelector(".confirm").style.opacity=0.6;
+                                elem.querySelector(".confirm").style.pointerEvents="none";
                                 elem.querySelector(".confirm").disabled=true;
                                 if (!elem.querySelector("input[name=pName]").value) {
                                     Swal.fire("Not so fast..","You must specify a project name !","error");
-                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").textContent="Create project";
                                     elem.querySelector(".confirm").disabled=false;
+                                    elem.querySelector(".confirm").style.opacity="";
+                                    elem.querySelector(".confirm").style.pointerEvents="";
                                     return;
                                 } if (!(elem.querySelector("input[name=pName]").value.length>0 && elem.querySelector("input[name=pName]").value.length<128)) {
                                     Swal.fire("Not so fast..","You must specify a valid project name !","error");
-                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").textContent="Create project";
                                     elem.querySelector(".confirm").disabled=false;
+                                    elem.querySelector(".confirm").style.opacity="";
+                                    elem.querySelector(".confirm").style.pointerEvents="";
                                     return;
                                 } if (elem.querySelector("input[name=pName]").value.indexOf('/')>-1) {
                                     Swal.fire("Not so fast..","Project name cannot contain the '/' character.","error");
-                                    elem.querySelector(".confirm").value="Create project";
+                                    elem.querySelector(".confirm").textContent="Create project";
                                     elem.querySelector(".confirm").disabled=false;
+                                    elem.querySelector(".confirm").style.opacity="";
+                                    elem.querySelector(".confirm").style.pointerEvents="";
                                     return;
                                 }
                                 data={
@@ -723,20 +731,26 @@ function pathAnalysis() {
                                         if (json.status) { // Valid credentials case
                                             if(json.data) {
                                                 Swal.fire("Not so fast..",`You can't use that project name, it's already used for another project in this group (${elem.querySelector(".groupSelectInput").value}) !`,"error");
-                                                elem.querySelector(".confirm").value="Create project";
+                                                elem.querySelector(".confirm").textContent="Create project";
                                                 elem.querySelector(".confirm").disabled=false;
+                                                elem.querySelector(".confirm").style.opacity="";
+                                                elem.querySelector(".confirm").style.pointerEvents="";
                                                 return true;
                                             } else {
                                                 if (elem.querySelector("input[name=pGenre]").value.length>=64) {
                                                     Swal.fire("Not so fast..",`We know genres are complicated to choose, but it's too long here`,"error");
-                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").textContent="Create project";
                                                     elem.querySelector(".confirm").disabled=false;
+                                                    elem.querySelector(".confirm").style.opacity="";
+                                                    elem.querySelector(".confirm").style.pointerEvents="";
                                                     return;
                                                 }
                                                 if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
                                                     Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
-                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").textContent="Create project";
                                                     elem.querySelector(".confirm").disabled=false;
+                                                    elem.querySelector(".confirm").style.opacity="";
+                                                    elem.querySelector(".confirm").style.pointerEvents="";
                                                     return;
                                                 }
                                                 // Here we (will) create a FormData object containing the user's input and send it to the server
@@ -776,8 +790,10 @@ function pathAnalysis() {
                                                 }).then(out => {
                                                     return out.json();
                                                 }).then(log => {
-                                                    elem.querySelector(".confirm").value="Create project";
+                                                    elem.querySelector(".confirm").textContent="Create project";
                                                     elem.querySelector(".confirm").disabled=false;
+                                                    elem.querySelector(".confirm").style.opacity="";
+                                                    elem.querySelector(".confirm").style.pointerEvents="";
                                                     console.log(log);
                                                     if (log.status==true) {
                                                         Swal.fire("Success !",log.data,"success");
