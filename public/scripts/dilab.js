@@ -324,7 +324,7 @@ function exitHandler()
 {
  if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement)
  {
-    if (document.querySelector(".fullScreen").style.display="block") {
+    if (document.querySelector(".fullScreen").style.display="block" && elem.webkitRequestFullscreen ) { // Contrôle safari
         document.querySelector(".fullScreen").style.display="none";
     }
  }
