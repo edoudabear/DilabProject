@@ -67,8 +67,8 @@ app.get("/Dilab/:action/:file", function(req,res) {
 app.get("/Dilab/:action/:groupName/:projectName/", function(req,res) {
     console.log(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`);
     if (req.params.action == "project" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`);
+        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`)) {
+            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`);
         } else {
             res.status(404).end("No such file");
         }
