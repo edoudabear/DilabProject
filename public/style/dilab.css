@@ -93,6 +93,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: fit-content;
     height: 100%;
     width : 500px;
     max-width: calc( 100% - 550px );
