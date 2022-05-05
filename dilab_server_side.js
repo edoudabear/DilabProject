@@ -760,6 +760,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
          typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
+            console.log(path.join("."));
             var projectName=req.body.projectName,
             projectDescription=req.body.projectDescription ? req.body.projectDescription : "",
             projectGenre=req.body.projectGenre ? req.body.projectGenre : "",
@@ -823,7 +824,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename1=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName);
+                                }
+                                filename1=req.files[fileIndex].originalname.replace(/\//g,"");
                                 filePath1=req.files[fileIndex].path;
                                 console.log(filename1);
                                 audioIndex=fileIndex;
@@ -848,7 +852,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
                                 }
-                                filename2=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
+                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName)) {
+                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName);
+                                }
+                                filename2=req.files[fileIndex].originalname.replace(/\//g,"");;
                                 filePath2=req.files[fileIndex].path;
                                 projectIndex=fileIndex;
                                 projectFile=true;
@@ -878,11 +885,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         } if (audioFile) {
-                            fs.move(filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename1).then(()=>{
+                            fs.move(filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1).then(()=>{
                                 fs.unlink(filePath1);
                             });
                         } if (projectFile) {
-                            fs.move(filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+filename2).then(()=>{
+                            fs.move(filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2).then(()=>{
                                 fs.unlink(filePath2);
                             });
                         } if (projectPPFile) {
