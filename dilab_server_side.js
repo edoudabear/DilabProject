@@ -829,7 +829,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status" : false,"data" : "Audio File is too big !" }');
                                 return;
-                            } else if (req.files[0].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))!="audio") { // Check file type (image ?)
+                            } else if (req.file[fileIndex].originalname.length>256) {
+                                res.end('{ "return" : "error","status" : false,"data" : "File name must not exceed 255 characters." }');
+                            } else if (req.files[fileIndex].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))!="audio") { // Check file type (image ?)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
                                     fs.unlink(req.files[i].path,()=>{return;});
@@ -857,7 +859,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
                                 return;
-                            } else if (req.files[0].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
+                            } else if (req.file[fileIndex].originalname.length>256) {
+                                res.end('{ "return" : "error","status" : false,"data" : "File name must not exceed 255 characters." }');
+                            } else if (req.files[fileIndex].mimetype.slice(0,req.files[fileIndex].mimetype.indexOf('/'))=="audio") { // Check file type (image ?)
                                 if (req.files) {
                                     for (var i=0;i<req.files.length;i++)
                                     fs.unlink(req.files[i].path,()=>{return;});
@@ -894,7 +898,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
                                     fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
                                 }
-                                filename3=projectName+req.files[fileIndex].originalname.slice(req.files[fileIndex].originalname.lastIndexOf('.'));
+                                filename3=projectName+".PNG";
                                 filePath3=req.files[fileIndex].path;
                                 projectPPIndex=fileIndex;
                                 projectPPFile=true;
@@ -921,8 +925,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${dilabConnection.escape(projectPPFile ? groupName+"/"+projectName+"/"+filename1 : "disc.svg")},
-                        ${dilabConnection.escape(audioFile ? groupName+"/"+projectName+"/"+filename2 : "NULL")}, ${dilabConnection.escape(projectFile ? groupName+"/"+filename3 : "NULL")},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`,(err,results,fields)=> {
+                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${dilabConnection.escape(projectPPFile ? filename1 : "disc.svg")},
+                        ${dilabConnection.escape(audioFile ? filename2 : "NULL")}, ${dilabConnection.escape(projectFile ? filename3 : "NULL")},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`,(err,results,fields)=> {
                             if (err) {
                                 res.send(JSON.stringify({
                                     return : "error",
