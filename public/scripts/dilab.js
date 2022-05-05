@@ -308,9 +308,27 @@ function goFullScreenMode() {
 }
 
 
-document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
+/*document.querySelector(".fullScreen .fullscreenExit").addEventListener('click',e=>{
     document.exitFullscreen();
-});
+});*/
+
+if (document.addEventListener)
+{
+ document.addEventListener('fullscreenchange', exitHandler, false);
+ document.addEventListener('mozfullscreenchange', exitHandler, false);
+ document.addEventListener('MSFullscreenChange', exitHandler, false);
+ document.addEventListener('webkitfullscreenchange', exitHandler, false);
+}
+
+function exitHandler()
+{
+ if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement)
+ {
+    if (document.querySelector(".fullScreen").style.display="block") {
+        document.querySelector(".fullScreen").style.display="none";
+    }
+ }
+}
 
 // Lyrics inside fullScreen mode (function to update the lyrics)
 
