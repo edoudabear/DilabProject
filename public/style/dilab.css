@@ -1097,6 +1097,7 @@ body {
 .newProject .newProjectIcon, .newGroup .newGroupIcon {
     aspect-ratio: 1;
     height: 90%;
+    min-width: 170px;
     background: rgb(211, 211, 211,0.2);
     font-size: 130px;
     margin-left: 16px;
