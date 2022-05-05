@@ -797,6 +797,7 @@ function pathAnalysis() {
                                                     console.log(log);
                                                     if (log.status==true) {
                                                         Swal.fire("Success !",log.data,"success");
+                                                        document.querySelector(".popUpWindowContainer").style.display="";
                                                     } else {
                                                         Swal.fire("Error",log.data,"error");
                                                     }
