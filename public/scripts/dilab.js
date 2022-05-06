@@ -160,11 +160,11 @@ function playOrPauseMusic() {
 
 prevButton.addEventListener("click",()=>{
     setPlayIcon(true);
-    if (audioObj.currentTime>4 || playlistIndex==0) {
+    if (!audioObj.paused && (audioObj.currentTime>4 || playlistIndex==0)) {
         audioObj.currentTime=0;
         console.log(playlistIndex);
         return;
-    } else if (audioObj.played && playlistIndex==0) {
+    } else if (&& playlistIndex==0) {
         loadSound(soundUrls[playlistIndex]);
         audioObj.play();
     }
