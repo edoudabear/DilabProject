@@ -284,7 +284,7 @@ document.addEventListener("keypress",e=> {
 
 document.querySelector(".player .musicInfos .cover").addEventListener('click',e=> {
     goFullScreenMode();
-})
+});
 
 // Fullscreen mode
 

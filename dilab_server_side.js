@@ -237,7 +237,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             )
             SELECT releaseDate, projectBirthDate,name,releasePicture,duration,filePath,lyrics, nb_streams
             FROM DilabReleases dr
-            JOIN cte ON dr.id=cte.songId
+            LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
             WHERE DilabMusicGroups.groupName="${groupName}"
             ORDER BY nb_streams DESC LIMIT 3;
