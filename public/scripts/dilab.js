@@ -162,6 +162,7 @@ prevButton.addEventListener("click",()=>{
     if (audioObj.currentTime>4 || playlistIndex==0) {
         audioObj.currentTime=0;
         setPlayIcon(true);
+        console.log(playlistIndex);
         return;
     }//else case below
     playlistIndex--;
