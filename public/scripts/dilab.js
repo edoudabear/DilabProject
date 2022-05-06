@@ -379,7 +379,7 @@ function setPlayIcon(play) {
         el.className="bi";
         el.classList.add("bi-pause-circle");
         document.querySelector(".playingIcon").style.display="flex"; // for play animation inside playlist menu
-        document.querySelector(".fullScreen .cover").style.height="10em";
+        //document.querySelector(".fullScreen .cover").style.height="10em";
     } else {
         var el=document.querySelectorAll(".musicButton> i")[1];
         el.className="bi";
@@ -388,7 +388,7 @@ function setPlayIcon(play) {
         el.className="bi";
         el.classList.add("bi-play-circle");
         document.querySelector(".playingIcon").style.display="";
-        document.querySelector(".fullScreen .cover").style.height="";
+        //document.querySelector(".fullScreen .cover").style.height="";
     }
 }
 
