@@ -164,7 +164,7 @@ prevButton.addEventListener("click",()=>{
         audioObj.currentTime=0;
         console.log(playlistIndex);
         return;
-    } else if (&& playlistIndex==0) {
+    } else if (playlistIndex==0) {
         loadSound(soundUrls[playlistIndex]);
         audioObj.play();
     }
