@@ -235,7 +235,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,filePath,lyrics, IFNULL(0,nb_streams)
+            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,filePath,lyrics,COALESCE(nb_streams,0)
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
