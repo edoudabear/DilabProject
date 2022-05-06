@@ -159,15 +159,18 @@ function playOrPauseMusic() {
 }
 
 prevButton.addEventListener("click",()=>{
+    setPlayIcon(true);
     if (audioObj.currentTime>4 || playlistIndex==0) {
         audioObj.currentTime=0;
-        setPlayIcon(true);
         console.log(playlistIndex);
         return;
-    }//else case below
+    } else if (audioObj.played && playlistIndex==0) {
+        loadSound(soundUrls[playlistIndex]);
+        audioObj.play();
+    }
+    //else case below
     playlistIndex--;
     loadSound(soundUrls[playlistIndex]);
-    setPlayIcon(true);
     audioObj.play();
 });
 
