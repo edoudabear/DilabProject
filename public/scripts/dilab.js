@@ -167,6 +167,7 @@ prevButton.addEventListener("click",()=>{
     } else if (playlistIndex==0) {
         loadSound(soundUrls[playlistIndex]);
         audioObj.play();
+        console.log("case two");
     }
     //else case below
     playlistIndex--;
