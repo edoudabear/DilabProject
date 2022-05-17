@@ -571,6 +571,7 @@ function pathAnalysis() {
                                 el.classList.add("project");
                                 el.innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 document.querySelector(".projectsWrapper").appendChild(el);
+                                console
                                 progress(line.currentPhase,el);
                             }
                         }
@@ -1704,7 +1705,10 @@ function displayPopUp(title,content,callBack=(e)=>{}) {
 }
 
 function progress(step,selector,i=0) {
-    element=document.querySelectorAll(selector)[i];
+    var element=selector;
+    if (String(selector)=selector) {
+        element=document.querySelectorAll(selector)[i];
+    }
     step-=1;
     var percentProg=step/(element.querySelectorAll(".step").length-1)*100
     if (percentProg>100) {
