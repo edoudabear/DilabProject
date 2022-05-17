@@ -566,9 +566,11 @@ function pathAnalysis() {
                             var projectList=data.data;
                             document.querySelector(".projectsWrapper").innerHTML="";
                             for (var i=0;i<projectList.length;i++) {
-                                var line=projectList[i]; 
-                                document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
-                                
+                                var line=projectList[i],
+                                el=document.createElement("div");
+                                el.classList.add("project");
+                                el.innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
+                                document.querySelector(".projectsWrapper").appendChild(el);
                             }
                         }
                     }
@@ -2014,7 +2016,6 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
 
 function newProjectElement(title,group,description,foundDate,nCollaborators,imagePath,audioFile) {
     return `
-    <div class="project">
         <div class="cover">
             <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg">
             <div class="playBtn">
@@ -2051,7 +2052,6 @@ function newProjectElement(title,group,description,foundDate,nCollaborators,imag
                 ${description}                      
             </div>
         </div>
-    </div>`
 }
 
 // Other algoritmic functions
