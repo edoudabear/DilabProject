@@ -1713,9 +1713,9 @@ function progress(step,selector,i=0) {
         percentProg=100;
     }
     alert(percentProg);
-    if (element.parentNode) {
+    /*if (element.parentNode) {
         element.parentNode.querySelector(".percent").style.width=percentProg+"%"
-    } else if (element.querySelector(".percent")) {
+    } else */if (element.querySelector(".percent")) {
         element.querySelector(".percent").style.width=percentProg+"%";
     }
     element.querySelectorAll(".step").forEach(el=> {
