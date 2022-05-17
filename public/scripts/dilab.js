@@ -1712,6 +1712,7 @@ function progress(step,selector,i=0) {
     if (percentProg>100) {
         percentProg=100;
     }
+    alert(percentProg);
     element.parentNode.querySelector(".percent").style.width=percentProg+"%"
     element.querySelectorAll(".step").forEach(el=> {
         el.classList.remove("selected","completed")
