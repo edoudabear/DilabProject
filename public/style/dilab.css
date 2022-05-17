@@ -756,6 +756,7 @@ body {
 
 .projects .project .steps {
     width: 200px;
+    transition: 1.2s;
 }
 
 .projects .project .mainDescription {
