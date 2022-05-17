@@ -197,6 +197,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "data" : "internal server error",
                         }));
                 } else if (results.length!=0) {
+                    res.setHeader("Content-Type","Application/json")
                     res.end(JSON.stringify({
                         return : "ok",
                         status : true,
