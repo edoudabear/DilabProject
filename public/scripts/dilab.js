@@ -529,6 +529,24 @@ function pathAnalysis() {
                 document.querySelectorAll(".projectsContainer .rightBtn")[1].addEventListener("click", () => {
                     document.querySelectorAll(".projectsContainer > .projects")[1].scrollBy(window.innerWidth-200, 0);
                 });
+                fetch('/Dilab/get',{
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        type : "mainProjects"
+                    }) //data
+                }).then(out => {
+                    return out.json();
+                }).then(data => {
+                    if (data.status==false) {
+                       return;
+                    } else {
+                        console.log(data);
+                    }
+                });
                 if (!document.querySelector(".loginButton")) {
                     document.querySelector(".newProject").addEventListener('click',e => {
                         displayPopUp("New Project","newProject",elem=>{
