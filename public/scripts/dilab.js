@@ -1712,10 +1712,7 @@ function progress(step,selector,i=0) {
     if (percentProg>100) {
         percentProg=100;
     }
-    alert(percentProg);
-    /*if (element.parentNode) {
-        element.parentNode.querySelector(".percent").style.width=percentProg+"%"
-    } else */if (element.querySelector(".percent")) {
+    if (element.querySelector(".percent")) {
         element.querySelector(".percent").style.width=percentProg+"%";
     }
     element.querySelectorAll(".step").forEach(el=> {
