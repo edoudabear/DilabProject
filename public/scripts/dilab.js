@@ -571,7 +571,6 @@ function pathAnalysis() {
                                 el.classList.add("project");
                                 el.innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 document.querySelector(".projectsWrapper").appendChild(el);
-                                console
                                 progress(line.currentPhase,el);
                             }
                         }
@@ -1709,7 +1708,6 @@ function progress(step,selector,i=0) {
     if (!selector.innerHTML) {
         element=document.querySelectorAll(selector)[i];
     }
-    step-=1;
     var percentProg=step/(element.querySelectorAll(".step").length-1)*100
     if (percentProg>100) {
         percentProg=100;
