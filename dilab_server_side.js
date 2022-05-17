@@ -181,6 +181,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.projectPicture,
             DilabProject.audioFileDir,
             DilabProject.description,
+            DilabProject.dateOfBirth,
             DilabMusicGroups.groupName,
             -- DilabProject.lyrics
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators

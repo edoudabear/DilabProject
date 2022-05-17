@@ -560,8 +560,16 @@ function pathAnalysis() {
                        return;
                     } else {
                         console.log(data);
-                        if (data.status) {
+                        if (data.status!=true) {
                             Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                        } else {
+                            var projectList=data.data;
+                            document.querySelector(".projectsWrapper").innerHTML="";
+                            for (var i=0;i<projectList.length;i++) {
+                                var line=projectList[i]; 
+                                document.querySelector(".projectsWrapper").innerHTML+=generateProjectTemplate(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
+                                
+                            }
                         }
                     }
                 });
@@ -2002,6 +2010,48 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                     </div>
                 </div>
             </div>`
+}
+
+function newProjectElement(title,group,description,foundDate,nCollaborators,imagePath,audioFile) {
+    return `
+    <div class="project">
+        <div class="cover">
+            <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg">
+            <div class="playBtn">
+                <i class="bi bi-play-circle-fill"></i>
+            </div>
+        </div>
+        <div class="mainDescription">
+            <div class="header">
+                <div class="title">
+                    ${title}
+                </div>
+                <div class="projectGroup">
+                    ${group}
+                </div>
+            </div>
+            <div class="projectProgress">
+                Project Launch
+                <div class="stationProgressWrapper">
+                    <div class="stationProgressContainer">
+                        <div class="progressStationBar">
+                            <div class="percent"></div>
+                        </div>
+                        <div class="steps">
+                            <div class="step" title="Launching project" id="0"><i class="bi bi-check2"></i></div>
+                            <div class="step" title="Working on instrumental part" id="1"><i class="bi bi-check2"></i></div>
+                            <div class="step" title="Working on vocals" id="2"><i class="bi bi-check2"></i></div>
+                            <div class="step" title="Releasing project" id="3"><i class="bi bi-check2"></i></div>
+                        </div>
+                    </div>
+                </div>
+                Project Release
+            </div>
+            <div class="description">
+                ${description}                      
+            </div>
+        </div>
+    </div>`
 }
 
 // Other algoritmic functions
