@@ -1706,7 +1706,7 @@ function displayPopUp(title,content,callBack=(e)=>{}) {
 
 function progress(step,selector,i=0) {
     var element=selector;
-    if (String(selector)=selector) {
+    if (String(selector)==selector) {
         element=document.querySelectorAll(selector)[i];
     }
     step-=1;
