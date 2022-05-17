@@ -561,7 +561,7 @@ function pathAnalysis() {
                     } else {
                         console.log(data);
                         if (data.status) {
-                            Toast.fire({icon : "warning", icon : "Something is not ok.. We couldn't load the most popular projects"});
+                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
                         }
                     }
                 });
