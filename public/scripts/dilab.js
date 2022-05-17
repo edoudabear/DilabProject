@@ -571,7 +571,7 @@ function pathAnalysis() {
                                 el.classList.add("project");
                                 el.innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 document.querySelector(".projectsWrapper").appendChild(el);
-                                progress(line.currentPhase,el);
+                                setTimeout(()=>{progress(line.currentPhase,el);},0);
                             }
                         }
                     }
