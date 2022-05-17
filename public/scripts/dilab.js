@@ -1713,7 +1713,11 @@ function progress(step,selector,i=0) {
         percentProg=100;
     }
     alert(percentProg);
-    element.parentNode.querySelector(".percent").style.width=percentProg+"%"
+    if (element.parentNode) {
+        element.parentNode.querySelector(".percent").style.width=percentProg+"%"
+    } else if (element.querySelector(".percent")) {
+        element.querySelector(".percent").style.width=percentProg+"%";
+    }
     element.querySelectorAll(".step").forEach(el=> {
         el.classList.remove("selected","completed")
         if (el.id<step) {
