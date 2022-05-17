@@ -545,6 +545,9 @@ function pathAnalysis() {
                        return;
                     } else {
                         console.log(data);
+                        if (data.status) {
+                            Swal.toast("Something is not ok.. We couldn't load the most popular projects");
+                        }
                     }
                 });
                 if (!document.querySelector(".loginButton")) {
