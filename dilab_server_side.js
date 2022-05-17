@@ -175,6 +175,36 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
+        } else if (req.body.type=="mainProjects") {
+            dilabConnection.query(`SELECT DilabProject.name,
+            DilabProject.currentPhase,
+            DilabProject.projectPicture,
+            DilabProject.audioFileDir,
+            DilabProject.description,
+            DilabMusicGroups.groupName,
+            -- DilabProject.lyrics
+            COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
+            FROM DilabProject
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            WHERE isReleased=false 
+            -- AND genres=""
+            GROUP BY DilabProject.id
+            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;`,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                } else if (results.length!=0) {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results.flat()}));
+                } else {
+                    res.end('{ "return" : "ok", "status" : false, "description" : "internal server error (account is unfindable)" }');
+                }
+            })
         }
         else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
             dilabConnection.query(`SELECT groupName FROM DilabMusicGroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
