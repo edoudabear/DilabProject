@@ -15,6 +15,21 @@ function goToPage(address) {
     a.click();
 }
 
+
+// Sweet alert remake of toast
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
 // Audio object
 var soundUrls=["https://dev.diskloud.fr/audios/Stacy.mp3","https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3","https://dev.diskloud.fr/audios/M83MidnightCity.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
 var soundTitles=["Stacy","Redlight (2022)","Project 1.2","Dimm","Midnight City"];
@@ -546,7 +561,7 @@ function pathAnalysis() {
                     } else {
                         console.log(data);
                         if (data.status) {
-                            Swal.toast("Something is not ok.. We couldn't load the most popular projects");
+                            Toast.fire({icon : "warning", icon : "Something is not ok.. We couldn't load the most popular projects"});
                         }
                     }
                 });
