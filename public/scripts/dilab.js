@@ -567,7 +567,7 @@ function pathAnalysis() {
                             document.querySelector(".projectsWrapper").innerHTML="";
                             for (var i=0;i<projectList.length;i++) {
                                 var line=projectList[i]; 
-                                document.querySelector(".projectsWrapper").innerHTML+=generateProjectTemplate(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
+                                document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(line.name,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 
                             }
                         }
