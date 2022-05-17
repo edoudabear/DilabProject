@@ -2055,7 +2055,7 @@ function newProjectElement(title,group,description,foundDate,nCollaborators,imag
                 ${description}                      
             </div>
         </div>
-}
+}`;
 
 // Other algoritmic functions
 
