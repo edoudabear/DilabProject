@@ -590,7 +590,6 @@ function pathAnalysis() {
                                                 break;
                                             }
                                         }
-                                        console.log(el2.querySelector(".playBtn .bi-play-circle-fill"));
                                         if (el2.querySelector(".playBtn .bi-play-circle-fill")) {
                                             el2.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
                                             el2.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
