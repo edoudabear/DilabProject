@@ -581,7 +581,14 @@ function pathAnalysis() {
                                     var audio=document.createElement("AUDIO");
                                     audio.style.display="none";
                                     audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
-                                    el.querySelector(".playBtn").addEventListener("click",()=>{
+                                    el.querySelector(".playBtn").addEventListener("click",e=>{
+                                        var el=document.querySelectorAll(".projects");
+                                        for (var i=0;i<el.length;i++) {
+                                            if (el[i].contains(e.target)) {
+                                                el=el[i];
+                                                break;
+                                            }
+                                        }
                                         if (el.querySelector(".playBtn .bi-play-circle-fill")) {
                                             el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
                                             el.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
