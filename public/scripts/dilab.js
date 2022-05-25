@@ -583,21 +583,21 @@ function pathAnalysis() {
                                     audio.style.display="none";
                                     audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
                                     el.querySelector(".playBtn").addEventListener("click",e=>{
-                                        var el=document.querySelectorAll(".projects");
-                                        for (var i=0;i<el.length;i++) {
-                                            if (el[i].contains(e.target)) {
-                                                el=el[i];
+                                        var el2=document.querySelectorAll(".projects");
+                                        for (var i=0;i<el2.length;i++) {
+                                            if (el2[i].contains(e.target)) {
+                                                el2=el2[i];
                                                 break;
                                             }
                                         }
-                                        if (el.querySelector(".playBtn .bi-play-circle-fill")) {
-                                            el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
-                                            el.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
-                                            el.querySelector("audio").play();
+                                        if (el2.querySelector(".playBtn .bi-play-circle-fill")) {
+                                            el2.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
+                                            el2.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
+                                            el2.querySelector("audio").play();
                                         } else {
-                                            el.querySelector(".playBtn i").classList.remove("bi-pause-circle-fill");
-                                            el.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
-                                            el.querySelector("audio").pause();
+                                            el2.querySelector(".playBtn i").classList.remove("bi-pause-circle-fill");
+                                            el2.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
+                                            el2.querySelector("audio").pause();
                                         }
                                     })
                                     el.querySelector(".playBtn").appendChild(audio);
