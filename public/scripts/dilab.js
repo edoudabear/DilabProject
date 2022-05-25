@@ -584,10 +584,10 @@ function pathAnalysis() {
                                     el.querySelector(".playBtn").addEventListener("click",()=>{
                                         if (el.querySelector(".playBtn .bi-play-circle-fill")) {
                                             el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
-                                            el.querySelector(".playBtn i").classList.add("pause-circle-fill");
+                                            el.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
                                             el.querySelector("audio").play();
                                         } else {
-                                            el.querySelector(".playBtn i").classList.remove("pause-circle-fill");
+                                            el.querySelector(".playBtn i").classList.remove("bi-pause-circle-fill");
                                             el.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
                                             el.querySelector("audio").pause();
                                         }
