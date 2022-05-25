@@ -581,8 +581,8 @@ function pathAnalysis() {
                                     var audio=document.createElement("AUDIO");
                                     audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
                                     el.querySelector(".playBtn").addEventListener("click",()=>{
-                                        console.log("OK");
                                         if (el.querySelector(".playBtn bi-play-circle-fill")) {
+                                            console.log("OK");
                                             el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
                                             el.querySelector(".playBtn i").classList.add("pause-circle-fill");
                                             audio.play();
