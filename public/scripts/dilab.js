@@ -579,6 +579,7 @@ function pathAnalysis() {
                                 } else {
                                     el.querySelector(".playBtn").classList.add("enabled");
                                     var audio=document.createElement("AUDIO");
+                                    audio.controls=false;
                                     audio.style.display="none";
                                     audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
                                     el.querySelector(".playBtn").addEventListener("click",e=>{
