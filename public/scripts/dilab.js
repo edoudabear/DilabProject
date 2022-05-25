@@ -575,8 +575,10 @@ function pathAnalysis() {
                                 if(line.audioFileDir==null) {
                                     el.querySelector(".playBtn").style.opacity=0.6;
                                     el.querySelector(".playBtn").style.cursor="not-allowed";
+                                    el.querySelector(".playBtn").setAttribute("title","No audio file uploaded for this project");
                                 } else {
                                     el.querySelector(".playBtn").classList.add("enabled");
+                                    el.querySelector(".playBtn").setAttribute("title",el.audioFile);
                                 }
                                 // Il faut encore créer un objet audio permettant de lire le projet audio..
                             }
