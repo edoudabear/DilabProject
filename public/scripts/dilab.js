@@ -578,6 +578,22 @@ function pathAnalysis() {
                                     el.querySelector(".playBtn").setAttribute("title","No audio file uploaded for this project");
                                 } else {
                                     el.querySelector(".playBtn").classList.add("enabled");
+
+                                    var audio=document.createElement("AUDIO");
+                                    audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
+                                    el.querySelector(".playBtn").addEventListener("click",()=>{
+                                        if (el.querySelector(".playBtn bi-play-circle-fill")) {
+                                            el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
+                                            el.querySelector(".playBtn i").classList.add("pause-circle-fill");
+                                            audio.play();
+
+                                        } else {
+                                            el.querySelector(".playBtn i").classList.remove("pause-circle-fill");
+                                            el.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
+                                            audio.pause();
+                                        }
+                                    })
+                                    el.querySelector(".playBtn").appendChild(audio);
                                     el.querySelector(".playBtn").setAttribute("title",line.audioFileDir);
                                 }
                                 // Il faut encore créer un objet audio permettant de lire le projet audio..
