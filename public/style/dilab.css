@@ -816,7 +816,7 @@ body {
     cursor: pointer;
 }
 
-.projects .project .playBtn:hover {
+.projects .project .playBtn .enabled:hover {
     transform: scale(1.2);
 }
 
