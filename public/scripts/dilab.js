@@ -586,7 +586,6 @@ function pathAnalysis() {
                                             el.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
                                             el.querySelector(".playBtn i").classList.add("pause-circle-fill");
                                             audio.play();
-
                                         } else {
                                             el.querySelector(".playBtn i").classList.remove("pause-circle-fill");
                                             el.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
