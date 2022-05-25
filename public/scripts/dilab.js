@@ -574,7 +574,9 @@ function pathAnalysis() {
                                 progress(line.currentPhase,el);
                                 if(line.audioFileDir==null) {
                                     el.querySelector(".playBtn").style.opacity=0.6;
-                                    el.querySelector(".playBtn").style.userSelect="none";
+                                    el.querySelector(".playBtn").style.cursor="not-allowed";
+                                } else {
+                                    el.querySelector(".playBtn").classList.add("enabled");
                                 }
                                 // Il faut encore créer un objet audio permettant de lire le projet audio..
                             }
