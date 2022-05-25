@@ -816,7 +816,8 @@ body {
     cursor: pointer;
 }
 
-.projects .project .playBtn .enabled:hover {
+/*/playBtn, when not pointless*/
+.projects .project .enabled:hover {
     transform: scale(1.2);
 }
 
