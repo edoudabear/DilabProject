@@ -573,7 +573,7 @@ function pathAnalysis() {
                                 document.querySelector(".projectsWrapper").appendChild(el);
                                 progress(line.currentPhase,el);
                                 if(line.audioFileDir==null) {
-                                    el.querySelector(".playBtn").disabled=true;
+                                    el.querySelector(".playBtn").setAttribute("disabled");
                                 }
                                 // Il faut encore créer un objet audio permettant de lire le projet audio..
                             }
