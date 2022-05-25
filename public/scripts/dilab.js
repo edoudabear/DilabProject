@@ -596,8 +596,8 @@ function pathAnalysis() {
                                             var audios=document.querySelectorAll("audio");
                                             for (var i=0;i<audios.length;i++) {
                                                 audios[i].pause();
-                                                audios[i].parentElement.classList.remove("bi-pause-circle-fill");
-                                                audios[i].parentElement.classList.add("bi-play-circle-fill");
+                                                audios[i].parentElement.querySelector("i").classList.remove("bi-pause-circle-fill");
+                                                audios[i].parentElement.querySelector("i").classList.add("bi-play-circle-fill");
                                                 audios[i].currentTime = 0;
                                             }
                                             el2.querySelector("audio").play();
