@@ -583,7 +583,7 @@ function pathAnalysis() {
                                     audio.style.display="none";
                                     audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
                                     el.querySelector(".playBtn").addEventListener("click",e=>{
-                                        var el2=document.querySelectorAll(".projects");
+                                        var el2=document.querySelectorAll(".project");
                                         for (var i=0;i<el2.length;i++) {
                                             if (el2[i].contains(e.target)) {
                                                 el2=el2[i];
