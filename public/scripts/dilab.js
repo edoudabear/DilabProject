@@ -389,6 +389,13 @@ audioObj.onpause = function() {
 
 audioObj.onplay = () => {
     setPlayIcon(true);
+    var audios=document.querySelectorAll("audio");
+    for (var i=0;i<audios.length;i++) {
+        audios[i].pause();
+        audios[i].parentElement.querySelector("i").classList.remove("bi-pause-circle-fill");
+        audios[i].parentElement.querySelector("i").classList.add("bi-play-circle-fill");
+        audios[i].currentTime = 0;
+    }
 }
 
 function setPlayIcon(play) {
@@ -598,6 +605,7 @@ function pathAnalysis() {
                                                 audios[i].parentElement.querySelector("i").classList.add("bi-play-circle-fill");
                                                 audios[i].currentTime = 0;
                                             }
+                                            audioObj.pause();
                                             el2.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
                                             el2.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
                                             el2.querySelector("audio").play();
