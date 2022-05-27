@@ -957,8 +957,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }
 
                         dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${dilabConnection.escape(projectPPFile ? filename3 : "disc.svg")},
-                        ${dilabConnection.escape(audioFile ? filename1 : "NULL")}, ${dilabConnection.escape(projectFile ? filename2 : "NULL")},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`,(err,results,fields)=> {
+                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${projectPPFile ? dilabConnection.escape(filename3) : "disc.svg"},
+                        ${audioFile ? dilabConnection.escape(filename1) : "NULL"}, ${projectFile ? dilabConnection.escape(filename2) : "NULL"},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`,(err,results,fields)=> {
                             if (err) {
                                 res.send(JSON.stringify({
                                     return : "error",
