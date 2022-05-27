@@ -576,7 +576,7 @@ function pathAnalysis() {
                                 var line=projectList[i],
                                 el=document.createElement("div");
                                 el.classList.add("project");
-                                var projectPPath=(line.audioFileDir!=null) ? `https://e.diskloud.fr/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
+                                var projectPPath=(line.audioFileDir!=null) ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
                                 el.innerHTML+=newProjectElement(line.name,projectPPath,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 document.querySelector(".projectsWrapper").appendChild(el);
                                 progress(line.currentPhase,el);
