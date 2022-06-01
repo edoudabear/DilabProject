@@ -570,7 +570,7 @@ function pathAnalysis() {
                            document.querySelector(".projectGenres").innerHTML=project.genres
                            document.querySelector(".projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
 
-                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[*.*\n\]/g,"<br />")
+                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />")
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
