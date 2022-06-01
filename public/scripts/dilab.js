@@ -2113,6 +2113,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
 }
 
 function newProjectElement(title,projectPP,group,description,foundDate,nCollaborators,imagePath,audioFile) {
+    foundDate=new Date(foundDate);
     return `
         <div class="cover">
             <img title="Project cover" src="${projectPP}">
