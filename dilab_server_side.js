@@ -268,11 +268,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
+            AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
+            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             -- AND genres=""
             GROUP BY DilabProject.id
-            WHERE 
-            DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
-            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             LIMIT 1;`);
             dilabConnection.query(`SELECT DilabProject.name,
             DilabProject.currentPhase,
@@ -287,11 +286,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
+            AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
+            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             -- AND genres=""
             GROUP BY DilabProject.id
-            WHERE 
-            DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
-            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             LIMIT 1;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
