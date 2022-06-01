@@ -630,6 +630,9 @@ function pathAnalysis() {
                                 el.classList.add("project");
                                 var projectPPath=(line.audioFileDir!=null) ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
                                 el.innerHTML+=newProjectElement(line.name,projectPPath,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
+                                el.addEventListener("click",e=>{
+                                    loadPage(line.name+" Dilab","group",[["p",line.name],["g",line.groupName]]);
+                                })
                                 document.querySelector(".projectsWrapper").appendChild(el);
                                 progress(line.currentPhase,el);
                                 if(line.audioFileDir==null) {
@@ -2122,7 +2125,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
 function newProjectElement(title,projectPP,group,description,foundDate,nCollaborators,imagePath,audioFile) {
     foundDate=new Date(foundDate);
     return `
-        <div onclick='loadPage("${title} Dilab","group",[["p","${title}"],["g","${group}"]])' class="cover">
+        <div class="cover">
             <img title="Project cover" src="${projectPP}">
             <div class="playBtn">
                 <i class="bi bi-play-circle-fill"></i>
