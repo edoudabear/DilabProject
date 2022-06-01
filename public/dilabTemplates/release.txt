@@ -35,5 +35,5 @@
             <div style="width:3em;" class="skeletonLoader"></div>
         </div>
     </div>
-    <h3 class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</h3>
+    <a class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</a>
 </div>
