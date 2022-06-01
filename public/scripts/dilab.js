@@ -557,13 +557,13 @@ function pathAnalysis() {
                             lastAudioFileUpdate: "2022-02-05T22:10:11.000Z"
                             lastProjectFileUpdate: "2022-02-05T22:10:11.000Z"
                             nCollaborators: 2
-                            name: "sfe"
                             projectFileDir: null
                             projectPicture: "disc.svg"
                             */
                            var project=log.data[0];
                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
-
+                           var dateObj=new Date(dateOfBirth);
+                           document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
