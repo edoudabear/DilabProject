@@ -258,7 +258,7 @@
                     <div style="width:40%; background : #f4f4f4;" class="skeletonLoader"></div>
                 </div>
             </div>
-            <h3 class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</h3>
+            <a class=linkToGroup><i class="bi bi-arrow-right"></i> Go to group page</a>
         </div>
     </div>
 </div>
