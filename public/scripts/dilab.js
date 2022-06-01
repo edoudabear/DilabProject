@@ -551,7 +551,6 @@ function pathAnalysis() {
                             /*
                             audioFileDir: null
                             currentPhase: 3
-                            dateOfBirth: "2022-02-05T22:10:11.000Z"
                             description: "ezgegz"
                             groupName: "Edoudé"
                             lastAudioFileUpdate: "2022-02-05T22:10:11.000Z"
@@ -564,6 +563,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
                            var dateObj=new Date(project.dateOfBirth);
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+                           setProgress(".progressPart .progress",project.currentPhase);
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
