@@ -513,10 +513,10 @@ function pathAnalysis() {
                             Swal.fire("Error",log.data,"error");
                         }
                     });
-                } /*else {
+                } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
                     location="https://e.diskloud.fr/Dilab";
-                }*/
+                }
             });
             break;
         case "/artist" :
