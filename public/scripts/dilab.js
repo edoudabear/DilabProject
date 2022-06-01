@@ -564,6 +564,7 @@ function pathAnalysis() {
                            var dateObj=new Date(project.dateOfBirth);
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            progress(project.currentPhase,".progressPart .projectProgress");
+                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`/Dilab/group?g=${encodeURI(project.groupName)}`);
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
