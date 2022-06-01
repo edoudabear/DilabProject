@@ -570,7 +570,7 @@ function pathAnalysis() {
                            document.querySelector(".projectGenres").innerHTML=project.genres
                            document.querySelector(".projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
 
-                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />")
+                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
