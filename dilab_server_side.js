@@ -255,6 +255,25 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         } else if (req.body.type=="project" && req.body.projectGroup && req.body.projectName) {
+            console.log(`SELECT DilabProject.name,
+            DilabProject.currentPhase,
+            DilabProject.projectPicture,
+            DilabProject.audioFileDir,
+            DilabProject.description,
+            DilabProject.dateOfBirth,
+            DilabMusicGroups.groupName,
+            -- DilabProject.lyrics
+            COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
+            FROM DilabProject
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            WHERE isReleased=false 
+            -- AND genres=""
+            GROUP BY DilabProject.id
+            WHERE 
+            DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
+            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
+            LIMIT 1;`);
             dilabConnection.query(`SELECT DilabProject.name,
             DilabProject.currentPhase,
             DilabProject.projectPicture,
