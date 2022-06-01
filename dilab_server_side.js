@@ -287,7 +287,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
             AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
-            AND DilabProject.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
+            AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             -- AND genres=""
             GROUP BY DilabProject.id
             LIMIT 1;`,(err,results,fields)=> {
