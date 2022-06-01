@@ -823,6 +823,7 @@ body {
 
 .projects .project .projectGroup {
     font-size: 0.8em;
+    padding-bottom : 4px;
     display: flex;
     align-items: center;
 }

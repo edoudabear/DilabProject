@@ -548,6 +548,22 @@ function pathAnalysis() {
                         if (log.status==true) {
                             // project info insertion (on html page)
                             console.log(log.data[0]);
+                            /*
+                            audioFileDir: null
+                            currentPhase: 3
+                            dateOfBirth: "2022-02-05T22:10:11.000Z"
+                            description: "ezgegz"
+                            groupName: "Edoudé"
+                            lastAudioFileUpdate: "2022-02-05T22:10:11.000Z"
+                            lastProjectFileUpdate: "2022-02-05T22:10:11.000Z"
+                            nCollaborators: 2
+                            name: "sfe"
+                            projectFileDir: null
+                            projectPicture: "disc.svg"
+                            */
+                           var project=log.data[0];
+                           document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
+                           
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
