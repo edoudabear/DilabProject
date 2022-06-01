@@ -258,6 +258,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.currentPhase,
             DilabProject.projectPicture,
             DilabProject.audioFileDir,
+            DilabProject.genres,
+            DilabProject.lyrics,
             DilabProject.projectFileDir,
             DilabProject.lastAudioFileUpdate,
             DilabProject.lastProjectFileUpdate,
