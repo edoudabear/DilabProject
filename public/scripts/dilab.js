@@ -528,7 +528,36 @@ function pathAnalysis() {
             loadTemplate("release",()=>{});
             break;
         case "/project" :
-            loadTemplate("project",()=>{});
+            loadTemplate("project",()=>{
+                if (urlParams.get("p") && urlParams.get("g")) {
+                    fetch('/Dilab/get', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            type : "project",
+                            projectGroup : encodeURI(urlParams.get("g")),
+                            projectName : encodeURI(urlParams.get("p"))
+                        }) //data
+                    }).then(out => {
+                        return out.json();
+                    }).then(log => {
+                        console.log(log);
+                        if (log.status==true) {
+                            // project info insertion (on html page)
+                            console.log(log.data[0]);
+                        } else {
+                            document.querySelector(".main-content").innerHTML="";
+                            Swal.fire("Error",log.data,"error");
+                        }
+                    });
+                } else {
+                    window.location.href="https://e.diskloud.fr/Dilab";
+                    location="https://e.diskloud.fr/Dilab";
+                }
+            });
             break;
         case "/releases" :
             loadTemplate("releases",()=>{
