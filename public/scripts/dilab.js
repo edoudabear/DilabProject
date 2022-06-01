@@ -562,7 +562,7 @@ function pathAnalysis() {
                             */
                            var project=log.data[0];
                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
-                           var dateObj=new Date(dateOfBirth);
+                           var dateObj=new Date(project.dateOfBirth);
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                         } else {
                             document.querySelector(".main-content").innerHTML="";
