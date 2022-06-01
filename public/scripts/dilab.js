@@ -2122,7 +2122,7 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
 function newProjectElement(title,projectPP,group,description,foundDate,nCollaborators,imagePath,audioFile) {
     foundDate=new Date(foundDate);
     return `
-        <div onclick='loadPage("${title} Dilab","group",[["p","${title}"],["g","${group}]])' class="cover">
+        <div onclick='loadPage("${title} Dilab","group",[["p","${title}"],["g","${group}"]])' class="cover">
             <img title="Project cover" src="${projectPP}">
             <div class="playBtn">
                 <i class="bi bi-play-circle-fill"></i>
