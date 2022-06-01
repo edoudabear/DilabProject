@@ -563,7 +563,7 @@ function pathAnalysis() {
                             */
                            var project=log.data[0];
                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
-                           
+
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
@@ -2127,6 +2127,8 @@ function newProjectElement(title,projectPP,group,description,foundDate,nCollabor
                 </div>
                 <div class="projectGroup">
                     ${group}
+                    <i class="bi bi-dot"></i>
+                    Created in ${foundDate.getFullYear()}
                 </div>
             </div>
             <div class="projectProgress">
