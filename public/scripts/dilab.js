@@ -567,10 +567,10 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`/Dilab/group?g=${encodeURI(project.groupName)}`);
                            document.querySelector(".groupsFounder").innerHTML=project.groupName;
                            document.querySelector(".projectDescription").innerHTML=project.description;
-                           //document.querySelector(".projectGenres").innerHTML=project.genres
+                           document.querySelector(".projectGenres").innerHTML=project.genres
                            document.querySelector(".projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
 
-                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/[.*]/g,"<br />")
+                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/[*]/g,"<br />")
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
