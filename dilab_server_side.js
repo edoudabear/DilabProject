@@ -207,8 +207,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
                 }
             });
-        }
-        else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
+        } else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
             dilabConnection.query(`SELECT groupName FROM DilabMusicGroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
@@ -259,6 +258,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.currentPhase,
             DilabProject.projectPicture,
             DilabProject.audioFileDir,
+            DilabProject.projectFileDir,
+            DilabProject.lastAudioFileUpdate,
+            DilabProject.lastProjectFileUpdate,
             DilabProject.description,
             DilabProject.dateOfBirth,
             DilabMusicGroups.groupName,
