@@ -600,7 +600,8 @@ function pathAnalysis() {
                                document.querySelector(".projectFile .button").style.opacity="0.6";
                                document.querySelector(".projectFile .button").setAttribute("title","Cannot be downloaded : There is no project file");
                                document.querySelector(".projectFile .button").style.cursor="not-allowed";
-                               document.querySelector(".projectFile .button").classList.remove("button").add("noHoverActiveButton");
+                               document.querySelector(".projectFile .button").classList.add("noHoverActiveButton");
+                               document.querySelector(".projectFile .button").classList.remove("button")
                            }
                            
                            // Audio file
@@ -618,7 +619,8 @@ function pathAnalysis() {
                                     document.querySelector(".audioFile .playButton").style.cursor="not-allowed";
                                     document.querySelector(".audioFile .playButton").style.userSelect="none";
                                     document.querySelector(".audioFile .playButton").style.opacity="0.6";
-                                    document.querySelector(".audioFile .playButton").classList.remove("button").add("noHoverActiveButton");
+                                    document.querySelector(".audioFile .playButton").classList.add("noHoverActiveButton");
+                                    document.querySelector(".audioFile .playButton").classList.remove("button");
                                 } else {
                                         document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
                                             soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
@@ -640,14 +642,16 @@ function pathAnalysis() {
                                 document.querySelector(".audioFile .playButton").style.userSelect="none";
                                 document.querySelector(".audioFile .playButton").style.opacity="0.6";
                                 document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
-                                document.querySelector(".audioFile .playButton").classList.remove("button").add("noHoverActiveButton");
+                                document.querySelector(".audioFile .playButton").classList.add("noHoverActiveButton");
+                                document.querySelector(".audioFile .playButton").classList.remove("button");
                                 // second button
                                 document.querySelector(".audioFile .downloadButton").setAttribute("title","Cannot be downloaded : There is no audio file");
                                 document.querySelector(".audioFile .downloadButton").style.cursor="not-allowed";
                                 document.querySelector(".audioFile .downloadButton").style.userSelect="none";
                                 document.querySelector(".audioFile .downloadButton").style.opacity="0.6";
                                 document.querySelector(".audioFile .downloadButton").setAttribute("disabled","true");
-                                document.querySelector(".audioFile .downloadButton").classList.remove("button").add("noHoverActiveButton");
+                                document.querySelector(".audioFile .downloadButton").classList.add("noHoverActiveButton");
+                                document.querySelector(".audioFile .downloadButton").classList.remove("button");
                            }
 
                         } else {
