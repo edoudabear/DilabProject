@@ -2233,10 +2233,10 @@ function newGroupElement(title="",genre="",description="",foundDate="",nCollabor
                         <div class="foundDate">
                             Created in ${foundDate.getFullYear()}
                         </div>
-                        <i class="bi bi-dot"></i>
+                        ${genre!=null ? `<i class="bi bi-dot"></i>
                         <div class="genre">
                             ${genre}
-                        </div>
+                        </div>` : ``}
                         <i class="bi bi-dot"></i>
                         <div class="members">
                             <span class="nMembers">${nCollaborators}</span>&nbsp;members
