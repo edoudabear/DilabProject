@@ -86,7 +86,7 @@
             </div>
             <div class=chat>
                 <div class=messagesHeader>
-                    <h4>Chat</h4>
+                    <h4>Project Chat</h4>
                 </div>
                 <div class="messagesContainer">
                     <div class=messagesUnavailable >

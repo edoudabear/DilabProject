@@ -489,6 +489,7 @@ function pathAnalysis() {
                             // group info insertion
                             data=log.data;
                             document.querySelector(".main-content-header").innerHTML=data[0][0].groupName;
+                            document.querySelector(".groupPage .userChat").innerHTML=data[0][0].groupName;
                             var year=new Date(data[0][0].dateOfBirth);
                             document.querySelector(".styledHead .styledHeadPP img").src="https://e.diskloud.fr/Dilab/group/"+data[0][0].groupPicture;
                             document.querySelector(".registrationDate").innerHTML=year.getFullYear();
