@@ -603,7 +603,7 @@ function pathAnalysis() {
                                     soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
                                     soundTitles.unshift(project.name);
                                     soundAuthors.unshift(project.groupName);
-                                    soundPictures.unshift((line.audioFileDir!=null) ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg");
+                                    soundPictures.unshift((project.audioFileDir!=null) ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg");
                                     playSound(0);
                                     audioObj.play();
                                 })
