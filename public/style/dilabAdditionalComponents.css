@@ -69,6 +69,7 @@
     font-size: 18px;
     color: black;
     transition: 0.2s;
+    cursor: pointer;
   }
 
   .searchRecommendations .choice:hover {
