@@ -530,11 +530,11 @@ body {
 }
 
 .noHoverActiveButton:hover {
-    text-decoration: none;
+    color : white;
 }
 
 .noHoverActiveButton:active {
-    text-decoration: none;
+    color : white;
 }
   
   .button:before {
