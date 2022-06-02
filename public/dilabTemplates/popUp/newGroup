@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="savedGenre">
-                <i class="bi bi-check2"></i>
+                <i class="bi bi-check2"></i> Saved genre : <span class="savedGenre" dataVal="">No Genre set yet</span> 
             </div>
             <h4>Description</h4>
             <textarea placeholder="We cows no cap" maxlength=512 name=grpDescription resizable=none placeholder="Group description"></textarea>
