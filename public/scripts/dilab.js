@@ -1165,9 +1165,9 @@ function pathAnalysis() {
                                 }
                             };
 
-                            document.querySelector("input[name=grpOrientation]").addEventListener("change",e=> {
+                            document.querySelector("input[name=grpOrientation]").addEventListener("keyup",e=> {
                                 if (document.querySelector("input[name=grpOrientation]").value.length>2) {
-                                    document.querySelector(".searchRecommandations").style.display="";
+                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="";
                                     fetch('/Dilab/get', {
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -1184,17 +1184,17 @@ function pathAnalysis() {
                                        if (data.status==false) {
                                            return;
                                        } else {
-                                        document.querySelector(".searchRecommandations").innerHTML="";
+                                        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="";
                                            var res=data.data;
                                            for (var i=0;i<res.length;i++) {
-                                                document.querySelector(".searchRecommandations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
                                            } if (res.length==0) {
-                                            document.querySelector(".searchRecommandations").innerHTML="No results found";
+                                            document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
                                            }
                                        }
                                     });
                                 } else {
-                                    document.querySelector(".searchRecommandations").style.display="none";
+                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
                                 }
                             });
 
