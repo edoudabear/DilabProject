@@ -582,7 +582,7 @@ function pathAnalysis() {
                            }
                            dateObj=new Date(project.lastProjectFileUpdate);
                            document.querySelector(".projectPage .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${line.groupName}/${line.name}/${line.projectFileDir}`)
+                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.projectFileDir}`)
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
