@@ -1167,7 +1167,7 @@ function pathAnalysis() {
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("change",e=> {
                                 if (document.querySelector("input[name=grpOrientation]").value.length>2) {
-                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").style.display="";
+                                    document.querySelector(".searchRecommandations").style.display="";
                                     fetch('/Dilab/get', {
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -1176,7 +1176,7 @@ function pathAnalysis() {
                                         method: 'POST',
                                         body: JSON.stringify({
                                             type : "genres",
-                                            genreName : document.querySelector("input[name=grpOrientation]").value
+                                            genrePattern : document.querySelector("input[name=grpOrientation]").value
                                         }) //data
                                     }).then(out => {
                                         return out.json();
@@ -1184,17 +1184,17 @@ function pathAnalysis() {
                                        if (data.status==false) {
                                            return;
                                        } else {
-                                        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML="";
+                                        document.querySelector(".searchRecommandations").innerHTML="";
                                            var res=data.data;
                                            for (var i=0;i<res.length;i++) {
-                                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                                                document.querySelector(".searchRecommandations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
                                            } if (res.length==0) {
-                                            document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML="No results found";
+                                            document.querySelector(".searchRecommandations").innerHTML="No results found";
                                            }
                                        }
                                     });
                                 } else {
-                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").style.display="none";
+                                    document.querySelector(".searchRecommandations").style.display="none";
                                 }
                             });
 
