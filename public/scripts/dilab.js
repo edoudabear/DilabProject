@@ -572,7 +572,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            progress(project.currentPhase,".progressPart .projectProgress");
-                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`/Dilab/group?g=${encodeURI(project.groupName)}`);
+                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);///Dilab/group?g=${encodeURI(project.groupName)}`);
                            document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
                            document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
                            document.querySelector(".projectPage .projectGenres").innerHTML=project.genres
