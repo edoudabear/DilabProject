@@ -614,6 +614,7 @@ function pathAnalysis() {
                                     soundTitles.unshift(project.name);
                                     soundAuthors.unshift(project.groupName);
                                     soundPictures.unshift(projectPicturePath);
+                                    lyrics.unshift(project.lyrics);
                                     playSound(0);
                                     audioObj.play();
                                 })
