@@ -559,7 +559,9 @@ function pathAnalysis() {
                             */
                            var project=log.data[0];
                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
-                           var dateObj=new Date(project.dateOfBirth);
+                           var dateObj=new Date(project.dateOfBirth),
+                           projectPicturePath=(project.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg";
+                           document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            progress(project.currentPhase,".progressPart .projectProgress");
                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`/Dilab/group?g=${encodeURI(project.groupName)}`);
@@ -603,7 +605,7 @@ function pathAnalysis() {
                                     soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
                                     soundTitles.unshift(project.name);
                                     soundAuthors.unshift(project.groupName);
-                                    soundPictures.unshift((project.projectPicture!=null) ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg");
+                                    soundPictures.unshift(projectPicturePath);
                                     playSound(0);
                                     audioObj.play();
                                 })
@@ -665,7 +667,7 @@ function pathAnalysis() {
                                 var line=projectList[i],
                                 el=document.createElement("div");
                                 el.classList.add("project");
-                                var projectPPath=(line.projectPicture!=null) ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
+                                var projectPPath=(line.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
                                 el.innerHTML+=newProjectElement(line.name,projectPPath,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
                                 el.setAttribute("onclick",`loadPage("${line.name} Dilab","project",[["p","${line.name}"],["g","${line.groupName}"]]);`)
                                 document.querySelector(".projectsWrapper").appendChild(el);
