@@ -1761,7 +1761,7 @@ body {
 
 .projectFile .infoWrapper, .audioFile .infoWrapper {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
 .projectFile h4 {
