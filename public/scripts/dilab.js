@@ -600,9 +600,9 @@ function pathAnalysis() {
                                document.querySelector(".audioFile .playButton").style.opacity="0.6";
                            } else {
                                 document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
-                                    soundUrls.shift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
-                                    soundTitles.shift(project.name);
-                                    soundAuthors.shift(project.groupName);
+                                    soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
+                                    soundTitles.unshift(project.name);
+                                    soundAuthors.unshift(project.groupName);
                                     playSound(0);
                                 })
                            }
