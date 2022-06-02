@@ -2169,7 +2169,7 @@ function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
     `
 }
 
-function newGroupElement(title="",genre="",description="",foundDate="",nCollaborators="",nProjects="",nReleases="",imagePath="people.svg") {
+function newGroupElement(title="",genre="",description="",foundDate="",nCollaborators="",nReleases="",nProjects="",imagePath="people.svg") {
     return `<div onclick='loadPage("${title} Dilab","group",[["g","${title}"]])' class="group">
                 <div class="cover">
                     <img src="https://e.diskloud.fr/Dilab/group/${imagePath}" title="profile picture group">
