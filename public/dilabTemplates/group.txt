@@ -525,6 +525,7 @@
                     </div>
                 </div>
                 <div class=chatInputContainer>
+                    <div class=hider></div>
                     <input type=text disabled class=chatInput placeholder="message.." />
                     <div class=chatSendBtn>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">

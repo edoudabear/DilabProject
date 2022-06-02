@@ -1479,7 +1479,7 @@ body {
     height : calc(100% - 100px);
     background : lightgray;
     width : 100%;
-    overflow-y: auto;
+    overflow-y: hidden; /*TO DYNAMISE : must be set to auto when available*/
     box-shadow: 
         inset 0px 11px 8px -10px rgb(163, 163, 163),
         inset 0px -11px 8px -10px rgb(163, 163, 163);
@@ -1575,6 +1575,20 @@ body {
     justify-content: center;
     align-items: center;
     color : white;
+    position: relative;
+}
+
+.chat > .chatInputContainer > .hider {
+    position: absolute;
+    display : block ; /* must be set to none if chat available */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, red, purple);
+    opacity: 0.9;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .chat > .chatInputContainer > div {
