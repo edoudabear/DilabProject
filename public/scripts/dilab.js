@@ -587,7 +587,7 @@ function pathAnalysis() {
                            
                            // Audio file
                            document.querySelector(".projectPage .audioFileName").innerHTML=project.audioFileDir;
-                           document.querySelector(".projectPage .audioFileType").innerHTML= `${project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.'))} File`
+                           document.querySelector(".projectPage .audioFileType").innerHTML= `${project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.') + 1).toUpperCase()} File`
                            dateObj=new Date(project.lastAudioFileUpdate);
                            document.querySelector(".projectPage .audioFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
                            document.querySelector(".projectPage .audioFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
