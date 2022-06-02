@@ -2108,6 +2108,12 @@ body {
     justify-content: left; 
 }
 
+.fullScreen .fullScreenPlayingSoundCover {
+    height: 120px;
+    margin: 12px;
+    border-radius: 5px;
+}
+
 .fullScreen:fullscreen  {
     width: 100%;
     height: 100%;
