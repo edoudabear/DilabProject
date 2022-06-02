@@ -570,7 +570,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
                            document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
 
-                           document.querySelector(".projectPage .projectFilename").innerHTML=project.projectFileDir;
+                           document.querySelector(".projectPage .projectFileName").innerHTML=project.projectFileDir;
                            var flStudioExtension = /(\.flp)$/i,
                            abletonExtension = /(\.als|\.alp)$/i;
                            if (flStudioExtension.exec(project.projectFileDir)) {
