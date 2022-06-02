@@ -599,7 +599,7 @@ function pathAnalysis() {
                                document.querySelector(".projectFile .infoWrapper").innerHTML="There is not project file uploaded";
                                document.querySelector(".projectFile .button").style.opacity="0.6";
                                document.querySelector(".projectFile .button").setAttribute("title","Cannot be downloaded : There is no project file");
-                               document.querySelector(".projectFile .button").style.cursor="forbidden";
+                               document.querySelector(".projectFile .button").style.cursor="not-allowed";
                            }
                            
                            // Audio file
@@ -612,11 +612,11 @@ function pathAnalysis() {
                                 document.querySelector(".projectPage .audioFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
                                 var audio=document.createElement("audio");
                                 if (audio.canPlayType(`audio/${audioExtension}`)=="") {
-                                    document.querySelector(".projectFile .downloadButton").setAttribute("disabled","true");
-                                    document.querySelector(".projectFile .downloadButton").setAttribute("title","Cannot be played : Unsupported file format");
-                                    document.querySelector(".projectFile .downloadButton").style.cursor="not-allowed";
-                                    document.querySelector(".projectFile .downloadButton").style.userSelect="none";
-                                    document.querySelector(".projectFile .downloadButton").style.opacity="0.6";
+                                    document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
+                                    document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : Unsupported file format");
+                                    document.querySelector(".audioFile .playButton").style.cursor="not-allowed";
+                                    document.querySelector(".audioFile .playButton").style.userSelect="none";
+                                    document.querySelector(".audioFile .playButton").style.opacity="0.6";
                                 } else {
                                         document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
                                             soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
