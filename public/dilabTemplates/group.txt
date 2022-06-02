@@ -369,7 +369,7 @@
                 <h2>Informations about the group</h2>
                 <hr />
                 <div class="infoElement">
-                    Main genres :&nbsp;<span class=groupGenres><div style="width:5em;" class="skeletonLoader"></div></span>
+                    Main genre :&nbsp;<span class=groupGenres><div style="width:5em;" class="skeletonLoader"></div></span>
                 </div>
                 <div class="infoElement">
                     Description :&nbsp;

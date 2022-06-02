@@ -266,7 +266,7 @@
                     Description :&nbsp;<span class=projectDescription><div style="width:7em;" class="skeletonLoader"></div></span></p>
                 </div>
                 <div class="infoElement">
-                    Main genres :&nbsp<span class=projectGenres><div style="width:5em;" class="skeletonLoader"></div></span>
+                    Main genre :&nbsp<span class=projectGenres><div style="width:5em;" class="skeletonLoader"></div></span>
                 </div>
                 <div class="infoElement">
                     Set up on Dilab the&nbsp;<span class=projectBeginDate><div style="width:6em;" class="skeletonLoader"></div></span>
