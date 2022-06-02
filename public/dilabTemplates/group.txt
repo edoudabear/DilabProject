@@ -394,6 +394,10 @@
                     </span></h4>
                 </div>
                 <div class="messagesContainer">
+                    <div class=messagesUnavailable >
+                        To Chat, you must be part of the group
+                        <button class=button>Let Me Log In</button>
+                    </div>
                     <div class="globalMessage local">
                         <div class="messageWrapper">
                             <div class="message local">

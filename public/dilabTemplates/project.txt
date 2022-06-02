@@ -91,7 +91,7 @@
                 <div class="messagesContainer">
                     <div class=messagesUnavailable >
                         To Chat, you must be part of the project
-                        <button class=button>Log me In</button>
+                        <button class=button>Let Me Log In</button>
                     </div>
                     <div class="globalMessage local">
                         <div class="messageWrapper">
