@@ -107,12 +107,16 @@ function loadSound(url) {
     soundTitleObj.title=soundTitles[playlistIndex];
     soundAuthorsObj.innerHTML=soundAuthors[playlistIndex];
     soundAuthorsObj.title=soundAuthors[playlistIndex];
-    var lyricsData=parseLyrics(lyrics[playlistIndex]);
+    var lyricsData=parseLyrics(lyrics[playlistIndex]),
+    currentSoundPicturePath=`${soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
+    if (soundPictures[playlistIndex].indexOf("https://e.diskloud.fr/")>-1) {
+      picturePath=soundPictures[playlistIndex];
+    }
     parsedLyrics=lyricsData[1];
     parsedLyricsTimes=lyricsData[0];
     document.querySelector(".fullScreen .soundName").innerHTML=soundTitles[playlistIndex];
     document.querySelector(".fullScreen  .soundAuthor").innerHTML=soundAuthors[playlistIndex];
-    document.querySelector(".coverOfCurrentlyPlayingSound").src= soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/"+soundPictures[playlistIndex] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg";
+    document.querySelector(".coverOfCurrentlyPlayingSound").src= currentSoundPicturePath;
     document.querySelector(".fullScreen .fullScreenPlayingSoundCover").src= soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/"+soundPictures[playlistIndex] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg";
     playlistContainer.innerHTML="";
     for (var i=0;i<soundUrls.length;i++) {
