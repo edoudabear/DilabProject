@@ -1187,10 +1187,10 @@ function pathAnalysis() {
                                         document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="";
                                            var res=data.data;
                                            for (var i=0;i<res.length;i++) {
-                                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
                                                 document.querySelector("input[name=grpOrientation]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
                                                     document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
-                                                    document.querySelector(".savedGenre").setAttribute("dataVal",e.target.getAttribute("dataVal"));
+                                                    document.querySelector(".savedGenre").setAttribute("datavalue",e.target.getAttribute("datavalue"));
                                                     document.querySelector(".searchRecommendations").style.display="none";
                                                     document.querySelector("input[name=grpOrientation]").value=e.target.innerHTML;
                                                 })
@@ -1223,7 +1223,7 @@ function pathAnalysis() {
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
                                 var data=new FormData();
                                 data.append("groupName",document.querySelector(".fieldStyle input[name=grpName]").value);
-                                data.append("groupOrientation",document.querySelector(".savedGenre").getAttribute("dataVal")=="" ? "NULL" : document.querySelector(".savedGenre").getAttribute("dataVal"));
+                                data.append("groupOrientation",document.querySelector(".savedGenre").getAttribute("datavalue")=="" ? "NULL" : document.querySelector(".savedGenre").getAttribute("datavalue"));
                                 data.append("groupDescription",document.querySelector("textarea[name=grpDescription]").value);
                                 if (!uploadField.files.length>0) {
                                     data.append("files", 1);
