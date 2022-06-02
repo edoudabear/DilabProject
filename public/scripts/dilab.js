@@ -581,44 +581,67 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
 
                            // Project file
-                           document.querySelector(".projectPage .projectFileName").innerHTML=project.projectFileDir;
-                           var flStudioExtension = /(\.flp)$/i,
-                           abletonExtension = /(\.als|\.alp)$/i;
-                           if (flStudioExtension.exec(project.projectFileDir)) {
-                                document.querySelector(".projectPage .projectFileType").innerHTML= "FL Studio project File"
-                           } else if (abletonExtension.exec(project.projectFileDir)) {
-                            document.querySelector(".projectPage .projectFileType").innerHTML= "Ableton Project File"
+                           if (project.projectFileDir!=null) {
+                                document.querySelector(".projectPage .projectFileName").innerHTML=project.projectFileDir;
+                                var flStudioExtension = /(\.flp)$/i,
+                                abletonExtension = /(\.als|\.alp)$/i;
+                                if (flStudioExtension.exec(project.projectFileDir)) {
+                                    document.querySelector(".projectPage .projectFileType").innerHTML= "FL Studio project File"
+                                } else if (abletonExtension.exec(project.projectFileDir)) {
+                                document.querySelector(".projectPage .projectFileType").innerHTML= "Ableton Project File"
+                                } else {
+                                document.querySelector(".projectPage .projectFileType").innerHTML= "Unconventional project file format"
+                                }
+                                dateObj=new Date(project.lastProjectFileUpdate);
+                                document.querySelector(".projectPage .projectFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                                document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.projectFileDir}`);
                            } else {
-                            document.querySelector(".projectPage .projectFileType").innerHTML= "Unconventional project file format"
+                               document.querySelector(".projectFile .infoWrapper").innerHTML="There is not project file uploaded";
+                               document.querySelector(".projectFile .button").style.opacity="0.6";
+                               document.querySelector(".projectFile .button").setAttribute("title","Cannot be downloaded : There is no project file");
+                               document.querySelector(".projectFile .button").style.cursor="forbidden";
                            }
-                           dateObj=new Date(project.lastProjectFileUpdate);
-                           document.querySelector(".projectPage .projectFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.projectFileDir}`);
                            
                            // Audio file
-                           var audioExtension = project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.') + 1).toUpperCase();
-                           document.querySelector(".projectPage .audioFileName").innerHTML=project.audioFileDir;
-                           document.querySelector(".projectPage .audioFileType").innerHTML= `${audioExtension} File`
-                           dateObj=new Date(project.lastAudioFileUpdate);
-                           document.querySelector(".projectPage .audioFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-                           document.querySelector(".projectPage .audioFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
-                           var audio=document.createElement("audio");
-                           if (audio.canPlayType(`audio/${audioExtension}`)=="") {
-                               document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
-                               document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : Unsupported file format");
-                               document.querySelector(".audioFile .playButton").style.userSelect="none";
-                               document.querySelector(".audioFile .playButton").style.opacity="0.6";
-                           } else {
-                                document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
-                                    soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
-                                    soundTitles.unshift(project.name);
-                                    soundAuthors.unshift(project.groupName);
-                                    soundPictures.unshift(projectPicturePath);
-                                    lyrics.unshift(""); //project.lyrics);
-                                    playSound(0);
-                                    audioObj.play();
-                                })
+                           if (project.audioFileDir!=null) {
+                                var audioExtension = project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.') + 1).toUpperCase();
+                                document.querySelector(".projectPage .audioFileName").innerHTML=project.audioFileDir;
+                                document.querySelector(".projectPage .audioFileType").innerHTML= `${audioExtension} File`
+                                dateObj=new Date(project.lastAudioFileUpdate);
+                                document.querySelector(".projectPage .audioFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                                document.querySelector(".projectPage .audioFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
+                                var audio=document.createElement("audio");
+                                if (audio.canPlayType(`audio/${audioExtension}`)=="") {
+                                    document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
+                                    document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : Unsupported file format");
+                                    document.querySelector(".audioFile .playButton").style.cursor="forbidden";
+                                    document.querySelector(".audioFile .playButton").style.opacity="0.6";
+                                } else {
+                                        document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
+                                            soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
+                                            soundTitles.unshift(project.name);
+                                            soundAuthors.unshift(project.groupName);
+                                            soundPictures.unshift(projectPicturePath);
+                                            lyrics.unshift(""); //project.lyrics);
+                                            playSound(0);
+                                            audioObj.play();
+                                        })
+                                }                               
                            }
+                           else {
+                                // first button
+                                document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
+                                document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : There is no audio file");
+                                document.querySelector(".audioFile .playButton").style.cursor="forbidden";
+                                document.querySelector(".audioFile .playButton").style.opacity="0.6";
+                                document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
+                                // second button
+                                document.querySelector(".audioFile .downloadButton").setAttribute("title","Cannot be downloaded : There is no audio file");
+                                document.querySelector(".audioFile .downloadButton").style.cursor="forbidden";
+                                document.querySelector(".audioFile .downloadButton").style.opacity="0.6";
+                                document.querySelector(".audioFile .downloadButton").setAttribute("disabled","true");
+                           }
+
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
