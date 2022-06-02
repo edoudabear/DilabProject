@@ -1166,7 +1166,7 @@ function pathAnalysis() {
                             };
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("keyup",e=> {
-                                if (document.querySelector("input[name=grpOrientation]").value.length>2) {
+                                if (document.querySelector("input[name=grpOrientation]").value.length>1) {
                                     document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="";
                                     fetch('/Dilab/get', {
                                         headers: {
