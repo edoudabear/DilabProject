@@ -1444,6 +1444,13 @@ body {
     max-height: calc(90vh - 120px);
 }
 
+.artistInformations > .chatContainer > .chat > .userChat {
+    max-width: calc(100% - 200px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 
 /* ChatBox */
 
