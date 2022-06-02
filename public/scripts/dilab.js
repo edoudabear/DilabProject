@@ -575,7 +575,7 @@ function pathAnalysis() {
                            abletonExtension = /(\.als|\.alp)$/i;
                            if (flStudioExtension.exec(project.projectFileDir)) {
                                 document.querySelector(".projectPage .projectFileType").innerHTML= "FL Studio project File"
-                           } else if (abletonExtension.exec(projectFileDir)) {
+                           } else if (abletonExtension.exec(project.projectFileDir)) {
                             document.querySelector(".projectPage .projectFileType").innerHTML= "Ableton Project File"
                            } else {
                             document.querySelector(".projectPage .projectFileType").innerHTML= "Unconventional project file format"
