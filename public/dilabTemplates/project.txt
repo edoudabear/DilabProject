@@ -89,6 +89,10 @@
                     <h4>Chat</h4>
                 </div>
                 <div class="messagesContainer">
+                    <div class=messagesUnavailable >
+                        To Chat, you must be part of the project
+                        <button class=button>Log me In</button>
+                    </div>
                     <div class="globalMessage local">
                         <div class="messageWrapper">
                             <div class="message local">
