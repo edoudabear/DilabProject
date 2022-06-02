@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="savedGenre">
-                <i class="bi bi-success"></i>
+                <i class="bi bi-check2"></i>
             </div>
             <h4>Description</h4>
             <textarea placeholder="We cows no cap" maxlength=512 name=grpDescription resizable=none placeholder="Group description"></textarea>
