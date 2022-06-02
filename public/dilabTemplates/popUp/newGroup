@@ -9,7 +9,7 @@
                 <div class="searchRecommendations">
                 </div>
             </div>
-            <div class="savedGenre">
+            <div class="savedGenreContainer">
                 <i class="bi bi-check2"></i> Saved genre : <span class="savedGenre" dataVal="">No Genre set yet</span> 
             </div>
             <h4>Description</h4>
