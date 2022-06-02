@@ -362,7 +362,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
         } else if (req.body.type=="genre" && req.body.genrePattern) {
-            dilabConnection.query(`SELECT genreName FROM DilabGenres WHERE genreName LIKE '${req.body.genrePattern}%' LIMIT 10`,(err,results,fields)=> {
+            dilabConnection.query(`SELECT id,genreName FROM DilabGenres WHERE genreName LIKE '${req.body.genrePattern}%' LIMIT 10`,(err,results,fields)=> {
                 if (err) {
                     res.end(JSON.stringify({
                         return : "error",
