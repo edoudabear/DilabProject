@@ -60,4 +60,20 @@
     box-shadow: 0 0 4px 0px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius : 5px;
+    background-color: white ;
+  }
+
+  .searchRecommendations .choice {
+    height : 20px;
+    font-size: 18px;
+    color: black;
+    transition: 0.2s;
+  }
+
+  .searchRecommendations .choice:hover {
+    background : rgb(160, 159, 159);
+  }
+
+  .searchRecommendations .choice:active {
+    background : rgb(131, 129, 129);
   }
