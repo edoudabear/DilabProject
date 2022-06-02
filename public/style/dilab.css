@@ -1479,7 +1479,7 @@ body {
     height : calc(100% - 100px);
     background : lightgray;
     width : 100%;
-    overflow-x: auto;
+    overflow-y: auto;
     box-shadow: 
         inset 0px 11px 8px -10px rgb(163, 163, 163),
         inset 0px -11px 8px -10px rgb(163, 163, 163);
