@@ -629,6 +629,7 @@ function pathAnalysis() {
                                 }                               
                            }
                            else {
+                                document.querySelector(".audioFile .infoWrapper").innerHTML = "There is no audio file uploaded";
                                 // first button
                                 document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
                                 document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : There is no audio file");
