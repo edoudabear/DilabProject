@@ -78,10 +78,15 @@
                         <div class=infoWrapper>
                             <span class=projectFileName>
                                 <div style="width:6em;" class="skeletonLoader"></div>
-                            </span><i class="bi bi-dot"></i><span class=projectFileType>
+                            </span>
+                            <span class=projectFileType>
                                 <div style="width:6em;" class="skeletonLoader"></div>
-                            </span><i class="bi bi-dot"></i>Last update the&nbsp;<span class=updateDate>
-                                <div style="width:6em;" class="skeletonLoader"></div>
+                            </span>
+                            <span>
+                                Last update the&nbsp;
+                                <span class=updateDate>
+                                    <div style="width:6em;" class="skeletonLoader"></div>
+                                </span>
                             </span>
                         </div>
                     </div>
