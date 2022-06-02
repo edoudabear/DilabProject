@@ -501,7 +501,7 @@ function pathAnalysis() {
                             var year=new Date(data[0][0].dateOfBirth);
                             document.querySelector(".styledHead .styledHeadPP img").src="https://e.diskloud.fr/Dilab/group/"+data[0][0].groupPicture;
                             document.querySelector(".registrationDate").innerHTML=year.getFullYear();
-                            document.querySelector(".groupGenres").innerHTML=data[0][0].genres;
+                            document.querySelector(".groupGenres").innerHTML=data[0][0].genres!=null ? data[0][0].genres : "Not indicated" ;
                             document.querySelector(".groupBio").innerHTML=data[0][0].description;
                             document.querySelector(".nReleases").innerHTML=data[3][0].nb_releases;
                             document.querySelector(".nProjects").innerHTML=data[2][0].nb_projets_actifs;
