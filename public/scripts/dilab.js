@@ -116,10 +116,14 @@ function loadSound(url) {
     document.querySelector(".fullScreen .fullScreenPlayingSoundCover").src= soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/"+soundPictures[playlistIndex] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg";
     playlistContainer.innerHTML="";
     for (var i=0;i<soundUrls.length;i++) {
+      var picturePath = `${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
+      if (soundPictures[i].indexOf("https://e.diskloud.fr/")>-1) {
+        picturePath=soundPictures[i];
+      }
       playlistContainer.innerHTML+=`<div class="playlistElement" onclick=playSound(${i},true)>
                                         <div class=left>\
                                             <div class="cover">\
-                                                <img src="${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}" />\
+                                                <img src="${picturePath}" />\
                                             </div>\
                                             <div class=soundName>\
                                                 <span class="soundTitle">${soundTitles[i]}</span>\
