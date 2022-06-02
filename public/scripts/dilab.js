@@ -1167,7 +1167,7 @@ function pathAnalysis() {
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("keyup",e=> {
                                 if (document.querySelector("input[name=grpOrientation]").value.length>0) {
-                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="";
+                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
                                     fetch('/Dilab/get', {
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -1197,6 +1197,14 @@ function pathAnalysis() {
                                     document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
                                 }
                             });
+
+                            document.querySelector("input[name=grpOrientation]").addEventListener("focus",()=>{
+                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
+                            }
+
+                            document.querySelector("input[name=grpOrientation]").addEventListener("focusout",()=>{
+                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
+                            }
 
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();
