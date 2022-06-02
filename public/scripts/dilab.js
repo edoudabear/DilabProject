@@ -1207,7 +1207,7 @@ function pathAnalysis() {
                             });
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("focusout",()=>{
-                                if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) || document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]"))) {
+                                if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]"))) {
                                     document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
                                 }
                             });
