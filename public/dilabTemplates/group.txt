@@ -396,7 +396,7 @@
                 <div class="messagesContainer">
                     <div class=messagesUnavailable >
                         To Chat, you must be part of the group
-                        <button class=button>Let Me Log In</button>
+                        <a class=button href=/Dilab/login>Let Me Log In</a>
                     </div>
                     <div class="globalMessage local">
                         <div class="messageWrapper">
