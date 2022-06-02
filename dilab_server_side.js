@@ -149,11 +149,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         }
     } else if (req.params.action=="get") {
         if (req.body.type=="mainGroups") {
-            dilabConnection.query(`SELECT DilabMusicGroups.groupName,DilabMusicGroups.genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
+            dilabConnection.query(`SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                         LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
                         LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+                        LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
                         -- WHERE genres=""
                         GROUP BY DilabMusicGroups.id
                         ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
