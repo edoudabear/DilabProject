@@ -1206,7 +1206,7 @@ function pathAnalysis() {
                                 document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
                             });
 
-                            document.querySelector("input[name=grpOrientation]").addEventListener("focusout",()=>{
+                            document.querySelector("input[name=grpOrientation]").addEventListener("focusout",(e)=>{
                                 console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]")));
                                 console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target))
                                 if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]"))) {
