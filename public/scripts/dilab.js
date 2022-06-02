@@ -1175,7 +1175,7 @@ function pathAnalysis() {
                                         },
                                         method: 'POST',
                                         body: JSON.stringify({
-                                            type : "genres",
+                                            type : "genre",
                                             genrePattern : document.querySelector("input[name=grpOrientation]").value
                                         }) //data
                                     }).then(out => {
