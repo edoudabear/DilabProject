@@ -603,7 +603,9 @@ function pathAnalysis() {
                                     soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
                                     soundTitles.unshift(project.name);
                                     soundAuthors.unshift(project.groupName);
+                                    soundPictures.unshift("");
                                     playSound(0);
+                                    audioObj.play();
                                 })
                            }
                         } else {
