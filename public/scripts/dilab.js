@@ -1192,6 +1192,7 @@ function pathAnalysis() {
                                                     document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
                                                     document.querySelector(".savedGenre").setAttribute("dataVal",e.target.getAttribute("dataVal"));
                                                     document.querySelector(".searchRecommendations").style.display="none";
+                                                    document.querySelector("input[name=grpOrientation]").value=e.target.innerHTML;
                                                 })
                                            } if (res.length==0) {
                                             document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
