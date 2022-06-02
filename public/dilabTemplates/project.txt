@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class=optBtns>
-                        <button class=button>Download</button>
+                        <a class="downloadButton button" download >Download</a>
                     </div>
                 </div>
                 <div class="file audioFile">
@@ -78,9 +78,9 @@
                         </div>
                     </div>
                     <div class=optBtns>
-                        <button class=button>Play</button>
+                        <button class="playButton button">Play</button>
                         <div class=separator></div>
-                        <button class=button>Download</button>
+                        <a class="downloadButton button" download >Download</a>
                     </div>
                 </div>
             </div>
