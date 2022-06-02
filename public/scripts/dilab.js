@@ -570,6 +570,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
                            document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
 
+                           // Project file
                            document.querySelector(".projectPage .projectFileName").innerHTML=project.projectFileDir;
                            var flStudioExtension = /(\.flp)$/i,
                            abletonExtension = /(\.als|\.alp)$/i;
@@ -581,8 +582,15 @@ function pathAnalysis() {
                             document.querySelector(".projectPage .projectFileType").innerHTML= "Unconventional project file format"
                            }
                            dateObj=new Date(project.lastProjectFileUpdate);
-                           document.querySelector(".projectPage .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.projectFileDir}`)
+                           document.querySelector(".projectPage .projectFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.projectFileDir}`);
+                           
+                           // Audio file
+                           document.querySelector(".projectPage .audioFileName").innerHTML=project.audioFileDir;
+                           document.querySelector(".projectPage .audioFileType").innerHTML= `${project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.'))} File`
+                           dateObj=new Date(project.lastAudioFileUpdate);
+                           document.querySelector(".projectPage .audioFile .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                           document.querySelector(".projectPage .audioFile .downloadButton").setAttribute("href",`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
