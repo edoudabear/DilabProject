@@ -614,7 +614,8 @@ function pathAnalysis() {
                                 if (audio.canPlayType(`audio/${audioExtension}`)=="") {
                                     document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
                                     document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : Unsupported file format");
-                                    document.querySelector(".audioFile .playButton").style.cursor="forbidden";
+                                    document.querySelector(".audioFile .playButton").style.cursor="not-allowed";
+                                    document.querySelector(".audioFile .playButton").style.userSelect="none";
                                     document.querySelector(".audioFile .playButton").style.opacity="0.6";
                                 } else {
                                         document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
@@ -633,12 +634,14 @@ function pathAnalysis() {
                                 // first button
                                 document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
                                 document.querySelector(".audioFile .playButton").setAttribute("title","Cannot be played : There is no audio file");
-                                document.querySelector(".audioFile .playButton").style.cursor="forbidden";
+                                document.querySelector(".audioFile .playButton").style.cursor="not-allowed";
+                                document.querySelector(".audioFile .playButton").style.userSelect="none";
                                 document.querySelector(".audioFile .playButton").style.opacity="0.6";
                                 document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
                                 // second button
                                 document.querySelector(".audioFile .downloadButton").setAttribute("title","Cannot be downloaded : There is no audio file");
-                                document.querySelector(".audioFile .downloadButton").style.cursor="forbidden";
+                                document.querySelector(".audioFile .downloadButton").style.cursor="not-allowed";
+                                document.querySelector(".audioFile .downloadButton").style.userSelect="none";
                                 document.querySelector(".audioFile .downloadButton").style.opacity="0.6";
                                 document.querySelector(".audioFile .downloadButton").setAttribute("disabled","true");
                            }
