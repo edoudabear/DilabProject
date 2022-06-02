@@ -42,3 +42,21 @@
     transform : translate(0,4px);
     transition: width 1s;
   }
+
+  /* Search-recommendations styling */
+
+  .inputSearchRecommandationContainer {
+    background : white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius : 5px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+  }
+  .searchRecommendations {
+    position : absolute;
+    top : 100%;
+    left : 0;
+    width: 100%;
+    min-height: 5px;
+  }

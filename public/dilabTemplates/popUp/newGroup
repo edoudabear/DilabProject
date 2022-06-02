@@ -4,7 +4,10 @@
             <h4>Group name</h4>
             <input type=text maxlength=122 name=grpName placeholder="Azureal"/>
             <h4>Group orientation (from a musical perspective, hfgvfhsqf)</h4>
-            <input type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
+            <div class="inputSearchRecommandationContainer">
+                <input type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
+                <div class="searchRecommendations"></div>
+            </div>
             <h4>Description</h4>
             <textarea placeholder="We cows no cap" maxlength=512 name=grpDescription resizable=none placeholder="Group description"></textarea>
         </div>
