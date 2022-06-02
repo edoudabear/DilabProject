@@ -4,8 +4,8 @@
             <h4>Group name</h4>
             <input type=text maxlength=122 name=grpName placeholder="Azureal"/>
             <h4>Group orientation (from a musical perspective, hfgvfhsqf)</h4>
-            <div class="inputSearchRecommandationContainer">
-                <input type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
+            <div style="margin : 5px;" class="inputSearchRecommandationContainer">
+                <input style="margin : 0;" type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
                 <div class="searchRecommendations"></div>
             </div>
             <h4>Description</h4>
