@@ -76,10 +76,10 @@
                     <div class=projectFileInfos>
                         <h4>Audio file</h4>
                         <div class=infoWrapper>
-                            <span class=projectFileName>
+                            <span class=audioFileName>
                                 <div style="width:6em;" class="skeletonLoader"></div>
                             </span>
-                            <span class=projectFileType>
+                            <span class=audioFileType>
                                 <div style="width:6em;" class="skeletonLoader"></div>
                             </span>
                             <span>
