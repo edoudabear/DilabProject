@@ -586,6 +586,11 @@ body {
   .button:active:after {
     background: transparent;
   }
+
+  .button:hover, .button:active {
+      text-decoration: none;
+      color: white;
+  }
   
   .button:hover:before {
     opacity: 1;
