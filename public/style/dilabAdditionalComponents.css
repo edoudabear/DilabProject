@@ -47,8 +47,6 @@
 
   .inputSearchRecommandationContainer {
     background : white;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius : 5px;
     position: relative;
     width: fit-content;
     height: fit-content;
@@ -59,4 +57,7 @@
     left : 0;
     width: 100%;
     min-height: 5px;
+    box-shadow: 0 0 4px 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius : 5px;
   }
