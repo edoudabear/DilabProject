@@ -551,9 +551,6 @@ function pathAnalysis() {
                             console.log(log.data[0]);
                             /*
                             audioFileDir: null
-                            currentPhase: 3
-                            description: "ezgegz"
-                            groupName: "Edoudé"
                             lastAudioFileUpdate: "2022-02-05T22:10:11.000Z"
                             lastProjectFileUpdate: "2022-02-05T22:10:11.000Z"
                             nCollaborators: 2
@@ -566,12 +563,26 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            progress(project.currentPhase,".progressPart .projectProgress");
                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`/Dilab/group?g=${encodeURI(project.groupName)}`);
-                           document.querySelector(".groupsFounder").innerHTML=project.groupName;
-                           document.querySelector(".projectDescription").innerHTML=project.description;
-                           document.querySelector(".projectGenres").innerHTML=project.genres
-                           document.querySelector(".projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+                           document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
+                           document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
+                           document.querySelector(".projectPage .projectGenres").innerHTML=project.genres
+                           document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+                           document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
+                           document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
 
-                           document.querySelector(".lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
+                           document.querySelector(".projectPage .projectFilename").innerHTML=project.projectFileDir;
+                           var flStudioExtension = /(\.flp)$/i,
+                           abletonExtension = /(\.als|\.alp)$/i;
+                           if (flStudioExtension.exec(project.projectFileDir)) {
+                                document.querySelector(".projectPage .projectFileType").innerHTML= "FL Studio project File"
+                           } else if (abletonExtension.exec(projectFileDir)) {
+                            document.querySelector(".projectPage .projectFileType").innerHTML= "Ableton Project File"
+                           } else {
+                            document.querySelector(".projectPage .projectFileType").innerHTML= "Unconventional project file format"
+                           }
+                           dateObj=new Date(project.lastProjectFileUpdate);
+                           document.querySelector(".projectPage .updateDate").innerHTML = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                           document.querySelector(".projectPage .projectFile .downloadButton").setAttribute("href",`/Dilab/project/${line.groupName}/${line.name}/${line.projectFileDir}`)
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
@@ -1181,8 +1192,7 @@ function pathAnalysis() {
             } else {
                 window.location.href="https://e.diskloud.fr/Dilab"; // Default case
                 location="https://e.diskloud.fr/Dilab";
-            }
-        case "/settings" :
+        } case "/settings" :
             if (userData!=null) {
                 loadTemplate("settings",()=>{
                     reloadUserData();
@@ -1232,8 +1242,7 @@ function pathAnalysis() {
                     })
                 });
                 break;
-            }
-        default :
+        } default :
             window.location.href="https://e.diskloud.fr/Dilab";
             location="https://e.diskloud.fr/Dilab";
     }
