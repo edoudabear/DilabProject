@@ -1200,11 +1200,11 @@ function pathAnalysis() {
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("focus",()=>{
                                 document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
-                            }
+                            });
 
                             document.querySelector("input[name=grpOrientation]").addEventListener("focusout",()=>{
                                 document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
-                            }
+                            });
 
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();
