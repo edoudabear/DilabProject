@@ -1138,6 +1138,39 @@ function pathAnalysis() {
                    for (var i=0;i<data.length;i++) {
                        document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
                     }
+
+                    document.querySelector("input[name=grpOrientation]").addEventListener("change",e=> {
+                        if (document.querySelector("input[name=grpOrientation]").value.length>2) {
+                            document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").style.display="";
+                            fetch('/Dilab/get', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    type : "genres",
+                                    genreName : document.querySelector("input[name=grpOrientation]").value
+                                }) //data
+                            }).then(out => {
+                                return out.json();
+                            }).then(data => {
+                               if (data.status==false) {
+                                   return;
+                               } else {
+                                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML="";
+                                   var res=data.data;
+                                   for (var i=0;i<res.length;i++) {
+                                        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML+=`<div dataValue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                                   } if (res.length==0) {
+                                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommandations").innerHTML="No results found";
+                                   }
+                               }
+                            });
+                        } else {
+                            style.display="none";
+                        }
+                    })
                 });
                 if (!document.querySelector(".loginButton")) {
                     document.querySelector(".newGroup").addEventListener('click',e => {

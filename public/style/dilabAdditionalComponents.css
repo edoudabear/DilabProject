@@ -62,14 +62,19 @@
     border-bottom-right-radius : 5px;
     background-color: white ;
     z-index : 5;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .searchRecommendations .choice {
     height : 25px;
-    font-size: 18px;
     color: black;
     transition: 0.2s;
     cursor: pointer;
+    font-weight: normal;
     user-select: none;
   }
 
