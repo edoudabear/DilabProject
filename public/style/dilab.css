@@ -528,6 +528,14 @@ body {
     border-radius: 10px;
     text-decoration: none;
 }
+
+.noHoverActiveButton:hover {
+    text-decoration: none;
+}
+
+.noHoverActiveButton:active {
+    text-decoration: none;
+}
   
   .button:before {
     content: "";
