@@ -299,6 +299,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres FROM DilabMusicGroups 
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
+            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE groupName="${groupName}"; 
 
             /*2 (Group's main releases)*/
@@ -309,7 +310,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE DilabMusicGroups.groupName="${groupName}"
             ORDER BY nb_streams DESC LIMIT 3;
 
