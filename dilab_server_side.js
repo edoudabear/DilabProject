@@ -334,7 +334,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 ORDER BY DilabProject.dateOfBirth DESC LIMIT 20;
             `,(err,results,fields)=> {
                     if (err) { // DBS Query Error
-                        console.error(err);
+                        console.log(err);
                         res.end(JSON.stringify(
                             { "return" : "error",
                                 "data" : "internal server error",
