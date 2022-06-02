@@ -6,7 +6,12 @@
             <h4>Group orientation (from a musical perspective, hfgvfhsqf)</h4>
             <div style="margin : 5px;" class="inputSearchRecommandationContainer">
                 <input style="margin : 0;" type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
-                <div class="searchRecommendations"></div>
+                <div class="searchRecommendations">
+                    <div class="choice">Chill</div>
+                    <div class="choice">Dance</div>
+                    <div class="choice">Chill</div>
+                    <div class="choice">Chill</div>
+                </div>
             </div>
             <h4>Description</h4>
             <textarea placeholder="We cows no cap" maxlength=512 name=grpDescription resizable=none placeholder="Group description"></textarea>
