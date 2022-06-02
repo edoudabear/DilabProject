@@ -1577,6 +1577,10 @@ body {
     color : white;
 }
 
+.chat > .chatInputContainer > div {
+    cursor: pointer;
+}
+
 .chat > .chatInputContainer > .chatInput {
     border-radius: 16px/16px;
     height: 32px;
