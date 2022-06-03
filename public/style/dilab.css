@@ -1077,6 +1077,10 @@ body {
     color : white;
 }
 
+.noDataTextInfo p {
+    font-size: 24px;
+}
+
 .search-results .artist {
     width : 120px;
     height : 240px;

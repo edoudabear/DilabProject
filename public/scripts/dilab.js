@@ -820,7 +820,7 @@ function pathAnalysis() {
                             }
                             if (projectList.length==0) {
                                 console.log("yes..");
-                                document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !</div>";
+                                document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first to publish !</div>";
                             }
                         }
                     });
@@ -1208,7 +1208,7 @@ function pathAnalysis() {
                            document.querySelectorAll(".groupsWrapper")[1].innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
                         }
                         if (data.length==0) {
-                            document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !</div>";
+                            document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first to publish !</div>";
                         }
                     });
                 }
