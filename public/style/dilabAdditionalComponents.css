@@ -45,6 +45,10 @@
 
   /* Search-recommendations styling */
 
+  .savedGenreContainer {
+    font-size: 16px;
+  }
+
   .inputSearchRecommendationContainer {
     position: relative;
     width: fit-content;
