@@ -14,11 +14,11 @@ document.querySelector(".svgContainer").addEventListener("click",() => {
     document.querySelector(".profilePictureInput").click();
 })
 
-for (var i=0;i<document.querySelectorAll("input[type=text], textarea").length;i++) {
-    document.querySelectorAll("input[type=text], textarea")[i].addEventListener("focus",(e) => {
+for (var i=0;i<document.querySelectorAll("input[type=text], input[type=mail], input[type=password], textarea").length;i++) {
+    document.querySelectorAll("input[type=text],  input[type=mail], input[type=password], textarea")[i].addEventListener("focus",(e) => {
         e.target.style.outline="2px solid lightblue";
     });
-    document.querySelectorAll("input[type=text], textarea")[i].addEventListener("focusout",(e) => {
+    document.querySelectorAll("input[type=text],  input[type=mail], input[type=password], textarea")[i].addEventListener("focusout",(e) => {
         e.target.style.outline="none";
     });
 }
@@ -133,6 +133,57 @@ document.querySelector("input[name=mail]").addEventListener("focusout",(e) => {
         document.querySelector("input[name=mail]").style.opacity="";
     } else {
         checkIfExists("emailAvailable",document.querySelector("input[name=mail]").value,document.querySelector("input[name=mail]"),document.querySelector(".usedMail"));
+    }
+});
+
+document.querySelector("input[name=genres]").addEventListener("keyup",e=> {
+    if (document.querySelector("input[name=grpOrientation]").value.length>0) {
+        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
+        fetch('/Dilab/get', {
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                type : "genre",
+                genrePattern : document.querySelector("input[name=grpOrientation]").value
+            }) //data
+        }).then(out => {
+            return out.json();
+        }).then(data => {
+           if (data.status==false) {
+               return;
+           } else {
+            document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="";
+               var res=data.data;
+               for (var i=0;i<res.length;i++) {
+                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                    document.querySelector("input[name=grpOrientation]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
+                        document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
+                        document.querySelector(".savedGenre").setAttribute("datavalue",e.target.getAttribute("datavalue"));
+                        document.querySelector(".searchRecommendations").style.display="none";
+                        document.querySelector("input[name=grpOrientation]").value=e.target.innerHTML;
+                    })
+               } if (res.length==0) {
+                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
+               }
+           }
+        });
+    } else {
+        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
+    }
+});
+
+document.querySelector("input[name=grpOrientation]").addEventListener("focus",()=>{
+    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
+});
+
+document.querySelector("input[name=grpOrientation]").addEventListener("focusout",(e)=>{
+    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]")));
+    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target))
+    if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]"))) {
+        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
     }
 });
 
