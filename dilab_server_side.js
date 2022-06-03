@@ -183,7 +183,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                        WHERE genres=${parseInt(req.body.genreId)}
+                        WHERE DilabMusicGroups.genres=${parseInt(req.body.genreId)}
                         GROUP BY DilabMusicGroups.id
                         ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
