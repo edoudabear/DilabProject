@@ -37,9 +37,15 @@
                         <input type=mail name=mail placeholder="email"/>
                         <div class="error invalidMail">This email is not valid</div>
                         <div class="error usedMail">This email is already used</div>
-                        <h6>Your favorite genres</h6>
+                        <h6>Your favorite genre</h6>
                         <div class=genresSelector>
-                            <input type=text autocomplete="none" placeholder="Search for a genre.." />
+                            <div style="margin : 5px;" class="inputSearchRecommendationContainer">
+                                <input type=text autocomplete="none" placeholder="Search for a genre.." />
+                                <div class="searchRecommendations"></div>
+                            </div>
+                            <div class="savedGenreContainer">
+                                <i class="bi bi-check2"></i> Saved genre : <span class="savedGenre" datavalue="">No Genre set yet</span> 
+                            </div>
                         </div>
                     </form>
                     <div class=ppAndBio>

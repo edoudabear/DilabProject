@@ -612,7 +612,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     } else if (req.params.action=="add") {
         // Account creation case
         if (req.body.username && req.body.firstName && req.body.lastName && req.body.password && req.files 
-            && req.body.email && (req.body.genres || true) && req.body.biography) {
+            && req.body.email && req.body.genres && req.body.biography) {
             //Username Control
             if (req.body.username.indexOf('/')!=-1) {
                 res.end('{ "return" : "error", "status" : false, "data" : "Username is not available"}');
@@ -673,7 +673,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "error", "status" : false, "data" : "Biography is too long"}');
                 }
                 //Genres control
-                if (typeof req.body.genres!="string" && req.body.genres!=null) {
+                if (typeof req.body.genres!="number") {
                     res.end('{ "return" : "error", "status" : false, "data" : "Genres is..weird ?"}');      
                 }
                 //Preparing mail options account creation notification
@@ -720,7 +720,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             for (var i=0;i<req.files.length;i++)
                             fs.unlink(req.files[i].path,()=>{return;});
                         }
-                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}", "${mysql_real_escape_string(req.body.username)}.png")`).catch((err) => {serverError(res,err)})
+                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", ${mysql_real_escape_string(req.body.genres)}, "${mysql_real_escape_string(req.body.username)}.png")`).catch((err) => {serverError(res,err)})
                         .then(()=> {
                             res.end('{ "return" : "ok","status" : true, "data" : "Account created ! Make sure you confirm your account by mail."}')
                             transporter.sendMail(mailOptions, function(error, info) {
@@ -733,7 +733,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         });
                     });
                 } else { //Query for no personalized profile picture
-                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", "${mysql_real_escape_string(req.body.genres)}")`).catch((err) => {serverError(res,err)})
+                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", ${mysql_real_escape_string(req.body.genres)})`).catch((err) => {serverError(res,err)})
                     .then(()=> {
                         res.end('{ "return": "ok","status" : true, "data":"Account Created ! Make sure you confirm your account by email." }');                        
                         transporter.sendMail(mailOptions, function(error, info) {
