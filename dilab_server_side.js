@@ -189,9 +189,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 if (err) { // DBS Query Error
                     console.log(err);
                     res.end(JSON.stringify({
-                        "return" : "ok",
-                        "data" : [],
-                        "stats" : true
+                        "return" : "error",
+                        "data" : "internal server error",
+                        "stats" : false
                     }));
                 } else if (results.length!=0) {
                     res.end(JSON.stringify({
@@ -199,7 +199,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         status : true,
                         data : results.flat()}));
                 } else {
-                    res.end('{ "return" : "ok", "status" : false, "description" : "account is unfindable" }');
+                    res.end('{ "return" : "ok", "status" : true, "data" : [] }');
                 }
             });
             if (req.files) {
