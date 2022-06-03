@@ -826,6 +826,7 @@ function pathAnalysis() {
                                         el.querySelector(".playBtn").setAttribute("title",line.audioFileDir);
                                     }
                                     if (projectList.length==0) {
+                                        console.log("yes..");
                                         document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !</div>";
                                     }
                                     // Il faut encore créer un objet audio permettant de lire le projet audio..
