@@ -1524,7 +1524,8 @@ function reloadUserData(firstConnection=false) {
                 //Swal.fire("Success !","Apparently, the credentials you passed where wrong","success");
             }
             else {
-                Swal.fire("Error","Apparently, you are not connected (and it threw and error) :(","error");
+                console.log("user data has been deleted");
+                //Swal.fire("Error","Apparently, you are not connected (and it threw an error) :(","error");
                 return;
             }
           }); 
