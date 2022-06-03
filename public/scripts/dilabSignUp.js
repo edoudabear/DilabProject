@@ -161,6 +161,7 @@ document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
                     document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
                     document.querySelector("input[name=genre]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
                         document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
+                        genresSet=true;
                         document.querySelector(".savedGenre").setAttribute("datavalue",e.target.getAttribute("datavalue"));
                         document.querySelector(".searchRecommendations").style.display="none";
                         document.querySelector("input[name=genre]").value=e.target.innerHTML;
