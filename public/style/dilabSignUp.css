@@ -61,7 +61,7 @@ body {
     opacity: 1;
 }
 
-input[name=genre] {
+.signUp input[name=genre] {
     margin : 0;
 }
 
