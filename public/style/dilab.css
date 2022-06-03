@@ -1065,13 +1065,14 @@ body {
 }
 
 .noDataTextInfo {
-    height : 212px;
+    height : 204px;
+    padding: 8px;
     font-size: 40px;
     font-weight: bold;
     display: flex;
     background : linear-gradient(to right, red, purple);
     border-radius: 5px/5px;
-    box-shadow: 5px 5px 5px 5px grey;
+    box-shadow: 0 -5 5 0 grey;
 }
 
 .search-results .artist {
