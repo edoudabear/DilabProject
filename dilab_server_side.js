@@ -187,10 +187,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         GROUP BY DilabMusicGroups.id
                         ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
-                    res.end(JSON.stringify(
-                        { "return" : "error",
-                            "data" : "internal server error",
-                        }));
+                    console.log(err);
+                    res.end(JSON.stringify({
+                        "return" : "error",
+                        "data" : "internal server error",
+                        "stats" : false
+                    }));
                 } else if (results.length!=0) {
                     res.end(JSON.stringify({
                         return : "ok",
