@@ -1066,9 +1066,10 @@ body {
 
 .noDataTextInfo {
     height : 212px;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
     display: flex;
+    background : linear-gradient(to right, red, purple)
 }
 
 .search-results .artist {
