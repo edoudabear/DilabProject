@@ -1050,6 +1050,7 @@ body {
     transition: 0.2s;
     box-shadow: 0 0 10px rgb(141, 140, 140);
     z-index: 1;
+    cursor: pointer;
 }
 
 .leftBtn:hover, .rightBtn:hover {
