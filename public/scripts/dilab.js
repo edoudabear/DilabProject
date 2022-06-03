@@ -824,6 +824,8 @@ function pathAnalysis() {
                             }
                         }
                     });
+                } else {
+                    document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> get personalized content and upload your own content !</div>";
                 }
 
                 if (!document.querySelector(".loginButton")) {
@@ -1211,6 +1213,8 @@ function pathAnalysis() {
                             document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first artist to publish !</div>";
                         }
                     });
+                } else {
+                    document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> get personalized content and upload your own content !</div>";
                 }
 
                 fetch('/Dilab/get', {
