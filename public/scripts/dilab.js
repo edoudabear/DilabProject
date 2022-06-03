@@ -1109,6 +1109,35 @@ function pathAnalysis() {
                 document.querySelectorAll(".groupsContainer .rightBtn")[1].addEventListener("click", () => {
                     document.querySelectorAll(".groupsContainer > .groups")[1].scrollBy(window.innerWidth-200, 0);
                 });
+
+                if (!document.querySelector(".loginButton") && userData!=null && userData.genres) {
+                    fetch('/Dilab/get', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            type : "mainGroupsByGenre",
+                            genreId : userData.genres
+                        }) //data
+                    }).then(out => {
+                        return out.json();
+                    }).then(data => {
+                       if (data.status==false) {
+                           return;
+                       }
+                       data=data.data;
+                       document.querySelectorAll(".groupsWrapper")[1].innerHTML="";
+                       for (var i=0;i<data.length;i++) {
+                           document.querySelectorAll(".groupsWrapper")[1].innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
+                        }
+                        if (data.length==0) {
+                            document.querySelectorAll(".groupsWrapper")[1].innerHTML="Apparently, you are very original as far as your genre is concerned.. !";
+                        }
+                    });
+                }
+
                 fetch('/Dilab/get', {
                     headers: {
                         'Content-Type': 'application/json'
