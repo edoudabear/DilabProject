@@ -1069,7 +1069,9 @@ body {
     font-size: 40px;
     font-weight: bold;
     display: flex;
-    background : linear-gradient(to right, red, purple)
+    background : linear-gradient(to right, red, purple);
+    border-radius: 5px/5px;
+    box-shadow: 5px 5px 5px 5px grey;
 }
 
 .search-results .artist {
