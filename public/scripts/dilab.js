@@ -761,7 +761,7 @@ function pathAnalysis() {
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            type : "mainProjectsByGenres",
+                            type : "mainProjectsByGenre",
                             genreId : userData.genres
                         }) //data
                     }).then(out => {
