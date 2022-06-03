@@ -1065,9 +1065,9 @@ body {
 }
 
 .noDataTextInfo {
-    height : 199px;
+    height : 194px;
     padding: 8px;
-    margin: 5px;
+    margin: 8px;
     font-size: 40px;
     font-weight: bold;
     display: flex;
