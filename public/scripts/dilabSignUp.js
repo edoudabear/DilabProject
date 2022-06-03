@@ -136,9 +136,9 @@ document.querySelector("input[name=mail]").addEventListener("focusout",(e) => {
     }
 });
 
-document.querySelector("input[name=genres]").addEventListener("keyup",e=> {
-    if (document.querySelector("input[name=grpOrientation]").value.length>0) {
-        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
+document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
+    if (document.querySelector("input[name=genre]").value.length>0) {
+        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="block";
         fetch('/Dilab/get', {
             headers: {
                 'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ document.querySelector("input[name=genres]").addEventListener("keyup",e=> {
             method: 'POST',
             body: JSON.stringify({
                 type : "genre",
-                genrePattern : document.querySelector("input[name=grpOrientation]").value
+                genrePattern : document.querySelector("input[name=genre]").value
             }) //data
         }).then(out => {
             return out.json();
@@ -155,35 +155,35 @@ document.querySelector("input[name=genres]").addEventListener("keyup",e=> {
            if (data.status==false) {
                return;
            } else {
-            document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="";
+            document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="";
                var res=data.data;
                for (var i=0;i<res.length;i++) {
-                    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
-                    document.querySelector("input[name=grpOrientation]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
+                    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                    document.querySelector("input[name=genre]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
                         document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
                         document.querySelector(".savedGenre").setAttribute("datavalue",e.target.getAttribute("datavalue"));
                         document.querySelector(".searchRecommendations").style.display="none";
-                        document.querySelector("input[name=grpOrientation]").value=e.target.innerHTML;
+                        document.querySelector("input[name=genre]").value=e.target.innerHTML;
                     })
                } if (res.length==0) {
-                document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
+                document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
                }
            }
         });
     } else {
-        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
+        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="none";
     }
 });
 
-document.querySelector("input[name=grpOrientation]").addEventListener("focus",()=>{
-    document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="block";
+document.querySelector("input[name=genre]").addEventListener("focus",()=>{
+    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="block";
 });
 
-document.querySelector("input[name=grpOrientation]").addEventListener("focusout",(e)=>{
-    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]")));
+document.querySelector("input[name=genre]").addEventListener("focusout",(e)=>{
+    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=genre]")));
     console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target))
-    if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=grpOrientation]"))) {
-        document.querySelector("input[name=grpOrientation]").parentElement.querySelector(".searchRecommendations").style.display="none";
+    if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=genre]"))) {
+        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="none";
     }
 });
 
@@ -290,7 +290,7 @@ document.querySelector(".signUpBtn").addEventListener("click",e=> {
         data.append("files",uploadField.files[0], uploadField.files[0].name);
     }
     data.append("email",document.querySelector("input[name=mail]").value);
-    data.append("genres",null);//document.querySelector("input[name=mail]").value);
+    data.append("genres",document.querySelector(".savedGenre").getAttribute("datavalue"));
     data.append("biography",document.querySelector("textarea[name=biography]").value);
 
     fetch('/Dilab/add', {
