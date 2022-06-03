@@ -493,6 +493,10 @@ body {
     color : white;
 }
 
+.search-container > svg {
+    cursor: pointer;
+}
+
 .search-container > svg:hover {
     opacity: 0.6;
     transition: 0.2s;
