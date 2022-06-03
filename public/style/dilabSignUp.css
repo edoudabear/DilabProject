@@ -61,6 +61,10 @@ body {
     opacity: 1;
 }
 
+input[name=genre] {
+    margin : 0;
+}
+
 .signUpInput .error {
     background-color: red;
     color : white;
