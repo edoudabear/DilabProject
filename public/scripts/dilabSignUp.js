@@ -14,11 +14,11 @@ document.querySelector(".svgContainer").addEventListener("click",() => {
     document.querySelector(".profilePictureInput").click();
 })
 
-for (var i=0;i<document.querySelectorAll("input[type=text]").length;i++) {
-    document.querySelectorAll("input[type=text]")[i].addEventListener("focus",(e) => {
+for (var i=0;i<document.querySelectorAll("input[type=text], textarea").length;i++) {
+    document.querySelectorAll("input[type=text], textarea")[i].addEventListener("focus",(e) => {
         e.target.style.outline="2px solid lightblue";
     });
-    document.querySelectorAll("input[type=text]")[i].addEventListener("focusout",(e) => {
+    document.querySelectorAll("input[type=text], textarea")[i].addEventListener("focusout",(e) => {
         e.target.style.outline="none";
     });
 }
@@ -224,20 +224,10 @@ setTimeout(()=>{window.scrollTo(0,0),1});
 setTimeout(()=>{document.querySelector("input[type=text]").focus()},1);
 
 document.querySelector(".signUpBtn").addEventListener("click",e=> {
-    if (!(firstNameSet && LastNameSet && usernameSet && passwordSet && passwordConfirmed && emailSet && (genresSet || true) ) ) {
+    if (!(firstNameSet && LastNameSet && usernameSet && passwordSet && passwordConfirmed && emailSet && genresSet) ) {
         Swal.fire("Warning","You didn't fill all the necessary inputs of the form correctly","warning");
         return;
     }
-    /*var data= {
-        username : document.querySelector("input[name=username]").value,
-        firstname : document.querySelector("input[name=firstname]").value,
-        lastName : document.querySelector("input[name=lastname]").value,
-        password : document.querySelector("input[name=pass]").value,
-        profilePicture : (isPPChanged) ? JSON.stringify(uploadField.files[0]) : 1,
-        email : document.querySelector("input[name=mail]").value,
-        genres : null,
-        biography : document.querySelector("textarea[name=biography]").value,
-    }*/
     var data=new FormData();
     data.append("username",document.querySelector("input[name=username]").value);
     data.append("firstName",document.querySelector("input[name=firstname]").value);
