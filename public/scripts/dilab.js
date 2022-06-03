@@ -1128,6 +1128,7 @@ function pathAnalysis() {
                            return;
                        }
                        data=data.data;
+                       console.log(data);
                        document.querySelectorAll(".groupsWrapper")[1].innerHTML="";
                        for (var i=0;i<data.length;i++) {
                            document.querySelectorAll(".groupsWrapper")[1].innerHTML+=newGroupElement(data[i].groupName,data[i].genres,data[i].description,new Date(data[i].dateOfBirth),data[i].nCollaborators,data[i].nReleases,data[i].nProjects,data[i].groupPicture);
