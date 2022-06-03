@@ -180,11 +180,10 @@ document.querySelector("input[name=genre]").addEventListener("focus",()=>{
 });
 
 document.querySelector("input[name=genre]").addEventListener("focusout",(e)=>{
-    alert("ok")
     console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=genre]")));
-    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target))
+    console.log(!document.querySelector(".inputSearchRecommendationContainer").contains(e.target));
+    console.log(document.querySelector("searchRecommendations").contains(e.target));
     if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=genre]"))) {
-        console.log("ok");
         document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="none";
     }
 });
