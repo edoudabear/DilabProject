@@ -177,14 +177,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         } else if (req.body.type=="mainGroupsByGenre" && req.body.genreId) {
-            console.log(dilabConnection.escape(req.body.genreId));
             dilabConnection.query(`SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                         LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
                         LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                        WHERE genres=${dilabConnection.escape(req.body.genreId)}
+                        WHERE genres=${parseInt(req.body.genreId)}
                         GROUP BY DilabMusicGroups.id
                         ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
