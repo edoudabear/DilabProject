@@ -190,6 +190,10 @@ document.querySelector("input[name=genre]").addEventListener("focusout",(e)=>{
     }
 });
 
+document.querySelector("input[name=genre]").addEventListener("change",(e)=>{
+    console.log("ok")
+});
+
 function checkIfExists(what,input,inputElement,errElement) {
     var data= {
         type : what,
