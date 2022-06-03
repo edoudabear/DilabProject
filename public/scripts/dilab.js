@@ -767,6 +767,7 @@ function pathAnalysis() {
                     }).then(out => {
                         return out.json();
                     }).then(data => {
+                        console.log(data);
                         if (data.status==false) {
                            return;
                         } else {
