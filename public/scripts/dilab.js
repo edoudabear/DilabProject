@@ -487,7 +487,7 @@ function pathAnalysis() {
                         method: 'POST',
                         body: JSON.stringify({
                             type : "group",
-                            groupName : encodeURI(urlParams.get("g"));
+                            groupName : encodeURI(urlParams.get("g"))
                         }) //data
                     }).then(out => {
                         return out.json();
