@@ -364,7 +364,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
             dilabConnection.query(`
             /*1 (Group basic informations)*/
-            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${req.session.dilab ? req.session.dilab : NULL} AS isUserAdmin FROM DilabMusicGroups 
+            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : NULL} AS isUserAdmin FROM DilabMusicGroups 
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
