@@ -549,6 +549,9 @@ function pathAnalysis() {
                     } else {
                         var projectList=data.data;
                         document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>";
+                        if (projectList.length==0) {
+                            document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>No projects under developpement yet";
+                        }
                         for (var i=0;i<projectList.length;i++) {
                             var line=projectList[i],
                             el=document.createElement("div");
