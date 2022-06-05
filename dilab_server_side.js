@@ -482,16 +482,14 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             dilabConnection.query(`
             /* Query 1 */
             SELECT DilabUser.nom,
-            DilabUser.pseudo	
-            DilabUser.motDePasse	
-            DilabUser.prenom	
-            DilabUser.biographie	
-            DilabUser.genres	
-            DilabUser.profilePictureName	
+            DilabUser.pseudo,
+            DilabUser.prenom,
+            DilabUser.biographie,
+            DilabGenres.genreName as genre,
+            DilabUser.profilePictureName,
             DilabUser.dateCreation
             FROM DilabUser
-            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
             WHERE pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))} 
             LIMIT 1;
             
