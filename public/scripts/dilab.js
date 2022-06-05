@@ -750,6 +750,11 @@ function pathAnalysis() {
                         return out.json();
                     }).then(log => {
                         console.log(log);
+                        if (!log.status) {
+                            console.log("somethin went wrong with the request..");
+                            return;
+                        }
+                        log=log.status;
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePicturePath}`
                     });
                 } else {
