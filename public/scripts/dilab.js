@@ -320,7 +320,7 @@ audioObj.addEventListener("timeupdate", function() {
 });
 
 document.addEventListener("click",e=> {
-    if (!contextMenu.contains(e.target) {
+    if (!contextMenu.contains(e.target)) {
         contextMenu.style.display="none";
     }
 })
