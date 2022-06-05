@@ -158,7 +158,7 @@ function loadSound(url) {
                 document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
             contextMenu.innerHTML+="<div onclick=\"playSound("+i+",true)\" class=\"menuOption\">Play</div>";
-            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
+            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+i+")\" class=\"menuOption\">Remove from queue</div>";
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
