@@ -3,11 +3,11 @@
         <div class=styledHeadPP>
             <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/person-circle.svg" />
         </div>
-        <h2 class="main-content-header">
-            <div style="width:5em;" class="skeletonLoader">
-        </div>
-        </h2>
         <h4>
+            <div class="main-content-header">
+                <div style="width:5em;" class="skeletonLoader">
+                </div>
+            </div>
             <i class="bi bi-dot"></i>registered since&nbsp;<span class=registrationDate>
                 <div style="width:5em;" class="skeletonLoader"></div>
             </span></h4>
