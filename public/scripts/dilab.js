@@ -136,11 +136,6 @@ function loadSound(url) {
                                         </div>\
                                         <span class="duration">02:00</span>\
                                     </div>`;
-        playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(ev) {
-            ev.preventDefault();
-            alert('success!');
-            return false;
-        },false);
       /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
         playlistIndex=i;
         loadSound(soundUrls[playlistIndex]);
@@ -150,6 +145,13 @@ function loadSound(url) {
       if (i==playlistIndex) {
           playlistContainer.lastChild.querySelector(".cover").appendChild(playingIcon);
       }
+    }
+    for (var i=0;i<soundUrls.length;i++) {
+        playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(ev) {
+            ev.preventDefault();
+            alert('success!');
+            return false;
+        },false);
     }
 }
 
