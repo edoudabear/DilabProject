@@ -593,7 +593,7 @@ function pathAnalysis() {
                                         console.log(log.data);
                                     }
                                     if (log.data=="member") {
-                                        document.querySelector(".joinButton").innerHTML="Leave Group";
+                                        document.querySelector(".joinButton").innerHTML="Leave";
                                         document.querySelector(".joinButton").parentNode.innerHTML+=`<p>You are a member ${log.data.role!=null ? `(You are ${log.data.role})` : `(no specific role inside the group)`}`
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
