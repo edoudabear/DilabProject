@@ -180,9 +180,6 @@ function removePlaylistElement(index) {
     soundAuthors.splice(index,1);
     soundPictures.splice(index,1);
     lyrics.splice(index,1);
-    if (index==playlistIndex) {
-        loadSound(Math.min(index,soundUrls.length-1));
-    }
 
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
@@ -192,6 +189,9 @@ function removePlaylistElement(index) {
     }
     if (soundUrls.length==1) {
         playlistContainer.querySelectorAll(".playlistElement div")[1].remove();
+    }
+    if (index==playlistIndex) {
+        loadSound(Math.min(index,soundUrls.length-1));
     }
 }
 
