@@ -193,6 +193,7 @@ function removePlaylistElement(index) {
         if (!audioObj.paused) {
             audioObj.pause();
         }
+        while (!audioObj.paused){}
         playSound(Math.min(index,soundUrls.length-1));
     }
 }
