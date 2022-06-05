@@ -1277,6 +1277,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte
                  RIGHT JOIN DilabGroupMembers ON cte.id=DilabGroupMembers.groupId
                  WHERE DilabGroupMembers.memberId=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
+                console.log(results);
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -1284,7 +1285,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "status" : false
                         }));
                 } else if (results.length!=0 && results[0].id!=null) {
-                    console.log(results);
                     res.end(JSON.stringify(
                         { "return" : "ok",
                             "status" : true,
@@ -1297,6 +1297,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         ) SELECT cte.id FROM cte
                             RIGHT JOIN DilabMembersWaitList ON cte.id=DilabMembersWaitList.groupId
                             WHERE DilabMembersWaitList.waiter=${req.session.dilab} LIMIT 1`,(err,results,fields) => {
+                        console.log(results);
                         if (err) { // DBS Query Error
                             res.end(JSON.stringify(
                                 { "return" : "error",
