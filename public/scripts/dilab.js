@@ -190,6 +190,9 @@ function removePlaylistElement(index) {
         playlistContainer.querySelectorAll(".playlistElement div")[1].remove();
     }
     if (index==playlistIndex) {
+        if (!audioObj.plaused) {
+            audioObj.pause();
+        }
         playSound(Math.min(index,soundUrls.length-1));
     }
 }
