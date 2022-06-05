@@ -1283,7 +1283,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "data" : "internal server error (req1)",
                             "status" : false
                         }));
-                } else if (results.length!=0) {
+                } else if (results.length!=0 && results[0].id!=null) {
                     console.log(results);
                     res.end(JSON.stringify(
                         { "return" : "ok",
