@@ -158,6 +158,7 @@ function loadSound(url) {
                 document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
             var index=String(i);
+            console.log(`<div onclick="playSound(${index},true)" class="menuOption">Play</div>`);
             contextMenu.innerHTML+=`<div onclick="playSound(${index},true)" class="menuOption">Play</div>`
             contextMenu.innerHTML+=`<div onclick="removePlaylistElement(${index})" class="menuOption">Remove from queue</div>`
             var menuElement=document.querySelector(".contextMenu");
