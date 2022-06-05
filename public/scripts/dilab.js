@@ -757,7 +757,7 @@ function pathAnalysis() {
                         console.log(log);
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
                         document.querySelector(".main-content-header").innerHTML=log[0][0].pseudo;
-                        document.querySelector(".chatUser").innerHTML=log[0][0].pseudo;
+                        document.querySelector(".userChat").innerHTML=log[0][0].pseudo;
                         document.querySelector(".userFullName").innerHTML=log[0][0].prenom+" "+log[0][0].nom;
                         document.querySelector(".userBio").innerHTML=log[0][0].description;
                         document.querySelector(".nGroups").innerHTML=log[1].length;
