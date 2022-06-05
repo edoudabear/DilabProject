@@ -351,7 +351,7 @@
                     Full name :&nbsp;<span class=userFullName><div style="width:5em;" class="skeletonLoader"></div></span>
                 </div>
                 <div class="infoElement">
-                    Favorite genres :&nbsp;<span class=userGenres><div style="width:5em;" class="skeletonLoader"></div></span>
+                    Favorite genre :&nbsp;<span class=userGenres><div style="width:5em;" class="skeletonLoader"></div></span>
                 </div>
                 <div class="infoElement">
                     Biography :&nbsp;

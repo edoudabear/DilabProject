@@ -759,10 +759,11 @@ function pathAnalysis() {
                         document.querySelector(".main-content-header").innerHTML=log[0][0].pseudo;
                         document.querySelector(".userChat").innerHTML=log[0][0].pseudo;
                         document.querySelector(".userFullName").innerHTML=log[0][0].prenom+" "+log[0][0].nom;
-                        document.querySelector(".userBio").innerHTML=log[0][0].description;
+                        document.querySelector(".userBio").innerHTML=log[0][0].biographie;
                         document.querySelector(".nGroups").innerHTML=log[1].length;
                         var date=new Date(log[0].dateOfBirth)
-                        document.querySelector(".registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`
+                        document.querySelector(".userJoinDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
+                        document.querySelector(".userGenres").innerHTML=log[0].genre;
                         var date=new Date(log[0][0].dateCreation);
                         document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
 
