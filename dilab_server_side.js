@@ -401,7 +401,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
             dilabConnection.query(`
             /*1 (Group basic informations)*/
-            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,COUNT(*) AS nbCollaborateurs,adminTb.pseudo AS admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=15 AS isUserAdmin FROM DilabMusicGroups
+            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,COUNT(*) AS nbCollaborators,adminTb.pseudo AS admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=15 AS isUserAdmin FROM DilabMusicGroups
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
