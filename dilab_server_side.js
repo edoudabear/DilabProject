@@ -401,14 +401,15 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
             dilabConnection.query(`
             /*1 (Group basic informations)*/
-            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,COUNT(*) AS nbCollaborateurs,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : "NULL"} AS isUserAdmin  AS genres FROM DilabMusicGroups 
+            SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,COUNT(*) AS nbCollaborateurs,adminTb.pseudo AS admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=15 AS isUserAdmin FROM DilabMusicGroups
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE groupName="${groupName}"
             GROUP BY DilabMusicGroups.id
-            LIMIT 1;         
+            LIMIT 1;
+
                                     /*1 (Group basic informations)*/
                                     /*SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : "NULL"} AS isUserAdmin FROM DilabMusicGroups 
                                     JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
