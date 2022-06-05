@@ -1408,7 +1408,7 @@ body {
 .groupPage .buttonsContainer > * {
     height: fit-content;
     width: fit-content;
-    padding: 4px;
+    margin: 4px;
 }
 
 .groupPage .noRelease { /* Only displayed when the group did not release any song yet*/
