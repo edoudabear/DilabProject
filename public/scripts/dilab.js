@@ -763,7 +763,8 @@ function pathAnalysis() {
                         var groupsContainer=document.querySelector(".groups");
                         groupsContainer.innerHTML="";
                         for (var i=0;i<log[1].length;i++) {
-                            groupsContainer.innerHTML+=newGroupElement(log[1].groupName,log[1].genres,log[1].description,new Date(log[1].dateOfBirth),log[1].nCollaborators,log[1].nReleases,log[1].nProjects,log[1].groupPicture);
+                            // title="",genre="",description="",foundDate="",nCollaborators="",nReleases="",nProjects="",imagePath="people.svg"
+                            groupsContainer.innerHTML+=newGroupElement(log[1][i].groupName,log[1][i].genres,log[1][i].description,new Date(log[1][i].dateOfBirth),log[1][i].nCollaborators,log[1][i].nReleases,log[1][i].nProjects,log[1][i].groupPicture);
                         }
                         if (log[1].length==0) {
                             groupsContainer.innerHTML="No projects where he participates yet";
