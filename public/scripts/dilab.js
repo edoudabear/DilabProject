@@ -182,56 +182,10 @@ function removePlaylistElement(index) {
         loadSound(index);
     }
 
-    playlistContainer.innerHTML="";
-    for (var i=0;i<soundUrls.length;i++) {
-      var picturePath = `${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
-      if (soundPictures[i].indexOf("https://e.diskloud.fr/")>-1) {
-        picturePath=soundPictures[i];
-      }
-      playlistContainer.innerHTML+=`<div dataval=${i} class="playlistElement" onclick=playSound(${i},true)>
-                                        <div class=left>\
-                                            <div class="cover">\
-                                                <img src="${picturePath}" />\
-                                            </div>\
-                                            <div class=soundName>\
-                                                <span class="soundTitle">${soundTitles[i]}</span>\
-                                                <span class=soundAuthor>${soundAuthors[i]}</span>\
-                                            </div>\
-                                        </div>\
-                                        <span class="duration">02:00</span>\
-                                    </div>`;
-      /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
-        playlistIndex=i;
-        loadSound(soundUrls[playlistIndex]);
-        console.log(soundUrls[playlistIndex]);
-        playOrPauseMusic();
-    });*/
-      if (i==playlistIndex) {
-          playlistContainer.lastChild.querySelector(".cover").appendChild(playingIcon);
-      }
-    }
-
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
     for (var i=0;i<soundUrls.length;i++) {
-        playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
-            contextMenu.style.display = "flex";
-            e.preventDefault();
-            for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;) {
-                document.querySelectorAll(".contextMenu .menuOption")[j].remove();
-            }
-            var playEl=e.target;
-            while (!playEl.classList.contains("playlistElement") && !playEl.classList.contains("playlistMenu")) {
-                playEl=playEl.parentNode;
-            }
-            var index=playEl.getAttribute("dataval");
-            contextMenu.innerHTML+="<div onclick=\"playSound("+index+",true)\" class=\"menuOption\">Play</div>";
-            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
-            var menuElement=document.querySelector(".contextMenu");
-            menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
-            menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
-            return false;
-        });
+        playlistContainer.querySelectorAll(".playlistElement")[i].setAttribute("dataval",i);
     }
 }
 
