@@ -592,7 +592,7 @@ function pathAnalysis() {
                         }
                     });
 
-                    if (!document.querySelector(".loginBtn")) {
+                    if (!document.querySelector(".loginButton")) {
 
                     } else {
                         document.querySelector(".joinButton").addEventListener('click',e => {
