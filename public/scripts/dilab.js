@@ -173,6 +173,7 @@ function removePlaylistElement(index) {
     soundAuthors.slice(i,1);
     soundPictures.slice(i,1);
     lyrics.slice(i,1);
+    contextMenu.style.display="none";
 }
 
 audioObj.onended = function() {
@@ -180,6 +181,7 @@ audioObj.onended = function() {
 };
 
 function playSound(i,autoplay=false) {
+    contextMenu.style.display="none";
     playlistIndex=i;
     loadSound(soundUrls[i]);
     if (autoplay)
