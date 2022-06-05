@@ -744,7 +744,7 @@ function pathAnalysis() {
                         method: 'POST',
                         body: JSON.stringify({
                             type : "artist",
-                            artist : encodeURI(urlParams.get("a"))
+                            artistName : encodeURI(urlParams.get("a"))
                         }) //data
                     }).then(out => {
                         return out.json();
