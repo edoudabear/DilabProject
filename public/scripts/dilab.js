@@ -757,6 +757,12 @@ function pathAnalysis() {
                         console.log(log);
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
                         document.querySelector(".main-content-header").innerHTML=log[0][0].pseudo;
+                        document.querySelector(".chatUser").innerHTML=log[0][0].pseudo;
+                        document.querySelector(".userFullName").innerHTML=log[0][0].prenom+" "+log[0][0].nom;
+                        document.querySelector(".userBio").innerHTML=log[0][0].description;
+                        document.querySelector(".nGroups").innerHTML=log[1].length;
+                        var date=new Date(log[0].dateOfBirth)
+                        document.querySelector(".registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`
                         var date=new Date(log[0][0].dateCreation);
                         document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
 

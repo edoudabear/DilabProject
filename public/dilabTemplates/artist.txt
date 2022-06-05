@@ -348,6 +348,9 @@
                 <h2>Informations about the artist</h2>
                 <hr />
                 <div class="infoElement">
+                    Full name :&nbsp;<span class=userFullName><div style="width:5em;" class="skeletonLoader"></div></span>
+                </div>
+                <div class="infoElement">
                     Favorite genres :&nbsp;<span class=userGenres><div style="width:5em;" class="skeletonLoader"></div></span>
                 </div>
                 <div class="infoElement">
