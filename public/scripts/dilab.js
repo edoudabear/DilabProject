@@ -592,7 +592,9 @@ function pathAnalysis() {
                                         console.log(log);
                                     }
                                     if (log.data=="member") {
-
+                                        document.querySelector(".joinButton").addEventListener('click',e => {
+                                            Swal.fire("Error","Not available yet","error")
+                                        });
                                     } else if (log.data=="waiting for approval") {
                                         alert("ok");
                                         document.querySelector(".joinButton").classList.add("noHoverActiveButton");
@@ -601,13 +603,12 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").style.cursor= "not-allowed";
                                         document.querySelector(".joinButton").value="Waiting for admin to accept you";
                                     } else if (log.data=="not a member") {
-
+                                        document.querySelector(".joinButton").addEventListener('click',e => {
+                                            Swal.fire("Error","Not available yet","error")
+                                        });
                                     } else {
                                         console.log("Unexpected response from the server..");
                                     }
-                                    document.querySelector(".joinButton").addEventListener('click',e => {
-                                        Swal.fire("Error","Not available yet","error")
-                                    });
                                 });
                             } else {
                                 document.querySelector(".joinButton").addEventListener('click',e => {
