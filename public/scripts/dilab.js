@@ -181,7 +181,7 @@ function removePlaylistElement(index) {
     soundPictures.splice(index,1);
     lyrics.splice(index,1);
     if (index==playlistIndex) {
-        loadSound(min(index,soundUrls.length-1));
+        loadSound(Math.min(index,soundUrls.length-1));
     }
 
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
