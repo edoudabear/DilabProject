@@ -8,7 +8,7 @@
                 <div style="width:5em;" class="skeletonLoader">
                 </div>
             </div>
-            <i class="bi bi-dot"></i>registered since&nbsp;<span class=registrationDate>
+            registered since&nbsp;<span class=registrationDate>
                 <div style="width:5em;" class="skeletonLoader"></div>
             </span></h4>
     </div>
