@@ -591,6 +591,26 @@ function pathAnalysis() {
                             Swal.fire("Error",log.data,"error");
                         }
                     });
+
+                    if (!document.querySelector(".loginBtn")) {
+
+                    } else {
+                        document.querySelector(".newProject").addEventListener('click',e => {
+                            Swal.fire({
+                                title : "Note",
+                                text: "You must be logged in to do that",
+                                icon : "info",
+                                showCancelButton: true,
+                                //confirmButtonColor: '#3085d6',
+                                //cancelButtonColor: '#d33',
+                                confirmButtonText: 'Let me log in!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                  goToPage("https://e.diskloud.fr/Dilab/login");
+                                }
+                            })
+                        });
+                    }
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
                     location="https://e.diskloud.fr/Dilab";
