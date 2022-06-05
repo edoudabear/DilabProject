@@ -478,6 +478,45 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }
                     }
                 });
+        } else if (req.body.type="artist" && req.body.artistName) {
+            dilabConnection.query(`
+            /* Query 1 */
+            SELECT DilabUser.nom,
+            DilabUser.pseudo	
+            DilabUser.motDePasse	
+            DilabUser.prenom	
+            DilabUser.biographie	
+            DilabUser.genres	
+            DilabUser.profilePictureName	
+            DilabUser.dateCreation
+            FROM DilabUser
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            WHERE pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))} 
+            LIMIT 1;
+            
+            /* Query 2 */
+            SELECT DilabMusicGroups.id FROM DilabMusicGroups
+            JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id
+            JOIN DilabUser ON  DilabUser.id=DilabGroupMembers.memberId
+            WHERE DilabUser.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))}
+            
+            `,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                } else if (results.length!=0) {
+                    res.setHeader("Content-Type","Application/json")
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results.flat()}));
+                } else {
+                    res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
+                }
+            });
         } else if (req.body.type=="genre" && req.body.genrePattern) {
             dilabConnection.query(`SELECT id,genreName FROM DilabGenres WHERE genreName LIKE '${req.body.genrePattern}%' LIMIT 10`,(err,results,fields)=> {
                 if (err) {
