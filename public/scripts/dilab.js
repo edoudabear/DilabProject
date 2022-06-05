@@ -593,7 +593,7 @@ function pathAnalysis() {
                                         console.log(log.data);
                                     }
                                     if (log.data=="member") {
-                                        document.querySelector(".joinButton").value="Leave Group";
+                                        document.querySelector(".joinButton").setAttribute("value","Leave Group");
                                         document.querySelector(".joinButton").parentNode.innerHTML+=`<p>You are a member ${log.data.role!=null ? `(You are ${log.data.role})` : `(no specific role inside the group)`}`
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
@@ -603,7 +603,7 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").classList.remove("button");
                                         document.querySelector(".joinButton").style.opacity= 0.6;
                                         document.querySelector(".joinButton").style.cursor= "not-allowed";
-                                        document.querySelector(".joinButton").value="Waiting for admin to accept you";
+                                        document.querySelector(".joinButton").setAttribute("value","Waiting for admin to accept you");
                                     } else if (log.data=="not a member") {
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
