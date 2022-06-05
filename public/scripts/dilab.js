@@ -570,6 +570,7 @@ function pathAnalysis() {
                             if (data[0][0].isUserAdmin) {
                                 document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>You are the group admin`;
                                 document.querySelector(".joinButton").style.display="none";
+                                console.log("isAdmin");
                             } else if (!document.querySelector(".loginButton")) {
                                 fetch('/Dilab/check', {
                                     headers: {
