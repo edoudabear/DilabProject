@@ -2509,7 +2509,12 @@ body {
 }
 
 .contextMenu > h6 {
-    padding
+    padding : 2px;
+    margin : 0;
+}
+
+.contextMenu > hr {
+    margin : 0;
 }
 
 .contextMenu > .menuOption {
