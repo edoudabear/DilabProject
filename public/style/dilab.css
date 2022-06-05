@@ -2519,5 +2519,9 @@ body {
 }
 
 .contextMenu > .menuOption:hover {
-    background : lightgrey;
+    background : rgba(147, 147, 147, 0.5);
+}
+
+.contextMenu > .menuOption:active {
+    background : rgba(104, 104, 104, 0.5);
 }
