@@ -584,7 +584,12 @@ function pathAnalysis() {
                                 }).then(out => {
                                     return out.json();
                                 }).then(log => {
-                                    
+                                    if (!log.status) {
+                                        console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
+                                        return;
+                                    } else {
+                                        console.log(log);
+                                    }
                                 });
                             }
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
