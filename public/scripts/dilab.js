@@ -587,16 +587,13 @@ function pathAnalysis() {
                                     if (!log.status) {
                                         console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
                                         return;
-                                    } else {
-                                        console.log("OUTPUT :");
-                                        console.log(log);
                                     }
                                     if (log.data=="member") {
+                                        document.querySelector(".joinButton").value="Leave Group";
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
                                         });
                                     } else if (log.data=="waiting for approval") {
-                                        alert("ok");
                                         document.querySelector(".joinButton").classList.add("noHoverActiveButton");
                                         document.querySelector(".joinButton").classList.remove("button");
                                         document.querySelector(".joinButton").style.opacity= 0.6;
