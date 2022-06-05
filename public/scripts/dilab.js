@@ -588,7 +588,8 @@ function pathAnalysis() {
                                         console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
                                         return;
                                     } else {
-                                        console.log(data.log)
+                                        console.log("OUTPUT");
+                                        console.log(log.data);
                                     }
                                     if (log.data=="member") {
                                         document.querySelector(".joinButton").value="Leave Group";
