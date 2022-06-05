@@ -163,7 +163,7 @@ function loadSound(url) {
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
             return false;
-        },false);
+        });
     }
 }
 
