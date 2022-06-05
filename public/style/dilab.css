@@ -878,6 +878,7 @@ body {
     padding-right: 4px;
     transition: 0.2s;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .release:hover {
