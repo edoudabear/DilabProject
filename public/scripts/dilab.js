@@ -147,8 +147,8 @@ function loadSound(url) {
       }
     }
     for (var i=0;i<soundUrls.length;i++) {
-        playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(ev) {
-            ev.preventDefault();
+        playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
+            e.preventDefault();
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
