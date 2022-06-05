@@ -154,7 +154,7 @@ function loadSound(url) {
         playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
             contextMenu.style.display = "flex";
             e.preventDefault();
-            for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;j++) {
+            for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;) {
                 document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
             var index=String(i);
