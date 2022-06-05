@@ -758,7 +758,7 @@ function pathAnalysis() {
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
                         document.querySelector(".main-content-header").innerHTML=log[0][0].pseudo;
                         var date=new Date(log[0][0].dateCreation);
-                        document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+                        document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
                     });
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
