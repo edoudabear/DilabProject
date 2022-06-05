@@ -2502,7 +2502,6 @@ body {
     background: rgba(255,255,255,0.8);
     backdrop-filter: blur(10px);
     border-radius: 4px/4px;
-    display: flex;
     justify-content: left;
     flex-direction: column;
     border: 0.5px solid black;
