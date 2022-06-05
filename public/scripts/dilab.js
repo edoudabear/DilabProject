@@ -161,8 +161,7 @@ function loadSound(url) {
             while (!playEl.classList.contains("playlistElement") && !playEl.classList.contains("playlistMenu")) {
                 playEl=playEl.parentNode;
             }
-            console.log(playEl);
-            var index=e.target.getAttribute("dataval");
+            var index=playEl.getAttribute("dataval");
             contextMenu.innerHTML+="<div onclick=\"playSound("+index+",true)\" class=\"menuOption\">Play</div>";
             contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
             var menuElement=document.querySelector(".contextMenu");
