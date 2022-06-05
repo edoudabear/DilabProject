@@ -1374,12 +1374,10 @@ body {
 
 /* Group Page */
 
-.styledHead h4 {
-    display: flex;
+/* .styledHead h4 
     align-items: center;
     justify-content: center;
-    white-space: nowrap;
-}
+}*/
 
 .styledHeadPP, .styledHeadCover {
     border-radius: 8px/8px;
@@ -1400,6 +1398,7 @@ body {
     bottom : 0;
     left : 170px;
     transform: translate(0,150%);
+    width: calc(100% - 200px);
 }
 
 .groupPage .noRelease { /* Only displayed when the group did not release any song yet*/
