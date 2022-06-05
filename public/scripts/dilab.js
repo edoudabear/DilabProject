@@ -154,6 +154,10 @@ function loadSound(url) {
         playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
             contextMenu.style.display = "flex";
             e.preventDefault();
+            for (var i=0;i<document.querySelectorAll(".contextMenu .menuOption").length;i++) {
+                document.querySelectorAll(".contextMenu .menuOption")[i].remove();
+                // <div class="menuOption">Hello guys !</div>
+            }
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
