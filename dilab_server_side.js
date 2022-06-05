@@ -1271,6 +1271,54 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
+        } else if (req.body.type=="notAdminUserRelationToGroup" && req.body.groupName && req.session.dilab) {
+            dilabConnection.query(`WITH cte AS (
+                SELECT id FROM DilabMusicGroups WHERE groupName="${dilabConnection.escape(req.body.groupName)}"
+              ) SELECT cte.id, DilabGroupMembers.rule FROM cte
+                 RIGHT JOIN DilabGroupMembers ON cte.id=DilabGroupMembers.groupId
+                 WHERE DilabGroupMembers.memberId=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error (req1)",
+                            "status" : false
+                        }));
+                } else if (results.length!=0) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : "member",
+                            "rule" : results[0].rule
+                        }));
+                } else {
+                    dilabConnection.query(`WITH cte AS (
+                        SELECT id FROM DilabMusicGroups WHERE groupName="${dilabConnection.escape(req.body.groupName)}"
+                        ) SELECT cte.id FROM cte
+                            RIGHT JOIN DilabMembersWaitList ON cte.id=DilabMembersWaitList.groupId
+                            WHERE DilabMembersWaitList.waiter=${req.session.dilab} LIMIT 1`,(err,results,fields) => {
+                        if (err) { // DBS Query Error
+                            res.end(JSON.stringify(
+                                { "return" : "error",
+                                    "data" : "internal server error (req 2)",
+                                    "status" : false
+                                }));
+                        }
+                        else if (results.length!=0) {
+                            res.end(JSON.stringify(
+                                { "return" : "ok",
+                                    "status" : true,
+                                    "data" : "waiting for approval"
+                                }));
+                        } else {
+                            res.end(JSON.stringify(
+                                { "return" : "ok",
+                                    "status" : true,
+                                    "data" : "not a member"
+                                })); 
+                        }
+                    });
+                }
+            });
         } else {
             res.status(400).end('{ "return" : "invalid POST data" }')
         }

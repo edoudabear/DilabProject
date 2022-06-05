@@ -570,6 +570,22 @@ function pathAnalysis() {
                             if (data[0][0].isUserAdmin) {
                                 document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>You are the group admin`;
                                 document.querySelector(".joinButton").style.display="none";
+                            } else if (!document.querySelector(".loginButton")) {
+                                fetch('/Dilab/check', {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        type : "notAdminUserRelationToGroup",
+                                        groupName : encodeURI(urlParams.get("g"))
+                                    }) //data
+                                }).then(out => {
+                                    return out.json();
+                                }).then(log => {
+                                    
+                                });
                             }
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
                             document.querySelector(".groupGenres").innerHTML=data[0][0].genres!=null ? data[0][0].genres : "Not indicated" ;
