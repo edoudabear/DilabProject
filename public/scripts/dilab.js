@@ -597,6 +597,8 @@ function pathAnalysis() {
                                         alert("ok");
                                         document.querySelector(".joinButton").classList.add("noHoverActiveButton");
                                         document.querySelector(".joinButton").classList.remove("button");
+                                        document.querySelector(".joinButton").style.opacity= 0.6;
+                                        document.querySelector(".joinButton").style.cursor= "not-allowed";
                                         document.querySelector(".joinButton").value="Waiting for admin to accept you";
                                     } else if (log.data=="not a member") {
 
