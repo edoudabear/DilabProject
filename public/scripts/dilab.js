@@ -135,7 +135,7 @@ function loadSound(url) {
                                             </div>\
                                             <div class=soundName>\
                                                 <span class="soundTitle">${soundTitles[i]}</span>\
-                                                <span} class=soundAuthor>${soundAuthors[i]}</span>\
+                                                <span class=soundAuthor>${soundAuthors[i]}</span>\
                                             </div>\
                                         </div>\
                                         <span class="duration">02:00</span>\
