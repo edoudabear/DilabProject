@@ -156,14 +156,23 @@ function loadSound(url) {
             e.preventDefault();
             for (var i=0;i<document.querySelectorAll(".contextMenu .menuOption").length;i++) {
                 document.querySelectorAll(".contextMenu .menuOption")[i].remove();
-                // <div class="menuOption">Hello guys !</div>
             }
+            contextMenu.innerHTML+=`<div onclick="playSound(${i},true)" class="menuOption">Play</div>`
+            contextMenu.innerHTML+=`<div onclick="removePlaylistElement(${i})" class="menuOption">Remove from queue</div>`
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
             return false;
         },false);
     }
+}
+
+function removePlaylistElement(index) {
+    soundUrls.slice(i,1);
+    soundTitles.slice(i,1);
+    soundAuthors.slice(i,1);
+    soundPictures.slice(i,1);
+    lyrics.slice(i,1);
 }
 
 audioObj.onended = function() {
