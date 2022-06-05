@@ -2513,6 +2513,9 @@ body {
     text-overflow: ellipsis;
     transition : 0.2s;
     color : black;
+    cursor: pointer;
+    padding: 4px;
+    user-select: none;
 }
 
 .contextMenu > .menuOption:hover {
