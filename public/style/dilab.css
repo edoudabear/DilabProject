@@ -881,6 +881,10 @@ body {
     cursor: pointer;
 }
 
+.release * {
+    cursor: pointer;
+}
+
 .release:hover {
     background :rgb(231, 231, 231) ;
 }
