@@ -591,6 +591,16 @@ function pathAnalysis() {
                                         console.log("OUTPUT :");
                                         console.log(log);
                                     }
+                                    if (log.data=="member") {
+                                    } else if (log.data=="waiting for approval") {
+                                        document.querySelector(".joinButton").classList.add("noHoverActiveButton");
+                                        document.querySelector(".joinButton").classList.remove("button");
+                                        document.querySelector(".joinButton").value="Waiting for admin to accept you";
+                                    } else if (log.data=="not a member") {
+
+                                    } else {
+                                        console.log("Unexpected response from the server..");
+                                    }
                                 });
                             }
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
