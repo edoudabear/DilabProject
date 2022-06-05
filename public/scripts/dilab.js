@@ -140,7 +140,7 @@ function loadSound(url) {
             ev.preventDefault();
             alert('success!');
             return false;
-        }, false);
+        });
       /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
         playlistIndex=i;
         loadSound(soundUrls[playlistIndex]);
