@@ -494,10 +494,17 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LIMIT 1;
             
             /* Query 2 */
-            SELECT DilabMusicGroups.id FROM DilabMusicGroups
+            SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
+            COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects,
+            COUNT(DISTINCT DilabReleases.id) AS nReleases, founder=DilabUser.id AS isAdmin FROM DilabMusicGroups
             JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id
             JOIN DilabUser ON  DilabUser.id=DilabGroupMembers.memberId
+            LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE DilabUser.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))}
+            GROUP BY DilabMusicGroups.id
+            ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;
             
             `,(err,results,fields)=> {
                 if (err) { // DBS Query Error
