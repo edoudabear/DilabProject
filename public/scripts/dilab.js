@@ -605,6 +605,25 @@ function pathAnalysis() {
                                     } else {
                                         console.log("Unexpected response from the server..");
                                     }
+                                    document.querySelector(".joinButton").addEventListener('click',e => {
+                                        Swal.fire("Error","Not available yet","error")
+                                    });
+                                });
+                            } else {
+                                document.querySelector(".joinButton").addEventListener('click',e => {
+                                    Swal.fire({
+                                        title : "Note",
+                                        text: "You must be logged in to do that",
+                                        icon : "info",
+                                        showCancelButton: true,
+                                        //confirmButtonColor: '#3085d6',
+                                        //cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Let me log in!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            goToPage(`https://e.diskloud.fr/Dilab/login?redirect=${encodeURIComponent(`group?g=${urlParams.get('g')}`)}`);
+                                        }
+                                    })
                                 });
                             }
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
@@ -629,28 +648,6 @@ function pathAnalysis() {
                             Swal.fire("Error",log.data,"error");
                         }
                     });
-
-                    if (!document.querySelector(".loginButton")) {
-                        document.querySelector(".joinButton").addEventListener('click',e => {
-                            Swal.fire("Error","Not available yet","error")
-                        });
-                    } else {
-                        document.querySelector(".joinButton").addEventListener('click',e => {
-                            Swal.fire({
-                                title : "Note",
-                                text: "You must be logged in to do that",
-                                icon : "info",
-                                showCancelButton: true,
-                                //confirmButtonColor: '#3085d6',
-                                //cancelButtonColor: '#d33',
-                                confirmButtonText: 'Let me log in!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    goToPage(`https://e.diskloud.fr/Dilab/login?redirect=${encodeURIComponent(`group?g=${urlParams.get('g')}`)}`);
-                                }
-                            })
-                        });
-                    }
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
                     location="https://e.diskloud.fr/Dilab";
