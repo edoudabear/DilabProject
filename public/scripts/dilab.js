@@ -587,9 +587,12 @@ function pathAnalysis() {
                                     if (!log.status) {
                                         console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
                                         return;
+                                    } else {
+                                        console.log(data.log)
                                     }
                                     if (log.data=="member") {
                                         document.querySelector(".joinButton").value="Leave Group";
+                                        document.querySelector(".joinButton").parentNode.innerHTML+=`<p>You are a member ${log.data.role!=null ? `(You are ${log.data.role})` : `(no specific role inside the group)`}`
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
                                         });
