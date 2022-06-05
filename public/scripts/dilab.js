@@ -178,6 +178,10 @@ function removePlaylistElement(index) {
     soundAuthors.slice(i,1);
     soundPictures.slice(i,1);
     lyrics.slice(i,1);
+    if (index==playlistIndex) {
+        loadSound(index);
+    }
+    document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
 }
 
