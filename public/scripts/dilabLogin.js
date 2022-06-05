@@ -54,7 +54,7 @@ document.querySelector(".button").addEventListener("click",function(e) {
                 var link = document.createElement('a');
                 link.href = ".";
                 if (location.getParams()["redirect"]) {
-                    link.href+=decodeURI(location.getParams()["redirect"]);
+                    link.href+=decodeURIComponent(location.getParams()["redirect"]);
                 }
                 link.click();
                 //Swal.fire("Success !","Apparently, the credentials you passed where wrong","success");

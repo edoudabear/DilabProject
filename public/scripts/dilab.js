@@ -606,7 +606,7 @@ function pathAnalysis() {
                                 confirmButtonText: 'Let me log in!'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    goToPage(`https://e.diskloud.fr/Dilab/login?redirect=${encodeURI(`group?g=${urlParams.get('g')}`)}`);
+                                    goToPage(`https://e.diskloud.fr/Dilab/login?redirect=${encodeURIComponent(`group?g=${urlParams.get('g')}`)}`);
                                 }
                             })
                         });
