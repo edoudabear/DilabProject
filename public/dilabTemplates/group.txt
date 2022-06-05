@@ -6,7 +6,7 @@
         <h4>
             <div class="main-content-header">
                 <div style="width:5em;" class="skeletonLoader"></div>
-            </div><br />
+            </div>
             &nbsp;created in&nbsp;<span class=registrationDate><div style="width:2em;" class="skeletonLoader"></div></span>
             <i class="bi bi-dot"></i><span class=nGroupStreams><div style="width:4em;" class="skeletonLoader"></div></span>&nbsp;monthly streams
             <span class="userRole"></span>
