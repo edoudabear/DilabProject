@@ -593,7 +593,9 @@ function pathAnalysis() {
                     });
 
                     if (!document.querySelector(".loginButton")) {
-                        Swal.fire("Error","Not available yet","error")
+                        document.querySelector(".joinButton").addEventListener('click',e => {
+                            Swal.fire("Error","Not available yet","error")
+                        });
                     } else {
                         document.querySelector(".joinButton").addEventListener('click',e => {
                             Swal.fire({
