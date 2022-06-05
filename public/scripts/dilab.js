@@ -184,14 +184,13 @@ function removePlaylistElement(index) {
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
     for (var i=0;i<soundUrls.length;i++) {
-        console.log(i)
         playlistContainer.querySelectorAll(".playlistElement")[i].setAttribute("dataval",i);
     }
     if (soundUrls.length==1) {
         playlistContainer.querySelectorAll(".playlistElement div")[1].remove();
     }
     if (index==playlistIndex) {
-        loadSound(Math.min(index,soundUrls.length-1));
+        playSound(Math.min(index,soundUrls.length-1));
     }
 }
 
