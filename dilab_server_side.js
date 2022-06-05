@@ -1277,6 +1277,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte
                  RIGHT JOIN DilabGroupMembers ON cte.id=DilabGroupMembers.groupId
                  WHERE DilabGroupMembers.memberId=${req.session.dilab} LIMIT 1`);
+            console.log(req.session.dilab);
             dilabConnection.query(`WITH cte AS (
                 SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(req.body.groupName)}
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte
