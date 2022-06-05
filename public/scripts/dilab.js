@@ -136,11 +136,11 @@ function loadSound(url) {
                                         </div>\
                                         <span class="duration">02:00</span>\
                                     </div>`;
-        document.querySelectorAll(".playElements .playlistElement")[i].addEventListener('contextmenu', function(ev) {
+        document.querySelectorAll(".playlistElement")[i].addEventListener('contextmenu', function(ev) {
             ev.preventDefault();
             alert('success!');
             return false;
-        });
+        },false);
       /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
         playlistIndex=i;
         loadSound(soundUrls[playlistIndex]);
