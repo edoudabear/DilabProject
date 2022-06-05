@@ -155,7 +155,7 @@ function loadSound(url) {
             contextMenu.style.display = "flex";
             e.preventDefault();
             for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;j++) {
-                document.querySelectorAll(".contextMenu .menuOption")[i].remove();
+                document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
             contextMenu.innerHTML+=`<div onclick="playSound(${i},true)" class="menuOption">Play</div>`
             contextMenu.innerHTML+=`<div onclick="removePlaylistElement(${i})" class="menuOption">Remove from queue</div>`
