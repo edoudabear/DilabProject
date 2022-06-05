@@ -517,7 +517,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end(JSON.stringify({
                         return : "ok",
                         status : true,
-                        data : results.flat()}));
+                        data : results}));
                 } else {
                     res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
                 }

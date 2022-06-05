@@ -750,6 +750,7 @@ function pathAnalysis() {
                         return out.json();
                     }).then(log => {
                         console.log(log);
+                        document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePicturePath}`
                     });
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
