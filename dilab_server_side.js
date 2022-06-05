@@ -1277,7 +1277,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte
                  JOIN DilabGroupMembers ON cte.id=DilabGroupMembers.groupId
                  WHERE DilabGroupMembers.memberId=${req.session.dilab} LIMIT 1`,(err,results,fields)=> {
-                console.log(results);
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -1297,7 +1296,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         ) SELECT cte.id FROM cte
                             RIGHT JOIN DilabMembersWaitList ON cte.id=DilabMembersWaitList.groupId
                             WHERE DilabMembersWaitList.waiter=${req.session.dilab} LIMIT 1`,(err,results,fields) => {
-                        console.log(results);
                         if (err) { // DBS Query Error
                             res.end(JSON.stringify(
                                 { "return" : "error",
