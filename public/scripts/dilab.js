@@ -163,7 +163,9 @@ function loadSound(url) {
             }
             var index=playEl.getAttribute("dataval");
             contextMenu.innerHTML+="<div onclick=\"playSound("+index+",true)\" class=\"menuOption\">Play</div>";
-            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
+            if (soundUrls.length>1) {
+                contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
+            }
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
@@ -185,8 +187,10 @@ function removePlaylistElement(index) {
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
     for (var i=0;i<soundUrls.length;i++) {
-        console.log(i);
         playlistContainer.querySelectorAll(".playlistElement")[i].setAttribute("dataval",i);
+    }
+    if (soundUrls.length==1) {
+        playlistContainer.querySelectorAll(".playlistElement div")[1].remove();
     }
 }
 
