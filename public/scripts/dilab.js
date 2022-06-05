@@ -149,7 +149,7 @@ function loadSound(url) {
     for (var i=0;i<soundUrls.length;i++) {
         playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(ev) {
             ev.preventDefault();
-            alert('success!');
+            
             return false;
         },false);
     }

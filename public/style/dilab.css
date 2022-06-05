@@ -2491,3 +2491,30 @@ body {
         opacity: 1;
     }
 }
+
+/* Context Menu interface*/
+
+.contextMenu {
+    display: none;
+    position: fixed;
+    min-width: 50px;
+    min-height: 10px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 4px/4px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.contextMenu > .menuOption {
+    max-width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition : 0.2s;
+    color : black;
+}
+
+.contextMenu > .menuOption:hover {
+    background : lightgrey;
+}
