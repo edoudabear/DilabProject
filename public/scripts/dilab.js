@@ -154,7 +154,7 @@ function loadSound(url) {
         playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
             contextMenu.style.display = "flex";
             e.preventDefault();
-            for (var i=0;i<document.querySelectorAll(".contextMenu .menuOption").length;i++) {
+            for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;j++) {
                 document.querySelectorAll(".contextMenu .menuOption")[i].remove();
             }
             contextMenu.innerHTML+=`<div onclick="playSound(${i},true)" class="menuOption">Play</div>`
