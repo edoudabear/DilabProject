@@ -753,7 +753,7 @@ function pathAnalysis() {
                             console.log("somethin went wrong with the request..");
                             return;
                         }
-                        log=log.status;
+                        log=log.data;
                         console.log(log);
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
                     });
