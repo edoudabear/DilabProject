@@ -3,10 +3,11 @@
         <div class=styledHeadPP>
             <img src="https://e.diskloud.fr/Dilab/group/people.svg" title="profile picture group" />
         </div>
-        <h2 class="main-content-header">
-            <div style="width:5em;" class="skeletonLoader"></div>
-        </h2><h4>
-            <i class="bi bi-dot"></i>created in&nbsp;<span class=registrationDate><div style="width:2em;" class="skeletonLoader"></div></span>
+        <h4>
+            <h2 class="main-content-header">
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </h2>
+            &nbsp;created in&nbsp;<span class=registrationDate><div style="width:2em;" class="skeletonLoader"></div></span>
             <i class="bi bi-dot"></i><span class=nGroupStreams><div style="width:4em;" class="skeletonLoader"></div></span>&nbsp;monthly streams
             <span class="userRole"></span>
         </h4>
