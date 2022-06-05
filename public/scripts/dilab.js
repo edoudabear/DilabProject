@@ -128,14 +128,14 @@ function loadSound(url) {
       if (soundPictures[i].indexOf("https://e.diskloud.fr/")>-1) {
         picturePath=soundPictures[i];
       }
-      playlistContainer.innerHTML+=`<div class="playlistElement" onclick=playSound(${i},true)>
+      playlistContainer.innerHTML+=`<div dataval=${i} class="playlistElement" onclick=playSound(${i},true)>
                                         <div class=left>\
                                             <div class="cover">\
                                                 <img src="${picturePath}" />\
                                             </div>\
                                             <div class=soundName>\
                                                 <span class="soundTitle">${soundTitles[i]}</span>\
-                                                <span class=soundAuthor>${soundAuthors[i]}</span>\
+                                                <span} class=soundAuthor>${soundAuthors[i]}</span>\
                                             </div>\
                                         </div>\
                                         <span class="duration">02:00</span>\
@@ -157,8 +157,10 @@ function loadSound(url) {
             for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;) {
                 document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
-            contextMenu.innerHTML+="<div onclick=\"playSound("+i+",true)\" class=\"menuOption\">Play</div>";
-            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+i+")\" class=\"menuOption\">Remove from queue</div>";
+            console.log(e.target);
+            var index=e.target.getAttribute("dataval");
+            contextMenu.innerHTML+="<div onclick=\"playSound("+index+",true)\" class=\"menuOption\">Play</div>";
+            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
