@@ -398,6 +398,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="group" && req.body.groupName) {
+            console.log(req.session.dilab);
             var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
             dilabConnection.query(`
             /*1 (Group basic informations)*/
