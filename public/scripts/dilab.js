@@ -54,6 +54,10 @@ var nextButton = document.querySelectorAll(".musicButton")[2];
 var playlistContainer = document.querySelector(".playElements");
 playlistIndex = 0; // Index corresponds to index of  currently playing sound, with regard to the soundUrls array
 
+
+// Context menu for right click
+var contextMenu=document.querySelector(".contextMenu");
+
 var playingIcon=document.createElement("div");
 playingIcon.classList.add("playingIcon");
 playingIcon.innerHTML="<div class=\"bar\"></div>\
@@ -148,6 +152,7 @@ function loadSound(url) {
     }
     for (var i=0;i<soundUrls.length;i++) {
         playlistContainer.querySelectorAll(".playlistElement")[i].addEventListener("contextmenu", function(e) {
+            contextMenu.style.display = "block";
             e.preventDefault();
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
@@ -313,6 +318,12 @@ audioObj.addEventListener("timeupdate", function() {
     updateMusicProgressTime(audioObj.currentTime); //Update the displayed duration on the html/JS player
     lyricsPlay(audioObj.currentTime);
 });
+
+document.addEventListener("click",e=> {
+    if (!contextMenu.contains(e.target) {
+        contextMenu.style.display="none";
+    }
+})
 
 document.addEventListener("keypress",e=> {
     /*if (e.key==" ") {
