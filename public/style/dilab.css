@@ -2505,6 +2505,7 @@ body {
     display: flex;
     justify-content: left;
     flex-direction: column;
+    border: 2px solid black;
 }
 
 .contextMenu > .menuOption {
