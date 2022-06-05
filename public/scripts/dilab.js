@@ -595,7 +595,7 @@ function pathAnalysis() {
                     if (!document.querySelector(".loginBtn")) {
 
                     } else {
-                        document.querySelector(".newProject").addEventListener('click',e => {
+                        document.querySelector(".joinButton").addEventListener('click',e => {
                             Swal.fire({
                                 title : "Note",
                                 text: "You must be logged in to do that",

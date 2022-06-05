@@ -11,7 +11,7 @@
             <span class="userRole"></span>
         </h4>
         <div class=buttonsContainer>
-            <button class="button">Join</button>
+            <button class="button joinButton">Join</button>
         </div>
     </div>
     <h4>Releases from the group</h4>
