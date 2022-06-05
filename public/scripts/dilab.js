@@ -136,7 +136,7 @@ function loadSound(url) {
                                         </div>\
                                         <span class="duration">02:00</span>\
                                     </div>`;
-        document.querySelectorAll(".playElements")[i].addEventListener('contextmenu', function(ev) {
+        document.querySelectorAll(".playElements .playlistElement")[i].addEventListener('contextmenu', function(ev) {
             ev.preventDefault();
             alert('success!');
             return false;
