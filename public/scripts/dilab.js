@@ -756,6 +756,7 @@ function pathAnalysis() {
                         log=log.data;
                         console.log(log);
                         document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
+                        document.querySelector(".main-content-header").innerHTML=log[0][0].pseudo;
                     });
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
