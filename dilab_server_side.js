@@ -1304,7 +1304,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     "status" : false
                                 }));
                         }
-                        else if (results.length!=0) {
+                        else if (results.length!=0 && results[0].id!=null) {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
                                     "status" : true,
