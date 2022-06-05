@@ -173,11 +173,11 @@ function loadSound(url) {
 }
 
 function removePlaylistElement(index) {
-    soundUrls.slice(index,1);
-    soundTitles.slice(index,1);
-    soundAuthors.slice(index,1);
-    soundPictures.slice(index,1);
-    lyrics.slice(index,1);
+    soundUrls.splice(index,1);
+    soundTitles.splice(index,1);
+    soundAuthors.splice(index,1);
+    soundPictures.splice(index,1);
+    lyrics.splice(index,1);
     if (index==playlistIndex) {
         loadSound(index);
     }
