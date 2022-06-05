@@ -734,7 +734,27 @@ function pathAnalysis() {
             break;
         case "/artist" :
             loadTemplate("artist",()=>{
-                document.querySelector(".chat > .messagesContainer").scrollTo(0,document.querySelector(".chat > .messagesContainer").scrollHeight)
+                if (urlParams.get("a")) {
+                    document.querySelector(".chat > .messagesContainer").scrollTo(0,document.querySelector(".chat > .messagesContainer").scrollHeight)
+                    fetch('/Dilab/get', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            type : "arttist",
+                            artist : encodeURI(urlParams.get("a"))
+                        }) //data
+                    }).then(out => {
+                        return out.json();
+                    }).then(log => {
+                        console.log(log);
+                    });
+                } else {
+                    window.location.href="https://e.diskloud.fr/Dilab";
+                    location="https://e.diskloud.fr/Dilab";
+                }
             });
             break;
         case "/release" :
