@@ -749,13 +749,13 @@ function pathAnalysis() {
                     }).then(out => {
                         return out.json();
                     }).then(log => {
-                        console.log(log);
                         if (!log.status) {
                             console.log("somethin went wrong with the request..");
                             return;
                         }
                         log=log.status;
-                        document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePicturePath}`
+                        console.log(log);
+                        document.querySelector(".styledHeadPP img").src=`https://e.diskloud.fr/Dilab/user/${log[0][0].profilePictureName}`
                     });
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
