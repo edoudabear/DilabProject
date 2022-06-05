@@ -157,10 +157,8 @@ function loadSound(url) {
             for (var j=0;j<document.querySelectorAll(".contextMenu .menuOption").length;) {
                 document.querySelectorAll(".contextMenu .menuOption")[j].remove();
             }
-            var index=String(i);
-            console.log(`<div onclick="playSound(${index},true)" class="menuOption">Play</div>`);
-            contextMenu.innerHTML+=`<div onclick="playSound(${index},true)" class="menuOption">Play</div>`
-            contextMenu.innerHTML+=`<div onclick="removePlaylistElement(${index})" class="menuOption">Remove from queue</div>`
+            contextMenu.innerHTML+="<div onclick=\"playSound("+i+",true)\" class=\"menuOption\">Play</div>";
+            contextMenu.innerHTML+="<div onclick=\"removePlaylistElement("+index+")\" class=\"menuOption\">Remove from queue</div>";
             var menuElement=document.querySelector(".contextMenu");
             menuElement.style.left = `min(${e.clientX}px,calc(100% - ${menuElement.offsetWidth}px))`;
             menuElement.style.top = `min(${e.clientY}px,calc(100% - ${menuElement.offsetHeight}px))`;
