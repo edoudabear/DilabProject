@@ -181,6 +181,36 @@ function removePlaylistElement(index) {
     if (index==playlistIndex) {
         loadSound(index);
     }
+
+    playlistContainer.innerHTML="";
+    for (var i=0;i<soundUrls.length;i++) {
+      var picturePath = `${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
+      if (soundPictures[i].indexOf("https://e.diskloud.fr/")>-1) {
+        picturePath=soundPictures[i];
+      }
+      playlistContainer.innerHTML+=`<div dataval=${i} class="playlistElement" onclick=playSound(${i},true)>
+                                        <div class=left>\
+                                            <div class="cover">\
+                                                <img src="${picturePath}" />\
+                                            </div>\
+                                            <div class=soundName>\
+                                                <span class="soundTitle">${soundTitles[i]}</span>\
+                                                <span class=soundAuthor>${soundAuthors[i]}</span>\
+                                            </div>\
+                                        </div>\
+                                        <span class="duration">02:00</span>\
+                                    </div>`;
+      /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
+        playlistIndex=i;
+        loadSound(soundUrls[playlistIndex]);
+        console.log(soundUrls[playlistIndex]);
+        playOrPauseMusic();
+    });*/
+      if (i==playlistIndex) {
+          playlistContainer.lastChild.querySelector(".cover").appendChild(playingIcon);
+      }
+    }
+
     document.querySelectorAll(".playlistMenu .playlistElement")[index].remove();
     contextMenu.style.display="none";
     for (var i=0;i<soundUrls.length;i++) {
