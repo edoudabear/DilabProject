@@ -2687,10 +2687,10 @@ function newMemberWaitListNotificationElement(userName,groupName) {
             <a href=/Dilab/artist?a=${encodeURI(userName)} ><strong>${userName}</strong></a> wants to join your group <a href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>
         </div>
         <div class=options>
-            <div class=accept>
+            <div title="Accept join" class=accept>
                 <i class="bi bi-check2"></i>
             </div>
-            <div class=deny>
+            <div title="Block join" class=deny>
                 <i class="bi bi-x"></i>
             </div>
         </div>
