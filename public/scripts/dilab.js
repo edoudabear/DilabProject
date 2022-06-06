@@ -768,13 +768,13 @@ function pathAnalysis() {
                         document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
 
                         var groupsContainer=document.querySelector(".groups");
-                        groupsContainer.innerHTML="";
+                        groupsContainer.innerHTML="<h4>Groups he's in</h4>";
                         for (var i=0;i<log[1].length;i++) {
                             // title="",genre="",description="",foundDate="",nCollaborators="",nReleases="",nProjects="",imagePath="people.svg"
                             groupsContainer.innerHTML+=newGroupElement(log[1][i].groupName,log[1][i].genres,log[1][i].description,new Date(log[1][i].dateOfBirth),log[1][i].nCollaborators,log[1][i].nReleases,log[1][i].nProjects,log[1][i].groupPicture);
                         }
                         if (log[1].length==0) {
-                            groupsContainer.innerHTML="No projects where he participates yet";
+                            groupsContainer.innerHTML+="No projects where he participates yet";
                         }
                     });
                 } else {
