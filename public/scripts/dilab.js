@@ -15,6 +15,30 @@ function goToPage(address) {
     a.click();
 }
 
+fetch('/Dilab/check', {
+    headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    method: 'POST',
+    body: JSON.stringify({
+        type : "notifications",
+    }) //data
+}).then(out => {
+    return out.json();
+}).then(log => {
+    if (!log.status) {
+        console.log("could not load user notifications");
+    } else {
+        if (log.data.length==0) {
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+="No New Notification";
+        }
+        for (var i=0;i<log.data.length;i++) {
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log[i].requester,log[i].groupName);
+        }
+    }
+});
+
 
 // Sweet alert remake of toast
 
@@ -2647,7 +2671,7 @@ function newProjectElement(title,projectPP,group,description,foundDate,nCollabor
         </div>`;
 }
 
-function generateMemberWaitListNotification(userName,groupName) {
+function newMemberWaitListNotificationElement(userName,groupName) {
     return `<div class="notification">
         <div class=icon>
             <i class="bi bi-person-plus-fill"></i>
