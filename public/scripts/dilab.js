@@ -46,7 +46,7 @@ fetch('/Dilab/check', {
             if (document.querySelector(".notificationsMenu .notificationsList").innerHTML!="") {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmtNotificationElement(log.data[0][i].groupName);
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[0][i].groupName);
             if (i<log.data[0].length-1) {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
