@@ -30,11 +30,11 @@ fetch('/Dilab/check', {
     if (!log.status) {
         console.log("could not load user notifications");
     } else {
-        if (log.data[0].length==0) {
+        if (log.data[0].length==0 && log.data[1].length==0) {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
         } else {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML="";
-            document.querySelector(".notificationsButton .labelCount").innerHTML=log.data.length;
+            document.querySelector(".notificationsButton .labelCount").innerHTML=log.data[0].length+log.data[1].length;
             document.querySelector(".notificationsButton .labelCount").style.display="flex";
         }
         for (var i=0;i<log.data[0].length;i++) {
@@ -46,7 +46,7 @@ fetch('/Dilab/check', {
             if (document.querySelector(".notificationsMenu .notificationsList").innerHTML!="") {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberConfirmtNotificationElement(log.data[0][i].groupName);
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmtNotificationElement(log.data[0][i].groupName);
             if (i<log.data[0].length-1) {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
