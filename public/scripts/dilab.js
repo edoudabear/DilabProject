@@ -42,6 +42,14 @@ fetch('/Dilab/check', {
             if (i<log.data[0].length-1) {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
+        } for (var i=0;i<log.data[1].length;i++) {
+            if (document.querySelector(".notificationsMenu .notificationsList").innerHTML!="") {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
+            }
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberConfirmtNotificationElement(log.data[0][i].groupName);
+            if (i<log.data[0].length-1) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
+            }
         }
     }
 });
@@ -2692,6 +2700,23 @@ function newMemberWaitListNotificationElement(userName,groupName) {
             </div>
             <div title="Block join" class=deny>
                 <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>`
+
+}
+
+function newMemberConfirmNotificationElement(groupName) {
+    return `<div class="notification">
+        <div class=icon>
+            <i class="bi bi-person-plus-fill"></i>
+        </div>
+        <div class=text>
+           You have been accepted in the group "<a href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>"
+        </div>
+        <div class=options>
+            <div title="Confirm" class=accept>
+                <i class="bi bi-check2"></i>
             </div>
         </div>
     </div>`
