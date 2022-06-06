@@ -2706,7 +2706,7 @@ function newMemberWaitListNotificationElement(userName,groupName) {
 
 }
 
-function newMemberConfirmNotificationElement(groupName) {
+function newConfirmNotificationElement(groupName) {
     return `<div class="notification">
         <div class=icon>
             <i class="bi bi-person-plus-fill"></i>
