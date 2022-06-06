@@ -34,7 +34,7 @@ fetch('/Dilab/check', {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML+="No New Notification";
         }
         for (var i=0;i<log.data.length;i++) {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log[i].requester,log[i].groupName);
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[i].requester,log.data[i].groupName);
         }
     }
 });
