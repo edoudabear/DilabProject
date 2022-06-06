@@ -1869,7 +1869,7 @@ body {
     z-index: 40;
 }
 
-.notificationsMenu .labelCount {
+.notificationsButton .labelCount {
     display: none;
     position: absolute;
     width: 12px;
