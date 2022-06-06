@@ -1363,6 +1363,25 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     });
                 }
             });
+        } else if (req.body.type=="notifications") {
+            dilabConnection.query(`SELECT DilabUser.pseudo AS requester,DilabMusicGroups.groupName FROM DilabMembersWaitList
+            JOIN DilabUser ON DilabMembersWaitList.waiter=DilabUser.id
+            JOIN DilabMusicGroups ON DilabMembersWaitList.groupId=DilabMusicGroups.id
+            WHERE DilabMusicGroups.admin=${req.session.dilab}`,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error (req 2)",
+                            "status" : false
+                        }));
+                } else {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : results
+                        })); 
+                }
+            })
         } else {
             res.status(400).end('{ "return" : "invalid POST data" }')
         }
