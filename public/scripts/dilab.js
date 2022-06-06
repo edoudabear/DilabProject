@@ -31,10 +31,15 @@ fetch('/Dilab/check', {
         console.log("could not load user notifications");
     } else {
         if (log.data.length==0) {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+="No New Notification";
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+        } else {
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML="";
         }
         for (var i=0;i<log.data.length;i++) {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[i].requester,log.data[i].groupName);
+            if (i<log.data.length-1) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
+            }
         }
     }
 });
