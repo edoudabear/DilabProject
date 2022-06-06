@@ -30,16 +30,16 @@ fetch('/Dilab/check', {
     if (!log.status) {
         console.log("could not load user notifications");
     } else {
-        if (log.data.length==0) {
+        if (log.data[0].length==0) {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
         } else {
             document.querySelector(".notificationsMenu .notificationsList").innerHTML="";
             document.querySelector(".notificationsButton .labelCount").innerHTML=log.data.length;
             document.querySelector(".notificationsButton .labelCount").style.display="flex";
         }
-        for (var i=0;i<log.data.length;i++) {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[i].requester,log.data[i].groupName);
-            if (i<log.data.length-1) {
+        for (var i=0;i<log.data[0].length;i++) {
+            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[0][i].requester,log.data[0][i].groupName);
+            if (i<log.data[0].length-1) {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
             }
         }

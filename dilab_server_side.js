@@ -1364,10 +1364,16 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="notifications") {
-            dilabConnection.query(`SELECT DilabUser.pseudo AS requester,DilabMusicGroups.groupName FROM DilabMembersWaitList
+            dilabConnection.query(`
+            /* Notification of group join requests */
+            SELECT DilabUser.pseudo AS requester,DilabMusicGroups.groupName FROM DilabMembersWaitList
             JOIN DilabUser ON DilabMembersWaitList.waiter=DilabUser.id
             JOIN DilabMusicGroups ON DilabMembersWaitList.groupId=DilabMusicGroups.id
-            WHERE DilabMusicGroups.admin=${req.session.dilab}`,(err,results,fields)=> {
+            WHERE DilabMusicGroups.admin=${req.session.dilab} AND DilabMembersWaitList.hasBeenApproved=FALSE;
+            /* Notifications where person has been approved in a group */
+            SELECT DilabMusicGroups.groupName FROM DilabMembersWaitList
+            JOIN DilabMusicGroups ON DilabMembersWaitList.groupId=DilabMusicGroups.id
+            WHERE DilabMembersWaitList.waiter=${req.session.dilab} AND DilabMembersWaitList.hasBeenApproved=TRUE;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
