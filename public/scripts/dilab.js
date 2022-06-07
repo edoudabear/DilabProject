@@ -949,9 +949,8 @@ function pathAnalysis() {
             loadTemplate("releases",()=>{
                 document.querySelector(".opt").style.fontWeight="bold";
                 document.querySelector(".projectLink").addEventListener("click",()=>{loadPage("Projects","projects",[])});
-            });
-
-            fetch(`/Dilab/get`, {
+            
+                fetch(`/Dilab/get`, {
                     headers: {
                         'Content-Type': 'application/json'
                         // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -996,6 +995,7 @@ function pathAnalysis() {
                         document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture);
                     }
                 });
+            });
             break;
         case "/projects" :
             loadTemplate("projects",()=>{
