@@ -950,6 +950,50 @@ function pathAnalysis() {
                 document.querySelector(".opt").style.fontWeight="bold";
                 document.querySelector(".projectLink").addEventListener("click",()=>{loadPage("Projects","projects",[])});
             });
+
+            fetch(`/Dilab/get`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        type : "mainReleases",
+                    }) //data
+                }).then(out => {
+                    return out.json();
+                }).then(log => {
+                    console.log(log)
+                    // main releases
+                    document.querySelectorAll(".releases")[1].innerHTML="";
+                    for (var i=0;i<data.length;i++) {
+                        console.log(data[i].duration);
+                        var duree=timestampToNormalTime(data[i].duration);
+                        document.querySelectorAll(".releases")[1].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture);
+                    }
+                });
+
+                fetch(`/Dilab/get`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        type : "newestReleases",
+                    }) //data
+                }).then(out => {
+                    return out.json();
+                }).then(log => {
+                    console.log(log)
+                    // main releases
+                    document.querySelectorAll(".releases")[0].innerHTML="";
+                    for (var i=0;i<data.length;i++) {
+                        console.log(data[i].duration);
+                        var duree=timestampToNormalTime(data[i].duration);
+                        document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture);
+                    }
+                });
             break;
         case "/projects" :
             loadTemplate("projects",()=>{
