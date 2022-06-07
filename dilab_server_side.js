@@ -148,7 +148,29 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             res.end('{ "return" : "ok", "status" : false, "description" : "already disconnected" }')
         }
     } else if (req.params.action=="get") {
-        if (req.body.type=="mainGroups") {
+        if (req.body.type=="mainReleases") {
+            dilabConnection.query(`
+            WITH cte AS (
+                SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
+            )
+            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,filePath,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            FROM DilabReleases dr
+            LEFT JOIN cte ON dr.id=cte.songId
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;`,(err,results,fields) => {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results.flat()}));
+                }
+            })
+        } else if (req.body.type=="mainGroups") {
             dilabConnection.query(`SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                         LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
