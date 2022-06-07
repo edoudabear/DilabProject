@@ -169,7 +169,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         status : true,
                         data : results.flat()}));
                 }
-            })
+            });
         } else if (req.body.type=="mainGroups") {
             dilabConnection.query(`SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
