@@ -1026,7 +1026,7 @@ function pathAnalysis() {
                             }
                         }
                     });
-
+                }
             });
             break;
         case "/projects" :
