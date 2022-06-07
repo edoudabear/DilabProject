@@ -965,6 +965,7 @@ function pathAnalysis() {
                 }).then(log => {
                     console.log(log)
                     // main releases
+                    var data=log.data;
                     document.querySelectorAll(".releases")[1].innerHTML="";
                     for (var i=0;i<data.length;i++) {
                         console.log(data[i].duration);
@@ -986,6 +987,7 @@ function pathAnalysis() {
                     return out.json();
                 }).then(log => {
                     console.log(log)
+                    var data=log.data;
                     // main releases
                     document.querySelectorAll(".releases")[0].innerHTML="";
                     for (var i=0;i<data.length;i++) {
