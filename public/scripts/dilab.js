@@ -996,6 +996,7 @@ function pathAnalysis() {
                 });
 
                 if (!document.querySelector(".loginButton") && userData!=null && userData.genres) {
+                    alert("Condition asserted")
                     fetch('/Dilab/get',{
                         headers: {
                             'Content-Type': 'application/json'
@@ -1026,6 +1027,8 @@ function pathAnalysis() {
                             }
                         }
                     });
+                } else {
+                    document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized content and upload your own content !</div>";
                 }
             });
             break;
