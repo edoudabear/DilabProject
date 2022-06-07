@@ -917,7 +917,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 85%;
+    max-width: 300px;
 }
 
 .release .infos .groupAuthors {
