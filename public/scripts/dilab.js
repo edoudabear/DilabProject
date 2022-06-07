@@ -987,14 +987,46 @@ function pathAnalysis() {
                 }).then(log => {
                     console.log(log)
                     var data=log.data;
-                    // main releases
+                    // newset releases
                     document.querySelectorAll(".releases")[0].innerHTML="";
                     for (var i=0;i<data.length;i++) {
-                        console.log(data[i].duration);
                         var duree=timestampToNormalTime(data[i].duration);
                         document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture);
                     }
                 });
+
+                if (!document.querySelector(".loginButton") && userData!=null && userData.genres) {
+                    fetch('/Dilab/get',{
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            type : "mainReleasesByGenre",
+                            genreId : userData.genres
+                        }) //data
+                    }).then(out => {
+                        return out.json();
+                    }).then(data => {
+                        console.log(data);
+                        if (data.status!=true) {
+                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                        } else {
+                            var data=data.data;
+                            document.querySelectorAll(".releases")[2].innerHTML="";
+                            
+                            // main releases
+                            for (var i=0;i<data.length;i++) {
+                                var duree=timestampToNormalTime(data[i].duration);
+                                document.querySelectorAll(".releases")[2].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture);
+                            }
+                            if (projectList.length==0) {
+                                document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first artist to publish !</div>";
+                            }
+                        }
+                    });
+
             });
             break;
         case "/projects" :
