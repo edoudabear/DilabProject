@@ -170,16 +170,17 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         data : results.flat()}));
                 }
             });
-        } else if (req.body.type=="mainReleasesByGenre" && req.body.genreName) {
+        } else if (req.body.type=="mainReleasesByGenre" && req.body.genreId) {
             dilabConnection.query(`
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,filePath,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabGenres.genreName, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,filePath,lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            WHERE DilabMusicGroups.genres=${dilabConnection.escape(req.body.genreName)}
+            JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
+            WHERE DilabMusicGroups.genres=${dilabConnection.escape(req.body.genreId)}
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
