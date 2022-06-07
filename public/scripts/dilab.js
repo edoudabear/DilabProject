@@ -1028,7 +1028,7 @@ function pathAnalysis() {
                         }
                     });
                 } else {
-                    document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized content and upload your own content !</div>";
+                    document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized releases and upload your own content !</div>";
                 }
             });
             break;
@@ -1195,7 +1195,7 @@ function pathAnalysis() {
                         }
                     });
                 } else {
-                    document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized content and upload your own content !</div>";
+                    document.querySelectorAll(".projectsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized projects and upload your own content !</div>";
                 }
 
                 if (!document.querySelector(".loginButton")) {
@@ -1584,7 +1584,7 @@ function pathAnalysis() {
                         }
                     });
                 } else {
-                    document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized content and upload your own content !</div>";
+                    document.querySelectorAll(".groupsWrapper")[1].innerHTML="<span class=\"noDataTextInfo\">We have to know about you to show you personalized content.. !<p><a href=https://e.diskloud.fr/Dilab/login >Log in</a> to get personalized groups and upload your own content !</div>";
                 }
 
                 fetch('/Dilab/get', {
