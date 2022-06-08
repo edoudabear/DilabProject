@@ -1004,7 +1004,7 @@ function pathAnalysis() {
                         method: 'POST',
                         body: JSON.stringify({
                             type : "mainReleasesByGenre",
-                            genreName : userData.genres
+                            genreId : userData.genres
                         }) //data
                     }).then(out => {
                         return out.json();
