@@ -996,7 +996,6 @@ function pathAnalysis() {
                 });
 
                 if (!document.querySelector(".loginButton") && userData!=null && userData.genres) {
-                    alert("Condition asserted")
                     fetch('/Dilab/get',{
                         headers: {
                             'Content-Type': 'application/json'
