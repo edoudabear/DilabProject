@@ -680,6 +680,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`,(err,results,fields) => {
                     if (err) {
+                        console.log(err);
                         res.end(JSON.stringify(
                             { "return" : "ok",
                                 "status" : false,
