@@ -652,10 +652,16 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     "status" : false,
                                     "data" : "server error"
                             }));
-                        } else {
+                        } else if (results[1].affectedRows==1) {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
                                     "status" : true,
+                                    "data" : true
+                                }));
+                        } else {
+                            res.end(JSON.stringify(
+                                { "return" : "ok",
+                                    "status" : false,
                                     "data" : true
                                 }));
                         }
@@ -679,10 +685,16 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 "status" : false,
                                 "data" : "server error"
                         }));
-                    } else {
+                    } else if (results[1].affectedRows==1) {
                         res.end(JSON.stringify(
                             { "return" : "ok",
                                 "status" : true,
+                                "data" : true
+                            }));
+                    } else {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : false,
                                 "data" : true
                             }));
                     }
