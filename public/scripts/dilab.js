@@ -645,7 +645,31 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").innerHTML="Waiting for admin to accept you";
                                     } else if (log.data=="not a member") {
                                         document.querySelector(".joinButton").addEventListener('click',e => {
-                                            Swal.fire("Error","Not available yet","error")
+                                            fetch('/Dilab/set', {
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                },
+                                                method: 'POST',
+                                                body: JSON.stringify({
+                                                    type : "newJoinRequest",
+                                                    groupName : encodeURI(urlParams.get("g"))
+                                                }) //data
+                                            }).then(out => {
+                                                return out.json();
+                                            }).then(log => {
+                                                if (!log.status) {
+                                                    Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later");
+                                                    console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
+                                                    return;
+                                                } else {
+                                                    document.querySelector(".joinButton").innerHTML="Waiting for admin to accept you";
+                                                    document.querySelector(".joinButton").classList.add("noHoverActiveButton");
+                                                    document.querySelector(".joinButton").classList.remove("button");
+                                                    document.querySelector(".joinButton").style.opacity= 0.6;
+                                                    document.querySelector(".joinButton").style.cursor= "not-allowed";
+                                                }
+                                            });
                                         });
                                     } else {
                                         console.log("Unexpected response from the server..");
