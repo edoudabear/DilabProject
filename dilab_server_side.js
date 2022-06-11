@@ -614,7 +614,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
     } else if (req.params.action=="set") {
-        if (req.body.type=="newJoinRequest" && req.body.groupName) {
+        if (req.body.type=="newJoinRequest" && req.body.groupName && req.session.dilab) {
             dilabConnection.query(`INSERT INTO DilabMembersWaitList (waiter,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1`,(err,results,fields) => {
                 if (err) {
                     res.end(JSON.stringify(
