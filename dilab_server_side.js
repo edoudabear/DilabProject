@@ -645,7 +645,21 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 DELETE DilabMembersWaitList FROM DilabMembersWaitList
                     LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                     LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
-                    WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`);
+                    WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`,(err,results,fields) => {
+                        if (err) {
+                            res.end(JSON.stringify(
+                                { "return" : "ok",
+                                    "status" : false,
+                                    "data" : "server error"
+                            }));
+                        } else (results.affectedRows==1) {
+                            res.end(JSON.stringify(
+                                { "return" : "ok",
+                                    "status" : true,
+                                    "data" : true
+                                }));
+                        }
+                    });
             } else {
                 dilabConnection.query(`
                 INSERT INTO DilabNotificationsList (targetedUser,content,type)
@@ -658,7 +672,21 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 DELETE DilabMembersWaitList FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
-                WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`);
+                WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`,(err,results,fields) => {
+                    if (err) {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : false,
+                                "data" : "server error"
+                        }));
+                    } else (results.affectedRows==1) {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : true,
+                                "data" : true
+                            }));
+                    }
+                });
             }
         } else if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
             if (req.files) {

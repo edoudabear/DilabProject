@@ -54,6 +54,31 @@ fetch('/Dilab/check', {
     }
 });
 
+function joinResponse(user,group,response) {
+    fetch('/Dilab/set',{
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            type : "answerToJoinRequest",
+            groupName : group,
+            answer : response,
+            userName : user
+        }) //data
+    }).then(out => {
+        return out.json();
+    }).then(data => {
+        console.log(data);
+        if (data.status!=true) {
+            Toast.fire({icon : "warning", title : "Something went wrong.."});
+        } else {
+            console.log(data)
+        }
+    });
+}
+
 
 // Sweet alert remake of toast
 
