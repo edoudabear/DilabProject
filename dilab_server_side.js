@@ -652,7 +652,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                     "status" : false,
                                     "data" : "server error"
                             }));
-                        } else (results.affectedRows==1) {
+                        } else {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
                                     "status" : true,
@@ -679,7 +679,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 "status" : false,
                                 "data" : "server error"
                         }));
-                    } else (results.affectedRows==1) {
+                    } else {
                         res.end(JSON.stringify(
                             { "return" : "ok",
                                 "status" : true,
