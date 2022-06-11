@@ -74,7 +74,7 @@ function joinResponse(user,group,response) {
         if (data.status!=true) {
             Toast.fire({icon : "warning", title : "Something went wrong.."});
         } else {
-            console.log(data)
+            Swal.fire("Info","Choice has been saved","info");
         }
     });
 }
@@ -2825,10 +2825,10 @@ function newMemberWaitListNotificationElement(userName,groupName) {
             <a href=/Dilab/artist?a=${encodeURI(userName)} ><strong>${userName}</strong></a> wants to join your group <a href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>
         </div>
         <div class=options>
-            <div title="Accept join" class=accept>
+            <div title="Accept join" onclick="joinResponse(\`${log.data[0][i].requester}\`,\`${log.data[0][i].groupName}\`,true)" class=accept>
                 <i class="bi bi-check2"></i>
             </div>
-            <div title="Block join" class=deny>
+            <div title="Block join" onclick="joinResponse(\`${log.data[0][i].requester}\`,\`${log.data[0][i].groupName}\`,false)" class=deny>
                 <i class="bi bi-x"></i>
             </div>
         </div>
