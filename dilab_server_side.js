@@ -614,7 +614,26 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
     } else if (req.params.action=="set") {
-        if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
+        if (req.body.type=="newJoinRequest" && req.body.groupName) {
+            dilabConnection.query(`INSERT INTO DilabMembersWaitList (waiter,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1`,(err,results,fields) => {
+                if (err) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : false,
+                            "data" : "server error"
+                    }));
+                }
+                if (results.affectedRows==1) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : true
+                        }));
+                } else {
+                    res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                }
+            });
+        } if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
