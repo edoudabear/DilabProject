@@ -633,7 +633,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
                 }
             });
-        } if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
+        } else if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
