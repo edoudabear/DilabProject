@@ -669,7 +669,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             } else {
                 dilabConnection.query(`
                 INSERT INTO DilabNotificationsList (targetedUser,content,type)
-                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a href=\"/Dilab/group?g=",DilabMusicGroups.groupName,"\">",DilabMusicGroups.groupName,"</a>"),"denial" FROM DilabMembersWaitList
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"denial" FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
