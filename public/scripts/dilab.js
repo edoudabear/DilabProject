@@ -735,7 +735,7 @@ function pathAnalysis() {
                 }).then(data => {
                     console.log(data);
                     if (data.status!=true) {
-                        Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                        Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects of the group"});
                     } else {
                         var projectList=data.data;
                         document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>";
@@ -1036,7 +1036,7 @@ function pathAnalysis() {
                     }).then(data => {
                         console.log(data);
                         if (data.status!=true) {
-                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects depending on your favorite genre"});
                         } else {
                             var data=data.data;
                             document.querySelectorAll(".releases")[2].innerHTML="";
@@ -1085,7 +1085,7 @@ function pathAnalysis() {
                 }).then(data => {
                     console.log(data);
                     if (data.status!=true) {
-                        Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                        Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects on the platform"});
                     } else {
                         var projectList=data.data;
                         document.querySelector(".projectsWrapper").innerHTML="";
@@ -1158,7 +1158,7 @@ function pathAnalysis() {
                     }).then(data => {
                         console.log(data);
                         if (data.status!=true) {
-                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects"});
+                            Toast.fire({icon : "warning", title : "Something is not ok.. We couldn't load the most popular projects of your favorite genre"});
                         } else {
                             var projectList=data.data;
                             document.querySelectorAll(".projectsWrapper")[1].innerHTML="";
