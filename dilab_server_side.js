@@ -1493,11 +1493,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "rule" : results[0].rule
                         }));
                 } else {
-                    dilabConnection.query(`WITH cte AS (
-                        SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(req.body.groupName)}
-                        ) SELECT cte.id FROM cte
-                            RIGHT JOIN DilabMembersWaitList ON cte.id=DilabMembersWaitList.groupId
-                            WHERE DilabMembersWaitList.waiter=${req.session.dilab} LIMIT 1`,(err,results,fields) => {
+                    dilabConnection.query(`SELECT DilabMembersWaitList.id FROM DilabMembersWaitList 
+                    LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
+                    WHERE DilabMembersWaitList.waiter=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1`,(err,results,fields) => {
                         if (err) { // DBS Query Error
                             res.end(JSON.stringify(
                                 { "return" : "error",
