@@ -624,6 +624,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "status" : false,
                             "data" : "server error"
                     }));
+                    return;
                 }
                 if (results.affectedRows==1) {
                     res.end(JSON.stringify(
