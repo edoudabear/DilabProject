@@ -1557,6 +1557,10 @@ body {
     min-height : 500px;
 }
 
+.chat > .messagesContainer > .noMessage {
+    text-align: center;
+}
+
 .chat > .messagesContainer > .messagesUnavailable {
     position: absolute;
     top: 0;
