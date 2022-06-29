@@ -2266,6 +2266,10 @@ function setupGroupChat(groupName) {
             }
             document.querySelector(".hider").style.display="none";
             document.querySelector(".chatInput").disabled=false;
+
+            document.querySelector(".chatAttachBtn").addEventListener("click",()=>{
+                Swal.fire("Info","Sharing files via the chat is not available yet (will come later)")
+            })
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
         }
