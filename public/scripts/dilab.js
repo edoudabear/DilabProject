@@ -2913,7 +2913,7 @@ function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDa
     </div>`
 }
 
-function generateNewDateAnouncement(anouncedDate) {
+function generateNewDateAnouncement(announcedDate) {
     var date = new Date(announcedDate);
     return `<div class="dateAnouncement">
                 <div class="datePopUp">
