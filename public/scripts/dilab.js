@@ -2917,7 +2917,7 @@ function generateNewDateAnouncement(announcedDate) {
     var date = new Date(announcedDate);
     return `<div class="dateAnouncement">
                 <div class="datePopUp">
-                    ${String(date.getDay()) +"/"+ String(date.getMonth()+1) +"/"+ String(date.getFullYear())}
+                    ${String(date.getDate()) +"/"+ String(date.getMonth()+1) +"/"+ String(date.getFullYear())}
                 </div>
             </div>`
 }
