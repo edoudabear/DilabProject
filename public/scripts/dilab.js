@@ -748,7 +748,7 @@ function pathAnalysis() {
                                             }
                                             document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
                                         } if (log.data.length==0) {
-                                            document.querySelector(".messageContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
+                                            document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
                                         }
                                     } else {
                                         document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
