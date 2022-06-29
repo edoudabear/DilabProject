@@ -1523,6 +1523,7 @@ body {
     flex-direction: column;
     box-shadow: 0 0 10px rgb(141, 140, 140);
     border-radius: 8px/8px;
+    margin-bottom: 20px;
 }
 
 .chat > .messagesHeader {
@@ -1553,8 +1554,7 @@ body {
         inset 0px 11px 8px -10px rgb(163, 163, 163),
         inset 0px -11px 8px -10px rgb(163, 163, 163);
     position: relative;
-    min-height : 400px;
-    margin-bottom: 20px;
+    min-height : 500px;
 }
 
 .chat > .messagesContainer > .messagesUnavailable {
