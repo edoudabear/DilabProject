@@ -666,6 +666,8 @@ function pathAnalysis() {
                                         } if (log.data.length==0) {
                                             document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
                                         }
+                                        document.querySelector(".hider").style.display="none";
+                                        document.querySelector(".chatInput").disabled=false;
                                     } else {
                                         document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
                                     }
@@ -729,6 +731,8 @@ function pathAnalysis() {
                                                 } if (log.data.length==0) {
                                                     document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
                                                 }
+                                                document.querySelector(".hider").style.display="none";
+                                                document.querySelector(".chatInput").disabled=false;
                                             } else {
                                                 document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
                                             }
@@ -806,8 +810,6 @@ function pathAnalysis() {
                             if (data[1].length==0) {
                                 document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
                             }
-                            document.querySelector(".hider").style.display="none";
-                            document.querySelector(".chatInput").disabled=false;
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
