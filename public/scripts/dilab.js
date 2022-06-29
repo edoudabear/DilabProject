@@ -717,7 +717,7 @@ function pathAnalysis() {
                                     })
                                 });
                             }
-                            if (!document.querySelector(".loginButton")) {
+                            if (!document.querySelector(".loginButton") && !document.querySelector(".joinButton").value!="Join") {
                                 fetch('/Dilab/get', {
                                     headers: {
                                         'Content-Type': 'application/json'
