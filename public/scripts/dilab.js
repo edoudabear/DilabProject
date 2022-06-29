@@ -2739,7 +2739,7 @@ function checkIfExists(what,input,inputElement,errElement) {
 }
 
 function wellFormattedDate(hours,minutes) {
-    return (hours>9 ? String(hours) : "0"+String(hours))+(minutes>9 ? String(minutes) : "0"+String(minutes));
+    return (hours>9 ? String(hours) : "0"+String(hours))+":"+(minutes>9 ? String(minutes) : "0"+String(minutes));
 }
 
 // html escape
@@ -2914,7 +2914,7 @@ function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDa
         </div>
         <div class="messageTimeWrapper">
             <div class="messageTime">
-                ${String(date.getHours())+":"+String(date.getMinutes())}
+                ${wellFormattedDate(date.getHours(),date.getMinutes())}
             </div>    
         </div> 
     </div>`
