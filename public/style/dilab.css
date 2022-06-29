@@ -1553,7 +1553,8 @@ body {
         inset 0px 11px 8px -10px rgb(163, 163, 163),
         inset 0px -11px 8px -10px rgb(163, 163, 163);
     position: relative;
-    min-height : 300px;
+    min-height : 400px;
+    margin-bottom: 20px;
 }
 
 .chat > .messagesContainer > .messagesUnavailable {
