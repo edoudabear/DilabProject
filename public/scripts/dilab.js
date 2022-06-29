@@ -746,7 +746,7 @@ function pathAnalysis() {
                                                     document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
                                                 }
                                             }
-                                            document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].author,log.data[i].sendTime);
+                                            document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
                                         }
                                     } else {
                                         document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
