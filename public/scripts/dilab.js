@@ -2898,7 +2898,7 @@ function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDa
     </div>
     <div class="messageTimeWrapper">
         <div class="messageTime">
-            ${String(date.getHours)+":"+String(date.getMinutes)}
+            ${String(date.getHours())+":"+String(date.getMinutes())}
         </div>    
     </div> 
 </div>`
