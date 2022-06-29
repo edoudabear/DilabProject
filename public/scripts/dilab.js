@@ -634,44 +634,7 @@ function pathAnalysis() {
                                 document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>You are the group admin`;
                                 document.querySelector(".joinButton").style.display="none";
                                 console.log("isAdmin");
-                                fetch('/Dilab/get', {
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        type : "groupChat",
-                                        groupName : decodeURIComponent(urlParams.get("g"))
-                                    }) //data
-                                }).then(out => {
-                                    return out.json();
-                                }).then(log => {
-                                    console.log(log);
-                                    if (log.status) {
-                                        document.querySelector(".messagesContainer").innerHTML="";
-                                        for (var i=0;i<log.data.length;i++) {
-                                            if (i==0) {
-                                                document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
-                                            } else {
-                                                var date1=new Date(log.data[i-1].sendTime),
-                                                date2=new Date(log.data[i].sendTime);
-                                                console.log(date1);
-                                                console.log(date2);
-                                                if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
-                                                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
-                                                }
-                                            }
-                                            document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
-                                        } if (log.data.length==0) {
-                                            document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
-                                        }
-                                        document.querySelector(".hider").style.display="none";
-                                        document.querySelector(".chatInput").disabled=false;
-                                    } else {
-                                        document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
-                                    }
-                                });
+                                setupGroupChat(urlParams.get("g"));
                             } else if (!document.querySelector(".loginButton")) {
                                 fetch('/Dilab/check', {
                                     headers: {
@@ -699,44 +662,7 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
                                         });
-                                        fetch('/Dilab/get', {
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                                // 'Content-Type': 'application/x-www-form-urlencoded',
-                                            },
-                                            method: 'POST',
-                                            body: JSON.stringify({
-                                                type : "groupChat",
-                                                groupName : decodeURIComponent(urlParams.get("g"))
-                                            }) //data
-                                        }).then(out => {
-                                            return out.json();
-                                        }).then(log => {
-                                            console.log(log);
-                                            if (log.status) {
-                                                document.querySelector(".messagesContainer").innerHTML="";
-                                                for (var i=0;i<log.data.length;i++) {
-                                                    if (i==0) {
-                                                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
-                                                    } else {
-                                                        var date1=new Date(log.data[i-1].sendTime),
-                                                        date2=new Date(log.data[i].sendTime);
-                                                        console.log(date1);
-                                                        console.log(date2);
-                                                        if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
-                                                            document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
-                                                        }
-                                                    }
-                                                    document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
-                                                } if (log.data.length==0) {
-                                                    document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
-                                                }
-                                                document.querySelector(".hider").style.display="none";
-                                                document.querySelector(".chatInput").disabled=false;
-                                            } else {
-                                                document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
-                                            }
-                                        });
+                                        setupGroupChat(urlParams.get("g"));
                                     } else if (log.data=="waiting for approval") {
                                         document.querySelector(".joinButton").classList.add("noHoverActiveButton");
                                         document.querySelector(".joinButton").classList.remove("button");
@@ -2302,6 +2228,49 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
         },100);
     }
 });
+
+// Chat setup
+
+function setupGroupChat(groupName) {
+    fetch('/Dilab/get', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            type : "groupChat",
+            groupName : decodeURIComponent(groupName)
+        }) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log(log);
+        if (log.status) {
+            document.querySelector(".messagesContainer").innerHTML="";
+            for (var i=0;i<log.data.length;i++) {
+                if (i==0) {
+                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                } else {
+                    var date1=new Date(log.data[i-1].sendTime),
+                    date2=new Date(log.data[i].sendTime);
+                    console.log(date1);
+                    console.log(date2);
+                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                    }
+                }
+                document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
+            } if (log.data.length==0) {
+                document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
+            }
+            document.querySelector(".hider").style.display="none";
+            document.querySelector(".chatInput").disabled=false;
+        } else {
+            document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
+        }
+    });
+}
 
 
 //PopUp Window handler
