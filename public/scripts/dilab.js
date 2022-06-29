@@ -731,8 +731,15 @@ function pathAnalysis() {
                                 }).then(out => {
                                     return out.json();
                                 }).then(log => {
-                                    alert(log);
                                     console.log(log);
+                                    if (log.status) {
+                                        document.querySelector(".messagesContainer").innerHTML="";
+                                        for (var i=0;i<log.data.length;i++) {
+                                            document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].author,log.data[i].sendTime);
+                                        }
+                                    } else {
+                                        document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
+                                    }
                                 });
                             }
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
@@ -2720,6 +2727,17 @@ function checkIfExists(what,input,inputElement,errElement) {
     });
 }
 
+// html escape
+
+function escapeHtml(unsafe) {
+    return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+  }
+
 // Element templates
 
 function newReleaseElement(title,group,releaseDate,streams,duration,imagePath) {
@@ -2868,6 +2886,22 @@ function newConfirmNotificationElement(groupName) {
         </div>
     </div>`
 
+}
+
+function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDate) {
+    date= new Date(sendDate);
+    return `<div class="globalMessage ${isAuthorTheRequester ? "local" : "dist"}">
+    <div class="messageWrapper">
+        <div class="message local">
+            <p></p>${escapeHtml(message)}<p></p>
+        </div>                 
+    </div>
+    <div class="messageTimeWrapper">
+        <div class="messageTime">
+            ${String(date.getHours)+":"+String(date.getMinutes)}
+        </div>    
+    </div> 
+</div>`
 }
 
 // Other algoritmic functions
