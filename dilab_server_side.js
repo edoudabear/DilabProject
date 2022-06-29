@@ -170,6 +170,22 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         data : results.flat()}));
                 }
             });
+        } else if (req.body.type=="genre" && req.body.genrePattern) {
+            dilabConnection.query(`SELECT id,genreName FROM DilabGenres WHERE genreName LIKE '${req.body.genrePattern}%' LIMIT 10`,(err,results,fields)=> {
+                if (err) {
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "internal server error"
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results
+                    }));
+                }
+            });
         } else if (req.body.type=="mainReleasesByGenre" && req.body.genreId) {
             dilabConnection.query(`
             WITH cte AS (
@@ -642,22 +658,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
             WHERE isGroupOrProject="t"AND DilabMusicGroups.groupName="Edoudé"
             ORDER BY sendTime`,(err,results,fields)=> {
-                if (err) {
-                    res.end(JSON.stringify({
-                        return : "error",
-                        status : false,
-                        data : "internal server error"
-                    }));
-                } else {
-                    res.end(JSON.stringify({
-                        return : "ok",
-                        status : true,
-                        data : results
-                    }));
-                }
-            });
-        } else if (req.body.type=="genre" && req.body.genrePattern) {
-            dilabConnection.query(`SELECT id,genreName FROM DilabGenres WHERE genreName LIKE '${req.body.genrePattern}%' LIMIT 10`,(err,results,fields)=> {
                 if (err) {
                     res.end(JSON.stringify({
                         return : "error",
