@@ -713,6 +713,7 @@ function pathAnalysis() {
                                 }).then(out => {
                                     return out.json();
                                 }).then(log => {
+                                    alert(log);
                                     console.log(log);
                                 });
                             } else {
