@@ -735,6 +735,15 @@ function pathAnalysis() {
                                     if (log.status) {
                                         document.querySelector(".messagesContainer").innerHTML="";
                                         for (var i=0;i<log.data.length;i++) {
+                                            if (i==0) {
+                                                document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                                            } else {
+                                                var date1=new Date(log.data[i-1].sendDate),
+                                                date2=new Date(log.data[i].sendDate);
+                                                if (date1.getDay()!=date2.getDay() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                                                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                                                }
+                                            }
                                             document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].author,log.data[i].sendTime);
                                         }
                                     } else {
@@ -2889,19 +2898,28 @@ function newConfirmNotificationElement(groupName) {
 }
 
 function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDate) {
-    date= new Date(sendDate);
+    var date= new Date(sendDate);
     return `<div class="globalMessage ${isTheAuthorTheRequester ? "local" : "dist"}">
-    <div class="messageWrapper">
-        <div class="message local">
-            <p></p>${escapeHtml(message)}<p></p>
-        </div>                 
-    </div>
-    <div class="messageTimeWrapper">
-        <div class="messageTime">
-            ${String(date.getHours())+":"+String(date.getMinutes())}
-        </div>    
-    </div> 
-</div>`
+        <div class="messageWrapper">
+            <div class="message local">
+                <p></p>${escapeHtml(message)}<p></p>
+            </div>                 
+        </div>
+        <div class="messageTimeWrapper">
+            <div class="messageTime">
+                ${String(date.getHours())+":"+String(date.getMinutes())}
+            </div>    
+        </div> 
+    </div>`
+}
+
+function generateNewDateAnouncement(anouncedDate) {
+    var date = new Date(announcedDate);
+    return `<div class="dateAnouncement">
+                <div class="datePopUp">
+                    ${String(date.getDay()) + String(date.getMonth()+1) + String(date.getFullYear())}
+                </div>
+            </div>`
 }
 
 // Other algoritmic functions
