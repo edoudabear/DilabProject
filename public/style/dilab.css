@@ -1614,13 +1614,13 @@ body {
 
 .chat > .messagesContainer > .dist > .messageWrapper > .message > .author {
     width: fit-content;
-    color: white;
+    color: rgb(218, 217, 217);
     font-size : 12px;
 }
 
 .chat > .messagesContainer > .dist > .messageWrapper > .message {
     background : rgb(248, 14, 14);
-    color: rgb(158, 158, 158);
+    color: white;
     max-width: 90%;
 }
 
