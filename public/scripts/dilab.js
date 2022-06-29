@@ -807,6 +807,7 @@ function pathAnalysis() {
                                 document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
                             }
                             document.querySelector(".hider").style.display="none";
+                            document.querySelector(".chatInput").disabled=false;
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
