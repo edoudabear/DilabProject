@@ -708,7 +708,7 @@ function pathAnalysis() {
                                     method: 'POST',
                                     body: JSON.stringify({
                                         type : "groupChat",
-                                        groupName : decodeURIComponent(urlParams.get("g"))
+                                        groupName : decodeURIComponent("Edoudé")//urlParams.get("g"))
                                     }) //data
                                 }).then(out => {
                                     return out.json();
@@ -716,6 +716,7 @@ function pathAnalysis() {
                                     alert(log);
                                     console.log(log);
                                 });
+
                             } else {
                                 document.querySelector(".joinButton").addEventListener('click',e => {
                                     Swal.fire({
