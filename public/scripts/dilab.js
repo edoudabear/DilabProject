@@ -2738,6 +2738,10 @@ function checkIfExists(what,input,inputElement,errElement) {
     });
 }
 
+function wellFormattedDate(hours,minutes) {
+    return (hours>9 ? String(hours) : "0"+String(hours))+(minutes>9 ? String(minutes) : "0"+String(minutes));
+}
+
 // html escape
 
 function escapeHtml(unsafe) {
