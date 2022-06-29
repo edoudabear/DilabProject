@@ -699,23 +699,6 @@ function pathAnalysis() {
                                         console.log("Unexpected response from the server..");
                                     }
                                 });
-
-                                fetch('/Dilab/get', {
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        type : "groupChat",
-                                        groupName : decodeURIComponent(urlParams.get("g"))
-                                    }) //data
-                                }).then(out => {
-                                    return out.json();
-                                }).then(log => {
-                                    alert(log);
-                                    console.log(log);
-                                });
                                 
                             } else {
                                 document.querySelector(".joinButton").addEventListener('click',e => {
@@ -734,6 +717,22 @@ function pathAnalysis() {
                                     })
                                 });
                             }
+                            fetch('/Dilab/get', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    type : "groupChat",
+                                    groupName : decodeURIComponent(urlParams.get("g"))
+                                }) //data
+                            }).then(out => {
+                                return out.json();
+                            }).then(log => {
+                                alert(log);
+                                console.log(log);
+                            });
                             document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>${data[0][0].nCollaborators} members`;
                             document.querySelector(".groupGenres").innerHTML=data[0][0].genres!=null ? data[0][0].genres : "Not indicated" ;
                             document.querySelector(".groupBio").innerHTML=data[0][0].description;
