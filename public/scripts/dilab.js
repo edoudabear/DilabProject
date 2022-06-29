@@ -806,6 +806,7 @@ function pathAnalysis() {
                             if (data[1].length==0) {
                                 document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
                             }
+                            document.querySelector(".hider").style.display="none";
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
