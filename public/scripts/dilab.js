@@ -2890,7 +2890,7 @@ function newConfirmNotificationElement(groupName) {
 
 function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDate) {
     date= new Date(sendDate);
-    return `<div class="globalMessage ${isAuthorTheRequester ? "local" : "dist"}">
+    return `<div class="globalMessage ${isTheAuthorTheRequester ? "local" : "dist"}">
     <div class="messageWrapper">
         <div class="message local">
             <p></p>${escapeHtml(message)}<p></p>
