@@ -1665,7 +1665,7 @@ body {
     opacity: 0.9;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    cursor:alias;
+    cursor:default;
 }
 
 .chat > .chatInputContainer > div {
