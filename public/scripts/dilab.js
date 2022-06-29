@@ -738,8 +738,8 @@ function pathAnalysis() {
                                             if (i==0) {
                                                 document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
                                             } else {
-                                                var date1=new Date(log.data[i-1].sendDate),
-                                                date2=new Date(log.data[i].sendDate);
+                                                var date1=new Date(log.data[i-1].sendTime),
+                                                date2=new Date(log.data[i].sendTime);
                                                 console.log(date1);
                                                 console.log(date2);
                                                 if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
