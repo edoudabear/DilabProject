@@ -465,6 +465,29 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
                 }
             });
+        } else if (req.body.type=="projectChat" && req.body.projectName && req.body.groupName && req.session.dilab) {
+            res.status(400).end("Not available yet..");
+            dilabConnection.query(`SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
+            FROM DilabChats
+            LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
+            LEFT JOIN DilabProject ON DilabChats.groupProjectPVChatId = DilabProject.id
+            LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
+            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+            ORDER BY sendTime`,(err,results,fields)=> {
+                if (err) {
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "internal server error"
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results
+                    }));
+                }
+            });
         } else if (req.body.type=="group" && req.body.groupName) {
             var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
             dilabConnection.query(`
@@ -546,6 +569,27 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         }
                     }
                 });
+        } else if (req.body.type=="groupChat" && req.body.groupName && req.session.dilab) {
+            dilabConnection.query(`SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
+            FROM DilabChats
+            LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
+            WHERE isGroupOrProject="g"AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+            ORDER BY sendTime`,(err,results,fields)=> {
+                if (err) {
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "internal server error"
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results
+                    }));
+                }
+            });
         } else if (req.body.type="artist" && req.body.artistName) {
             dilabConnection.query(`
             /* Query 1 */
@@ -588,6 +632,29 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         data : results}));
                 } else {
                     res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
+                }
+            });
+        } else if (req.body.type=="artistChat" && req.body.artistName && req.session.dilab) {
+            dilabConnection.query(`
+            /* NOT OPTIMIZED YET */
+            SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (15=DilabChats.author) AS isAuthorRequester
+            FROM DilabChats
+            LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
+            WHERE isGroupOrProject="t"AND DilabMusicGroups.groupName="Edoudé"
+            ORDER BY sendTime`,(err,results,fields)=> {
+                if (err) {
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "internal server error"
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results
+                    }));
                 }
             });
         } else if (req.body.type=="genre" && req.body.genrePattern) {
