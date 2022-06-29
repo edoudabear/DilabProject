@@ -466,7 +466,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="projectChat" && req.body.projectName && req.body.groupName && req.session.dilab) {
-            res.status(400).end("Not available yet..");
             dilabConnection.query(`SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
             FROM DilabChats
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
@@ -570,7 +569,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
         } else if (req.body.type=="groupChat" && req.body.groupName && req.session.dilab) {
-            dilabConnection.query(`SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
+            dilabConnection.query(`SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
             FROM DilabChats
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
