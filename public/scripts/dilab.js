@@ -2268,7 +2268,7 @@ function setupGroupChat(groupName) {
             document.querySelector(".chatInput").disabled=false;
 
             document.querySelector(".chatAttachBtn").addEventListener("click",()=>{
-                Swal.fire("Info","Sharing files via the chat is not available yet (will come later)")
+                Swal.fire("Info","Sharing files via the chat is not available yet (will come later)","info");
             })
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
