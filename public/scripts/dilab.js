@@ -622,7 +622,6 @@ function pathAnalysis() {
                     }).then(out => {
                         return out.json();
                     }).then(log => {
-                        console.log(log);
                         if (log.status==true) {
                             // group info insertion
                             data=log.data;
@@ -683,7 +682,6 @@ function pathAnalysis() {
                                             }).then(out => {
                                                 return out.json();
                                             }).then(log => {
-                                                console.log(log);
                                                 if (log.status===false) {
                                                     Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later","error");
                                                     console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
