@@ -635,24 +635,6 @@ function pathAnalysis() {
                                 document.querySelector(".joinButton").style.display="none";
                                 console.log("isAdmin");
                             } else if (!document.querySelector(".loginButton")) {
-
-                                fetch('/Dilab/get', {
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        type : "groupChat",
-                                        groupName : decodeURIComponent(urlParams.get("g"))
-                                    }) //data
-                                }).then(out => {
-                                    return out.json();
-                                }).then(log => {
-                                    alert(log);
-                                    console.log(log);
-                                });
-
                                 fetch('/Dilab/check', {
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -717,6 +699,24 @@ function pathAnalysis() {
                                         console.log("Unexpected response from the server..");
                                     }
                                 });
+
+                                fetch('/Dilab/get', {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        type : "groupChat",
+                                        groupName : decodeURIComponent(urlParams.get("g"))
+                                    }) //data
+                                }).then(out => {
+                                    return out.json();
+                                }).then(log => {
+                                    alert(log);
+                                    console.log(log);
+                                });
+                                
                             } else {
                                 document.querySelector(".joinButton").addEventListener('click',e => {
                                     Swal.fire({
