@@ -1679,7 +1679,7 @@ body {
     padding-left : 8px;
     margin-right: 8px;
     background: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
+    cursor: none;
 }
 
 .chat > .chatInputContainer > .chatInput::placeholder {
