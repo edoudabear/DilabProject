@@ -710,7 +710,7 @@ function pathAnalysis() {
                                     method: 'POST',
                                     body: JSON.stringify({
                                         type : "groupChat",
-                                        groupName : urlParams.get("g");
+                                        groupName : urlParams.get("g")
                                     }) //data
                                 }).then(out => {
                                     return out.json();
