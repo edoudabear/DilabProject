@@ -2299,15 +2299,47 @@ function setupChat(groupName,projectName=null) {
             document.querySelector(".chatInput").addEventListener("keyup",e=> {
                 if (e.key=="Enter") {
                     e.preventDefault();
+                    var message=document.querySelector(".chatInput").value
+                    sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                     document.querySelector(".chatInput").value="";
                 }
             });
 
             document.querySelector(".chatSendBtn").addEventListener("click",()=>{
+                var message=document.querySelector(".chatInput").value
+                sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                 document.querySelector(".chatInput").value="";    
             })
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
+        }
+    });
+}
+
+function sendMessage(message,groupName,projectName=null) {
+    var body={
+        type : "message",
+        messageDestType : projectName==null ? "g" : "p",
+        "groupName" : groupName
+    }
+    if (projectName!=null) {
+        body.projectName=projectName
+    }
+    fetch('/Dilab/add', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify(body) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log(log);
+        if (log.status) {
+            Swal.fire("Success","Message sent (reload page to see it)","success");
+        } else {
+            Swal.fire("Error","Apparently, your message wasn't sent. Try again later","error");
         }
     });
 }
