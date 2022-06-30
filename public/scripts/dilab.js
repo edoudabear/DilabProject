@@ -1009,7 +1009,10 @@ function pathAnalysis() {
                             return;
                         } if (log.data=="member") {
                             setupChat(urlParams.get("g"),urlParams.get("p"));
-                        }});
+                        } else {
+                            document.querySelector(".messagesUnavailable").innerHTML="You must be a group member to chat with its members";
+                        }
+                    });
 
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
