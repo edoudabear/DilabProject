@@ -2286,8 +2286,6 @@ function setupChat(groupName,projectName=null) {
                 } else {
                     var date1=new Date(log.data[i-1].sendTime),
                     date2=new Date(log.data[i].sendTime);
-                    console.log(date1);
-                    console.log(date2);
                     if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
                     }
