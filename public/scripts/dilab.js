@@ -2259,6 +2259,21 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 var chatReloader,lastMessage;
 
+function scrolldiv(element,parent=window) {
+    parent.scrollTo(0, 
+    findPosition(element));
+}
+
+function findPosition(obj) {
+    var currenttop = 0;
+    if (obj.offsetParent) {
+        do {
+            currenttop += obj.offsetTop;
+        } while ((obj = obj.offsetParent));
+        return [currenttop];
+    }
+}
+
 function setupChat(groupName,projectName=null) {
     var body={
         type : projectName==null ? "groupChat" : "projectChat",
@@ -2294,7 +2309,7 @@ function setupChat(groupName,projectName=null) {
             } if (log.data.length==0) {
                 document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
             } else {
-                document.querySelectorAll(".message")[document.querySelectorAll(".message").length-1].scrollIntoView();
+                scrollDiv(document.querySelector(".messagesContainer"),document.querySelectorAll(".message")[document.querySelectorAll(".message").length-1]);
             }
             document.querySelector(".hider").style.display="none";
             document.querySelector(".chatInput").disabled=false;
@@ -2373,7 +2388,7 @@ function updateChat(groupName,projectName=null) {
                 lastMessage=log.data[log.data.length-1]
             }
             if (minIndex>-1) {
-                document.querySelectorAll(".message")[document.querySelectorAll(".message").length-1].scrollIntoView();
+                scrollDiv(document.querySelector(".messagesContainer"),document.querySelectorAll(".message")[document.querySelectorAll(".message").length-1]);
             }
             chatReloader=setTimeout(()=>{
                 updateChat(groupName,projectName);
