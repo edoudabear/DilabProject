@@ -487,7 +487,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
             LEFT JOIN DilabProject ON DilabChats.groupProjectPVChatId = DilabProject.id
             LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} ${(req.body.minTime) ? ` AND DilabChats.sendTime>=${parseInt(new Date (req.body.minTime).getTime()/1000)}` : ``}
             ORDER BY sendTime`,(err,results,fields)=> {
                 if (err) {
                     res.end(JSON.stringify({

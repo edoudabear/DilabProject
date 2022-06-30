@@ -2257,6 +2257,8 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 // Chat setup
 
+var chatReloader;
+
 function setupChat(groupName,projectName=null) {
     var body={
         type : projectName==null ? "groupChat" : "projectChat",
@@ -2318,9 +2320,57 @@ function setupChat(groupName,projectName=null) {
                 const urlParams = new URLSearchParams(queryString);
                 sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                 document.querySelector(".chatInput").value="";    
-            })
+            });
+            chatReloader=setTimeout(()=>{
+                updateChat(log.data[log.data.length-1],urlParams.get("g"),urlParams.get("p"));
+            },4000);
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
+        }
+    });
+}
+
+function updateChat(lastMessage,groupName,projectName=null) {
+    var body={
+        type : projectName==null ? "groupChat" : "projectChat",
+        "groupName" : groupName,
+        minTime :  lastMessage.sendTime
+    }
+    if (projectName!=null) {
+        body.projectName=projectName
+    }
+    fetch('/Dilab/get', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify(body) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log(log);
+        var minIndex=log.data.find(lastMessage);
+        if (log.status) {
+            for (var i=minIndex;i<log.data.length;i++) {
+                if (i==0) {
+                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                } else {
+                    var date1=new Date(log.data[i-1].sendTime),
+                    date2=new Date(log.data[i].sendTime);
+                    console.log(date1);
+                    console.log(date2);
+                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                    }
+                }
+                document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
+            }
+            chatReloader=setTimeout(()=>{
+                updateChat(log.data[log.data.length-1],urlParams.get("g"),urlParams.get("p"));
+            },4000);
+        } else {
+            Swal.fire("Error","We had troubles loading new messages.","error");
         }
     });
 }
@@ -2347,7 +2397,8 @@ function sendMessage(message,groupName,projectName=null) {
     }).then(log => {
         console.log(log);
         if (log.status) {
-            Swal.fire("Success","Message sent (reload page to see it)","success");
+            clearTimeout(chatReloader);
+            updateChat(log.data[log.data.length-1],groupName,projectName);
         } else {
             Swal.fire("Error","Apparently, your message wasn't sent. Try again later","error");
         }
