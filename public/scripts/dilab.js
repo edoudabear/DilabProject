@@ -2259,7 +2259,7 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 var chatReloader,lastMessage;
 
-function scrolldiv(element,parent=window) {
+function scrollDiv(element,parent=window) {
     parent.scrollTo(0, 
     findPosition(element));
 }
