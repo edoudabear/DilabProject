@@ -2373,12 +2373,12 @@ function updateChat(groupName,projectName=null) {
     }).then(log => {
         console.log(log.data)
         if (log.status) {
+            // This code part is very badly written
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (lastMessage==null) {
                     document.querySelector(".messagesContainer").innerHTML="";
                 }
-                lastMessage=log.data[log.data.length-1];
                 if (i==minIndex+1) {
                     if (lastMessage==null) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime);
@@ -2396,6 +2396,7 @@ function updateChat(groupName,projectName=null) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
                     }
                 }
+                lastMessage=log.data[log.data.length-1];
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
             }
             if (log.data.length>1) {
