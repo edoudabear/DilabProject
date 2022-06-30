@@ -1438,35 +1438,58 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         } else if (req.body.type=="message" && req.body.messageDestType && req.session.dilab) {
             if (req.body.messageDestType=="g" && req.body.messageContent && req.body.groupName) {
-                res.end("not done yet");
+                dilabConnection.query(`INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject,isFileDir)
+                                    SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},DilabUser.id,DilabMusicGroups.id,"g",0
+                                    FROM DilabMusicGroups
+                                    RIGHT JOIN DilabGroupMembers ON DilabMusicGroups.id=DilabGroupMembers.groupId
+                                    LEFT JOIN DilabUser ON DilabGroupMembers.memberId=DilabUser.id
+                                    WHERE DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+                                        AND DilabGroupMembers.memberId=${req.session.dilab}`,(err,results,fields) => {
+                    if (err) { // DBS Query Error
+                        console.log(err);
+                        res.end(JSON.stringify(
+                            { "return" : "error",
+                                "data" : "internal server error",
+                            }));
+                    }
+                    else if (results.affectedRows!=0) {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : true,
+                                "data" : true
+                            }));
+                    } else {
+                        res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                    }
+                });
             } else if (req.body.messageDestType=="p" && req.body.messageContent && req.body.projectName && req.body.groupName) {
                 dilabConnection.query(`
-                INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject,isFileDir)
-                SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},DilabUser.id,DilabProject.id,"p",0
-                FROM DilabProject
-                LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-                RIGHT JOIN DilabGroupMembers ON DilabMusicGroups.id=DilabGroupMembers.groupId
-                LEFT JOIN DilabUser ON DilabGroupMembers.memberId=DilabUser.id
-                WHERE DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
-                    AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))}
-                    AND DilabGroupMembers.memberId=${req.session.dilab}`,(err,results,fields) => {
-                if (err) { // DBS Query Error
-                    console.log(err);
-                    res.end(JSON.stringify(
-                        { "return" : "error",
-                            "data" : "internal server error",
-                        }));
-                }
-                else if (results.affectedRows!=0) {
-                    res.end(JSON.stringify(
-                        { "return" : "ok",
-                            "status" : true,
-                            "data" : true
-                        }));
-                } else {
-                    res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
-                }
-            })
+                    INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject,isFileDir)
+                    SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},DilabUser.id,DilabProject.id,"p",0
+                    FROM DilabProject
+                    LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
+                    RIGHT JOIN DilabGroupMembers ON DilabMusicGroups.id=DilabGroupMembers.groupId
+                    LEFT JOIN DilabUser ON DilabGroupMembers.memberId=DilabUser.id
+                    WHERE DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+                        AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))}
+                        AND DilabGroupMembers.memberId=${req.session.dilab}`,(err,results,fields) => {
+                    if (err) { // DBS Query Error
+                        console.log(err);
+                        res.end(JSON.stringify(
+                            { "return" : "error",
+                                "data" : "internal server error",
+                            }));
+                    }
+                    else if (results.affectedRows!=0) {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : true,
+                                "data" : true
+                            }));
+                    } else {
+                        res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                    }
+                });
             } else {
                 res.end(JSON.stringify({
                     status : false,
