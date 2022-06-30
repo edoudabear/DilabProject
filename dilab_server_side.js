@@ -1446,6 +1446,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))}
                     AND DilabGroupMembers.memberId=${req.session.dilab}`,(err,results,fields) => {
                 if (err) { // DBS Query Error
+                    console.log(err);
                     res.end(JSON.stringify(
                         { "return" : "error",
                             "data" : "internal server error",
