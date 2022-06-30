@@ -2324,7 +2324,8 @@ function sendMessage(message,groupName,projectName=null) {
     var body={
         type : "message",
         messageDestType : projectName==null ? "g" : "p",
-        "groupName" : groupName
+        "groupName" : groupName,
+        messageContent : message
     }
     if (projectName!=null) {
         body.projectName=projectName
