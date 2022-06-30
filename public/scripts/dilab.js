@@ -2300,6 +2300,7 @@ function setupChat(groupName,projectName=null) {
                 if (e.key=="Enter") {
                     e.preventDefault();
                     var message=document.querySelector(".chatInput").value;
+                    const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
                     sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                     document.querySelector(".chatInput").value="";
@@ -2308,6 +2309,7 @@ function setupChat(groupName,projectName=null) {
 
             document.querySelector(".chatSendBtn").addEventListener("click",()=>{
                 var message=document.querySelector(".chatInput").value;
+                const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
                 sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                 document.querySelector(".chatInput").value="";    
