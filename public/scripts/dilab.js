@@ -2322,7 +2322,7 @@ function setupChat(groupName,projectName=null) {
                 document.querySelector(".chatInput").value="";    
             });
             chatReloader=setTimeout(()=>{
-                updateChat(log.data[log.data.length-1],urlParams.get("g"),urlParams.get("p"));
+                updateChat(log.data[log.data.length-1],groupName,projectName);
             },4000);
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
