@@ -699,6 +699,8 @@ function pathAnalysis() {
                                         });
                                     } else {
                                         console.log("Unexpected response from the server..");
+                                    } if (log.data!=="member") {
+                                        document.querySelector(".messagesUnavailable").innerHTML="You must be a group member to chat with its members";
                                     }
                                 });
                                 
