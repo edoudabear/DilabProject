@@ -1502,7 +1502,6 @@ body {
 
 .artistInformations > .chatContainer > .chat {
     width : 95%;
-    height : 100%;
     max-height: calc(90vh - 120px);
 }
 
