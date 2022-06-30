@@ -1688,7 +1688,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     } else if (req.params.action=="remove") {
         if (req.body.type=="leaveGroup" && req.body.groupName && req.session.dilab) {
             dilabConnection.query(`
-            DELETE FROM DilabGroupMembers
+            DELETE DilabGroupMembers FROM DilabGroupMembers
             LEFT JOIN DilabMusicGroups ON DilabGroupMembers.groupId=DilabMusicGroups.id
             WHERE DilabGroupMembers.userId=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
             `,(err,results,fields)=> {
