@@ -1685,6 +1685,33 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         } else {
             res.status(400).end('{ "return" : "invalid POST data" }')
         }
+    } else if (req.params.action=="remove") {
+        if (req.body.type=="leaveGroup" && req.body.groupName && req.session.dilabQuery) {
+            dilabConnection.query(`
+            DELETE FROM DilabGroupMembers
+            LEFT JOIN DilabMusicGroups ON DilabGroupMembers.groupId=DilabMusicGroups.id
+            WHERE DilabGroupMembers.userId=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+            `,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    console.log(err);
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                }
+                else if (results.affectedRows!=0) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : true
+                        }));
+                } else {
+                    res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                }
+            })
+        } else {
+            res.status(400).end('{ "return" : "invalid POST data" }')
+        }
     } else {
         res.status(400).end('{ "return" : "no valid path" }')
         //Temp file cleanup (to avoid keeping ignored files..)
