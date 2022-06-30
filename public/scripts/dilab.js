@@ -687,6 +687,8 @@ function pathAnalysis() {
                                                         if (data.status) {
                                                             document.querySelector(".joinButton").innerHTML="Join";
                                                             document.querySelector(".joinButton").parentNode.removeChild(document.querySelector(".joinButton").parentNode.querySelector("p"));
+                                                            document.querySelector(".chat .hider").style.display = "block";
+                                                            document.querySelector(".chatInput").disabled=true;
                                                             removeListeners(document.querySelector(".joinButton")).addEventListener("click",()=>{
                                                                 fetch('/Dilab/set', {
                                                                     headers: {
