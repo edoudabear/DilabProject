@@ -2309,7 +2309,11 @@ function setupChat(groupName,projectName=null) {
             } if (log.data.length==0) {
                 document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
             } else {
-                document.querySelector(".messagesContainer").scrollBy(0,document.querySelector(".messagesContainer").offsetHeight);
+                document.querySelector(".messagesContainer").scrollBy({
+                    left: 0,
+                    top : document.querySelector(".messagesContainer").offsetHeight,
+                    behavior : "smooth"
+                });
             }
             document.querySelector(".hider").style.display="none";
             document.querySelector(".chatInput").disabled=false;
@@ -2385,7 +2389,11 @@ function updateChat(groupName,projectName=null) {
                 lastMessage=log.data[log.data.length-1]
             }
             if (minIndex>0) {
-                document.querySelector(".messagesContainer").scrollBy(0,document.querySelector(".messagesContainer").offsetHeight);
+                document.querySelector(".messagesContainer").scrollBy({
+                    left: 0,
+                    top : document.querySelector(".messagesContainer").offsetHeight,
+                    behavior : "smooth"
+                });
             }
             chatReloader=setTimeout(()=>{
                 updateChat(groupName,projectName);
