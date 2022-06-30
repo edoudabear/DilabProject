@@ -990,6 +990,27 @@ function pathAnalysis() {
                             Swal.fire("Error",log.data,"error");
                         }
                     });
+
+                    fetch('/Dilab/check', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            type : "notAdminUserRelationToGroup",
+                            groupName : encodeURI(urlParams.get("g"))
+                        }) //data
+                    }).then(out => {
+                        return out.json();
+                    }).then(log => {
+                        if (!log.status) {
+                            console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
+                            return;
+                        } if (log.data=="member") {
+                            setupChat(urlParams.get("g"),urlParams.get("p"));
+                        }});
+
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
                     location="https://e.diskloud.fr/Dilab";
