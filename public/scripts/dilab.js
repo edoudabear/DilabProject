@@ -2300,7 +2300,7 @@ function setupChat(groupName,projectName=null) {
             } else {
                 document.querySelector(".messagesContainer").scrollTo({
                     left: 0,
-                    top : document.querySelector(".messagesContainer").offsetHeight+200
+                    top : document.querySelector(".messagesContainer").scrollHeight
                 });
             }
             document.querySelector(".hider").style.display="none";
