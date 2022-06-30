@@ -664,7 +664,7 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").innerHTML="Leave";
                                         document.querySelector(".joinButton").parentNode.innerHTML+=`<p>You are a member ${log.data.role!=null ? `(You are ${log.data.role})` : `(no specific role inside the group)`}`
                                         document.querySelector(".joinButton").addEventListener('click',e => {
-                                            Swal.fire("Error","Not available yet","error")
+                                            Swal.fire("Confirm","Are you sure you want to leave the group ?","question")
                                         });
                                         setupChat(urlParams.get("g"));
                                     } else if (log.data=="waiting for approval") {
