@@ -2311,8 +2311,7 @@ function setupChat(groupName,projectName=null) {
             } else {
                 document.querySelector(".messagesContainer").scrollBy({
                     left: 0,
-                    top : document.querySelector(".messagesContainer").offsetHeight,
-                    behavior : "smooth"
+                    top : document.querySelector(".messagesContainer").offsetHeight+200
                 });
             }
             document.querySelector(".hider").style.display="none";
