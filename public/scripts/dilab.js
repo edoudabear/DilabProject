@@ -2367,7 +2367,7 @@ function updateChat(lastMessage,groupName,projectName=null) {
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
             }
             chatReloader=setTimeout(()=>{
-                updateChat(log.data[log.data.length-1],urlParams.get("g"),urlParams.get("p"));
+                updateChat(log.data[log.data.length-1],groupName,projectName);
             },4000);
         } else {
             Swal.fire("Error","We had troubles loading new messages.","error");
