@@ -612,7 +612,6 @@ function pathAnalysis() {
             break;
         case "/group" :
             loadTemplate("group",()=>{
-                document.querySelector(".chat > .messagesContainer").scrollTo(0,document.querySelector(".chat > .messagesContainer").scrollHeight);
                 if (urlParams.get("g")) {
                     fetch('/Dilab/get', {
                         headers: {
@@ -832,7 +831,6 @@ function pathAnalysis() {
         case "/artist" :
             loadTemplate("artist",()=>{
                 if (urlParams.get("a")) {
-                    document.querySelector(".chat > .messagesContainer").scrollTo(0,document.querySelector(".chat > .messagesContainer").scrollHeight)
                     fetch('/Dilab/get', {
                         headers: {
                             'Content-Type': 'application/json'
@@ -2264,21 +2262,6 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 var chatReloader=null,lastMessage=null;
 
-function scrollDiv(element,parent=window) {
-    parent.scrollTo(0, 
-    findPosition(element));
-}
-
-function findPosition(obj) {
-    var currenttop = 0;
-    if (obj.offsetParent) {
-        do {
-            currenttop += obj.offsetTop;
-        } while ((obj = obj.offsetParent));
-        return [currenttop];
-    }
-}
-
 function setupChat(groupName,projectName=null) {
     var body={
         type : projectName==null ? "groupChat" : "projectChat",
@@ -2315,7 +2298,7 @@ function setupChat(groupName,projectName=null) {
             } if (log.data.length==0) {
                 document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
             } else {
-                document.querySelector(".messagesContainer").scrollBy({
+                document.querySelector(".messagesContainer").scrollTo({
                     left: 0,
                     top : document.querySelector(".messagesContainer").offsetHeight+200
                 });
@@ -2405,7 +2388,7 @@ function updateChat(groupName,projectName=null) {
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
             }
             if (log.data.length>1) {
-                document.querySelector(".messagesContainer").scrollBy({
+                document.querySelector(".messagesContainer").scrollTo({
                     left: 0,
                     top : document.querySelector(".messagesContainer").offsetHeight,
                     behavior : "smooth"
