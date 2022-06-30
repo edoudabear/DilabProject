@@ -1690,7 +1690,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             dilabConnection.query(`
             DELETE DilabGroupMembers FROM DilabGroupMembers
             LEFT JOIN DilabMusicGroups ON DilabGroupMembers.groupId=DilabMusicGroups.id
-            WHERE DilabGroupMembers.userId=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
+            WHERE DilabGroupMembers.memberId=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))}
             `,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     console.log(err);
