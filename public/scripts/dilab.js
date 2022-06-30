@@ -2369,7 +2369,6 @@ function updateChat(groupName,projectName=null) {
         if (log.status) {
             var minIndex=log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
-                console.log("pass through");
                 if (i==minIndex+1) {
                     var date1=new Date(lastMessage.sendTime),
                     date2=new Date(log.data[0].sendTime);
