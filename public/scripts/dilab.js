@@ -2379,10 +2379,14 @@ function updateChat(groupName,projectName=null) {
             }
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (i==minIndex+1) {
-                    var date1=new Date(lastMessage.sendTime),
-                    date2=new Date(log.data[0].sendTime);
-                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
-                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                    if (lastMessage==null) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime);
+                    } else {
+                        var date1=new Date(lastMessage.sendTime),
+                        date2=new Date(log.data[0].sendTime);
+                        if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                            document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                        }
                     }
                 } else {
                     var date1=new Date(log.data[i-1].sendTime),
