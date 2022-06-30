@@ -1686,7 +1686,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             res.status(400).end('{ "return" : "invalid POST data" }')
         }
     } else if (req.params.action=="remove") {
-        if (req.body.type=="leaveGroup" && req.body.groupName && req.session.dilabQuery) {
+        if (req.body.type=="leaveGroup" && req.body.groupName && req.session.dilab) {
             dilabConnection.query(`
             DELETE FROM DilabGroupMembers
             LEFT JOIN DilabMusicGroups ON DilabGroupMembers.groupId=DilabMusicGroups.id
