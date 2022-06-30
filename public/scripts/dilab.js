@@ -2257,7 +2257,7 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 // Chat setup
 
-var chatReloader;
+var chatReloader,lastMessage;
 
 function setupChat(groupName,projectName=null) {
     var body={
@@ -2322,15 +2322,16 @@ function setupChat(groupName,projectName=null) {
                 document.querySelector(".chatInput").value="";    
             });
             chatReloader=setTimeout(()=>{
-                updateChat(log.data[log.data.length-1],groupName,projectName);
+                updateChat(groupName,projectName);
             },4000);
+            lastMessage=log.data[log.data.length-1];
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
         }
     });
 }
 
-function updateChat(lastMessage,groupName,projectName=null) {
+function updateChat(groupName,projectName=null) {
     var body={
         type : projectName==null ? "groupChat" : "projectChat",
         "groupName" : groupName,
@@ -2350,9 +2351,9 @@ function updateChat(lastMessage,groupName,projectName=null) {
         return out.json();
     }).then(log => {
         console.log(log);
-        var minIndex=log.data.find(message => lastMessage == message);
         if (log.status) {
-            for (var i=minIndex;i<log.data.length;i++) {
+            var minIndex=log.data.find(message => lastMessage == message);
+            for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
                 if (i==0) {
                     document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
                 } else {
@@ -2365,9 +2366,10 @@ function updateChat(lastMessage,groupName,projectName=null) {
                     }
                 }
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
+                lastMessage=log.data[log.data.length-1]
             }
             chatReloader=setTimeout(()=>{
-                updateChat(log.data[log.data.length-1],groupName,projectName);
+                updateChat(groupName,projectName);
             },4000);
         } else {
             Swal.fire("Error","We had troubles loading new messages.","error");
@@ -2398,7 +2400,7 @@ function sendMessage(message,groupName,projectName=null) {
         console.log(log);
         if (log.status) {
             clearTimeout(chatReloader);
-            updateChat(log.data[log.data.length-1],groupName,projectName);
+            updateChat(groupName,projectName);
         } else {
             Swal.fire("Error","Apparently, your message wasn't sent. Try again later","error");
         }
