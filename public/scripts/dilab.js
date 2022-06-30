@@ -686,7 +686,7 @@ function pathAnalysis() {
                                                     }).then(data=>{
                                                         if (data.status) {
                                                             document.querySelector(".joinButton").innerHTML="Join";
-                                                            document.querySelector(".joinButton").parentNode.innerHTML+=``;
+                                                            document.querySelector(".joinButton").parentNode.removeChild(this.querySelector("p"));
                                                         } else {
                                                             Swal.fire("Error","There was a problem. Try again later","error");
                                                         }
