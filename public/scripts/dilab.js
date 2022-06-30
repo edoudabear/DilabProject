@@ -2374,6 +2374,10 @@ function updateChat(groupName,projectName=null) {
         console.log(log.data)
         if (log.status) {
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
+            if (lastMessage==null) {
+                document.querySelector(".messagesContainer").innerHTML="";
+            }
+            lastMessage=log.data[log.data.length-1];
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (i==minIndex+1) {
                     if (lastMessage==null) {
@@ -2393,7 +2397,6 @@ function updateChat(groupName,projectName=null) {
                     }
                 }
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
-                lastMessage=log.data[log.data.length-1]
             }
             if (log.data.length>1) {
                 document.querySelector(".messagesContainer").scrollBy({
