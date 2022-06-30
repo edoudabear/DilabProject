@@ -1546,7 +1546,7 @@ body {
 }
 
 .chat > .messagesContainer {
-    height : calc(100% - 100px);
+    height :500px;
     background : lightgray;
     width : 100%;
     /*overflow-y: auto; /*TO DYNAMISE : must be set to auto when available*/
@@ -1554,7 +1554,7 @@ body {
         inset 0px 11px 8px -10px rgb(163, 163, 163),
         inset 0px -11px 8px -10px rgb(163, 163, 163);
     position: relative;
-    min-height : 500px;
+    overflow: auto;
 }
 
 .chat > .messagesContainer > .noMessage {
