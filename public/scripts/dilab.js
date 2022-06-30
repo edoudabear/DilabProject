@@ -2354,7 +2354,7 @@ function updateChat(groupName,projectName=null) {
         if (log.status) {
             var minIndex=log.data.find(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
-                if (i==0) {
+                if (i==minIndex+1) {
                     var date1=new Date(lastMessage.sendTime),
                     date2=new Date(log.data[0].sendTime);
                     if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
