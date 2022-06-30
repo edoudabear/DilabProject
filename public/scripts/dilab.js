@@ -2390,7 +2390,7 @@ function updateChat(groupName,projectName=null) {
             if (log.data.length>1) {
                 document.querySelector(".messagesContainer").scrollTo({
                     left: 0,
-                    top : document.querySelector(".messagesContainer").offsetHeight,
+                    top : document.querySelector(".messagesContainer").scrollHeight,
                     behavior : "smooth"
                 });
             }
