@@ -2294,6 +2294,17 @@ function setupChat(groupName,projectName=null) {
 
             document.querySelector(".chatAttachBtn").addEventListener("click",()=>{
                 Swal.fire("Info","Sharing files via the chat is not available yet (will come later)","info");
+            });
+
+            document.querySelector(".chatInput").addEventListener("keyup",e=> {
+                if (e.key=="Enter") {
+                    e.preventDefault();
+                    document.querySelector(".chatInput").value="";
+                }
+            });
+
+            document.querySelector(".chatSendBtn").addEventListener("click",()=>{
+                document.querySelector(".chatInput").value="";    
             })
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
