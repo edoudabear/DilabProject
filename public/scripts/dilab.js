@@ -2299,14 +2299,16 @@ function setupChat(groupName,projectName=null) {
             document.querySelector(".chatInput").addEventListener("keyup",e=> {
                 if (e.key=="Enter") {
                     e.preventDefault();
-                    var message=document.querySelector(".chatInput").value
+                    var message=document.querySelector(".chatInput").value;
+                    const urlParams = new URLSearchParams(queryString);
                     sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                     document.querySelector(".chatInput").value="";
                 }
             });
 
             document.querySelector(".chatSendBtn").addEventListener("click",()=>{
-                var message=document.querySelector(".chatInput").value
+                var message=document.querySelector(".chatInput").value;
+                const urlParams = new URLSearchParams(queryString);
                 sendMessage(message,urlParams.get("g"),urlParams.get("p"));
                 document.querySelector(".chatInput").value="";    
             })
