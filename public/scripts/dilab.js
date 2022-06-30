@@ -586,6 +586,9 @@ document.querySelector(".playlistIcon").addEventListener('click',e=> {
 
 // Path analysis
 function pathAnalysis() {
+    if (chatReloader!=null) {
+        clearTimeout(chatReloader);
+    }
     chatReloader=null;
     lastMessage=null;
     var path=window.location.href.toLowerCase().replace("https://e.diskloud.fr/dilab","");
