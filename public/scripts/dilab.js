@@ -634,7 +634,7 @@ function pathAnalysis() {
                                 document.querySelector(".userRole").innerHTML+=`<i class="bi bi-dot"></i>You are the group admin`;
                                 document.querySelector(".joinButton").style.display="none";
                                 console.log("isAdmin");
-                                setupGroupChat(urlParams.get("g"));
+                                setupChat(urlParams.get("g"));
                             } else if (!document.querySelector(".loginButton")) {
                                 fetch('/Dilab/check', {
                                     headers: {
@@ -662,7 +662,7 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").addEventListener('click',e => {
                                             Swal.fire("Error","Not available yet","error")
                                         });
-                                        setupGroupChat(urlParams.get("g"));
+                                        setupChat(urlParams.get("g"));
                                     } else if (log.data=="waiting for approval") {
                                         document.querySelector(".joinButton").classList.add("noHoverActiveButton");
                                         document.querySelector(".joinButton").classList.remove("button");
@@ -2231,17 +2231,21 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 // Chat setup
 
-function setupGroupChat(groupName) {
+function setupChat(groupName,projectName=null) {
+    var body={
+        type : projectName==null ? "groupChat" : "projectChat",
+        "groupName" : groupName
+    }
+    if (projectName!=null) {
+        body.projectName=projectName
+    }
     fetch('/Dilab/get', {
         headers: {
             'Content-Type': 'application/json'
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         method: 'POST',
-        body: JSON.stringify({
-            type : "groupChat",
-            groupName : decodeURIComponent(groupName)
-        }) //data
+        body: JSON.stringify(body) //data
     }).then(out => {
         return out.json();
     }).then(log => {
