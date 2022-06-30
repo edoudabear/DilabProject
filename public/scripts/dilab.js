@@ -2946,7 +2946,7 @@ function generateNewMessageElement(isTheAuthorTheRequester,message,author,sendDa
     return `<div class="globalMessage ${isTheAuthorTheRequester ? "local" : "dist"}">
         <div class="messageWrapper">
             <div class="message local">
-                ${(isTheAuthorRequester) ? `` : `<p class="author">${escapeHtml(author)}</p>`}
+                ${(isTheAuthorTheRequester) ? `` : `<p class="author">${escapeHtml(author)}</p>`}
                 <p>${escapeHtml(message)}</p>
             </div>                 
         </div>
