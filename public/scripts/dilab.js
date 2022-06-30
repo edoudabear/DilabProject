@@ -2295,6 +2295,7 @@ function setupChat(groupName,projectName=null) {
         console.log(log);
         if (log.status) {
             document.querySelector(".messagesContainer").innerHTML="";
+            document.querySelector(".messagesContainer").style.overflow = "auto";
             for (var i=0;i<log.data.length;i++) {
                 if (i==0) {
                     document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
