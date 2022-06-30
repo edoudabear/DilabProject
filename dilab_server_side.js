@@ -1436,7 +1436,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end("not done yet");
             } else if (req.body.messageDestType=="p" && req.body.messageContent && req.body.projectName && req.body.groupName) {
                 dilabConnection.query(`
-                INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject)
+                INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject,isFileDir)
                 SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},DilabUser.id,DilabProject.id,"p",0
                 FROM DilabProject
                 LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
