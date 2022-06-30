@@ -1452,7 +1452,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             "data" : "internal server error",
                         }));
                 }
-                if (results.affectedRows!=0) {
+                else if (results.affectedRows!=0) {
                     res.end(JSON.stringify(
                         { "return" : "ok",
                             "status" : true,
