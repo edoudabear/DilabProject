@@ -2384,7 +2384,7 @@ function updateChat(groupName,projectName=null) {
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
                 lastMessage=log.data[log.data.length-1]
             }
-            if (minIndex>-1) {
+            if (minIndex>0) {
                 document.querySelector(".messagesContainer").scrollBy(0,document.querySelector(".messagesContainer").offsetHeight);
             }
             chatReloader=setTimeout(()=>{
