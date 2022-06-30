@@ -2343,7 +2343,7 @@ function setupChat(groupName,projectName=null) {
             chatReloader=setTimeout(()=>{
                 updateChat(groupName,projectName);
             },4000);
-            lastMessage=log.data[log.data.length-1];
+            lastMessage=(log.data[log.data.length-1]) ? log.data[log.data.length-1] : null;
         } else {
             document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
         }
@@ -2354,7 +2354,9 @@ function updateChat(groupName,projectName=null) {
     var body={
         type : projectName==null ? "groupChat" : "projectChat",
         "groupName" : groupName,
-        minTime :  lastMessage.sendTime
+    }
+    if (lastMessage!=null) {
+        body.minTime =  lastMessage.sendTime
     }
     if (projectName!=null) {
         body.projectName=projectName
