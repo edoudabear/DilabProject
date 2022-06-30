@@ -2350,7 +2350,7 @@ function updateChat(lastMessage,groupName,projectName=null) {
         return out.json();
     }).then(log => {
         console.log(log);
-        var minIndex=log.data.find(lastMessage);
+        var minIndex=log.data.find(message => lastMessage == message);
         if (log.status) {
             for (var i=minIndex;i<log.data.length;i++) {
                 if (i==0) {
