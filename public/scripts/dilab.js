@@ -2374,10 +2374,12 @@ function updateChat(groupName,projectName=null) {
         console.log(log.data)
         if (log.status) {
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
-            if (lastMessage==null) {
-                document.querySelector(".messagesContainer").innerHTML="";
+            if (minIndex+1<log.data.length && (minIndex>-1 || lastMessage==null)) {
+                if (lastMessage==null) {
+                    document.querySelector(".messagesContainer").innerHTML="";
+                }
+                lastMessage=log.data[log.data.length-1];
             }
-            lastMessage=log.data[log.data.length-1];
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (i==minIndex+1) {
                     if (lastMessage==null) {
