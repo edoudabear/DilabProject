@@ -689,6 +689,7 @@ function pathAnalysis() {
                                                             document.querySelector(".joinButton").parentNode.removeChild(document.querySelector(".joinButton").parentNode.querySelector("p"));
                                                             document.querySelector(".chat .hider").style.display = "block";
                                                             document.querySelector(".chatInput").disabled=true;
+                                                            document.querySelector(".messagesContainer").innerHTML=`<div class="messagesUnavailable">You must be a group member to chat with its members</div>`;
                                                             removeListeners(document.querySelector(".joinButton")).addEventListener("click",()=>{
                                                                 fetch('/Dilab/set', {
                                                                     headers: {
