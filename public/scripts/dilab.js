@@ -586,6 +586,8 @@ document.querySelector(".playlistIcon").addEventListener('click',e=> {
 
 // Path analysis
 function pathAnalysis() {
+    chatReloader=null;
+    lastMessage=null;
     var path=window.location.href.toLowerCase().replace("https://e.diskloud.fr/dilab","");
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -2257,7 +2259,7 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
 
 // Chat setup
 
-var chatReloader,lastMessage;
+var chatReloader=null,lastMessage=null;
 
 function scrollDiv(element,parent=window) {
     parent.scrollTo(0, 
