@@ -1431,6 +1431,32 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
             }
+        } else if (req.body.type=="message" && req.body.messageDestType) {
+            if (req.body.messageDestType=="g" && req.body.messageContent && req.body.groupName) {
+                res.end("not done yet");
+            } else if (req.body.messageDestType=="p" && req.body.messageContent && req.body.projectName && req.body.groupName) {
+                res.end("not done yet");
+                /*
+                INSERT INTO DilabChats (message, author, groupProjectPvChatId,
+                isGroupOrProject)
+                SELECT "${dilabConnection.escape(decodeURIComponent(req.body.messageContent))}",req.session.dilab,DilabProject.id,"p" FROM DilabProject
+                LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
+                WHERE DilabMusicGroups.groupName="${dilabConnection.escape(decodeURIComponent(req.body.groupName))}"
+                    AND DilabProject.name="${dilabConnection.escape(decodeURIComponent(req.body.projectName))}"
+                */
+            } else {
+                res.end(JSON.stringify({
+                    status : false,
+                    return : "error",
+                    data : "Invalid POST chat message input"
+                }));
+            }
+        } else {
+            res.end(JSON.stringify({
+                status : false,
+                return : "error",
+                data : "Invalid POST input"
+            }));
         }
     } else if (req.params.action=="check") {
         if (req.body.type=="password" && req.body.value && req.session.dilab) {
