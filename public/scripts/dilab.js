@@ -668,7 +668,29 @@ function pathAnalysis() {
                                                 title : "Confirm",
                                                 text : "Are you sure you want to leave the group ?",
                                                 icon : "question",
-                                                type : "confirm"
+                                                showCancelButton : true,
+                                            }).then(isConfirmed=> {
+                                                if (isConfirmed) {
+                                                    fetch('/Dilab/remove', {
+                                                        headers: {
+                                                            'Content-Type': 'application/json'
+                                                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                        },
+                                                        method: 'POST',
+                                                        body: JSON.stringify({
+                                                            type : "leaveGroup",
+                                                            groupName : encodeURI(urlParams.get("g"))
+                                                        }).then(output=> {
+                                                            return output.json();
+                                                        }).then(data=>{
+                                                            if (data.status) {
+                                                                document.querySelector(".joinButton").innerHTML="Join";
+                                                                document.querySelector(".joinButton").parentNode.innerHTML+=``;
+                                                            } else {
+                                                                Swal.fire("Error","There was a problem. Try again later","error");
+                                                            }
+                                                        })
+                                                }
                                             });
                                         });
                                         setupChat(urlParams.get("g"));
