@@ -687,6 +687,33 @@ function pathAnalysis() {
                                                         if (data.status) {
                                                             document.querySelector(".joinButton").innerHTML="Join";
                                                             document.querySelector(".joinButton").parentNode.removeChild(document.querySelector(".joinButton").parentNode.querySelector("p"));
+                                                            removeListeners(document.querySelector(".joinButton")).addEventListener("click",()=>{
+                                                                fetch('/Dilab/set', {
+                                                                    headers: {
+                                                                        'Content-Type': 'application/json'
+                                                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                                    },
+                                                                    method: 'POST',
+                                                                    body: JSON.stringify({
+                                                                        type : "newJoinRequest",
+                                                                        groupName : encodeURI(urlParams.get("g"))
+                                                                    }) //data
+                                                                }).then(out => {
+                                                                    return out.json();
+                                                                }).then(log => {
+                                                                    if (log.status===false) {
+                                                                        Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later","error");
+                                                                        console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
+                                                                        return;
+                                                                    } else {
+                                                                        document.querySelector(".joinButton").innerHTML="Waiting for admin to accept you";
+                                                                        document.querySelector(".joinButton").classList.add("noHoverActiveButton");
+                                                                        document.querySelector(".joinButton").classList.remove("button");
+                                                                        document.querySelector(".joinButton").style.opacity= 0.6;
+                                                                        document.querySelector(".joinButton").style.cursor= "not-allowed";
+                                                                    }
+                                                                });
+                                                            })
                                                         } else {
                                                             Swal.fire("Error","There was a problem. Try again later","error");
                                                         }
@@ -702,7 +729,7 @@ function pathAnalysis() {
                                         document.querySelector(".joinButton").style.cursor= "not-allowed";
                                         document.querySelector(".joinButton").innerHTML="Waiting for admin to accept you";
                                     } else if (log.data=="not a member") {
-                                        document.querySelector(".joinButton").addEventListener('click',e => {
+                                        document.querySelector(".joinButton").addEventListener('click',() => {
                                             fetch('/Dilab/set', {
                                                 headers: {
                                                     'Content-Type': 'application/json'
@@ -2285,6 +2312,14 @@ document.addEventListener('click',e=> { // Listener to hide userMenu when user c
         },100);
     }
 });
+
+// Function that allows to remove ALL eventListeners of an element
+
+function removeListeners(element) {
+    const newElement = element.cloneNode(true);
+    element.parentNode.replaceChild(newElement, element);
+    return newElement;
+}
 
 // Chat setup
 
