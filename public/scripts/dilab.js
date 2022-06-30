@@ -2170,7 +2170,7 @@ if (document.querySelector(".loginButton")) {
         if (path[0]=="/") {
             path=path.slice(1,path.length);
         }
-        redirect("https://e.diskloud.fr/Dilab/login?redirect="+encodeURI(path));
+        redirect("https://e.diskloud.fr/Dilab/login?redirect="+encodeURIComponent(path));
     });
 } else {
     var userBtn=document.querySelector(".userProfileCircleButton"),
