@@ -2387,7 +2387,7 @@ function updateChat(groupName,projectName=null) {
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
                 lastMessage=log.data[log.data.length-1]
             }
-            if (minIndex>0) {
+            if (log.data.length>1) {
                 document.querySelector(".messagesContainer").scrollBy({
                     left: 0,
                     top : document.querySelector(".messagesContainer").offsetHeight,
