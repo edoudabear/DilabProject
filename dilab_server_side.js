@@ -10,6 +10,10 @@ var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt')).
 // node native promisify -> Creates an async query function (for "await query()")
 const dilabQuery = util.promisify(dilabConnection.query).bind(dilabConnection);
 
+Date.prototype.addHours = function(h) { // to set universal time to GMT +2 hours
+    this.setTime(this.getTime() + (h*60*60*1000));
+    return this;
+}  
 
 app.get("/Dilab",function(req,res) {
     if (req.session.dilab) {
@@ -487,7 +491,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
             LEFT JOIN DilabProject ON DilabChats.groupProjectPVChatId = DilabProject.id
             LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
+            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(2).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
             ORDER BY sendTime`,(err,results,fields)=> {
                 if (err) {
                     console.log(err);
