@@ -2355,12 +2355,14 @@ function updateChat(groupName,projectName=null) {
             var minIndex=log.data.find(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
                 if (i==0) {
-                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                    var date1=new Date(lastMessage.sendTime),
+                    date2=new Date(log.data[0].sendTime);
+                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                    }
                 } else {
                     var date1=new Date(log.data[i-1].sendTime),
                     date2=new Date(log.data[i].sendTime);
-                    console.log(date1);
-                    console.log(date2);
                     if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
                     }
