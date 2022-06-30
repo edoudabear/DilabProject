@@ -2376,6 +2376,7 @@ function updateChat(groupName,projectName=null) {
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             if (minIndex+1<log.data.length && (minIndex>-1 || lastMessage==null)) {
                 if (lastMessage==null) {
+                    console.log("went through");
                     document.querySelector(".messagesContainer").innerHTML="";
                 }
                 lastMessage=log.data[log.data.length-1];
