@@ -669,8 +669,8 @@ function pathAnalysis() {
                                                 text : "Are you sure you want to leave the group ?",
                                                 icon : "question",
                                                 showCancelButton : true,
-                                            }).then(isConfirmed=> {
-                                                if (isConfirmed) {
+                                            }).then(result=> {
+                                                if (result.isConfirmed) {
                                                     fetch('/Dilab/remove', {
                                                         headers: {
                                                             'Content-Type': 'application/json'
