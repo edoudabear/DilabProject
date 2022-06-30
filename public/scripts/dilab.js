@@ -667,7 +667,7 @@ function pathAnalysis() {
                                             Swal.fire({
                                                 title : "Confirm",
                                                 text : "Are you sure you want to leave the group ?",
-                                                icon : "question"
+                                                icon : "question",
                                                 type : "confirm"
                                             });
                                         });
