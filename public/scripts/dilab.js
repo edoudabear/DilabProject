@@ -680,16 +680,17 @@ function pathAnalysis() {
                                                         body: JSON.stringify({
                                                             type : "leaveGroup",
                                                             groupName : encodeURI(urlParams.get("g"))
-                                                        }).then(output=> {
-                                                            return output.json();
-                                                        }).then(data=>{
-                                                            if (data.status) {
-                                                                document.querySelector(".joinButton").innerHTML="Join";
-                                                                document.querySelector(".joinButton").parentNode.innerHTML+=``;
-                                                            } else {
-                                                                Swal.fire("Error","There was a problem. Try again later","error");
-                                                            }
                                                         })
+                                                    }).then(output=> {
+                                                            return output.json();
+                                                    }).then(data=>{
+                                                        if (data.status) {
+                                                            document.querySelector(".joinButton").innerHTML="Join";
+                                                            document.querySelector(".joinButton").parentNode.innerHTML+=``;
+                                                        } else {
+                                                            Swal.fire("Error","There was a problem. Try again later","error");
+                                                        }
+                                                    });
                                                 }
                                             });
                                         });
