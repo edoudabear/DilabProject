@@ -2365,7 +2365,6 @@ function updateChat(groupName,projectName=null) {
     }).then(out => {
         return out.json();
     }).then(log => {
-        console.log(log);
         if (log.status) {
             var minIndex=log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
