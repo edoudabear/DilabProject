@@ -2377,7 +2377,7 @@ function updateChat(groupName,projectName=null) {
             if (lastMessage==null) {
                 minIndex--;
             }
-            for (var i=minIndex+1;i<log.data.length && minIndex>-1;i++) {
+            for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (i==minIndex+1) {
                     var date1=new Date(lastMessage.sendTime),
                     date2=new Date(log.data[0].sendTime);
