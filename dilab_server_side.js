@@ -1435,7 +1435,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             if (req.body.messageDestType=="g" && req.body.messageContent && req.body.groupName) {
                 res.end("not done yet");
             } else if (req.body.messageDestType=="p" && req.body.messageContent && req.body.projectName && req.body.groupName) {
-                res.end("not done yet");                
                 dilabConnection.query(`
                 INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject)
                 SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},DilabUser.id,DilabProject.id,"p",0
