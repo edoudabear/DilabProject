@@ -101,8 +101,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             for (var i=0;i<req.files.length;i++)
             fs.unlink(req.files[i].path,()=>{return;});
         }
-    }
-    if (req.params.action=="connect") { // Path sort, THEN POST body analysis
+    } if (req.params.action=="connect") { // Path sort, THEN POST body analysis
         if (req.body.username && req.body.password) {
             dilabConnection.query(`SELECT id,nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.username)}" AND motDePasse=aes_encrypt("${mysql_real_escape_string(req.body.password)}","${cryptoKey}");`,(err,results,fields) => {
                 if (err) throw err;
