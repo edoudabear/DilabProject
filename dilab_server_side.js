@@ -1611,6 +1611,35 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
+        } else if (req.body.type=="groupNameAvailable" && req.body.groupName) {
+            dilabConnection.query(`SELECT groupName FROM DilabMusicGroups
+            JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
+            WHERE DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
+                if (err) { // DBS Query Error
+                    res.end(JSON.stringify(
+                        { "return" : "error",
+                            "data" : "internal server error",
+                        }));
+                }
+                else if (results.length!=0) {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : true
+                        }));
+                } else {
+                    res.end(JSON.stringify(
+                        { "return" : "ok",
+                            "status" : true,
+                            "data" : false
+                    }));
+                }
+            });
+            //Temp file cleanup (to avoid keeping ignored files..)
+            if (req.files) {
+                for (var i=0;i<req.files.length;i++)
+                fs.unlink(req.files[i].path,()=>{return;});
+            }
         } else if (req.body.type=="notAdminUserRelationToGroup" && req.body.groupName && req.session.dilab) {
             dilabConnection.query(`WITH cte AS (
                 SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
