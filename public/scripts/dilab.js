@@ -1750,7 +1750,7 @@ function pathAnalysis() {
                         displayPopUp("New Group","newGroup",elem=> {
                             
                             elem.querySelector("input[name=grpName]").addEventListener("focusout",e=> {
-                                document.querySelector(".nameIsTooLong").style.display="none";
+                                document.querySelector(".isUsedNotifier").style.display="none";
                                 document.querySelector(".nameIsMandatory").style.display="none";
                                 elem.querySelector("input[name=grpName]").style.outline="4px solid lightgreen";
                                 elem.querySelector("input[name=grpName]").style.opacity="1";
