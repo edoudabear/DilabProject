@@ -1,7 +1,8 @@
 Project Roadmap :
-1. Search function
-2. Ability to release a project
-3. Ability to update the following content :
+1. Link music player to database
+2. Search function
+3. Ability to release a project
+4. Ability to update the following content :
     Project cover
     Project files (project + audio)
     Project lyrics
