@@ -1026,8 +1026,7 @@ function pathAnalysis() {
                                             audioObj.play();
                                         })
                                 }                               
-                           }
-                           else {
+                           } else {
                                 document.querySelector(".audioFile .infoWrapper").innerHTML = "There is no audio file uploaded";
                                 // first button
                                 document.querySelector(".audioFile .playButton").setAttribute("disabled","true");
@@ -1749,6 +1748,9 @@ function pathAnalysis() {
                 if (!document.querySelector(".loginButton")) {
                     document.querySelector(".newGroup").addEventListener('click',e => {
                         displayPopUp("New Group","newGroup",elem=> {
+                            
+                            checkIfExists("groupNameAvailable",[["groupName",elem.querySelector("input[name=grpName]").value]],elem.querySelector("input[name=grpName]"),elem.querySelector(".isUsedNotifier"));
+
                             var uploadField = elem.querySelector(".profilePictureInput");
 
                             uploadField.onchange = function() {

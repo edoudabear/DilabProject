@@ -3,6 +3,7 @@
         <div class=mainInput>
             <h4>Group name</h4>
             <input type=text maxlength=122 name=grpName placeholder="Azureal"/>
+            <div class="error isUsedNotifier">This group name is already used</div>
             <h4>Group orientation (from a musical perspective, hfgvfhsqf)</h4>
             <div style="margin : 5px;" class="inputSearchRecommendationContainer">
                 <input style="margin : 0;" type=text name=grpOrientation maxlength=256 placeholder="Electro Chill"/>
