@@ -160,8 +160,8 @@ document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
             document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="";
                 var res=data.data;
                 for (var i=0;i<res.length;i++) {
-                    console.log(res[i].genreName);
-                        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                    res[i].genreName = (res[i].genreName[res[i].genreName.length-1]==' ' ? res[i].genreName.slice(res[i].genreName.length-1) : res[i].genreName)
+                    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
                 }
                 for (var i=0;i<res.length;i++) {
                     document.querySelector("input[name=genre]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
