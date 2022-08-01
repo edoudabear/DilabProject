@@ -1749,7 +1749,24 @@ function pathAnalysis() {
                     document.querySelector(".newGroup").addEventListener('click',e => {
                         displayPopUp("New Group","newGroup",elem=> {
                             
-                            checkIfExists("groupNameAvailable",[["groupName",elem.querySelector("input[name=grpName]").value]],elem.querySelector("input[name=grpName]"),elem.querySelector(".isUsedNotifier"));
+                            elem.querySelector("input[name=grpName]").addEventListener("focusout",e=> {
+                                document.querySelector(".nameIsTooLong").style.display="none";
+                                document.querySelector(".nameIsMandatory").style.display="none";
+                                elem.querySelector("input[name=grpName]").style.outline="4px solid lightgreen";
+                                elem.querySelector("input[name=grpName]").style.opacity="1";
+                                if (elem.querySelector("input[name=grpName]").value) {
+                                    if (elem.querySelector("input[name=grpName]").value.length>=128) {
+                                        elem.querySelector("input[name=grpName]").style.outline="4px solid red";
+                                        elem.querySelector("input[name=grpName]").style.opacity="";
+                                        document.querySelector(".nameIsTooLong").style.display="block";
+                                        return;
+                                    }
+                                    checkIfExists("groupNameAvailable",[["groupName",elem.querySelector("input[name=grpName]").value]],elem.querySelector("input[name=grpName]"),elem.querySelector(".isUsedNotifier"));
+                                } else {
+                                    elem.querySelector("input[name=grpName]").style.outline="4px solid red";
+                                    document.querySelector(".nameIsMandatory").style.display="block";
+                                }
+                            });
 
                             var uploadField = elem.querySelector(".profilePictureInput");
 
