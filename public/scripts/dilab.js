@@ -1862,6 +1862,8 @@ function pathAnalysis() {
                             });
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
+                                e.target.disabled=true;
+                                e.target.style.opacity=0.6;
                                 var data=new FormData();
                                 data.append("groupName",document.querySelector(".fieldStyle input[name=grpName]").value);
                                 data.append("groupOrientation",document.querySelector(".savedGenre").getAttribute("datavalue")=="" ? "NULL" : document.querySelector(".savedGenre").getAttribute("datavalue"));
@@ -1887,6 +1889,8 @@ function pathAnalysis() {
                                     } else {
                                         Swal.fire("Error",log.data,"error");
                                     }
+                                    e.target.disabled=false;
+                                    e.target.style.opacity=1;
                                 });
                             });
                         });
