@@ -158,9 +158,11 @@ document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
                return;
            } else {
             document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="";
-               var res=data.data;
-               for (var i=0;i<res.length;i++) {
-                    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                var res=data.data;
+                for (var i=0;i<res.length;i++) {
+                        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML+=`<div datavalue=${res[i].id} class="choice">${res[i].genreName}</div>`
+                }
+                for (var i=0;i<res.length;i++) {
                     document.querySelector("input[name=genre]").parentElement.querySelectorAll(".searchRecommendations .choice")[i].addEventListener("click",e=> {
                         document.querySelector(".savedGenre").innerHTML=e.target.innerHTML;
                         genresSet=true;
@@ -168,10 +170,9 @@ document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
                         document.querySelector(".searchRecommendations").style.display="none";
                         document.querySelector("input[name=genre]").value=e.target.innerHTML;
                     });
-                    console.log("Event listener added.");
-               } if (res.length==0) {
-                    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
-               }
+                } if (res.length==0) {
+                        document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").innerHTML="No results found";
+                }
            }
         });
     } else {
