@@ -1525,7 +1525,7 @@ function pathAnalysis() {
                             });
 
                             elem.querySelector(".confirm").addEventListener("click",e=> {
-                                elem.querySelector(".confirm").textContent="Please wait";
+                                elem.querySelector(".confirm").textContent="Please wait..";
                                 elem.querySelector(".confirm").style.opacity=0.6;
                                 elem.querySelector(".confirm").style.pointerEvents="none";
                                 elem.querySelector(".confirm").disabled=true;
@@ -1862,8 +1862,8 @@ function pathAnalysis() {
                             });
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
-                                console.log(e.target);
                                 document.querySelector(".createGroupBtn").disabled=true;
+                                document.querySelector(".createGroupBtn").pointerEvents="none";
                                 document.querySelector(".createGroupBtn").innerHTML="Please wait..";
                                 document.querySelector(".createGroupBtn").style.opacity=0.6;
                                 var data=new FormData();

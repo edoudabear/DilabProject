@@ -62,7 +62,8 @@
                     <input class=profilePictureInput type=file accept="svg,png,jpg" />
                 </div>
                 <button class="button pictureRemButton" onclick=unloadImage()>Remove Picture</button>
-            </div>        </div>
+            </div>        
+        </div>
     </div>
     <div class=options>
         <button class="button confirm">Create Project</button>
