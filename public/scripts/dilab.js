@@ -1842,6 +1842,19 @@ function pathAnalysis() {
                                 }
                             });
 
+                            elem.querySelector("textarea[name=grpDescription]").addEventListener("focusout",e=> {
+                                document.querySelector(".descriptionIsTooLong").style.display="none";
+                                elem.querySelector("textarea[name=grpDescription]").style.outline="4px solid lightgreen";
+                                elem.querySelector("textarea[name=grpDescription]").style.opacity="1";
+                                if (elem.querySelector("textarea[name=grpDescription]").value) {
+                                    if (elem.querySelector("textarea[name=grpDescription]").value.length>=500) {
+                                        elem.querySelector("textarea[name=grpDescription]").style.outline="4px solid red";
+                                        elem.querySelector("textarea[name=grpDescription]").style.opacity="";
+                                        document.querySelector(".descriptionIsTooLong").style.display="block";
+                                    }
+                                }
+                            });
+
                             elem.querySelector(".profilePicture").addEventListener("click",e=> {
                                 uploadField.click();
                             });
