@@ -1863,7 +1863,7 @@ function pathAnalysis() {
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
                                 document.querySelector(".createGroupBtn").disabled=true;
-                                document.querySelector(".createGroupBtn").pointerEvents="none";
+                                document.querySelector(".createGroupBtn").style.pointerEvents="none";
                                 document.querySelector(".createGroupBtn").innerHTML="Please wait..";
                                 document.querySelector(".createGroupBtn").style.opacity=0.6;
                                 var data=new FormData();
@@ -1894,7 +1894,7 @@ function pathAnalysis() {
                                     document.querySelector(".createGroupBtn").disabled=false;
                                     document.querySelector(".createGroupBtn").style.opacity=1;
                                     document.querySelector(".createGroupBtn").innerHTML="Create group";
-                                    document.querySelector(".createGroupBtn").pointerEvents="";
+                                    document.querySelector(".createGroupBtn").style.pointerEvents="";
                                 });
                             });
                         });
