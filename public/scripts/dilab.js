@@ -1396,6 +1396,7 @@ function pathAnalysis() {
                             elem.querySelector(".groupSelectInput").addEventListener("change",e=> {
                                 document.querySelector(".nameIsTooLong").style.display="none";
                                 document.querySelector(".nameIsMandatory").style.display="none";
+                                document.querySelector(".isUsedNotifier").style.display="none";
                                 elem.querySelector("input[name=pName]").style.outline="4px solid lightgreen";
                                 elem.querySelector("input[name=pName]").style.opacity="1";
                                 if (elem.querySelector("input[name=pName]").value) {
