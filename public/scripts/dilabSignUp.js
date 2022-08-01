@@ -136,6 +136,8 @@ document.querySelector("input[name=mail]").addEventListener("focusout",(e) => {
     }
 });
 
+document.querySelector(".searchRecommendations").style.display="none";
+
 document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
     if (document.querySelector("input[name=genre]").value.length>0) {
         document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="block";
