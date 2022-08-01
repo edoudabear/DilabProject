@@ -1862,9 +1862,10 @@ function pathAnalysis() {
                             });
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
-                                document.querySelector(".createGroupBtn").target.disabled=true;
-                                document.querySelector(".createGroupBtn").target.style.innerHTML="Please wait..";
-                                document.querySelector(".createGroupBtn").target.style.opacity=0.6;
+                                console.log(e.target);
+                                document.querySelector(".createGroupBtn").disabled=true;
+                                document.querySelector(".createGroupBtn").style.innerHTML="Please wait..";
+                                document.querySelector(".createGroupBtn").style.opacity=0.6;
                                 var data=new FormData();
                                 data.append("groupName",document.querySelector(".fieldStyle input[name=grpName]").value);
                                 data.append("groupOrientation",document.querySelector(".savedGenre").getAttribute("datavalue")=="" ? "NULL" : document.querySelector(".savedGenre").getAttribute("datavalue"));
@@ -1890,9 +1891,9 @@ function pathAnalysis() {
                                     } else {
                                         Swal.fire("Error",log.data,"error");
                                     }
-                                    document.querySelector(".createGroupBtn").target.disabled=false;
-                                    document.querySelector(".createGroupBtn").target.style.opacity=1;
-                                    document.querySelector(".createGroupBtn").target.style.innerHTML="Create group";
+                                    document.querySelector(".createGroupBtn").disabled=false;
+                                    document.querySelector(".createGroupBtn").style.opacity=1;
+                                    document.querySelector(".createGroupBtn").style.innerHTML="Create group";
                                 });
                             });
                         });
