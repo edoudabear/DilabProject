@@ -1862,9 +1862,9 @@ function pathAnalysis() {
                             });
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
-                                e.target.disabled=true;
-                                e.target.style.innerHTML="Please wait..";
-                                e.target.style.opacity=0.6;
+                                document.querySelector(".createGroupBtn").target.disabled=true;
+                                document.querySelector(".createGroupBtn").target.style.innerHTML="Please wait..";
+                                document.querySelector(".createGroupBtn").target.style.opacity=0.6;
                                 var data=new FormData();
                                 data.append("groupName",document.querySelector(".fieldStyle input[name=grpName]").value);
                                 data.append("groupOrientation",document.querySelector(".savedGenre").getAttribute("datavalue")=="" ? "NULL" : document.querySelector(".savedGenre").getAttribute("datavalue"));
@@ -1890,9 +1890,9 @@ function pathAnalysis() {
                                     } else {
                                         Swal.fire("Error",log.data,"error");
                                     }
-                                    e.target.disabled=false;
-                                    e.target.style.opacity=1;
-                                    e.target.style.innerHTML="Create group";
+                                    document.querySelector(".createGroupBtn").target.disabled=false;
+                                    document.querySelector(".createGroupBtn").target.style.opacity=1;
+                                    document.querySelector(".createGroupBtn").target.style.innerHTML="Create group";
                                 });
                             });
                         });
