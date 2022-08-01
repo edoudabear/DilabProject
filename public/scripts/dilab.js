@@ -1894,6 +1894,7 @@ function pathAnalysis() {
                                     document.querySelector(".createGroupBtn").disabled=false;
                                     document.querySelector(".createGroupBtn").style.opacity=1;
                                     document.querySelector(".createGroupBtn").innerHTML="Create group";
+                                    document.querySelector(".createGroupBtn").pointerEvents="";
                                 });
                             });
                         });
