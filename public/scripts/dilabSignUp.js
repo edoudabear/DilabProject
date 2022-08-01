@@ -179,9 +179,7 @@ document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
     }
 });
 
-document.querySelector("input[name=genre]").addEventListener("focus",()=>{
-    document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="block";
-});
+
 
 document.querySelector("input[name=genre]").addEventListener("change",(e)=>{
     if (!document.querySelector(".inputSearchRecommendationContainer").contains(e.target) && document.querySelector(".inputSearchRecommendationContainer").contains(document.querySelector("input[name=genre]"))) {
