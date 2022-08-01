@@ -1863,6 +1863,7 @@ function pathAnalysis() {
 
                             document.querySelector(".createGroupBtn").addEventListener('click',()=> {
                                 e.target.disabled=true;
+                                e.target.style.innerHTML="Please wait..";
                                 e.target.style.opacity=0.6;
                                 var data=new FormData();
                                 data.append("groupName",document.querySelector(".fieldStyle input[name=grpName]").value);
@@ -1891,6 +1892,7 @@ function pathAnalysis() {
                                     }
                                     e.target.disabled=false;
                                     e.target.style.opacity=1;
+                                    e.target.style.innerHTML="Create group";
                                 });
                             });
                         });
