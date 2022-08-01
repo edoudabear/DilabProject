@@ -17,6 +17,7 @@
             </div>
             <h4>Description</h4>
             <textarea placeholder="We cows no cap" maxlength=512 name=grpDescription resizable=none placeholder="Group description"></textarea>
+            <div class="error descriptionIsTooLong">Description is too long</div>
         </div>
         <div class=groupPpContainer>
             <h4>Load a profile picture (4MB max)</h4>
