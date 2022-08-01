@@ -136,6 +136,9 @@ document.querySelector("input[name=mail]").addEventListener("focusout",(e) => {
     }
 });
 
+// Hide search recommendations container while the user doesn't click on the genre input field
+document.querySelector(".searchRecommendations").style.display="none";
+
 document.querySelector("input[name=genre]").addEventListener("keyup",e=> {
     if (document.querySelector("input[name=genre]").value.length>0) {
         document.querySelector("input[name=genre]").parentElement.querySelector(".searchRecommendations").style.display="block";
