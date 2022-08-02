@@ -700,7 +700,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
             /*4. Artists search*/
-            SELECT DilabUser.nom,
+            SELECT 
+            DilabUser.nom,
             DilabUser.prenom,
             DilabUser.pseudo,
             DilabUser.biographie,
