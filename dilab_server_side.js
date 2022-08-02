@@ -552,7 +552,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabReleases.groupAuthor
                 WHERE DilabMusicGroups.groupName="${groupName}" AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
             /*6 (Group's active projects)*/
-            SELECT DilabProject.name,DilabProject.genres,DilabProject.currentPhase,DilabProject.projectPicture,DilabProject.description FROM DilabProject
+            SELECT DilabProject.name, DilabProject.currentPhase,DilabProject.projectPicture,DilabProject.description FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
                 WHERE DilabProject.isReleased=FALSE AND DilabMusicGroups.groupName="${groupName}"
                 ORDER BY DilabProject.dateOfBirth DESC LIMIT 20;
