@@ -1107,7 +1107,8 @@ body {
 }
 
 .search-results .artist .title {
-    font-size : 1.25em;
+    font-size : 1em;
+    /* Do not remove the rule just above. Otherwise the the font-size will increase by 50% */
 }
 
 .groups .group:hover, .projects .project:hover, .search-results .artist:hover, .newProject:hover, .newGroup:hover {
