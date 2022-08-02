@@ -2459,6 +2459,7 @@ function updateChat(groupName,projectName=null) {
                     if (lastMessage==null) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime);
                     } else {
+                        console.log(lastMessage);
                         var date1=new Date(lastMessage.sendTime),
                         date2=new Date(log.data[0].sendTime);
                         console.log("Comparison 1 about to be done");
