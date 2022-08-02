@@ -672,7 +672,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
-            /*2. Projects search
+            /*2. Projects search */
             SELECT DilabProject.name,
             DilabProject.currentPhase,
             DilabProject.projectPicture,
@@ -687,7 +687,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE isReleased=false 
             GROUP BY DilabProject.id
             WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
-            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;*/
+            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
 
             /*3. Group search*/
             SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
