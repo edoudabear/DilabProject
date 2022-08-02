@@ -657,10 +657,21 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 return : "error",
                 status : false,
                 data : "Not available yet."
-            }))
+            }));
             /*
             `
-            /*1. Group search*//*
+            /*1. Releases search*//*
+            WITH cte AS (
+                SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
+            )
+            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,filePath,COALESCE(nb_streams,0) AS nb_streams
+            FROM DilabReleases dr
+            LEFT JOIN cte ON dr.id=cte.songId
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            WHERE
+            ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;
+
+            /*2. Projects search*//*
             SELECT DilabProject.name,
             DilabProject.currentPhase,
             DilabProject.projectPicture,
@@ -668,16 +679,28 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.description,
             DilabProject.dateOfBirth,
             DilabMusicGroups.groupName,
-            -- DilabProject.lyrics
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
-            -- AND genres=""
             GROUP BY DilabProject.id
+            WHERE
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;
 
+            /*3. Group search*//*
+            SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
+            COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
+                LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
+                LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
+                LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+                LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
+                WHERE 
+                GROUP BY DilabMusicGroups.id
+                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;
+            
+            /*4. Artists search*//*
+            
             */
         } else if (req.body.type=="artistChat" && req.body.artistName && req.session.dilab) {
             dilabConnection.query(`
