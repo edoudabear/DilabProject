@@ -653,14 +653,14 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="search" && req.body.searchPattern) {
+            if (req.body.searchPattern=="" || typeof (req.body.searchPattern)!="string")
             res.end(JSON.stringify({
                 return : "error",
                 status : false,
                 data : "Not available yet."
             }));
-            /*
-            `
-            /*1. Releases search*//*
+            dilabConnection.query(`
+            /*1. Releases search*/
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
@@ -668,10 +668,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            WHERE
-            ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;
+            WHERE name IN (${generatePatterns(req.body.searchPattern)}) OR groupName IN (${generatePatterns(req.body.searchPattern)})
+            ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
-            /*2. Projects search*//*
+            /*2. Projects search*/
             SELECT DilabProject.name,
             DilabProject.currentPhase,
             DilabProject.projectPicture,
@@ -685,23 +685,48 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
             GROUP BY DilabProject.id
-            WHERE
-            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;
+            WHERE name IN (${generatePatterns(req.body.searchPattern)}) OR groupName IN (${generatePatterns(req.body.searchPattern)})
+            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
 
-            /*3. Group search*//*
+            /*3. Group search*/
             SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                 LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
                 LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
                 LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
                 LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                WHERE 
+                WHERE  groupName IN (${generatePatterns(req.body.searchPattern)})
                 GROUP BY DilabMusicGroups.id
-                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;
+                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
-            /*4. Artists search*//*
-            
-            */
+            /*4. Artists search*/
+            SELECT DilabUser.nom,
+            DilabUser.prenom,
+            DilabUser.pseudo,
+            DilabUser.biographie,
+            DilabGenres.genreName as genre,
+            DilabUser.profilePictureName,
+            FROM DilabUser
+            LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
+            WHERE pseudo IN (${generatePatterns(req.body.searchPattern)})
+            LIMIT 1;`,(err,results,fields)=> {
+                if (err) {
+                    console.error(error);
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "There was an error while performing your request. Try again later."
+                    }));
+                }
+                else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : JSON.stringify(results)
+                        })
+                    );
+                }
+            });
         } else if (req.body.type=="artistChat" && req.body.artistName && req.session.dilab) {
             dilabConnection.query(`
             /* NOT OPTIMIZED YET */
@@ -1794,3 +1819,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         }
     }
 });
+
+function generatePatterns (data) {
+    output="";
+    for (var i=0; i<data.length;i++) {
+        output+=`'${dilabConnection.escape(`${data.slice(0,i)}'_'${data.slice(i+1)}`)}',`;
+    }
+    output+=`%${dilabConnection.escape(data)}%`;
+}
