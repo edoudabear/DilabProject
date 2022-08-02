@@ -457,11 +457,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.description,
             DilabProject.dateOfBirth,
             DilabMusicGroups.groupName,
-            DilabMusicGroups.genres,
+            DilabGenres.genreName,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor
+            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE isReleased=false 
             AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
             AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
