@@ -700,7 +700,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 GROUP BY DilabMusicGroups.id
                 ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
-            /*4. Artists search
+            /*4. Artists search*/
             SELECT DilabUser.nom,
             DilabUser.prenom,
             DilabUser.pseudo,
@@ -710,7 +710,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabUser
             LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
             WHERE pseudo IN (${generateSearchPatterns(req.body.searchPattern)})
-            LIMIT 1;*/`,(err,results,fields)=> {
+            LIMIT 1;`,(err,results,fields)=> {
                 if (err) {
                     console.error(err);
                     res.end(JSON.stringify({
