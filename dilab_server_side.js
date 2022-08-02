@@ -1825,7 +1825,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
 function generateSearchPatterns (column,data) {
     output=`${column} LIKE `;
     for (var i=0; i<data.length;i++) {
-        output+=`${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)} OR ${column} LIKE `;
+        output+=`${dilabConnection.escape(`%${data.slice(0,i)}_${data.slice(i+1)}%`)} OR ${column} LIKE `;
     }
     return output+dilabConnection.escape(`%${data}%`);
 }
