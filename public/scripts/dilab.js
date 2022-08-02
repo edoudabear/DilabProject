@@ -1949,8 +1949,8 @@ function pathAnalysis() {
                                 }
                                 // Project results
                                 document.querySelector(".projectsWrapper").innerHTML="";
-                                console.log(data[1]);
                                 for (var i=0;i<data[1].length;i++) {
+                                    console.log(data[1][i].projectPicture);
                                     var line=data[1][i],
                                     el=document.createElement("div");
                                     el.classList.add("project");
