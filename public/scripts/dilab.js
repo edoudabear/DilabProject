@@ -3229,7 +3229,7 @@ function newProjectElement(title,projectPP,group,description,foundDate,nCollabor
 function newArtistElement(artistFullName,pseudo,genre,biography,yearOfJoin,artistPicture) {
     return `<div onclick='loadPage("${artistFullName} Dilab","artist",[["a","${pseudo}"]])' class=artist title="User's biography : ${biography}">
         <div class=cover>
-            <img title="Artist's profile picture" src="${artistPicture}" height="100px" />
+            <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/${artistPicture}" height="100px" />
         </div>
         <div class=title>
             ${artistFullName}
