@@ -1950,7 +1950,7 @@ function pathAnalysis() {
                                 // Project results
                                 document.querySelector(".projectsWrapper").innerHTML="";
                                 for (var i=0;i<data[2].length;i++) {
-                                    document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(data[1][i].name,projectPPath,data[1][i].groupName,data[1][i].description,data[1][i].dateOfBirth,data[1][i].nCollaborators,data[1][i].projectPicture,data[1][i].audioFile);
+                                    document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(data[1][i].name,data[1][i].projectPPath,data[1][i].groupName,data[1][i].description,data[1][i].dateOfBirth,data[1][i].nCollaborators,data[1][i].projectPicture,data[1][i].audioFile);
                                 }
                                 if (data[2].length==0) {
                                     document.querySelector(".projectsWrapper").innerHTML="<span class=\"noDataTextInfo\">No projects found :(<p></div>";
