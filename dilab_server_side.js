@@ -1820,8 +1820,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         }
     }
 });
-
-console.log(generatePatterns("Edouard"));
+setTimeout(()=> {
+    console.log(generatePatterns("Edouard"));
+},4000)
 
 function generatePatterns (data) {
     output="";
