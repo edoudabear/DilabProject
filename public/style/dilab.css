@@ -1103,6 +1103,7 @@ body {
     justify-content: center;
     transition: 0.2s;
     margin : 8px;
+    cursor: pointer;
 }
 
 .groups .group:hover, .projects .project:hover, .search-results .artist:hover, .newProject:hover, .newGroup:hover {
