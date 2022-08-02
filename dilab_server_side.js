@@ -712,7 +712,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE pseudo IN (${generateSearchPatterns(req.body.searchPattern)})
             LIMIT 1;`,(err,results,fields)=> {
                 if (err) {
-                    console.error(error);
+                    console.error(err);
                     res.end(JSON.stringify({
                         return : "error",
                         status : false,
