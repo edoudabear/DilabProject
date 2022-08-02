@@ -457,7 +457,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.description,
             DilabProject.dateOfBirth,
             DilabMusicGroups.groupName,
-            -- DilabProject.lyrics
+            DilabMusicGroups.genres,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
@@ -465,7 +465,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE isReleased=false 
             AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
             AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
-            -- AND genres=""
             GROUP BY DilabProject.id
             LIMIT 1;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
