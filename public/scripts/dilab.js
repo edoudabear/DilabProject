@@ -2471,10 +2471,8 @@ function updateChat(groupName,projectName=null) {
                 } else {
                     var date1=new Date(log.data[i-1].sendTime),
                     date2=new Date(log.data[i].sendTime);
-                    console.log("Comparison 2 about to be done");
                     if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
                         document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
-                        console.log("Comparison 2 turned out to be true");
                     }
                 }
                 lastMessage=log.data[log.data.length-1];
