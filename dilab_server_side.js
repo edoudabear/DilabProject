@@ -1823,6 +1823,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
 
 function generateSearchPatterns (column,data) {
     output=`${column} LIKE `;
+    console.log("DEBUG LOG")
+    console.log(data.length);
     for (var i=0; i<data.length;i++) {
         output+=`${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)} OR ${column} LIKE `;
     }
