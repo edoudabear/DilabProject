@@ -653,12 +653,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="search" && req.body.searchPattern) {
-            if (req.body.searchPattern=="" || typeof (req.body.searchPattern)!="string")
-            res.end(JSON.stringify({
-                return : "error",
-                status : false,
-                data : "Not available yet."
-            }));
+            if (req.body.searchPattern=="" || typeof (req.body.searchPattern)!="string") {
+                res.end(JSON.stringify({
+                    return : "error",
+                    status : false,
+                    data : "Invalid search pattern."
+                }));
+            }
             dilabConnection.query(`
             /*1. Releases search*/
             WITH cte AS (
