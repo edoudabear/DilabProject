@@ -1827,7 +1827,7 @@ setTimeout(()=> {
 function generatePatterns (data) {
     output="";
     for (var i=0; i<data.length;i++) {
-        output+=`'${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)}',`;
+        output+=`${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)},`;
     }
-    return output+`'%${dilabConnection.escape(data)}%'`;
+    return output+dilabConnection.escape(`%${data}%`);
 }
