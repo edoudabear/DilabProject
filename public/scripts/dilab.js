@@ -1944,7 +1944,7 @@ function pathAnalysis() {
                                     document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",duree,data[0][i].releasePicture,data[0][i].filePath);
                                 }
                                 if (data[0].length==0) {
-                                    document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No projects found :(<p></div>";
+                                    document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No Releases found :(<p></div>";
                                 }
                                 // Group results
                                 for (var i=0;i<data[2].length;i++) {
