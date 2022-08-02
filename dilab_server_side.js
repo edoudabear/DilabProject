@@ -684,9 +684,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
-            WHERE isReleased=false 
+            WHERE isReleased=false AND (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             GROUP BY DilabProject.id
-            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
 
             /*3. Group search*/
