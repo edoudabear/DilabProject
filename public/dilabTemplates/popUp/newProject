@@ -9,9 +9,6 @@
             <h4>What group is made for that project ?</h4>
             <select  class="groupSelectInput">
             </select>
-            <h4>Project orientation (from a musical perspective, hfgvfhsqf)</h4>
-            <input  maxlength="64" name="pGenre" type=text placeholder="Project genres"/>
-            <div class="error genreIsTooLong">Genre name is too long</div>
             <h4>Project Description</h4>
             <textarea resizable=none maxlength="500" name="pDescription" placeholder="Project description"></textarea>
             <div class="error descriptionIsTooLong">Description is too long</div>

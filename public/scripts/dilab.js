@@ -969,7 +969,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);///Dilab/group?g=${encodeURI(project.groupName)}`);
                            document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
                            document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
-                           document.querySelector(".projectPage .projectGenres").innerHTML=project.genres
+                           document.querySelector(".projectPage .projectGenres").innerHTML="GENRES NOT LOADED FROM DB YET"
                            document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
                            document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
@@ -1413,19 +1413,6 @@ function pathAnalysis() {
                                 }
                             });
 
-                            elem.querySelector("input[name=pGenre]").addEventListener("focusout",e=> {
-                                document.querySelector(".genreIsTooLong").style.display="none";
-                                elem.querySelector("input[name=pGenre]").style.outline="4px solid lightgreen";
-                                elem.querySelector("input[name=pGenre]").style.opacity="1";
-                                if (elem.querySelector("input[name=pGenre]").value) {
-                                    if (elem.querySelector("input[name=pGenre]").value.length>=64) {
-                                        elem.querySelector("input[name=pGenre]").style.outline="4px solid red";
-                                        elem.querySelector("input[name=pGenre]").style.opacity="";
-                                        document.querySelector(".genreIsTooLong").style.display="block";
-                                    }
-                                }
-                            });
-
                             elem.querySelector("textarea[name=pDescription]").addEventListener("focusout",e=> {
                                 document.querySelector(".descriptionIsTooLong").style.display="none";
                                 elem.querySelector("textarea[name=pDescription]").style.outline="4px solid lightgreen";
@@ -1580,14 +1567,6 @@ function pathAnalysis() {
                                                 elem.querySelector(".confirm").style.pointerEvents="";
                                                 return true;
                                             } else {
-                                                if (elem.querySelector("input[name=pGenre]").value.length>=64) {
-                                                    Swal.fire("Not so fast..",`We know genres are complicated to choose, but it's too long here`,"error");
-                                                    elem.querySelector(".confirm").textContent="Create project";
-                                                    elem.querySelector(".confirm").disabled=false;
-                                                    elem.querySelector(".confirm").style.opacity="";
-                                                    elem.querySelector(".confirm").style.pointerEvents="";
-                                                    return;
-                                                }
                                                 if (elem.querySelector("textarea[name=pDescription]").value.length>=500) {
                                                     Swal.fire("Not so fast..",`Wow, don't spoil us the whole story about the project, it's too long !`,"error");
                                                     elem.querySelector(".confirm").textContent="Create project";
@@ -1599,7 +1578,6 @@ function pathAnalysis() {
                                                 // Here we (will) create a FormData object containing the user's input and send it to the server
                                                 var data=new FormData();
                                                 data.append("projectName", elem.querySelector("input[name=pName]").value);
-                                                data.append("projectGenre", elem.querySelector("input[name=pGenre]").value);
                                                 data.append("projectDescription", elem.querySelector("textarea[name=pDescription]").value);
                                                 data.append("projectLyrics",elem.querySelector("textarea[name=pLyrics]").value);
                                                 data.append("groupName", elem.querySelector(".groupSelectInput").value);

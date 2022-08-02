@@ -450,7 +450,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabProject.currentPhase,
             DilabProject.projectPicture,
             DilabProject.audioFileDir,
-            DilabProject.genres,
             DilabProject.lyrics,
             DilabProject.projectFileDir,
             DilabProject.lastAudioFileUpdate,
@@ -1397,11 +1396,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                             });
                         }
-                        console.log(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${projectPPFile ? dilabConnection.escape(filename3) : "disc.svg"},
-                        ${audioFile ? dilabConnection.escape(filename1) : "NULL"}, ${projectFile ? dilabConnection.escape(filename2) : "NULL"},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`);
-                        dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, genres, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
-                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${dilabConnection.escape(projectGenre)},${projectPhase},${projectPPFile ? dilabConnection.escape(filename3) : '"disc.svg"'},
+                        dilabConnection.query(`INSERT INTO DilabProject (name, groupAuthor, currentPhase, projectPicture, audioFileDir, projectFileDir, lyrics, description) 
+                        VALUES (${dilabConnection.escape(projectName)},${results[0].id},${projectPhase},${projectPPFile ? dilabConnection.escape(filename3) : '"disc.svg"'},
                         ${audioFile ? dilabConnection.escape(filename1) : "NULL"}, ${projectFile ? dilabConnection.escape(filename2) : "NULL"},${dilabConnection.escape(projectLyrics)},${dilabConnection.escape(projectDescription)})`,(err,results,fields)=> {
                             if (err) {
                                 res.send(JSON.stringify({
