@@ -1106,6 +1106,10 @@ body {
     cursor: pointer;
 }
 
+.search-results .artist .title {
+    font-size : 1.25em;
+}
+
 .groups .group:hover, .projects .project:hover, .search-results .artist:hover, .newProject:hover, .newGroup:hover {
     opacity: 0.8;
     box-shadow: 0 0 10px rgb(141, 140, 140);
