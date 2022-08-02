@@ -1940,6 +1940,7 @@ function pathAnalysis() {
                             } else {
                                 data= JSON.parse(data.data);
                                 // Release results
+                                document.querySelector(".releases").innerHTML="";
                                 for (var i=0;i<data[0].length;i++) {
                                     document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",data[0][i].duration,data[0][i].releasePicture,data[0][i].filePath);
                                 }
@@ -1947,6 +1948,7 @@ function pathAnalysis() {
                                     document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No Releases found :(<p></div>";
                                 }
                                 // Group results
+                                document.querySelector(".groupsWrapper").innerHTML="";
                                 for (var i=0;i<data[2].length;i++) {
                                     document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[2][i].groupName,data[2][i].genres,data[2][i].description,new Date(data[2][i].dateOfBirth),data[2][i].nCollaborators,data[2][i].nReleases,data[2][i].nProjects,data[2][i].groupPicture);
                                 }
