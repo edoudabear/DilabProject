@@ -706,10 +706,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabUser.pseudo,
             DilabUser.biographie,
             DilabGenres.genreName as genre,
-            DilabUser.profilePictureName,
+            DilabUser.profilePictureName
             FROM DilabUser
             LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
-            WHERE pseudo IN (${generateSearchPatterns(req.body.searchPattern)})
+            WHERE DilabUser.pseudo IN (${generateSearchPatterns(req.body.searchPattern)})
             LIMIT 1;`,(err,results,fields)=> {
                 if (err) {
                     console.error(err);
