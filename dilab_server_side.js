@@ -704,7 +704,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabUser.prenom,
             DilabUser.pseudo,
             DilabUser.biographie,
-            DilabUser.dateOfJoin
+            DilabUser.dateCreation
             DilabGenres.genreName as genre,
             DilabUser.profilePictureName
             FROM DilabUser
