@@ -1248,7 +1248,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
-         typeof(req.body.projectGenre)!="undefined" && req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
+         req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
             var projectName=req.body.projectName,
             projectDescription=req.body.projectDescription ? req.body.projectDescription : "",
             projectGenre=req.body.projectGenre ? req.body.projectGenre : "",
