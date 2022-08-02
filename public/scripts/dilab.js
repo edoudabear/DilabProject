@@ -1938,7 +1938,7 @@ function pathAnalysis() {
                                 Swal.fire("Error","There was a problem with our servers. Please try again later.","error");
                                 return;
                             } else {
-                                data= JSON.parse(data);
+                                data= JSON.parse(data.data);
                                 // Release results
                                 for (var i=0;i<data[0].length;i++) {
                                     document.querySelector(".groupsWrapper").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",duree,data[0][i].releasePicture,data[0][i].filePath);
