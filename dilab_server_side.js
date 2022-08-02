@@ -669,7 +669,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            WHERE name IN (${generatePatterns(req.body.searchPattern)}) OR groupName IN (${generatePatterns(req.body.searchPattern)})
+            WHERE name IN (${generateSearchPatterns(req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
             /*2. Projects search*/
@@ -686,7 +686,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
             GROUP BY DilabProject.id
-            WHERE name IN (${generatePatterns(req.body.searchPattern)}) OR groupName IN (${generatePatterns(req.body.searchPattern)})
+            WHERE name IN (${generateSearchPatterns(req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
 
             /*3. Group search*/
@@ -696,7 +696,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
                 LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
                 LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                WHERE  groupName IN (${generatePatterns(req.body.searchPattern)})
+                WHERE  groupName IN (${generateSearchPatterns(req.body.searchPattern)})
                 GROUP BY DilabMusicGroups.id
                 ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
@@ -709,7 +709,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             DilabUser.profilePictureName,
             FROM DilabUser
             LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
-            WHERE pseudo IN (${generatePatterns(req.body.searchPattern)})
+            WHERE pseudo IN (${generateSearchPatterns(req.body.searchPattern)})
             LIMIT 1;`,(err,results,fields)=> {
                 if (err) {
                     console.error(error);
@@ -1821,10 +1821,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     }
 });
 setTimeout(()=> {
-    console.log(generatePatterns("Edouard"));
-},4000)
+    console.log(generateSearchPatterns("Edouard"));
+},4000);
 
-function generatePatterns (data) {
+function generateSearchPatterns (data) {
     output="";
     for (var i=0; i<data.length;i++) {
         output+=`${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)},`;
