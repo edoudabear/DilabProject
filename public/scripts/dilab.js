@@ -1949,6 +1949,7 @@ function pathAnalysis() {
                                 }
                                 // Project results
                                 document.querySelector(".projectsWrapper").innerHTML="";
+                                console.log(data[1]);
                                 for (var i=0;i<data[1].length;i++) {
                                     var line=data[1][i],
                                     el=document.createElement("div");
@@ -2005,7 +2006,6 @@ function pathAnalysis() {
                                 }                
                                 // Group results
                                 document.querySelector(".groupsWrapper").innerHTML="";
-                                console.log(data[2]);
                                 for (var i=0;i<data[2].length;i++) {
                                     document.querySelector(".groupsWrapper").innerHTML+=newGroupElement(data[2][i].groupName,data[2][i].genres,data[2][i].description,new Date(data[2][i].dateOfBirth),data[2][i].nCollaborators,data[2][i].nReleases,data[2][i].nProjects,data[2][i].groupPicture);
                                 }
