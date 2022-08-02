@@ -672,7 +672,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE name IN (${generateSearchPatterns(req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
-            /*2. Projects search*/
+            /*2. Projects search
             SELECT DilabProject.name,
             DilabProject.currentPhase,
             DilabProject.projectPicture,
@@ -687,9 +687,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE isReleased=false 
             GROUP BY DilabProject.id
             WHERE name IN (${generateSearchPatterns(req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
-            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
+            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;*/
 
-            /*3. Group search
+            /*3. Group search*/
             SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                 LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
@@ -698,7 +698,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
                 WHERE  groupName IN (${generateSearchPatterns(req.body.searchPattern)})
                 GROUP BY DilabMusicGroups.id
-                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;*/
+                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
             /*4. Artists search
             SELECT DilabUser.nom,
