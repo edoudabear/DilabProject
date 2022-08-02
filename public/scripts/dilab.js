@@ -969,7 +969,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);///Dilab/group?g=${encodeURI(project.groupName)}`);
                            document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
                            document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
-                           document.querySelector(".projectPage .projectGenres").innerHTML=project.genreName;
+                           document.querySelector(".projectPage .projectGenres").innerHTML= (project.genreName==null) ? "not indicated" : project.genreName;
                            document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
                            document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
