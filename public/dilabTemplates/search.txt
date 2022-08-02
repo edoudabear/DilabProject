@@ -1,5 +1,98 @@
 <div class="search-results">
     <h1 class="main-content-header">Search results for </h1>
+    <h2>Releases</h2>
+    <div class=releases>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+        <div class=release>
+            <div class=left-content>
+                <div class=control>
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class=cover>
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                </div>
+                <div class=infos>
+                    <div class=title title="The best hit ever">
+                        <div style="width:5em;" class="skeletonLoader"></div>
+                    </div>
+                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
+                        <span class=groupName>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                        <i class="bi bi-dot"></i>
+                        <span class=authors>
+                            <div style="width:5em;" class="skeletonLoader"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=streams>
+                <div style="width:5em;" class="skeletonLoader"></div>
+            </div>
+            <div class=duration>
+                <div style="width:3em;" class="skeletonLoader"></div>
+            </div>
+        </div>
+    </div>
     <h2>Projects</h2>
     <div class="projectsContainer">
         <div class=leftBtn>
@@ -262,99 +355,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <h2>Releases</h2>
-    <div class=releases>
-        <div class=release>
-            <div class=left-content>
-                <div class=control>
-                    <i class="bi bi-play-circle-fill"></i>
-                </div>
-                <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
-                </div>
-                <div class=infos>
-                    <div class=title title="The best hit ever">
-                        <div style="width:5em;" class="skeletonLoader"></div>
-                    </div>
-                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
-                        <span class=groupName>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                        <i class="bi bi-dot"></i>
-                        <span class=authors>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class=streams>
-                <div style="width:5em;" class="skeletonLoader"></div>
-            </div>
-            <div class=duration>
-                <div style="width:3em;" class="skeletonLoader"></div>
-            </div>
-        </div>
-        <div class=release>
-            <div class=left-content>
-                <div class=control>
-                    <i class="bi bi-play-circle-fill"></i>
-                </div>
-                <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
-                </div>
-                <div class=infos>
-                    <div class=title title="The best hit ever">
-                        <div style="width:5em;" class="skeletonLoader"></div>
-                    </div>
-                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
-                        <span class=groupName>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                        <i class="bi bi-dot"></i>
-                        <span class=authors>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class=streams>
-                <div style="width:5em;" class="skeletonLoader"></div>
-            </div>
-            <div class=duration>
-                <div style="width:3em;" class="skeletonLoader"></div>
-            </div>
-        </div>
-        <div class=release>
-            <div class=left-content>
-                <div class=control>
-                    <i class="bi bi-play-circle-fill"></i>
-                </div>
-                <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
-                </div>
-                <div class=infos>
-                    <div class=title title="The best hit ever">
-                        <div style="width:5em;" class="skeletonLoader"></div>
-                    </div>
-                    <div class=groupAuthors title="Coum Crawm | Lala Lili, Lolo Lulu, Pété Samére">
-                        <span class=groupName>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                        <i class="bi bi-dot"></i>
-                        <span class=authors>
-                            <div style="width:5em;" class="skeletonLoader"></div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class=streams>
-                <div style="width:5em;" class="skeletonLoader"></div>
-            </div>
-            <div class=duration>
-                <div style="width:3em;" class="skeletonLoader"></div>
             </div>
         </div>
     </div>

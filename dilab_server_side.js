@@ -608,7 +608,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }));
                 }
             });
-        } else if (req.body.type="artist" && req.body.artistName) {
+        } else if (req.body.type=="artist" && req.body.artistName) {
             dilabConnection.query(`
             /* Query 1 */
             SELECT DilabUser.nom,
@@ -652,6 +652,33 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "ok", "status" : false, "data" : "project is unfindable" }');
                 }
             });
+        } else if (req.body.type=="search" && req.body.searchPattern) {
+            res.end(JSON.stringify({
+                return : "error",
+                status : false,
+                data : "Not available yet."
+            }))
+            /*
+            `
+            /*1. Group search*//*
+            SELECT DilabProject.name,
+            DilabProject.currentPhase,
+            DilabProject.projectPicture,
+            DilabProject.audioFileDir,
+            DilabProject.description,
+            DilabProject.dateOfBirth,
+            DilabMusicGroups.groupName,
+            -- DilabProject.lyrics
+            COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators
+            FROM DilabProject
+            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
+            WHERE isReleased=false 
+            -- AND genres=""
+            GROUP BY DilabProject.id
+            ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;
+
+            */
         } else if (req.body.type=="artistChat" && req.body.artistName && req.session.dilab) {
             dilabConnection.query(`
             /* NOT OPTIMIZED YET */
