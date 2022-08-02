@@ -1947,6 +1947,14 @@ function pathAnalysis() {
                                 if (data[0].length==0) {
                                     document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No Releases found :(<p></div>";
                                 }
+                                // Project results
+                                document.querySelector(".projectsWrapper").innerHTML="";
+                                for (var i=0;i<data[2].length;i++) {
+                                    document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(data[1][i].name,projectPPath,data[1][i].groupName,data[1][i].description,data[1][i].dateOfBirth,data[1][i].nCollaborators,data[1][i].projectPicture,data[1][i].audioFile);
+                                }
+                                if (data[2].length==0) {
+                                    document.querySelector(".projectsWrapper").innerHTML="<span class=\"noDataTextInfo\">No projects found :(<p></div>";
+                                }                
                                 // Group results
                                 document.querySelector(".groupsWrapper").innerHTML="";
                                 for (var i=0;i<data[2].length;i++) {
@@ -1955,7 +1963,14 @@ function pathAnalysis() {
                                 if (data[2].length==0) {
                                     document.querySelector(".groupsWrapper").innerHTML="<span class=\"noDataTextInfo\">No groups found :(<p></div>";
                                 }
-                                Swal.fire("Success","The server fetched results !","success");
+                                // Artist results
+                                document.querySelector(".artistsWrapper").innerHTML="";
+                                for (var i=0;i<data[2].length;i++) {
+                                    document.querySelector(".artistsWrapper").innerHTML+=newArtistElement(`${data[3][i].nom} ${data[3][i].prenom}`,data[3][i].pseudo,data[3][i].genre,data[3][i].biographie,new Date(data[3][i].dateCreation),data[3][i].profilePictureName);
+                                }
+                                if (data[2].length==0) {
+                                    document.querySelector(".artistsWrapper").innerHTML="<span class=\"noDataTextInfo\">No artists found :(<p></div>";
+                                }
                             }
                         }
                     );
@@ -3160,6 +3175,26 @@ function newProjectElement(title,projectPP,group,description,foundDate,nCollabor
                 ${description}                      
             </div>
         </div>`;
+}
+
+function newArtistElement(artistFullName,pseudo,genre,biography,yearOfJoin,artistPicture) {
+    return `<div onclick='loadPage("${artistFullName} Dilab","artist",[["a","${pseudo}"]])' class=artist title="User's biography : ${biography}">
+        <div class=cover>
+            <img title="Artist's profile picture" src="${artistPicture}" height="100px" />
+        </div>
+        <div class=title>
+            ${artistFullName}
+        </div>
+        <div class=pseudo>
+            (@${pseudo})
+        </div>
+        <div class=furtherInfos>
+            <span class=nFollowers>
+                Fan of ${genre}</i>&nbsp;
+                Registered since&nbsp;<span class="yearOfRegistration">${yearOfJoin.getFullYear()}
+            </span>
+        </div>
+    </div>`
 }
 
 function newMemberWaitListNotificationElement(userName,groupName) {
