@@ -669,7 +669,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
+            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
             /*2. Projects search
@@ -686,7 +686,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
             WHERE isReleased=false 
             GROUP BY DilabProject.id
-            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR groupName IN (${generateSearchPatterns(req.body.searchPattern)})
+            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;*/
 
             /*3. Group search*/
@@ -1823,8 +1823,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
 
 function generateSearchPatterns (column,data) {
     output=`${column} LIKE `;
-    console.log("DEBUG LOG")
-    console.log(data.length);
     for (var i=0; i<data.length;i++) {
         output+=`${dilabConnection.escape(`${data.slice(0,i)}_${data.slice(i+1)}`)} OR ${column} LIKE `;
     }
