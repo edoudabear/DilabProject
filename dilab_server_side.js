@@ -711,7 +711,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabUser
             LEFT JOIN DilabGenres ON DilabGenres.id=DilabUser.genres
             WHERE (${generateSearchPatterns("DilabUser.pseudo",req.body.searchPattern)})
-            LIMIT 1;`,(err,results,fields)=> {
+            LIMIT 20;`,(err,results,fields)=> {
                 if (err) {
                     console.error(err);
                     res.end(JSON.stringify({
