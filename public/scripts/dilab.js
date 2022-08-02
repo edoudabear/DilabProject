@@ -1950,7 +1950,55 @@ function pathAnalysis() {
                                 // Project results
                                 document.querySelector(".projectsWrapper").innerHTML="";
                                 for (var i=0;i<data[1].length;i++) {
-                                    document.querySelector(".projectsWrapper").innerHTML+=newProjectElement(data[1][i].name,data[1][i].projectPPath,data[1][i].groupName,data[1][i].description,data[1][i].dateOfBirth,data[1][i].nCollaborators,data[1][i].projectPicture,data[1][i].audioFile);
+                                    var line=data[1][i],
+                                    el=document.createElement("div");
+                                    el.classList.add("project");
+                                    var projectPPath=(line.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${line.groupName}/${line.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg"
+                                    el.innerHTML+=newProjectElement(line.name,line.projectPPath,line.groupName,line.description,line.dateOfBirth,line.nCollaborators,line.projectPicture,line.audioFile);
+                                    el.setAttribute("onclick",`loadPage("${line.name} Dilab","project",[["p","${line.name}"],["g","${line.groupName}"]]);`)
+                                    document.querySelector(".projectsWrapper").appendChild(el);
+                                    progress(line.currentPhase,el);
+                                    if(line.audioFileDir==null) {
+                                        el.querySelector(".playBtn").style.opacity=0.6;
+                                        el.querySelector(".playBtn").style.cursor="not-allowed";
+                                        el.querySelector(".playBtn").setAttribute("title","No audio file uploaded for this project");
+                                    } else {
+                                        el.querySelector(".playBtn").classList.add("enabled");
+                                        var audio=document.createElement("AUDIO");
+                                        audio.controls=false;
+                                        audio.style.display="none";
+                                        audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
+                                        // Player setup with the event listeners
+                                        el.querySelector(".playBtn").addEventListener("click",e=>{
+                                            e.stopPropagation();
+                                            var el2=document.querySelectorAll(".project");
+                                            for (var i=0;i<el2.length;i++) {
+                                                if (el2[i].contains(e.target)) {
+                                                    el2=el2[i];
+                                                    break;
+                                                }
+                                            }
+                                            if (el2.querySelector(".playBtn .bi-play-circle-fill")) {
+                                                var audios=document.querySelectorAll("audio");
+                                                for (var i=0;i<audios.length;i++) {
+                                                    audios[i].pause();
+                                                    audios[i].parentElement.querySelector("i").classList.remove("bi-pause-circle-fill");
+                                                    audios[i].parentElement.querySelector("i").classList.add("bi-play-circle-fill");
+                                                    audios[i].currentTime = 0;
+                                                }
+                                                audioObj.pause();
+                                                el2.querySelector(".playBtn i").classList.remove("bi-play-circle-fill");
+                                                el2.querySelector(".playBtn i").classList.add("bi-pause-circle-fill");
+                                                el2.querySelector("audio").play();
+                                            } else {
+                                                el2.querySelector(".playBtn i").classList.remove("bi-pause-circle-fill");
+                                                el2.querySelector(".playBtn i").classList.add("bi-play-circle-fill");
+                                                el2.querySelector("audio").pause();
+                                            }
+                                        })
+                                        el.querySelector(".playBtn").appendChild(audio);
+                                        el.querySelector(".playBtn").setAttribute("title",line.audioFileDir);
+                                    }
                                 }
                                 if (data[1].length==0) {
                                     document.querySelector(".projectsWrapper").innerHTML="<span class=\"noDataTextInfo\">No projects found :(<p></div>";
