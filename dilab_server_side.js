@@ -63,21 +63,18 @@ app.get("/Dilab/:action/:file", function(req,res) {
         }
     } else if (req.params.action == "project" ) {
         res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/disc.svg`);
-    } else {
-        res.status(404).end("Bad Path");
-    }
-});
-
-// Release File
-app.get("/Dilab/releaseFile/:releaseId/", function(req,res) {
-    if (parseInt(req.params.releaseId)>=0) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`);
+    } else if (req.params.action == "releaseFile") {
+        if (parseInt(req.params.releaseId)>=0) {
+            if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`)) {
+                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`);
+            } else {
+                res.status(404).end("No such file");
+            }
         } else {
-            res.status(404).end("No such file");
+            res.status(404).send("Bad input");
         }
     } else {
-        res.status(404).send("Bad path");
+        res.status(404).end("Bad Path");
     }
 });
 
