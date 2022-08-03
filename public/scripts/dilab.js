@@ -3231,7 +3231,7 @@ function newArtistElement(artistFullName,pseudo,genre,biography,yearOfJoin,artis
         <div class=cover>
             <img title="Artist's profile picture" src="https://e.diskloud.fr/Dilab/user/${artistPicture}" height="100px" />
         </div>
-        <div class=title>
+        <div title="${artistFullName}" class=title>
             ${artistFullName}
         </div>
         <div class=pseudo>

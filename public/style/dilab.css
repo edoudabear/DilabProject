@@ -1108,8 +1108,10 @@ body {
 
 .search-results .artist .title {
     width: 116px;
+    text-align: center;
     font-size : 1em;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
     /* Do not remove the rule just above. Otherwise the the font-size will increase by 50% */
 }
