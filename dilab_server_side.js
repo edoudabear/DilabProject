@@ -65,12 +65,8 @@ app.get("/Dilab/:action/:file", function(req,res) {
         res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/disc.svg`);
     } else if (req.params.action == "releaseFile") {
         if (parseInt(req.params.file)>=0) { // req.params.file must correspond to the release id here
-            if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`)) {
-                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`,{ 
-                    headers:{
-                        "Filename": `${req.params.file}.wav`
-                    }
-                });
+            if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.mp3`)) {
+                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.mp3`);
             } else {
                 res.status(404).end("No such file");
             }
