@@ -66,7 +66,11 @@ app.get("/Dilab/:action/:file", function(req,res) {
     } else if (req.params.action == "releaseFile") {
         if (parseInt(req.params.file)>=0) { // req.params.file must correspond to the release id here
             if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`)) {
-                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`);
+                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`,{ 
+                    headers:{
+                        "Content-Type": "audio"
+                    }
+                });
             } else {
                 res.status(404).end("No such file");
             }
