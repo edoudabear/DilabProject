@@ -68,7 +68,7 @@ app.get("/Dilab/:action/:file", function(req,res) {
             if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`)) {
                 res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`,{ 
                     headers:{
-                        "Content-Type": "audio"
+                        "Filename": `${req.params.file}.wav`
                     }
                 });
             } else {
