@@ -68,6 +68,19 @@ app.get("/Dilab/:action/:file", function(req,res) {
     }
 });
 
+// Release File
+app.get("/Dilab/releaseFile/:releaseId/", function(req,res) {
+    if (parseInt(req.params.releaseId)>=0) {
+        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`)) {
+            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.releaseId)}.audio`);
+        } else {
+            res.status(404).end("No such file");
+        }
+    } else {
+        res.status(404).send("Bad path");
+    }
+});
+
 app.get("/Dilab/:action/:groupName/:projectName/", function(req,res) {
     console.log(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`);
     if (req.params.action == "project" ) {
@@ -691,13 +704,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             /*3. Group search*/
             SELECT DilabMusicGroups.groupName,DilabGenres.genreName AS genres,DilabMusicGroups.groupPicture,DilabMusicGroups.dateOfBirth,DilabMusicGroups.description,
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
-                LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
-                LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
-                LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
-                LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                WHERE  (${generateSearchPatterns("groupName",req.body.searchPattern)})
-                GROUP BY DilabMusicGroups.id
-                ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
+            LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
+            LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
+            WHERE  (${generateSearchPatterns("groupName",req.body.searchPattern)})
+            GROUP BY DilabMusicGroups.id
+            ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 20;
             
             /*4. Artists search*/
             SELECT 
