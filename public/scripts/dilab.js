@@ -3116,7 +3116,7 @@ function escapeHtml(unsafe) {
 // Element templates
 
 function newReleaseElement(title,group,releaseDate,streams,duration,imagePath,filePath) {
-    console.log(filepath);
+    console.log(filePath);
     return `
     <div dataPath="${encodeURIComponent(filePath)}" class=release>
         <div class=left-content>
