@@ -166,7 +166,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,DilabReleases.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
@@ -204,7 +204,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabGenres.genreName, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,DilabReleases.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabGenres.genreName, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
@@ -228,7 +228,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,DilabReleases.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
@@ -540,7 +540,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,DilabReleases.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
@@ -675,7 +675,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,DilabReleases.id,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
