@@ -795,7 +795,7 @@ function pathAnalysis() {
                             for (var i=0;i<data[1].length;i++) {
                                 console.log(data[1][i].duration);
                                 var duree=timestampToNormalTime(data[1][i].duration);
-                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture,data[1][i].filePath);
+                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture,data[1][i].id);
                             }
                             if (data[1].length==0) {
                                 document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
@@ -1106,7 +1106,7 @@ function pathAnalysis() {
                     for (var i=0;i<data.length;i++) {
                         console.log(data[i].duration);
                         var duree=timestampToNormalTime(data[i].duration);
-                        document.querySelectorAll(".releases")[1].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].filePath);
+                        document.querySelectorAll(".releases")[1].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
                     }
                 });
 
@@ -1128,7 +1128,7 @@ function pathAnalysis() {
                     document.querySelectorAll(".releases")[0].innerHTML="";
                     for (var i=0;i<data.length;i++) {
                         var duree=timestampToNormalTime(data[i].duration);
-                        document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].filePath);
+                        document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
                     }
                 });
 
@@ -1156,7 +1156,7 @@ function pathAnalysis() {
                             // main releases
                             for (var i=0;i<data.length;i++) {
                                 var duree=timestampToNormalTime(data[i].duration);
-                                document.querySelectorAll(".releases")[2].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].filePath);
+                                document.querySelectorAll(".releases")[2].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
                             }
                             if (data.length==0) {
                                 document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first artist to publish !</p></div>";
@@ -1942,7 +1942,7 @@ function pathAnalysis() {
                                 // Release results
                                 document.querySelector(".releases").innerHTML="";
                                 for (var i=0;i<data[0].length;i++) {
-                                    document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",data[0][i].duration,data[0][i].releasePicture,data[0][i].filePath);
+                                    document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",data[0][i].duration,data[0][i].releasePicture,data[0][i].id);
                                 }
                                 if (data[0].length==0) {
                                     document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No Releases found :(<p></div>";
@@ -3115,10 +3115,9 @@ function escapeHtml(unsafe) {
 
 // Element templates
 
-function newReleaseElement(title,group,releaseDate,streams,duration,imagePath,filePath) {
-    console.log(filePath);
+function newReleaseElement(title,group,releaseDate,streams,duration,imagePath,musicId) {
     return `
-    <div dataPath="${encodeURIComponent(filePath)}" class=release>
+    <div dataPath="${encodeURIComponent(musicId)}" class=release>
         <div class=left-content>
             <div class=control>
                 <i class="bi bi-play-circle-fill"></i>
