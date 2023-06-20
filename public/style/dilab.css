@@ -1310,14 +1310,52 @@ body {
 
 /* Settings page */
 
-.settingsPage > * {
+.settingsPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.settingsPage > .main-content-header {
+    text-align: left;
+}
+
+.settingsPageWrapper {
+    width: min(700px , 70vh);
+    box-shadow: 0px 0px 5px 5px rgb(210, 210, 210);
+    margin: 20px;
+    padding: 5px;
+    border-radius: 4px/4px;}
+
+.settingsPageWrapper > * {
     margin-left: 8px;
     display: flex;
     flex-direction: column;
 }
 
+.settingsPage .pictureIcon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.settingsPage .userProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 220px;
+}
+
 .settingsPage .profilePicture {
-    height : 100px;
+    height : 180px;
     aspect-ratio: 1;
     background : darkslategrey;
     border: 2px solid darkslategrey;
@@ -1377,10 +1415,6 @@ body {
     max-width: 600px;
     width: 80%;
     margin-bottom: 8px;
-}
-
-.settingsPage .buttonContainer {
-    width : fit-content;
 }
 
 
@@ -1869,6 +1903,15 @@ body {
     height: 100%;
     aspect-ratio: 1;
     border-radius: 50%;
+    transition: 0.1s;
+}
+
+.userProfileCircleButton > img:hover {
+    outline: 2px solid white;
+}
+
+.userProfileCircleButton > img:focus {
+    outline: 2px solid white;
 }
 
 .userMainMenu, .notificationsMenu {
@@ -2404,7 +2447,16 @@ body {
     max-width: 380px;
 }
 
-.popUpWindow input[type=text], .popUpWindow select, .popUpWindow input[type=password], .popUpWindow input[type=select],  .popUpWindow input[type=mail], .popUpWindow textarea {
+.popUpWindow input[type=text],
+.popUpWindow select, .popUpWindow input[type=password],
+.popUpWindow input[type=select],
+.popUpWindow input[type=mail],
+.popUpWindow textarea,
+.settingsPage input[type=text],
+.settingsPage select, .popUpWindow input[type=password],
+.settingsPage input[type=select],
+.settingsPage input[type=mail],
+.settingsPage textarea {
     background : rgba(187, 184, 184, 0.7);
     border : none;
     outline: none;
@@ -2421,10 +2473,30 @@ body {
     height : 100px;
 }
 
-.popUpWindow input[type=text]:hover, .popUpWindow select:hover, .popUpWindow input[type=password]:hover, .popUpWindow input[type=select]:hover,  .popUpWindow input[type=mail]:hover, .popUpWindow textarea:hover {
+.popUpWindow input[type=text]:hover,
+.popUpWindow select:hover,
+.popUpWindow input[type=password]:hover,
+.popUpWindow input[type=select]:hover,
+.popUpWindow input[type=mail]:hover,
+.popUpWindow textarea:hover,
+.settingsPage input[type=text]:hover,
+.settingsPage select, .popUpWindow input[type=password]:hover,
+.settingsPage input[type=select]:hover,
+.settingsPage input[type=mail]:hover,
+.settingsPage textarea:hover {
     opacity: 1;
 }
-.popUpWindow input[type=text]:focus, .popUpWindow select:focus, .popUpWindow input[type=password]:focus, .popUpWindow input[type=select]:focus,  .popUpWindow input[type=mail]:focus, .popUpWindow textarea:focus {
+.popUpWindow input[type=text]:focus,
+.popUpWindow select:focus,
+.popUpWindow input[type=password]:focus,
+.popUpWindow input[type=select]:focus,
+.popUpWindow input[type=mail]:focus,
+.popUpWindow textarea:focus,
+.settingsPage input[type=text]:focus,
+.settingsPage select, .popUpWindow input[type=password]:focus,
+.settingsPage input[type=select]:focus,
+.settingsPage input[type=mail]:focus,
+.settingsPage textarea:focus {
     opacity: 1;
 }
 
