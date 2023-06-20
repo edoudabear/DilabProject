@@ -1,7 +1,7 @@
 # Dilab Project
 Dilab est une plateforme musicale permettant à ses utilisateurs enregistrés de créer des groupes et des projets musicaux où les gens peuvent collaborer entre eux. Les projets musicaux seront accessibles à tous les visiteurs du site et pourront être écoutés en streaming. Le projet est encore loin d'être abouti, mais on peut déjà se faire une idée de l'apparence de l'interface à travers l'état du site, accessible à l'adresse suivante (sur ordinateur uniquement. Interface pas encore optimisée pour mobiles) \
 https://e.diskloud.fr/Dilab \
-NB : Ne pensez pas que le site est en état de marche, pour l'instant seules certaines fonctionnalités fonctionnent vraiment (création d'un compte Dilab et d'un groupe), le reste est encore à développer !
+NB : Ne pensez pas que le site est en état de marche, pour l'instant seules certaines fonctionnalités fonctionnent vraiment (création d'un compte Dilab et d'autres fonctionnalités), le reste est encore à développer !
 # Informations projet
 La suite du développement du projet sera assurée par un club au sein du lycée international de saint germain en laye, club ouvert à tous les lycéens de l'établissement.
 # Compétences techniques pouvant être acquises en développant ce projet
