@@ -1092,7 +1092,10 @@ function pathAnalysis() {
                         } if (log.data=="member") {
                             setupChat(urlParams.get("g"),urlParams.get("p"));
                         } else {
+                            console.log(log.data);
                             document.querySelector(".messagesUnavailable").innerHTML="You must be a group member to chat with its members";
+                            let projectPage=document.querySelector(".projectPage");
+                            projectPage.querySelectorAll(".updateButton, .editButton").forEach(el=>{el.remove();});
                         }
                     });
 

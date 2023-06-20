@@ -1722,7 +1722,14 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
-        } else if (req.body.type=="notAdminUserRelationToGroup" && req.body.groupName && req.session.dilab) {
+        } else if (req.body.type=="notAdminUserRelationToGroup" && req.body.groupName) {
+            if (!req.session.dilab) {
+                res.end(JSON.stringify({
+                    "return" : "ok",
+                    "data" : "not a user",
+                    "status" : true
+                }));
+            }
             dilabConnection.query(`WITH cte AS (
                 SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte

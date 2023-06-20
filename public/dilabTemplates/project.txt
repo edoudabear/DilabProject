@@ -76,6 +76,8 @@
                     </div>
                     <div class=optBtns>
                         <a class="downloadButton button" download >Download</a>
+                        <div class=separator></div>
+                        <button class="updateButton button" download >Update</button>
                     </div>
                 </div>
                 <div class="file audioFile">
@@ -100,6 +102,8 @@
                         <button class="playButton button">Play</button>
                         <div class=separator></div>
                         <a class="downloadButton button" download >Download</a>
+                        <div class=separator></div>
+                        <button class="updateButton button">Update</button>
                     </div>
                 </div>
             </div>
@@ -257,7 +261,9 @@
         </div>
         <div class=chatContainer>
             <div class=artistCard>
-                <h2>Informations about the project</h2>
+                <div class="projectCardHeader">
+                    <h2>Informations about the project</h2><button class="editButton button">Edit</button>
+                </div>
                 <hr />
                 <div class="infoElement">
                     The project is an initiative of&nbsp;<span class=groupsFounder><div style="width:5em;" class="skeletonLoader"></div></span>&nbsp;(group)
@@ -273,7 +279,9 @@
                 </div>
             </div>
             <div class=lyricsCard>
-                <h2>Lyrics</h2><button class="button">Edit lyrics</button>
+                <div class="lyricsCardHeader">
+                    <h2>Lyrics</h2><button class="editButton button">Edit lyrics</button>
+                </div>
                 <hr />
                 <div class="lyricsContent">
                     <div style="width:90%; background : #f4f4f4;" class="skeletonLoader"></div>

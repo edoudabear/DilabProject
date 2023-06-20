@@ -1816,6 +1816,7 @@ body {
 
 .projectPage .progressPart .projectProgress .steps .step {
     position : relative;
+    cursor: pointer;
 }
 
 .projectPage .progressPart .projectProgress .steps .step .stage {
@@ -1842,6 +1843,16 @@ body {
     background: linear-gradient(to top right, lightgreen, green);
     color : white;
     margin-bottom: 10px ;
+}
+
+.projectPage .lyricsCard > .lyricsCardHeader, .projectPage .projectCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projectPage .lyricsCard > .lyricsCard > button {
+    height: fit-content;
 }
 
 .lyricsCard > p {
