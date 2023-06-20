@@ -1,3 +1,11 @@
+/* When no song is on the player */
+.disabled {
+  opacity: 0.5 !important;
+  transform: none !important;
+  cursor: not-allowed !important;
+  user-select: none !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

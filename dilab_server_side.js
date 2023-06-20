@@ -427,7 +427,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
         } else if (req.body.type=="userData" && req.session.dilab) {
-            dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
+            dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName,currentlyPlayedSong FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -444,7 +444,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 "biographie" : results[0].biographie,
                                 "genres" : results[0].genres,
                                 "dateEnregistrement" : results[0].DateCreation,
-                                "profilePicturePath" : results[0].profilePictureName
+                                "profilePicturePath" : results[0].profilePictureName,
+                                "currentlyPlayedSong" : results[0].currentlyPlayedSong
                             }
                         }));
                 } else {

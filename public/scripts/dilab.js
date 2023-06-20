@@ -2,11 +2,12 @@ var loadBar=document.querySelector(".progress-load");
 var mainContent = document.querySelector(".main-content");
 var logoAnimation = gsap.timeline({});
 var searchField = document.querySelector(".search-field");
+var playerNotEmpty=false;
 logoAnimation.from(".title",0,{scale : 1, color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", rotate: "0", transform : "skew(0deg,0deg)"})
             .to(".title",0.4,{scale : 2,color : "red", textShadow :"0 0 3px #FFFFFF, 0 0 5px #FFFFFF", ease : "power3.bounce",rotate : "300deg", y: "30px", transform : "skew(-0.15turn,15deg)"})
             .to(".title",0.4,{scale : 1,color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", ease : "power3.bounce", rotate: "360deg", transform : "skew(-0.15turn,15deg)"},"+=.1");
-console.log(localStorage.getItem("dilabData"));
-console.log(userData);
+//console.log(localStorage.getItem("dilabData"));
+//console.log(userData);
 var userData=localStorage.getItem("dilabData");
 
 function goToPage(address) {
@@ -302,6 +303,9 @@ function playOrPauseMusic() {
 }
 
 prevButton.addEventListener("click",()=>{
+    if (prevButton.classList.contains("disabled")) {
+        return;
+    }
     setPlayIcon(true);
     if (!audioObj.paused && (audioObj.currentTime>4 || playlistIndex==0)) {
         audioObj.currentTime=0;
@@ -317,9 +321,13 @@ prevButton.addEventListener("click",()=>{
     playlistIndex--;
     loadSound(soundUrls[playlistIndex]);
     audioObj.play();
+    updatePlayerData();
 });
 
 nextButton.addEventListener("click",()=>{
+    if (nextButton.classList.contains("disabled")) {
+        return;
+    }
     if (playlistIndex==soundUrls.length-1) {
         playlistIndex=0;
         loadSound(soundUrls[playlistIndex]);
@@ -330,11 +338,15 @@ nextButton.addEventListener("click",()=>{
     loadSound(soundUrls[playlistIndex]);
     audioObj.play();
     setPlayIcon(true);
+    updatePlayerData();
 });
 
 //Same as previous lines, but for fullscreen elements
 
 document.querySelectorAll(".fullScreen .musicButton")[1].addEventListener('click',e=> {
+    if (document.querySelectorAll(".fullScreen .musicButton")[1].classList.contains("disabled")) {
+        return;
+    }
     if (audioObj.paused) {
         audioObj.play();
         setPlayIcon(true);
@@ -345,18 +357,25 @@ document.querySelectorAll(".fullScreen .musicButton")[1].addEventListener('click
 });
 
 document.querySelector(".fullScreen .musicButton").addEventListener("click",()=>{
+    if (document.querySelector(".fullScreen .musicButton").classList.contains("disabled")) {
+        return;
+    }
     if (audioObj.currentTime>4 || playlistIndex==0) {
         audioObj.currentTime=0;
         setPlayIcon(true);
         return;
-    }//else case below
+    }
     playlistIndex--;
     loadSound(soundUrls[playlistIndex]);
     setPlayIcon(true);
     audioObj.play();
+    updatePlayerData();
 });
 
 document.querySelectorAll(".fullScreen .musicButton")[2].addEventListener("click",()=>{
+    if (document.querySelectorAll(".fullScreen .musicButton")[2].classList.contains("disabled")) {
+        return;
+    }
     if (playlistIndex==soundUrls.length-1) {
         playlistIndex=0;
         loadSound(soundUrls[playlistIndex]);
@@ -367,6 +386,7 @@ document.querySelectorAll(".fullScreen .musicButton")[2].addEventListener("click
     loadSound(soundUrls[playlistIndex]);
     audioObj.play();
     setPlayIcon(true);
+    updatePlayerData();
 });
 
 audioObj.addEventListener("canplaythrough", function() {
@@ -2345,6 +2365,8 @@ document.querySelector(".title").addEventListener("mouseover",()=>{
         logoAnimation.play(0);
 });
 
+// TRAITEMENT CLIENT PERSONNALISE :
+// Première connection ?
 if (document.querySelector(".loginButton")) {
     pathAnalysis();
     document.querySelector(".loginButton").addEventListener("click",()=> {
@@ -2426,6 +2448,45 @@ if (document.querySelector(".loginButton")) {
         userMenu.style.display="";
     });*/
 }
+// Connecté ou pas, ensuite on vérifie les infos sur le lecteur musical :
+if (localStorage.getItem("playerData")!=null) {
+    playerNotEmpty=true;
+    let playerData=JSON.parse(localStorage.getItem("playerData"));
+    if (!playerData.currentPlay || !playerData.authors || !playerData.urls ||
+        !playerData.titles || !playerData.currentTime || !playerData.lyrics) {
+        localStorage.removeItem("playerData");
+        // Supprimer les données de sauvegarde si elles sont corrompues.
+    } else {
+        playlistIndex=playerData.currentPlay;
+        lyrics=playerData.lyrics;
+        soundUrls=playerData.urls;
+        soundAuthors=playerData.authors;
+        soundTitles=playerData.titles;
+        updateMusicProgressTime(playerData.currentTime/100*audioObj.duration);
+        audioObj.currentTime=playerData.currentTime;   
+        loadSound(soundUrls[playlistIndex]);
+        document.querySelectorAll(".musicButton, .musicProgressTime, .musicDuration, .progressBarContainer, .likeIt, .playlistIcon").forEach(el=>{
+            el.classList.remove("disabled");
+        });
+    }
+}
+// Sauvegarder le contenu du lecteur toutes les 10 secondes
+function updatePlayerData() {
+    localStorage.setItem("playerData",JSON.stringify({
+        titles : soundTitles,
+        authors : soundAuthors,
+        urls : soundUrls,
+        currentTime : audioObj.currentTime,
+        lyrics : lyrics,
+        currentPlay : playlistIndex
+    }));
+    document.querySelectorAll(".musicButton, .musicProgressTime, .musicDuration, .progressBarContainer, .likeIt, .playlistIcon").forEach(el=>{
+        el.classList.remove("disabled");
+    });
+}
+
+let playerUpdater=setInterval(()=>{ updatePlayerData(); },5000);
+//PAS TERMINE
 
 //Playlist Menu event listener
 document.addEventListener('click',e=> { // Listener to hide userMenu when user clicks outside of it
@@ -2658,14 +2719,7 @@ document.addEventListener('mouseup',() => {
 
 //Music Progress Control
 document.querySelector(".progressBarContainer").addEventListener('click', e => {
-        //var progress=e.target;
-    var progress=document.querySelector(".progressBarContainer").querySelector(".progressBar")
-    /*while (document.querySelector(".progressBar")!=progress && progress!=document.body) {
-        progress=progress.parentNode;
-    } if (progress==document.body) {
-        console.log("its the body..")
-        return;
-    }*/
+    var progress=document.querySelector(".progressBarContainer").querySelector(".progressBar");
     if (progress==null) {
         return;
     }
@@ -2763,14 +2817,17 @@ document.addEventListener('mousemove', e => {
             return;
         }
         if (clickedElement==document.querySelector(".progressBarContainer") || clickedElement==document.querySelectorAll(".progressBarContainer")[1]) {
-            let bounds = clickedElement.getBoundingClientRect();
+            var progress=clickedElement==document.querySelector(".progressBarContainer") ?
+                document.querySelector(".progressBarContainer").querySelector(".progressBar") :
+                document.querySelectorAll(".progressBarContainer")[1].querySelector(".progressBar");
+            let bounds = progress.getBoundingClientRect();
             var x;
-            if (((e.clientX - bounds.left)/clickedElement.offsetWidth)*100>100) {
+            if (((e.clientX - bounds.left)/progress.offsetWidth)*100>100) {
                 x=100;
-            } else if (((e.clientX - bounds.left)/clickedElement.offsetWidth)*100<0) {
+            } else if (((e.clientX - bounds.left)/progress.offsetWidth)*100<0) {
                 x=0;
             } else {
-                x = ((e.clientX - bounds.left)/clickedElement.offsetWidth)*100;
+                x = ((e.clientX - bounds.left)/progress.offsetWidth)*100;
             }
             //y = e.clientY - bounds.top;
             clickedElement.querySelector(".filledPart").style.width = x+"%";
