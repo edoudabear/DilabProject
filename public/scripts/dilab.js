@@ -1,3 +1,5 @@
+//const { title } = require("process"); AUCUN SENS !?!
+
 var loadBar=document.querySelector(".progress-load");
 var mainContent = document.querySelector(".main-content");
 var logoAnimation = gsap.timeline({});
@@ -96,7 +98,7 @@ const Toast = Swal.mixin({
   });
 
 // Audio object
-var soundUrls=["https://dev.diskloud.fr/audios/Stacy.mp3","https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3","https://dev.diskloud.fr/audios/M83MidnightCity.mp3","http://dev.diskloud.fr/audios/killTheFire.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
+var soundUrls=["https://dev.diskloud.fr/audios/Stacy.mp3","https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3","https://dev.diskloud.fr/audios/M83MidnightCity.mp3","https://dev.diskloud.fr/audios/killTheFire.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
 var soundTitles=["Stacy","Redlight (2022)","Project 1.2","Dimm","Midnight City","Kill the Fire"];
 var soundAuthors=["Quinn XCII","Swedish House Mafia, Sting","Various artists","Nourch","M83","Robin Shulz, Leonard"];
 var soundPictures=['','','','','',''];
@@ -993,7 +995,8 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .projectGenres").innerHTML= (project.genreName==null) ? "not indicated" : project.genreName;
                            document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
-                           document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[.*\]/g,"<br />").replace("<br />","") // second replace to remove the first html line escape. This won't affect the other generated brs.
+                           document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\\n/g,"<br />");
+                           document.querySelector(".projectPage .lyricsCard .lyricsContent").setAttribute("data-lyrics",project.lyrics);
 
                            // Project file
                            if (project.projectFileDir!=null) {
@@ -1092,7 +1095,236 @@ function pathAnalysis() {
                             return;
                         } if (log.data=="member") {
                             setupChat(urlParams.get("g"),urlParams.get("p"));
+                            // Project phase
+                            document.querySelectorAll(".step").forEach(el=>{
+                                el.style.cursor="pointer";
+                                el.addEventListener('mouseover',function(){
+                                    el.style.opacity=0.7;
+                                 });
+                                el.addEventListener('mouseleave',function(){
+                                    el.style.opacity=1;
+                                });
+                                el.addEventListener('click',function(){
+                                    let count=parseInt(el.getAttribute("data-k"));
+                                    Swal.fire({
+                                        title: 'Change the current phase ?',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Yes',
+                                      }).then((result) => {
+                                        /* Read more about isConfirmed, isDenied below */
+                                        if (result.isConfirmed) {
+                                            fetch(`/Dilab/set`, {
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                },
+                                                method: 'POST',
+                                                body: JSON.stringify({
+                                                    type : "projectPhase",
+                                                    groupName : encodeURI(urlParams.get("g")),
+                                                    projectName : encodeURI(urlParams.get("p")),
+                                                    phase : String(count) // Important de mettre en string. Sinon, si count=0, le champ est ignoré
+                                                })}).then(response => {
+                                                  if (!response.ok) {
+                                                    throw new Error(response.statusText)
+                                                  }
+                                                  return response.json()
+                                                })
+                                                .catch(error => {
+                                                  Swal.fire( {
+                                                    text : `Update failed: ${error}`,
+                                                    title : "Error",
+                                                    icon : "error"
+                                                  });
+                                                }).then((result) => {
+                                                    console.log(result);
+                                                    if (result.status) {
+                                                      progress(parseInt(count),document.querySelector(".infos"))
+                                                    }//Termine
+                                                });                                        }
+                                      });
+                                })
+                            });
+                            // Project description
+                            document.querySelector(".editButton[button-action='projectDescUpdate']").addEventListener('click',()=>{
+                                Swal.fire({
+                                    title: 'Submit your new description',
+                                    input: 'text',
+                                    inputAttributes: {
+                                      autocapitalize: 'off'
+                                    },
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Update',
+                                    showLoaderOnConfirm: true,
+                                    preConfirm: (input) => {
+                                      return fetch(`/Dilab/set`, {
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            type : "projectDescription",
+                                            groupName : encodeURI(urlParams.get("g")),
+                                            projectName : encodeURI(urlParams.get("p")),
+                                            description : encodeURI(input)
+                                        })}).then(response => {
+                                          if (!response.ok) {
+                                            throw new Error(response.statusText)
+                                          }
+                                          return response.json()
+                                        })
+                                        .catch(error => {
+                                          Swal.showValidationMessage(
+                                            `Update failed: ${error}`
+                                          )
+                                        }).then((result) => {
+                                            if (result.status) {
+                                              document.querySelector(".infoElement .projectDescription").innerHTML=input;
+                                            }//Termine
+                                        });
+                                    },
+                                    allowOutsideClick: () => !Swal.isLoading()
+                                  });
+                            });
+                            // Project lyrics
+                            document.querySelector(".cancelButton[button-action='cancelEditLyrics']").addEventListener("click",()=>{
+                                let el=document.querySelector(".lyricsContent");
+                                el.innerHTML=el.getAttribute("data-lyrics").replace(/\\n/g,"<br />") // second replace to remove the first html line escape. This won't affect the other generated brs.
+                                lyricsEditBtn.innerHTML="Edit lyrics";
+                                document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="none";
+                                document.querySelector(".lyricsContent").setAttribute("contenteditable",false);
+                            })
+                            let lyricsEditBtn=document.querySelector(".editButton[button-action='editLyrics']");
+                            lyricsEditBtn.addEventListener("click",()=>{
+                                let lyricsEl=document.querySelector(".lyricsContent");
+                                if (lyricsEditBtn.innerHTML=="Edit lyrics") {
+                                    lyricsEditBtn.innerHTML="Confirm changes";
+                                    document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="block";
+                                    lyricsEl.setAttribute("contenteditable",true);
+                                    lyricsEl.focus();
+                                    lyricsEl.style.userSelect="auto";
+                                } else {
+                                    lyricsEl.setAttribute("contenteditable",false);
+                                    lyricsEl.style.userSelect="";
+                                    let newLyrics=lyricsEl.innerHTML.replace(/<div><\/div>/g,"\\n").replace(/<div>/g,"\\n").replace(/<\/div>/g,"");
+                                    if (newLyrics!=lyricsEl.getAttribute("data-lyrics")) {
+                                        lyricsEditBtn.style.opacity=0.7;                                    document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="none";
+                                        fetch('/Dilab/set', {
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                                            },
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                type : "projectLyrics",
+                                                groupName : encodeURI(urlParams.get("g")),
+                                                projectName : encodeURI(urlParams.get("p")),
+                                                lyrics : encodeURI(newLyrics)
+                                            }) //data
+                                        }).then(out => {
+                                            return out.json();
+                                        }).then(log => {
+                                            lyricsEditBtn.style.opacity=1;
+                                            lyricsEditBtn.innerHTML="Edit lyrics";
+                                            if (log.status && log.k==1) {
+                                                // Request worked
+                                                lyricsEl.setAttribute("data-lyrics",newLyrics);
+                                                Swal.fire({
+                                                    position: 'top-end',
+                                                    toast : true,
+                                                    icon: 'info',
+                                                    title: 'Updated lyrics',
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+                                                    timerProgressBar : true
+                                                });
+                                            } else {
+                                                // Otherwise, display error message and restore previous text
+                                                console.log(log);
+                                                Swal.fire({
+                                                    position: 'top-end',
+                                                    toast : true,
+                                                    icon: 'error',
+                                                    title: 'Something went wrong. Please try again later',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar : true
+                                                });
+                                                el.innerHTML=el.getAttribute("data-lyrics").replace(/\\n/g,"<br />");
+                                            }
+                                        });
+                                    } else {
+                                        document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="none";
+                                        lyricsEditBtn.innerHTML="Edit lyrics";
+                                    }
+                                }
+                            });
+                            // Project name
+                            document.querySelector(".propertyOption[prop-type='project-mame']").addEventListener("click",()=>{
+                                console.log(urlParams.get("p"));
+                                Swal.fire({
+                                    title: 'Submit your new project name',
+                                    input: 'text',
+                                    inputAttributes: {
+                                      autocapitalize: 'off'
+                                    },
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Update',
+                                    showLoaderOnConfirm: true,
+                                    preConfirm: (input) => {
+                                      return fetch(`/Dilab/set`, {
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            type : "projectName",
+                                            groupName : encodeURI(urlParams.get("g")),
+                                            projectName : encodeURI(urlParams.get("p")),
+                                            newName : encodeURI(input)
+                                        })}).then(response => {
+                                          if (!response.ok) {
+                                            throw new Error(response.statusText)
+                                          }
+                                          return response.json()
+                                        })
+                                        .catch(error => {
+                                          Swal.showValidationMessage(
+                                            `Update failed: ${error}`
+                                          );
+                                        }).then((result) => {
+                                            if (result.status && result.k==1) {
+                                                // A COMPLETER 
+                                                document.querySelector(".styledHead .main-content-header").innerHTML=input;
+                                                history.pushState({}, `Dilab (loading..)`, `project?g=${encodeURI(urlParams.get("g"))}&p=${encodeURI(input)}`)
+                                                pathAnalysis();
+                                            } else if (!result.status && result.return=="CE") {
+                                                Swal.showValidationMessage(
+                                                    `This project name is already used.`
+                                                );
+                                            } else {
+                                                console.log(result);
+                                                Swal.fire({
+                                                    position: 'top-end',
+                                                    toast : true,
+                                                    icon: 'error',
+                                                    title: 'Something went wrong. Please try again later',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar : true
+                                                });
+                                            }
+                                        });
+                                    },
+                                    allowOutsideClick: () => !Swal.isLoading()
+                                  });
+                            });
                         } else {
+                            document.querySelectorAll(".propertyOption").forEach(element=>{
+                                element.style.display="none";
+                            });
                             console.log(log.data);
                             document.querySelector(".messagesUnavailable").innerHTML="You must be a group member to chat with its members";
                             let projectPage=document.querySelector(".projectPage");
@@ -2614,7 +2846,6 @@ function updateChat(groupName,projectName=null) {
     }).then(out => {
         return out.json();
     }).then(log => {
-        console.log(log.data)
         if (log.status) {
             // This code part is very badly written
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));

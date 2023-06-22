@@ -897,6 +897,123 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             }
         // Updating a user's profile picture
+        } else if (req.body.type="projectDescription" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.description) { 
+            if (typeof req.body.groupName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
+                return;    
+            } else if (typeof req.body.projectName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
+                return;
+            }
+            console.log(`UPDATE DilabProject SET  DilabProject.description=${dilabConnection.escape(String(req.body.description))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(req.body.groupName)}
+            ) AND DilabProject.name=${dilabConnection.escape(req.body.projectName)};
+            `);
+            dilabQuery(`UPDATE DilabProject SET  DilabProject.description=${dilabConnection.escape(decodeURI(String(req.body.description)))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};
+            `).catch((err) => {serverError(res,err)})
+            .then(out=> {
+                res.end(JSON.stringify({
+                    status : true,
+                    return : "ok",
+                    k : out.affectedRows
+                }))
+            });
+        } else if (req.body.type="projectPhase" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.phase) { 
+            console.log(req.body.phase);
+            if (typeof req.body.groupName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
+                return;    
+            } else if (typeof req.body.projectName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
+                return;
+            } else if (typeof parseInt(req.body.phase)!="number" || parseInt(req.body.phase)>3 || parseInt(req.body.phase)<0) {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid phase : is..weird ?"}');
+                return;   
+            }
+            dilabQuery(`UPDATE DilabProject SET  currentPhase=${parseInt(req.body.phase)} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`).catch((err) => {serverError(res,err)})
+            .then(out=> {
+                res.end(JSON.stringify({
+                    status : true,
+                    return : "ok",
+                    k : out.affectedRows
+                }))
+            });
+        } else if (req.body.type="projectLyrics" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.lyrics) { 
+            console.log(req.body.phase);
+            if (typeof req.body.groupName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
+                return;    
+            } else if (typeof req.body.projectName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
+                return;
+            } else if (typeof req.body.lyrics !="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
+                return;   
+            }
+            console.log(`UPDATE DilabProject SET  lyrics=${dilabConnection.escape(decodeURI(req.body.lyrics))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`);
+            dilabQuery(`UPDATE DilabProject SET  lyrics=${dilabConnection.escape(decodeURI(req.body.lyrics))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`).catch((err) => {serverError(res,err)})
+            .then(out=> {
+                res.end(JSON.stringify({
+                    status : true,
+                    return : "ok",
+                    k : out.affectedRows
+                }));
+            });
+        } else if (req.body.type="projectName" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.newName) { 
+            console.log(req.body.phase);
+            if (typeof req.body.groupName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
+                return;    
+            } else if (typeof req.body.projectName!="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
+                return;
+            } else if (typeof req.body.newName !="string") {
+                res.end('{ "return" : "error", "status" : false, "data" : "Invalid new project name : is..weird ?"}');
+                return;   
+            }
+            console.log(`UPDATE DilabProject SET  DilabProject.name=${dilabConnection.escape(decodeURI(req.body.newName))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`);
+            dilabQuery(`UPDATE DilabProject SET  DilabProject.name=${dilabConnection.escape(decodeURI(req.body.newName))} WHERE groupAuthor IN 
+            (SELECT groupId FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`)
+            .catch((err) => {
+                console.log(err);
+            if (err.errno==1062) {
+                res.end(JSON.stringify({ status : false, error : "Invalid project name", return : "CE"}));
+                // CE stands for Constraint Error
+            } else {
+                serverError(res,err);
+            }
+            }).then(out=> {
+                res.end(JSON.stringify({
+                    status : true,
+                    return : "ok",
+                    k : out.affectedRows
+                }));
+            });
         } else if (req.files && req.body.profilePictureOnly && req.session.dilab) {
             if (req.files.length<1) {
                 res.end(JSON.stringify({
@@ -1146,7 +1263,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     res.end('{ "return" : "error", "status" : false, "data" : "Biography is too long"}');
                 }
                 //Genres control
-                if (typeof req.body.genres!="number") {
+                if (typeof req.body.genres!="number" && String(parseInt(req.body.genres))!=req.body.genres) {
+                    console.log(req.body.genres,typeof req.body.genres);
                     res.end('{ "return" : "error", "status" : false, "data" : "Genres is..weird ?"}');      
                 }
                 //Preparing mail options account creation notification
