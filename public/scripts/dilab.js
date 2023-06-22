@@ -1070,7 +1070,17 @@ function pathAnalysis() {
                                 document.querySelector(".audioFile .downloadButton").classList.add("noHoverActiveButton");
                                 document.querySelector(".audioFile .downloadButton").classList.remove("button");
                            }
-
+                           if (project.audioFileDir==null) {
+                                document.querySelectorAll(".step")[3].addEventListener('click',()=>{
+                                    Swal.fire("And the audio ?","You didn't upload any audio file yet.<br />Only then can you release the project.","warning");
+                                });
+                           } else {
+                                document.querySelectorAll(".step")[3].addEventListener('click',()=>{
+                                    displayPopUp("Release Project","releaseProject",()=>{
+                                        return;
+                                    }); // Pour synchroniser les lyrics, on utilisera un tab séparé utilisant les cookies pour transmettre le résultat
+                                });
+                           }
                         } else {
                             document.querySelector(".main-content").innerHTML="";
                             Swal.fire("Error",log.data,"error");
@@ -1144,12 +1154,6 @@ function pathAnalysis() {
                                                         }//Termine
                                                     });                                        }
                                           });
-                                    });
-                                } else {
-                                    el.addEventListener('click',()=>{
-                                        displayPopUp("Release Project","releaseProject",()=>{
-                                            return;
-                                        });
                                     });
                                 }
                             });

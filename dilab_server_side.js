@@ -9,7 +9,7 @@ dilabConnection.connect();
 var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt')).replace(/\n/g,'');
 // node native promisify -> Creates an async query function (for "await query()")
 const dilabQuery = util.promisify(dilabConnection.query).bind(dilabConnection);
-
+const dilabPath = "/media/edouda/DiskloudExt/DilabFiles/";
 Date.prototype.addHours = function(h) { // to set universal time to GMT +2 hours
     this.setTime(this.getTime() + (h*60*60*1000));
     return this;
@@ -44,29 +44,29 @@ app.get("/Dilab/:action",function(req,res) {
 
 app.get("/Dilab/:action/:file", function(req,res) {
     if (req.params.action == "group" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/groupPP/${req.params.file}`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/groupPP/${req.params.file}`);
+        if (fs.existsSync(`${dilabPath}groupPP/${req.params.file}`)) {
+            res.sendFile(`${dilabPath}groupPP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
         }
     } else if (req.params.action == "user" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/userPP/${req.params.file}`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/userPP/${req.params.file}`);
+        if (fs.existsSync(`${dilabPath}userPP/${req.params.file}`)) {
+            res.sendFile(`${dilabPath}userPP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
         }
     } else if (req.params.action == "release" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releasePP/${req.params.file}`);
+        if (fs.existsSync(`${dilabPath}releasePP/${req.params.file}`)) {
+            res.sendFile(`${dilabPath}releasePP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
         }
     } else if (req.params.action == "project" ) {
-        res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/disc.svg`);
+        res.sendFile(`${dilabPath}projectPP/disc.svg`);
     } else if (req.params.action == "releaseFile") {
         if (parseInt(req.params.file)>=0) { // req.params.file must correspond to the release id here
-            if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`)) {
-                res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/releaseFiles/${parseInt(req.params.file)}.audio`);
+            if (fs.existsSync(`${dilabPath}releaseFiles/${parseInt(req.params.file)}.audio`)) {
+                res.sendFile(`${dilabPath}releaseFiles/${parseInt(req.params.file)}.audio`);
             } else {
                 res.status(404).end("No such file");
             }
@@ -79,10 +79,10 @@ app.get("/Dilab/:action/:file", function(req,res) {
 });
 
 app.get("/Dilab/:action/:groupName/:projectName/", function(req,res) {
-    console.log(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`);
+    console.log(`${dilabPath}projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.png`);
     if (req.params.action == "project" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`);
+        if (fs.existsSync(`${dilabPath}projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`)) {
+            res.sendFile(`${dilabPath}projectPP/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}.PNG`);
         } else {
             res.status(404).end("No such file");
         }
@@ -92,10 +92,10 @@ app.get("/Dilab/:action/:groupName/:projectName/", function(req,res) {
 });
 
 app.get("/Dilab/:action/:groupName/:projectName/:fileName", function(req,res) {
-    console.log(`/media/edouda/DiskloudExt/DilabFiles/projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
+    console.log(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
     if (req.params.action == "project" ) {
-        if (fs.existsSync(`/media/edouda/DiskloudExt/DilabFiles/projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`)) {
-            res.sendFile(`/media/edouda/DiskloudExt/DilabFiles/projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
+        if (fs.existsSync(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`)) {
+            res.sendFile(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
         } else {
             res.status(404).end("No such file");
         }
@@ -978,7 +978,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }));
             });
         } else if (req.body.type="projectName" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.newName) { 
-            console.log(req.body.phase);
             if (typeof req.body.groupName!="string") {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
                 return;    
@@ -1008,6 +1007,37 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 serverError(res,err);
             }
             }).then(out=> {
+                console.log(dilabPath+`projectPP/${decodeURI(req.body.groupName)}/${decodeURI(req.body.projectName)}`);
+                if (fs.existsSync(dilabPath+`projectPP/${decodeURI(req.body.groupName)}/${decodeURI(req.body.projectName)}.PNG`)) {
+                    fs.rename(dilabPath+`projectPP/${decodeURI(req.body.groupName)}/${decodeURI(req.body.projectName)}.PNG`, dilabPath+`projectPP/${decodeURI(req.body.groupName)}/${decodeURI(req.body.newName)}.PNG`, function(err) {
+                        console.log("On tente un truc");
+                        if ( err ) {
+                            console.log('ERROR: ' + err);
+                            res.end(JSON({
+                                status : true,
+                                return : "ok",
+                                k : out.affectedRows,
+                                issue : "there was a problem move the project cover"
+                            }));
+                            return;
+                        }
+                    });
+                }
+                if (fs.existsSync(dilabPath+`projectFiles/${decodeURI(req.body.groupName)}/${decodeURI(req.body.projectName)}`)) {
+                    fs.rename(dilabPath+`projectFiles/${decodeURI(req.body.groupName)}/${decodeURI(req.body.projectName)}`, dilabPath+`projectFiles/${decodeURI(req.body.groupName)}/${decodeURI(req.body.newName)}`, function(err) {
+                        console.log("On tente un truc");
+                        if ( err ) {
+                            console.log('ERROR: ' + err);
+                            res.end(JSON({
+                                status : true,
+                                return : "ok",
+                                k : out.affectedRows,
+                                issue : "there was a problem move the project files"
+                            }));
+                            return;
+                        }
+                    });
+                }
                 res.end(JSON.stringify({
                     status : true,
                     return : "ok",
@@ -1062,7 +1092,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 return;//throw err
                             }
                             //console.log("file sharpened !");
-                            fs.move("tempUploads/"+username+".png","/media/edouda/DiskloudExt/DilabFiles/userPP/"+username+".png",{overwrite : true});
+                            fs.move("tempUploads/"+username+".png",`${dilabPath}userPP/`+username+".png",{overwrite : true});
                             if (req.files) {
                                 for (var i=0;i<req.files.length;i++)
                                 fs.unlink(req.files[i].path,()=>{return;});
@@ -1306,7 +1336,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             return;//throw err
                         }
                         //console.log("file sharpened !");
-                        fs.move("tempUploads/"+req.body.username+".png","/media/edouda/DiskloudExt/DilabFiles/userPP/"+req.body.username+".png",{overwrite : true});
+                        fs.move("tempUploads/"+req.body.username+".png",`${dilabPath}userPP/`+req.body.username+".png",{overwrite : true});
                         if (req.files) {
                             for (var i=0;i<req.files.length;i++)
                             fs.unlink(req.files[i].path,()=>{return;});
@@ -1391,7 +1421,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         return;//throw err
                     }
                     //console.log("file sharpened !");
-                    fs.move("tempUploads/"+req.body.username+".png","/media/edouda/DiskloudExt/DilabFiles/groupPP/"+groupName+".png",{overwrite : true});
+                    fs.move("tempUploads/"+req.body.username+".png",`${dilabPath}groupPP/`+groupName+".png",{overwrite : true});
                     if (req.files) {
                         for (var i=0;i<req.files.length;i++)
                         fs.unlink(req.files[i].path,()=>{return;});
@@ -1517,11 +1547,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Audio file must be.. an audio !" }');
                             } else {
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
                                 }
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
                                 }
                                 filename1=req.files[fileIndex].originalname.replace(/\//g,"");
                                 filePath1=req.files[fileIndex].path;
@@ -1547,11 +1577,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Project file must be.. a project file !" }');
                             } else {
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
                                 }
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
                                 }
                                 filename2=req.files[fileIndex].originalname.replace(/\//g,"");;
                                 filePath2=req.files[fileIndex].path;
@@ -1574,8 +1604,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Project file must be.. a project file !" }');
                             } else {
-                                if (!fs.existsSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName)) {
-                                    fs.mkdirSync("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName);
+                                if (!fs.existsSync(dilabPath+"projectPP/"+groupName)) {
+                                    fs.mkdirSync(dilabPath+"projectPP/"+groupName);
                                 }
                                 filename3=projectName+".PNG";
                                 filePath3=req.files[fileIndex].path;
@@ -1583,13 +1613,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 projectPPFile=true;
                             }
                         } if (audioFile) {
-                            fs.move(__dirname+"/"+filePath1,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename1);
+                            fs.move(__dirname+"/"+filePath1,dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1);
                         } if (projectFile) {
-                            fs.move(__dirname+"/"+filePath2,"/media/edouda/DiskloudExt/DilabFiles/projectFiles/"+groupName+"/"+projectName+"/"+filename2);
+                            fs.move(__dirname+"/"+filePath2,dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename2);
                         } if (projectPPFile) {
                             sharp(__dirname+"/"+filePath3)
                             .resize(1248, 1248)
-                            .toFile("/media/edouda/DiskloudExt/DilabFiles/projectPP/"+groupName+"/"+filename3, (err, info) => { 
+                            .toFile(dilabPath+"projectPP/"+groupName+"/"+filename3, (err, info) => { 
                                 //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
                                 if (err) {
                                     res.end('{"return" : "error", "status" : false, "data":"Could not load your group picture properly"}');
