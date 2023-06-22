@@ -1104,46 +1104,54 @@ function pathAnalysis() {
                                 el.addEventListener('mouseleave',function(){
                                     el.style.opacity=1;
                                 });
-                                el.addEventListener('click',function(){
-                                    let count=parseInt(el.getAttribute("data-k"));
-                                    Swal.fire({
-                                        title: 'Change the current phase ?',
-                                        showCancelButton: true,
-                                        confirmButtonText: 'Yes',
-                                      }).then((result) => {
-                                        /* Read more about isConfirmed, isDenied below */
-                                        if (result.isConfirmed) {
-                                            fetch(`/Dilab/set`, {
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                                                },
-                                                method: 'POST',
-                                                body: JSON.stringify({
-                                                    type : "projectPhase",
-                                                    groupName : encodeURI(urlParams.get("g")),
-                                                    projectName : encodeURI(urlParams.get("p")),
-                                                    phase : String(count) // Important de mettre en string. Sinon, si count=0, le champ est ignoré
-                                                })}).then(response => {
-                                                  if (!response.ok) {
-                                                    throw new Error(response.statusText)
-                                                  }
-                                                  return response.json()
-                                                })
-                                                .catch(error => {
-                                                  Swal.fire( {
-                                                    text : `Update failed: ${error}`,
-                                                    title : "Error",
-                                                    icon : "error"
-                                                  });
-                                                }).then((result) => {
-                                                    console.log(result);
-                                                    if (result.status) {
-                                                      progress(parseInt(count),document.querySelector(".infos"))
-                                                    }//Termine
-                                                });                                        }
-                                      });
-                                })
+                                let count=parseInt(el.getAttribute("data-k"));
+                                if (count<3) {
+                                    el.addEventListener('click',function(){
+                                        Swal.fire({
+                                            title: 'Change the current phase ?',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Yes',
+                                          }).then((result) => {
+                                            /* Read more about isConfirmed, isDenied below */
+                                            if (result.isConfirmed) {
+                                                fetch(`/Dilab/set`, {
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                    },
+                                                    method: 'POST',
+                                                    body: JSON.stringify({
+                                                        type : "projectPhase",
+                                                        groupName : encodeURI(urlParams.get("g")),
+                                                        projectName : encodeURI(urlParams.get("p")),
+                                                        phase : String(count) // Important de mettre en string. Sinon, si count=0, le champ est ignoré
+                                                    })}).then(response => {
+                                                      if (!response.ok) {
+                                                        throw new Error(response.statusText)
+                                                      }
+                                                      return response.json()
+                                                    })
+                                                    .catch(error => {
+                                                      Swal.fire( {
+                                                        text : `Update failed: ${error}`,
+                                                        title : "Error",
+                                                        icon : "error"
+                                                      });
+                                                    }).then((result) => {
+                                                        console.log(result);
+                                                        if (result.status) {
+                                                          progress(parseInt(count),document.querySelector(".infos"))
+                                                        }//Termine
+                                                    });                                        }
+                                          });
+                                    });
+                                } else {
+                                    el.addEventListener('click',()=>{
+                                        displayPopUp("Release Project","releaseProject",()=>{
+                                            return;
+                                        });
+                                    });
+                                }
                             });
                             // Project description
                             document.querySelector(".editButton[button-action='projectDescUpdate']").addEventListener('click',()=>{
