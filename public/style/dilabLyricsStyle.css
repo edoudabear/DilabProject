@@ -1,0 +1,251 @@
+/* Fullscreen mode */
+/* .fullScreen:not(:fullscreen) {
+} */
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat';
+  height: 100%;
+}
+
+.fullScreen {
+  position: absolute;
+  top : 0;
+  left : 0;
+  height: 100%;
+  width: 100%;
+}
+
+.fullScreen .fullscreenExit {
+  position: absolute;
+  top : 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  z-index: 5;
+  cursor: pointer;
+}  
+
+/* .fullScreen:not(:fullscreen) * {
+  width: 0;
+}*/
+
+@keyframes linear_gradient_bg_animation {
+  0% {background-position: left}
+  50% {background-position: right}
+  100% {background-position: left}
+}
+
+.fullScreen .cover {
+  height: 5em;
+  border-radius: 8px;
+  padding: 5px;
+  transition: 2s cubic-bezier(0.78, -0.01, 0.17, 1);
+  aspect-ratio: 1;
+}
+
+.fullScreen .songInfosCoverWrapper {
+  display: flex;
+  align-items: flex-end;
+  font-size: 2em;
+  justify-content: left; 
+}
+
+.fullScreen .fullScreenPlayingSoundCover {
+  height: 120px;
+  margin: 12px;
+  border-radius: 5px;
+}
+
+.fullScreen:fullscreen, .fullScreen  {
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  color: white;
+  background: rgb(3, 25, 71);/*linear-gradient(to top right,rgb(211, 12, 211),rgb(86, 86, 151),green);*/
+  /* animation : linear_gradient_bg_animation 20s infinite;*/
+  background-size: 300%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.fullScreen .musicControls {
+  height: fit-content;
+  width: fit-content;
+  padding-left: 10px;
+}
+
+.fullScreen .bottomEl {
+  width: 100%;
+  margin-bottom: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+}
+
+/* Fullscreen, lyrics part */
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 300px;
+  --card-width: calc(var(--card-height) / 0.4);
+}
+
+
+/*body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}*/
+
+
+.fullScreen .lyricsCard {
+  background: #191c29;
+  color : white;
+  width: 100%;
+  height: 100%;
+  min-height: fit-content;
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  font-family: Arial;
+  font-weight : bold;
+  
+  display : flex;
+  flex-direction : column;
+}
+
+
+@media only screen and (min-width : 700px) {
+  .fullScreen .lyricsCard .mainText {
+      font-size : 1.5em;
+      transform : scale(1.5);
+      margin-top : 5%;
+      margin-bottom : 5%;
+      max-width: calc(100%/1.5);
+  }
+  .fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .bottomText {
+      font-size : 1.5em;
+      opacity : 0.6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }    
+}
+.fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
+  transition : 0.4s;
+}
+
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+/* Buttons control */
+
+.boutonSynchronisateur {
+  position: absolute;
+  top: 80%;
+  left : 50%;
+  transform: translate(-50%,0);
+  cursor: pointer;
+  z-index: 5;
+  transition: 0.2s;
+}
+
+.boutonSynchronisateur:hover {
+  opacity: 0.6;
+}
+
+.title {
+color :rgb(255, 255, 255);
+font-size: 20px;
+position: absolute;
+top: 85%;
+left : 71%;
+transform: translate(-50%,0);
+z-index: 5;
+}
+
+.author {
+color :rgb(255, 255, 255);
+position: absolute;
+font-size: 20px;
+top: 90%;
+left : 71%;
+transform: translate(-50%,0);
+z-index: 5;
+}
+
+#songText {
+position: absolute;
+top: 85%;
+left : 85%;
+transform: translate(-50%,0);
+z-index: 5;
+}
+
+#songButton:hover {
+opacity: 0.6;
+}
+
+#songButton {
+position: absolute;
+top: 85%;
+left : 95%;
+transform: translate(-50%,0);
+cursor: pointer;
+z-index: 5;
+transition: 0.2s;
+}
+
+#authorButton:hover {
+opacity: 0.6;
+}
+
+#authorButton {
+position: absolute;
+top: 90%;
+left : 95%;
+transform: translate(-50%,0);
+cursor: pointer;
+z-index: 5;
+transition: 0.2s;
+}
+
+#authorText {
+position: absolute;
+top: 90%;
+left : 85%;
+transform: translate(-50%,0);
+z-index: 5;
+}

@@ -8,7 +8,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -38,7 +38,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">
@@ -68,7 +68,7 @@
                     <i class="bi bi-play-circle-fill"></i>
                 </div>
                 <div class=cover>
-                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/release/music-note-beamed.svg" />
+                    <img title="Music cover" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
                 </div>
                 <div class=infos>
                     <div class=title title="The best hit ever">

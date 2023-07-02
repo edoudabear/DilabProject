@@ -1,5 +1,7 @@
 //const { title } = require("process"); AUCUN SENS !?!
 
+//const { group } = require("console");
+
 var loadBar=document.querySelector(".progress-load");
 var mainContent = document.querySelector(".main-content");
 var logoAnimation = gsap.timeline({});
@@ -18,44 +20,100 @@ function goToPage(address) {
     a.click();
 }
 
-fetch('/Dilab/check', {
-    headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-        type : "notifications",
-    }) //data
-}).then(out => {
-    return out.json();
-}).then(log => {
-    if (!log.status) {
-        console.log("could not load user notifications");
-    } else {
-        if (log.data[0].length==0 && log.data[1].length==0) {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+function syncNotifications() {
+    fetch('/Dilab/check', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            type : "notifications",
+        }) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log("log :"+JSON.stringify(log));
+        if (!log.status) {
+            console.log("could not load user notifications");
         } else {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML="";
-            document.querySelector(".notificationsButton .labelCount").innerHTML=log.data[0].length+log.data[1].length;
-            document.querySelector(".notificationsButton .labelCount").style.display="flex";
+            if (log.data[0].length==0 && log.data[1].length==0) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+            } else {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML="";
+                document.querySelector(".notificationsButton .labelCount").innerHTML=log.data[0].length+log.data[1].length;
+                document.querySelector(".notificationsButton .labelCount").style.display="flex";
+            }
+            for (var i=0;i<log.data[0].length;i++) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[0][i].requester,log.data[0][i].groupName);
+                if (i<log.data[0].length-1 || log.data[1].length>0) {
+                    document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
+                }
+            } for (var i=0;i<log.data[1].length;i++) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[1][i].content,log.data[1][i].notiId);
+                if (i<log.data[1].length-1) {
+                    document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
+                }
+                document.querySelectorAll(".notificationsMenu .notificationsList .accept").forEach(el=>{
+                    let data=el.getAttribute("notifData");
+                    if (data!=null) {
+                        el.addEventListener('click',e=>{
+                            e.preventDefault();
+                            e.stopPropagation();
+                            data=parseInt(data);
+                            fetch('/Dilab/set', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    type : "swipeNotification",
+                                    nId : String(data),
+                                }) //data
+                            }).then(out => {
+                                return out.json();
+                            }).then(data=>{
+                                if (data.status==false) {
+                                    Toast.fire({icon : "warning", title : "Something went wrong.."});
+                                    console.log(data);
+                                } else {
+                                    let parentNotif=el.closest(".notification");
+                                    if (parentNotif.nextSibling && parentNotif.nextSibling.localName=='hr') {
+                                        parentNotif.nextSibling.remove();
+                                    }
+                                    else if (document.querySelectorAll(".notificationsList .notification").length==2) {
+                                        document.querySelector(".notificationsList hr").remove();
+                                    }
+                                    parentNotif.remove();
+                                    let lblCnt=document.querySelector(".labelCount");
+                                    lblCnt.innerHTML=String(parseInt(lblCnt.innerHTML)-1);
+                                    if (parseInt(lblCnt.innerHTML)==0) {
+                                        document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+                                        document.querySelector(".labelCount").style.display="none";
+                                    }
+                                }
+                            });
+                        });
+                    }
+                })
+            }
+            document.querySelectorAll(".notificationsList [groupLink]").forEach(el=>{
+                el.addEventListener("click",e=>{
+                    console.log("yes !")
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let groupLink=el.getAttribute("href");
+                    history.pushState({}, `Dilab (loading..)`, groupLink);
+                    pathAnalysis();
+                });
+            })
         }
-        for (var i=0;i<log.data[0].length;i++) {
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMemberWaitListNotificationElement(log.data[0][i].requester,log.data[0][i].groupName);
-            if (i<log.data[0].length-1) {
-                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
-            }
-        } for (var i=0;i<log.data[1].length;i++) {
-            if (document.querySelector(".notificationsMenu .notificationsList").innerHTML!="") {
-                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
-            }
-            document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[1][i].groupName);
-            if (i<log.data[1].length-1) {
-                document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
-            }
-        }
-    }
-});
+    });
+}
+
+syncNotifications();
+let a=setInterval(()=>{ syncNotifications(); },1000*20); // Iters to request the new notifications
 
 function joinResponse(user,group,response) {
     fetch('/Dilab/set',{
@@ -98,16 +156,11 @@ const Toast = Swal.mixin({
   });
 
 // Audio object
-var soundUrls=["https://dev.diskloud.fr/audios/Stacy.mp3","https://dev.diskloud.fr/audios/SHMRedlight.mp3","https://dev.diskloud.fr/audios/Project%201.2.wav","https://dev.diskloud.fr/audios/DIMM.mp3","https://dev.diskloud.fr/audios/M83MidnightCity.mp3","https://dev.diskloud.fr/audios/killTheFire.mp3"]; //This is an example file (REUMSTEIKE (2020), credits by CLAIRE, LEO AND EDOUARD) !
-var soundTitles=["Stacy","Redlight (2022)","Project 1.2","Dimm","Midnight City","Kill the Fire"];
-var soundAuthors=["Quinn XCII","Swedish House Mafia, Sting","Various artists","Nourch","M83","Robin Shulz, Leonard"];
-var soundPictures=['','','','','',''];
-var lyrics=["[0.0]🎵\n[4.5]At the 50 yard line I saw her feet\n[6.6]She was under the bleachers waiting for me\n[9.3]No I never get high but I'm smoking her weed\n[13.5]She been giving this freshman love since last June\n[16.3]The only senior girl with tattoos\n[18.1]Said nobody can find out things that we do\n[22.0]She said, put your hands behind your head\n[25.0]Let me blow your mind kid\n[27.2]But don't get too excited\n[31.2]You can call me Stacy\n[33.2]You can call me love\n[35.0]You can call me baby\n[37.4]And all of the above\n[39.8]You can call me late night\n[42.0]And I'll be at your door\n[44.0]You can call me anything\n[46.7]Oh anything you want\n[49.0]Just don't call me yours\n[50.5]🎵\n[59.5]It's 3:05 on a Friday, bell rings\n[61.9]Her parents left last night for Palm Springs\n[64.3]She's got the whole house empty for me\n[68.4]My brother he needed the car so I ran\n[71.0]Down 71st as fast as I can\n[73.1]I'm telling her everything I had planned\n[77.1]She said, I know we've been getting close\n[80.0]We can't get no closer\n[81.8]You'll get it when you're older\n[85.6]You can call me Stacy\n[87.2]You can call me love\n[90.0]You can call me baby\n[92.4]And all of the above\n[95.2]You can call me late night\n[97.0]And I'll be at your door\n[99.1]You can call me anything\n[100.9]Oh anything you want\n[103.8]Just don't call me yours\n[105.8]🎵\n[112.8](Just don't call me yours)\n[114.8]🎵\n[121.8]You can call me Stacy\n[124.2]You can call me love\n[126.8]You can call me baby\n[128.8]And all of the above\n[131.0]You can call me late night\n[133.8]And I'll be at your door\n[135.5]You can call me anything\n[137.8]Oh anything you want\n[140.0]Just don't call me yours\n[142.2]I'm over you, I'm over you\n[151.0]I'm over you, I'm over you",
-"[0.0]🎵\n[30.0]True say\n[67.0]True say\n[107.0]You don't have to put on the red light\n[113.5]Those days are over\n[116.5]You don't have to sell your body to the night (True say)\n[123.0]You don't have to wear that dress tonight\n[128.0]Those days are over\n[132.5]You don't have to put on the red light (True say)\n[138.5]🎵\n[144.0]Those days are over\n[147.5]You don't have to put on the red light\n[152.0]Those days are over\n[155.5]You don't have to put on the red light\n[159.2]Those days are over\n[162.8]You don't have to put on the red light\n[165.2]🎵\n[189.8]Those days are ovеr\n[193.8]You don't have to put on the red light\n[198.0]Thosе days are over\n[201.8]You don't have to put on the red light",
-"",
-"",
-"[0.0]🎵\n[38.0]Waiting in the car\n[43.0]Waiting for the ride in the dark\n[47.3]At night the city grows\n[52.0]Look at the horizon glow\n[56.0]🎵\n[75.0]Waiting in the car\n[79.5]Waiting for the ride in the dark\n[83.0]Drinking in the lounge\n[88.0]Following the neon signs\n[92.8]Waiting for a word\n[97.8]Looking at the milky skyline\n[102.0]The city is my church\n[107]It wraps me in its blinding twilight\n[110.5]🎵\n[138.0]Waiting in the car\n[143.8]Waiting for the ride in the dark\n[148.5]Waiting in the car (waiting in the car)\n[153]Waiting for the ride in the dark\n[158.0]Waiting in the car\n[161.6]Waiting for the ride in the dark\n[166.0]Waiting in the car (waiting in the car)\n[170.8]Waiting for the ride in the dark\n[175.0]Waiting in the car (waiting in the car)\n[180.0]Waiting for the ride in the dark\n[185.0]🎵",
-"[0.0]🎵\n[8.254971]Your eyes are dim\n[10.247004]I need the real love\n[12.046738]Won't make you drip\n[14.121463]In two, alone in the, oh\n[17.560789]And what got me high has left me so low, so low\n[23.747361]You gave your space\n[26.215232]And in your loving\n[27.878046]I drink the song\n[30.612603]I drink the world in\n[33.502362]And what got me high has left me so low, so low\n[39.203907]You can't kill the fire while it's burning (Kill the fire while it's burning)\n[41.424435]You can't kill the light in the dark (Kill the light in the dark)\n[47.033921]You can't kill the fire while it's burning (Kill the fire while it's burning)\n[51.163722]You can't kill the light in the dark, in the dark\n[55.459837]In the dark\n[67.00916]You can't kill the light in the dark, in the dark\n[79.002318]As you fade out\n[81.312395]Our sunsets dying\n[83.035373]So tell me who\n[84.971788]And what you're fighting\n[88.379531]What got me high has left me so low, so low\n[94.875102]Those sleepless nights\n[96.980838]Unaccounted trials\n[98.824239]You lock me out in your denial\n[104.102862]What got me high has left me so low, so low\n[109.999808]You can't kill the fire while it's burning (Kill the fire while it's burning)\n[114.219381]You can't kill the light in the dark (Kill the light in the dark)\n[118.301077]You can't kill the fire while it's burning (Kill the fire while it's burning)\n[122.021601]You can't kill the light in the dark, in the dark\n[125.544183]You can't kill the fire while it's burning\n[129.835772]You can't kill the light in the dark\n[133.631868]You can't kill the fire while it's burning\n[135.962208]Burning, burning, burning, burning\n[139.940518]Burning, burning, burning, burning\n[143.857014]Burning, burning, burning, burning\n[147.939494]In the dark\n[149.617745]You can't kill the fire while it's burning\n[153.563217]You can't kill the light in the dark, in the dark\n[157.359069]You can't kill the fire while it's burning\n[161.437991]You can't kill the light in the dark, in the dark\n[165.556287]In the dark\n[173.192943]You can't kill the light in the dark, in the dark"]
+var soundUrls=["https://dev.diskloud.fr/audios/Stacy.mp3"]
+var soundTitles=[];//["Stacy"];
+var soundAuthors=[];//["Quinn XCII"];
+var soundPictures=[];//['disc.svg'];
+var lyrics=[];//["[0.0]🎵\n[4.5]At the 50 yard line I saw her feet\n[6.6]She was under the bleachers waiting for me\n[9.3]No I never get high but I'm smoking her weed\n[13.5]She been giving this freshman love since last June\n[16.3]The only senior girl with tattoos\n[18.1]Said nobody can find out things that we do\n[22.0]She said, put your hands behind your head\n[25.0]Let me blow your mind kid\n[27.2]But don't get too excited\n[31.2]You can call me Stacy\n[33.2]You can call me love\n[35.0]You can call me baby\n[37.4]And all of the above\n[39.8]You can call me late night\n[42.0]And I'll be at your door\n[44.0]You can call me anything\n[46.7]Oh anything you want\n[49.0]Just don't call me yours\n[50.5]🎵\n[59.5]It's 3:05 on a Friday, bell rings\n[61.9]Her parents left last night for Palm Springs\n[64.3]She's got the whole house empty for me\n[68.4]My brother he needed the car so I ran\n[71.0]Down 71st as fast as I can\n[73.1]I'm telling her everything I had planned\n[77.1]She said, I know we've been getting close\n[80.0]We can't get no closer\n[81.8]You'll get it when you're older\n[85.6]You can call me Stacy\n[87.2]You can call me love\n[90.0]You can call me baby\n[92.4]And all of the above\n[95.2]You can call me late night\n[97.0]And I'll be at your door\n[99.1]You can call me anything\n[100.9]Oh anything you want\n[103.8]Just don't call me yours\n[105.8]🎵\n[112.8](Just don't call me yours)\n[114.8]🎵\n[121.8]You can call me Stacy\n[124.2]You can call me love\n[126.8]You can call me baby\n[128.8]And all of the above\n[131.0]You can call me late night\n[133.8]And I'll be at your door\n[135.5]You can call me anything\n[137.8]Oh anything you want\n[140.0]Just don't call me yours\n[142.2]I'm over you, I'm over you\n[151.0]I'm over you, I'm over you"]
 var parsedLyrics=[];
 var parsedLyricsTimes=[];
 var lyricsIndex=0;
@@ -179,10 +232,12 @@ function loadSound(url) {
     soundTitleObj.title=soundTitles[playlistIndex];
     soundAuthorsObj.innerHTML=soundAuthors[playlistIndex];
     soundAuthorsObj.title=soundAuthors[playlistIndex];
-    var lyricsData=parseLyrics(lyrics[playlistIndex]),
-    currentSoundPicturePath=`${soundPictures[playlistIndex]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
-    if (soundPictures[playlistIndex].indexOf("https://e.diskloud.fr/")>-1) {
-      currentSoundPicturePath=soundPictures[playlistIndex];
+    var lyricsData=parseLyrics(lyrics[playlistIndex]);
+    //console.log(playlistIndex);
+    if (soundPictures[playlistIndex]!="disc.svg") {
+        currentSoundPicturePath="https://e.diskloud.fr/Dilab/project/"+`${soundAuthors[playlistIndex]}/${soundTitles[playlistIndex]}`;
+    } else {
+        currentSoundPicturePath= "https://e.diskloud.fr/Dilab/project/music-note-beamed.svg";
     }
     parsedLyrics=lyricsData[1];
     parsedLyricsTimes=lyricsData[0];
@@ -192,7 +247,7 @@ function loadSound(url) {
     document.querySelector(".fullScreen .fullScreenPlayingSoundCover").src= currentSoundPicturePath;
     playlistContainer.innerHTML="";
     for (var i=0;i<soundUrls.length;i++) {
-      var picturePath = `${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/release/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/release/music-note-beamed.svg"}`;
+      var picturePath = `${soundPictures[i]!="" ? "https://e.diskloud.fr/Dilab/project/" + soundPictures[i] : "https://e.diskloud.fr/Dilab/project/music-note-beamed.svg"}`;
       if (soundPictures[i].indexOf("https://e.diskloud.fr/")>-1) {
         picturePath=soundPictures[i];
       }
@@ -206,14 +261,8 @@ function loadSound(url) {
                                                 <span class=soundAuthor>${soundAuthors[i]}</span>\
                                             </div>\
                                         </div>\
-                                        <span class="duration">02:00</span>\
+                                        <span class="duration">${""}</span>\
                                     </div>`;
-      /*playlistContainer.querySelectorAll(".playlistElement")[i-playlistIndex].addEventListener("click",()=> {
-        playlistIndex=i;
-        loadSound(soundUrls[playlistIndex]);
-        console.log(soundUrls[playlistIndex]);
-        playOrPauseMusic();
-    });*/
       if (i==playlistIndex) {
           playlistContainer.lastChild.querySelector(".cover").appendChild(playingIcon);
       }
@@ -275,23 +324,66 @@ function removePlaylistElement(index) {
 audioObj.onended = function() {
     nextButton.click();
 };
-
-function playSound(i,autoplay=false) {
+let activeId=-1;
+function playSound(i,autoplay=false,iconUpdate=-1) {
     contextMenu.style.display="none";
     playlistIndex=i;
     loadSound(soundUrls[i]);
     if (autoplay)
         playOrPauseMusic();
+    if (iconUpdate>-1 && iconUpdate!=activeId) {
+        fetch('/Dilab/add', {
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                type : "stream",
+                songId : String(iconUpdate)
+            }) //data
+        }).then(out => {
+            return out.json();
+        }).then(log => {
+            if (log.status==true) {
+                console.log("counted stream");
+            } else {
+                console.log(log);
+            }
+        });
+    }
+    if (iconUpdate>-1) { // On met à jour l'icône des lecteurs .release (et uniquement les .release !)
+        activeId=iconUpdate;
+        document.querySelectorAll(".release .control").forEach(el=>{
+            if (parseInt(el.getAttribute("soundId"))==iconUpdate)
+                el.innerHTML=`<i class="bi bi-pause-circle-fill"></i>`;
+            else
+                el.innerHTML=`<i class="bi bi-play-circle-fill"></i>`;
+        });
+    }
 }
 
-playSound(0);
+if (soundTitles.length>0) {
+    playSound(0);
+}
 
 playPauseBtn.addEventListener('click',e=> {
     if (audioObj.paused) {
         audioObj.play();
         setPlayIcon(true);
+        if (activeId!=-1) {
+            document.querySelectorAll(".release .control").forEach(el=>{
+                if (parseInt(el.getAttribute("soundId"))==activeId)
+                    el.innerHTML=`<i class="bi bi-pause-circle-fill"></i>`;
+                else
+                    el.innerHTML=`<i class="bi bi-play-circle-fill"></i>`;
+            });
+        }
     } else { 
         audioObj.pause();
+        document.querySelectorAll(".release .control").forEach(el=>{
+            el.innerHTML=`<i class="bi bi-play-circle-fill"></i>`;
+        });
     }
 });
 
@@ -302,6 +394,19 @@ function playOrPauseMusic() {
     } else { 
         audioObj.pause();
         setPlayIcon(false);
+    }
+}
+
+function updatePlayPauseIcons() {
+    if (!audioObj.paused && activeId!=-1) {
+        if (activeId!=-1) {
+            document.querySelectorAll(".release .control").forEach(el=>{
+                if (parseInt(el.getAttribute("soundId"))==activeId)
+                    el.innerHTML=`<i class="bi bi-pause-circle-fill"></i>`;
+                else
+                    el.innerHTML=`<i class="bi bi-play-circle-fill"></i>`;
+            });
+        }
     }
 }
 
@@ -815,11 +920,40 @@ function pathAnalysis() {
                             document.querySelector(".groupJoinDate").innerHTML=year.getDate()+'/'+String(year.getMonth()+1)+'/'+year.getFullYear();
                             // group main releases
                             document.querySelector(".releases").innerHTML="";
+                            let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
                             for (var i=0;i<data[1].length;i++) {
                                 console.log(data[1][i].duration);
+                                authorsGroup.push(urlParams.get("g"));
+                                titlesGroup.push(data[1][i].name);
+                                urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+data[1][i].audioFileDir);
+                                picturePathGroup.push(data[1][i].releasePicture);
+                                lyricsGroup.push(data[1][i].lyrics);
                                 var duree=timestampToNormalTime(data[1][i].duration);
-                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture,data[1][i].id);
+                                document.querySelector(".releases").innerHTML+=newReleaseElement(data[1][i].name,data[0][0].groupName,new Date(data[1][i].releaseDate).getFullYear(),data[1][i].nb_streams+" streams",duree,data[1][i].releasePicture,data[1][i].id,i);
                             }
+                            for (var i=0;i<data[1].length;i++) {
+                                document.querySelector(`.release[dataPlaylistId="${i}"]`).addEventListener("click",e=>{
+                                    let data=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                                    let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                                    playlistIndex=k;
+                                    soundTitles=data.titles;
+                                    soundAuthors=data.authors;
+                                    soundUrls=data.urls;
+                                    lyrics=data.lyrics;
+                                    soundPictures=data.picturePath;
+                                    updatePlayerData();
+                                    let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                                    playSound(k,false,songId);
+                                    audioObj.play();
+                                });
+                            }
+                            document.querySelector(".releases").setAttribute("playlistData",JSON.stringify({
+                                    titles : titlesGroup,
+                                    authors : authorsGroup,
+                                    urls : urlsGroup,
+                                    lyrics : lyricsGroup,
+                                    picturePath : picturePathGroup
+                            }));
                             if (data[1].length==0) {
                                 document.querySelector(".releases").innerHTML=`<div class="noRelease">The group has not uploaded any release yet</div>`
                             }
@@ -849,7 +983,7 @@ function pathAnalysis() {
                             var projectList=data.data;
                             document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>";
                             if (projectList.length==0) {
-                                document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>No projects under developpement yet";
+                                document.querySelector(".projects").innerHTML="<h4>Current Projects</h4>No projects under developpement currently";
                             }
                             for (var i=0;i<projectList.length;i++) {
                                 var line=projectList[i],
@@ -989,7 +1123,7 @@ function pathAnalysis() {
                            document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                            progress(project.currentPhase,".progressPart .projectProgress");
-                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);///Dilab/group?g=${encodeURI(project.groupName)}`);
+                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);
                            document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
                            document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
                            document.querySelector(".projectPage .projectGenres").innerHTML= (project.genreName==null) ? "not indicated" : project.genreName;
@@ -1041,11 +1175,13 @@ function pathAnalysis() {
                                     document.querySelector(".audioFile .playButton").classList.remove("button");
                                 } else {
                                         document.querySelector(".audioFile .playButton").addEventListener("click",e=> {
-                                            soundUrls.unshift(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`);
-                                            soundTitles.unshift(project.name);
-                                            soundAuthors.unshift(project.groupName);
-                                            soundPictures.unshift(projectPicturePath);
-                                            lyrics.unshift(""); //project.lyrics);
+                                            // ACOMPLETER
+                                            soundUrls=[(`/Dilab/project/${project.groupName}/${project.name}/${project.audioFileDir}`)];
+                                            soundTitles=[project.name];
+                                            soundAuthors=[project.groupName];
+                                            soundPictures=[project.projectPicture];
+                                            lyrics=[""]; //project.lyrics);
+                                            updatePlayerData();
                                             playSound(0);
                                             audioObj.play();
                                         })
@@ -1077,6 +1213,85 @@ function pathAnalysis() {
                            } else {
                                 document.querySelectorAll(".step")[3].addEventListener('click',()=>{
                                     displayPopUp("Release Project","releaseProject",()=>{
+                                        let data={
+                                            name : project.name,
+                                            lyrics : document.querySelector(".lyricsContent").getAttribute("data-lyrics").replace(/<br>/g,"\\n"),
+                                            author : project.groupName,
+                                            audioLink : project.audioFileDir
+                                        };
+                                        localStorage.removeItem("lyricsSyncOutput");
+                                        console.log(data.lyrics.trim().replace(/\\n/g,""));
+                                        if (data.lyrics.trim().replace(/\\n/g,"")!="") {
+                                            localStorage.setItem("lyricsSyncInput",JSON.stringify(data));
+                                        } else {
+                                            document.querySelector(".synchronizeLyricsLink").style.display="none"; // On masque le bouton renvoyant vers la page de synchronisation des lyrics
+                                        }
+                                        document.querySelector(".confirmRelease").addEventListener("click",()=>{
+                                            let lyrics;
+                                            if (data.lyrics.trim()=="") {
+                                                lyrics='';
+                                            } else {
+                                                lyrics=localStorage.getItem("lyricsSyncOutput");
+                                            }
+                                            if ((lyrics=='' || lyrics==null) && data.lyrics.trim()!="") {
+                                                Swal.fire("Warning","You must synchronize your lyrics first !","warning");
+                                                return;
+                                            }
+                                            Swal.fire({
+                                                icon : "question",
+                                                title: 'Do you confirm the release ?',
+                                                text : "What a critical moment !",
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Yes',
+                                              }).then((result) => {
+                                                /* Read more about isConfirmed, isDenied below */
+                                                if (result.isConfirmed) {
+                                                    // Code à tester
+                                                    const audioElement = new Audio(`https://e.diskloud.fr/Dilab/project/${encodeURI(urlParams.get("g"))}/${urlParams.get("p")}/`+document.querySelector(".infoWrapper .audioFileName").innerHTML);
+                                                    audioElement.addEventListener("loadeddata", () => {
+                                                        let duration = audioElement.duration;
+                                                        let data={
+                                                            type : "releaseProject",
+                                                            groupName : encodeURI(urlParams.get("g")),
+                                                            projectName : encodeURI(urlParams.get("p")),
+                                                            lyricsSynced : encodeURI(lyrics), // Important de mettre en string. Sinon, si count=0, le champ est ignoré
+                                                            "duration" : duration
+                                                        };
+                                                        console.log(data);
+                                                        fetch(`/Dilab/set`, {
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                                                            },
+                                                            method: 'POST',
+                                                            body: JSON.stringify(data)
+                                                        }).then(response => {
+                                                            console.log(response);
+                                                            return response.json();
+                                                        })
+                                                        .catch(error => {
+                                                            Swal.fire( {
+                                                            text : `Update failed: ${error}`,
+                                                            title : "Error",
+                                                            icon : "error"
+                                                            });
+                                                        }).then((result) => {
+                                                            console.log(result);
+                                                            if (result.status) {
+                                                                progress(parseInt(3),document.querySelector(".infos"))
+                                                                Swal.fire("Success !","Your project has been released !","success");
+                                                            } else {//Termine
+                                                                Swal.fire({
+                                                                    title : "Error",
+                                                                    icon : "error",
+                                                                    text : result.data
+                                                                });
+                                                            }
+                                                        });
+                                                    });                                      
+                                                }
+                                              });
+                                        })
                                         return;
                                     }); // Pour synchroniser les lyrics, on utilisera un tab séparé utilisant les cookies pour transmettre le résultat
                                 });
@@ -1206,7 +1421,13 @@ function pathAnalysis() {
                                 lyricsEditBtn.innerHTML="Edit lyrics";
                                 document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="none";
                                 document.querySelector(".lyricsContent").setAttribute("contenteditable",false);
-                            })
+                            });
+                            // Pour éviter du copiage d'html
+                            document.querySelector(".lyricsContent").addEventListener('paste', function (e) {
+                                e.preventDefault();
+                                var text = e.clipboardData.getData('text/plain');
+                                document.execCommand('insertText', false, text);
+                            });
                             let lyricsEditBtn=document.querySelector(".editButton[button-action='editLyrics']");
                             lyricsEditBtn.addEventListener("click",()=>{
                                 let lyricsEl=document.querySelector(".lyricsContent");
@@ -1220,6 +1441,9 @@ function pathAnalysis() {
                                     lyricsEl.setAttribute("contenteditable",false);
                                     lyricsEl.style.userSelect="";
                                     let newLyrics=lyricsEl.innerHTML.replace(/<div><\/div>/g,"\\n").replace(/<div>/g,"\\n").replace(/<\/div>/g,"");
+                                    if (newLyrics==""){
+                                        newLyrics=" ";
+                                    }
                                     if (newLyrics!=lyricsEl.getAttribute("data-lyrics")) {
                                         lyricsEditBtn.style.opacity=0.7;                                    document.querySelector(".cancelButton[button-action='cancelEditLyrics']").style.display="none";
                                         fetch('/Dilab/set', {
@@ -1308,7 +1532,6 @@ function pathAnalysis() {
                                           );
                                         }).then((result) => {
                                             if (result.status && result.k==1) {
-                                                // A COMPLETER 
                                                 document.querySelector(".styledHead .main-content-header").innerHTML=input;
                                                 history.pushState({}, `Dilab (loading..)`, `project?g=${encodeURI(urlParams.get("g"))}&p=${encodeURI(input)}`)
                                                 pathAnalysis();
@@ -1371,11 +1594,46 @@ function pathAnalysis() {
                     // main releases
                     var data=log.data;
                     document.querySelectorAll(".releases")[1].innerHTML="";
-                    for (var i=0;i<data.length;i++) {
+                    /*for (var i=0;i<data.length;i++) {
                         console.log(data[i].duration);
                         var duree=timestampToNormalTime(data[i].duration);
                         document.querySelectorAll(".releases")[1].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
+                    }*/
+                    let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
+                    for (var i=0;i<data.length;i++) {
+                        console.log(data[i].duration);
+                        authorsGroup.push(data[i].groupName);
+                        titlesGroup.push(data[i].name);
+                        urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+data[i].audioFileDir);
+                        picturePathGroup.push(data[i].releasePicture);
+                        lyricsGroup.push(data[i].lyrics);
+                        var duree=timestampToNormalTime(data[i].duration);
+                        document.querySelectorAll(".releases")[1].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id,i);
                     }
+                    for (var i=0;i<data.length;i++) {
+                        document.querySelector(`.release[dataPlaylistId="${i}"]`).addEventListener("click",e=>{
+                            let data=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                            let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                            playlistIndex=k;
+                            soundTitles=data.titles;
+                            soundAuthors=data.authors;
+                            soundUrls=data.urls;
+                            lyrics=data.lyrics;
+                            soundPictures=data.picturePath;
+                            updatePlayerData();
+                            let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                            playSound(k,false,songId);
+                            audioObj.play();
+                        });
+                    }
+                    updatePlayPauseIcons();
+                    document.querySelectorAll(".releases")[1].setAttribute("playlistData",JSON.stringify({
+                            titles : titlesGroup,
+                            authors : authorsGroup,
+                            urls : urlsGroup,
+                            lyrics : lyricsGroup,
+                            picturePath : picturePathGroup
+                    }));
                 });
 
                 fetch(`/Dilab/get`, {
@@ -1394,10 +1652,45 @@ function pathAnalysis() {
                     var data=log.data;
                     // newset releases
                     document.querySelectorAll(".releases")[0].innerHTML="";
-                    for (var i=0;i<data.length;i++) {
+                    /*for (var i=0;i<data.length;i++) {
                         var duree=timestampToNormalTime(data[i].duration);
                         document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
+                    }*/
+                    let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
+                    for (var i=0;i<data.length;i++) {
+                        console.log(data[i].duration);
+                        authorsGroup.push(data[i].groupName);
+                        titlesGroup.push(data[i].name);
+                        urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+data[i].audioFileDir);
+                        picturePathGroup.push(data[i].releasePicture);
+                        lyricsGroup.push(data[i].lyrics);
+                        var duree=timestampToNormalTime(data[i].duration);
+                        document.querySelectorAll(".releases")[0].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id,i);
                     }
+                    for (var i=0;i<data.length;i++) {
+                        document.querySelector(`.release[dataPlaylistId="${i}"]`).addEventListener("click",e=>{
+                            let data=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                            let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                            playlistIndex=k;
+                            soundTitles=data.titles;
+                            soundAuthors=data.authors;
+                            soundUrls=data.urls;
+                            lyrics=data.lyrics;
+                            soundPictures=data.picturePath;
+                            updatePlayerData();
+                            let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                            playSound(k,false,songId);
+                            audioObj.play();
+                        });
+                    }
+                    updatePlayPauseIcons();
+                    document.querySelectorAll(".releases")[0].setAttribute("playlistData",JSON.stringify({
+                            titles : titlesGroup,
+                            authors : authorsGroup,
+                            urls : urlsGroup,
+                            lyrics : lyricsGroup,
+                            picturePath : picturePathGroup
+                    }));
                 });
 
                 if (!document.querySelector(".loginButton") && userData!=null && userData.genres) {
@@ -1422,10 +1715,47 @@ function pathAnalysis() {
                             document.querySelectorAll(".releases")[2].innerHTML="";
                             
                             // main releases
-                            for (var i=0;i<data.length;i++) {
+                            /*for (var i=0;i<data.length;i++) {
                                 var duree=timestampToNormalTime(data[i].duration);
                                 document.querySelectorAll(".releases")[2].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id);
+                            }*/
+                            let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
+                            for (var i=0;i<data.length;i++) {
+                                console.log(data[i].duration);
+                                authorsGroup.push(data[i].groupName);
+                                titlesGroup.push(data[i].name);
+                                urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+data[i].audioFileDir);
+                                picturePathGroup.push(data[i].releasePicture);
+                                lyricsGroup.push(data[i].lyrics);
+                                var duree=timestampToNormalTime(data[i].duration);
+                                document.querySelectorAll(".releases")[2].innerHTML+=newReleaseElement(data[i].name,data[i].groupName,new Date(data[i].releaseDate).getFullYear(),data[i].nb_streams+" streams",duree,data[i].releasePicture,data[i].id,i);
                             }
+                            for (var i=0;i<data.length;i++) {
+                                let els=document.querySelectorAll(`.release[dataPlaylistId="${i}"]`);
+                                els[els.length-1].addEventListener("click",e=>{
+                                    let data=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                                    console.log(data);
+                                    let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                                    playlistIndex=k;
+                                    soundTitles=data.titles;
+                                    soundAuthors=data.authors;
+                                    soundUrls=data.urls;
+                                    lyrics=data.lyrics;
+                                    soundPictures=data.picturePath;
+                                    updatePlayerData();
+                                    let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                                    playSound(k,false,songId);
+                                    audioObj.play();
+                                });
+                            }
+                            updatePlayPauseIcons();
+                            document.querySelectorAll(".releases")[2].setAttribute("playlistData",JSON.stringify({
+                                    titles : titlesGroup,
+                                    authors : authorsGroup,
+                                    urls : urlsGroup,
+                                    lyrics : lyricsGroup,
+                                    picturePath : picturePathGroup
+                            }));
                             if (data.length==0) {
                                 document.querySelectorAll(".releases")[2].innerHTML="<span class=\"noDataTextInfo\">Apparently, you are very original as far as your genre is concerned.. !<p>No project similar to your tastes has been published yet. Maybe you could be the first artist to publish !</p></div>";
                             }
@@ -2178,7 +2508,7 @@ function pathAnalysis() {
                     document.querySelector(".main-content-header").innerHTML+=' "'+query.replace(/ /g,"&nbsp;")+'"';
                     window.onresize= (e)=> {
                         var elements = document.querySelectorAll(".search-results .release .streams");
-                        if (document.querySelector(".search-results .release").offsetWidth < 600) {
+                        if (document.querySelector(".search-results .release") && document.querySelector(".search-results .release").offsetWidth < 600) {
                             for (var i=0; i<elements.length ; i++) {
                                 elements[i].style.display="none";
                             }
@@ -2209,9 +2539,43 @@ function pathAnalysis() {
                                 data= JSON.parse(data.data);
                                 // Release results
                                 document.querySelector(".releases").innerHTML="";
-                                for (var i=0;i<data[0].length;i++) {
+                                /*for (var i=0;i<data[0].length;i++) {
                                     document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",data[0][i].duration,data[0][i].releasePicture,data[0][i].id);
+                                }*/
+                                let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
+                                for (var i=0;i<data[0].length;i++) {
+                                    authorsGroup.push(data[0][i].groupName);
+                                    titlesGroup.push(data[0][i].name);
+                                    urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+data[0][i].audioFileDir);
+                                    picturePathGroup.push(data[0][i].releasePicture);
+                                    lyricsGroup.push(data[0][i].lyrics);
+                                    var duree=timestampToNormalTime(data[0][i].duration);
+                                    document.querySelector(".releases").innerHTML+=newReleaseElement(data[0][i].name,data[0][i].groupName,new Date(data[0][i].releaseDate).getFullYear(),data[0][i].nb_streams+" streams",duree,data[0][i].releasePicture,data[0][i].id,i);
                                 }
+                                for (var i=0;i<data[0].length;i++) {
+                                    document.querySelector(`.release[dataPlaylistId="${i}"]`).addEventListener("click",e=>{
+                                        let data=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                                        let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                                        playlistIndex=k;
+                                        soundTitles=data.titles;
+                                        soundAuthors=data.authors;
+                                        soundUrls=data.urls;
+                                        lyrics=data.lyrics;
+                                        soundPictures=data.picturePath;
+                                        updatePlayerData();
+                                        let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                                        playSound(k,false,songId);
+                                        audioObj.play();
+                                    });
+                                }
+                                updatePlayPauseIcons();
+                                document.querySelector(".releases").setAttribute("playlistData",JSON.stringify({
+                                        titles : titlesGroup,
+                                        authors : authorsGroup,
+                                        urls : urlsGroup,
+                                        lyrics : lyricsGroup,
+                                        picturePath : picturePathGroup
+                                }));
                                 if (data[0].length==0) {
                                     document.querySelector(".releases").innerHTML="<span class=\"noDataTextInfo\">No Releases found :(<p></div>";
                                 }
@@ -2700,16 +3064,18 @@ if (document.querySelector(".loginButton")) {
 if (localStorage.getItem("playerData")!=null) {
     playerNotEmpty=true;
     let playerData=JSON.parse(localStorage.getItem("playerData"));
-    if (!playerData.currentPlay || !playerData.authors || !playerData.urls ||
+    if (!playerData.currentPlay || !playerData.authors || !playerData.urls || !playerData.picturePath ||
         !playerData.titles || !playerData.currentTime || !playerData.lyrics) {
+        console.log("We are here");
         localStorage.removeItem("playerData");
         // Supprimer les données de sauvegarde si elles sont corrompues.
     } else {
-        playlistIndex=playerData.currentPlay;
+        playlistIndex=parseInt(playerData.currentPlay);
         lyrics=playerData.lyrics;
         soundUrls=playerData.urls;
         soundAuthors=playerData.authors;
         soundTitles=playerData.titles;
+        soundPictures=playerData.picturePath;
         updateMusicProgressTime(playerData.currentTime/100*audioObj.duration);
         audioObj.currentTime=playerData.currentTime;   
         loadSound(soundUrls[playlistIndex]);
@@ -2726,7 +3092,8 @@ function updatePlayerData() {
         urls : soundUrls,
         currentTime : audioObj.currentTime,
         lyrics : lyrics,
-        currentPlay : playlistIndex
+        currentPlay : String(playlistIndex),
+        picturePath : soundPictures
     }));
     document.querySelectorAll(".musicButton, .musicProgressTime, .musicDuration, .progressBarContainer, .likeIt, .playlistIcon").forEach(el=>{
         el.classList.remove("disabled");
@@ -2938,6 +3305,7 @@ document.querySelector(".popUpWindow").addEventListener('click', e => {
 });
 document.querySelector(".popUpWindowContainer").addEventListener('click',e => {
     document.querySelector(".popUpWindowContainer").style.display="";
+    localStorage.removeItem("lyricsSyncInput");
 });
 document.querySelector(".popUpWindow .popUpCloseBtn").addEventListener('click',e => {
     document.querySelector(".popUpWindowContainer").style.display="";
@@ -3419,15 +3787,15 @@ function escapeHtml(unsafe) {
 
 // Element templates
 
-function newReleaseElement(title,group,releaseDate,streams,duration,imagePath,musicId) {
+function newReleaseElement(title,group,releaseDate,streams,duration,imagePath,musicId,count=-1) {
     return `
-    <div dataPath="${encodeURIComponent(musicId)}" class=release>
+    <div dataPath="${encodeURIComponent(musicId)}" ${(count==-1) ? "" : `dataPlaylistId="${count}"`} class=release>
         <div class=left-content>
-            <div class=control>
+            <div class=control ${(count==-1) ? "" : `soundId="${musicId}"`}>
                 <i class="bi bi-play-circle-fill"></i>
             </div>
             <div class=cover>
-                <img src="https://e.diskloud.fr/Dilab/release/${imagePath}" />
+                <img src="https://e.diskloud.fr/Dilab/project/${imagePath!="disc.svg" ? `${decodeURI(group)}/${decodeURI(title)}` : "disc.svg"}" />
             </div>
             <div class=infos>
                 <div class=title title="${title}">
@@ -3570,16 +3938,16 @@ function newMemberWaitListNotificationElement(userName,groupName) {
 
 }
 
-function newConfirmNotificationElement(groupName) {
+function newConfirmNotificationElement(content,notification_id) {
     return `<div class="notification">
         <div class=icon>
             <i class="bi bi-person-plus-fill"></i>
         </div>
         <div class=text>
-           You have been accepted in the group "<a href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>"
+           ${content}
         </div>
         <div class=options>
-            <div title="Confirm" class=accept>
+            <div notifData=${String(notification_id)} title="Confirm" class=accept>
                 <i class="bi bi-check2"></i>
             </div>
         </div>

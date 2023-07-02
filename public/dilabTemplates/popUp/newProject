@@ -18,7 +18,7 @@
                 <option value="0">Project launch</option>
                 <option value="1">Working on instrumental part</option>
                 <option value="2">Working on vocals</option>
-                <option value="3">Releasing project</option>
+                <!--option value="3">Releasing project</option-->
             </select>
             <h4>Upload project files</h4>
             <div class="audioFile projectInput">

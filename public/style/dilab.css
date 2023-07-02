@@ -1250,6 +1250,9 @@ body {
 
 .musicBar .musicDuration, .musicBar .musicProgressTime {
     user-select: none;
+    width: 50px;
+    display: flex;
+    justify-content:  center;
 }
 
 .progressBar .filledPart .dotPosition:hover {
@@ -1822,7 +1825,6 @@ body {
 
 .projectPage .progressPart .projectProgress .steps .step {
     position : relative;
-    cursor: pointer;
 }
 
 .projectPage .progressPart .projectProgress .steps .step .stage {
@@ -1855,6 +1857,8 @@ body {
     box-shadow: 5 0 0 -5 rgba(255, 255, 255, 0.8);
     user-select: none;
     outline: none;
+    overflow: auto;
+    max-height: 300px;
 }
 
 .projectPage .lyricsContent[contenteditable="true"] {
@@ -2456,6 +2460,11 @@ body {
 
 .notificationsMenu .notificationsList .notification .accept {
     background: lightgreen;
+    transition: 0.2s;
+}
+
+.notificationsMenu .notificationsList .notification .accept:active {
+    opacity: 0.2 ;
 }
 
 .notificationsMenu .notificationsList .notification .deny {
@@ -2463,7 +2472,7 @@ body {
 }
 
 .notificationsMenu .notificationsList .notification .accept:hover, .notificationsMenu .notificationsList .notification .deny:hover, .notificationsMenu .notificationsList .notification .confirm:hover {
-    opacity : 0.8;
+    opacity : 0.5;
 }
 
 /* inputformFlow (in flex mode) */

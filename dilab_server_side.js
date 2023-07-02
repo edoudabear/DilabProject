@@ -13,7 +13,7 @@ const dilabPath = "/media/edouda/DiskloudExt/DilabFiles/";
 Date.prototype.addHours = function(h) { // to set universal time to GMT +2 hours
     this.setTime(this.getTime() + (h*60*60*1000));
     return this;
-}  
+}
 
 app.get("/Dilab",function(req,res) {
     if (req.session.dilab) {
@@ -22,6 +22,10 @@ app.get("/Dilab",function(req,res) {
         res.render("dilab.ejs",{connected:false})
     }
 });
+
+app.get("/Dilab/synchronizeLyrics",(_,res)=> {
+    res.render("dilabLyricsSynchronizer.ejs");
+})
 
 app.get("/Dilab/:action",function(req,res) {
     if (req.params.action=="login") {
@@ -55,14 +59,8 @@ app.get("/Dilab/:action/:file", function(req,res) {
         } else {
             res.status(404).end("No such file");
         }
-    } else if (req.params.action == "release" ) {
-        if (fs.existsSync(`${dilabPath}releasePP/${req.params.file}`)) {
-            res.sendFile(`${dilabPath}releasePP/${req.params.file}`);
-        } else {
-            res.status(404).end("No such file");
-        }
     } else if (req.params.action == "project" ) {
-        res.sendFile(`${dilabPath}projectPP/disc.svg`);
+        res.sendFile(`${dilabPath}projectPP/music-note-beamed.svg`);
     } else if (req.params.action == "releaseFile") {
         if (parseInt(req.params.file)>=0) { // req.params.file must correspond to the release id here
             if (fs.existsSync(`${dilabPath}releaseFiles/${parseInt(req.params.file)}.audio`)) {
@@ -166,12 +164,14 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.lyrics,DilabProject.audioFileDir,DilabProject.name,DilabProject.projectPicture AS releasePicture,duration,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
-            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
+                    console.log(err)
                     res.end(JSON.stringify(
                         { "return" : "error",
                             "data" : "internal server error",
@@ -204,10 +204,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabGenres.genreName, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.name,DilabProject.lyrics,DilabProject.audioFileDir,DilabProject.projectPicture AS releasePicture,duration,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
-            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE DilabMusicGroups.genres=${dilabConnection.escape(req.body.genreId)}
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 15;`,(err,results,fields) => {
@@ -228,10 +229,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.name,DilabProject.projectPicture AS releasePicture,DilabProject.lyrics,DilabProject.audioFileDir,duration,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
-            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             ORDER BY dr.releaseDate DESC LIMIT 15;`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
@@ -250,7 +252,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                         LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
                         LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
-                        LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+                        LEFT JOIN DilabReleases ON DilabProject.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
                         -- WHERE genres=""
                         GROUP BY DilabMusicGroups.id
@@ -278,7 +280,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
                         LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
                         LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
-                        LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+                        LEFT JOIN DilabReleases ON DilabProject.groupAuthor=DilabMusicGroups.id
                         LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
                         WHERE DilabMusicGroups.genres=${parseInt(req.body.genreId)}
                         GROUP BY DilabMusicGroups.id
@@ -316,7 +318,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
-            WHERE isReleased=false 
+            WHERE currentPhase<3 
             -- AND genres=""
             GROUP BY DilabProject.id
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;`,(err,results,fields)=> {
@@ -348,7 +350,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
-            WHERE isReleased=false 
+            WHERE currentPhase<3 
             AND DilabMusicGroups.genres=${parseInt(req.body.genreId)}
             GROUP BY DilabProject.id
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
@@ -385,7 +387,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
-            WHERE isReleased=false 
+            WHERE currentPhase<3 
             AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
             GROUP BY DilabProject.id
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 10;`,(err,results,fields) => {
@@ -474,7 +476,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-            WHERE isReleased=false 
+            WHERE currentPhase<4 
             AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
             AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.projectGroup))}
             GROUP BY DilabProject.id
@@ -530,42 +532,45 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             GROUP BY DilabMusicGroups.id
             LIMIT 1;
 
-                                    /*1 (Group basic informations)*/
-                                    /*SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : "NULL"} AS isUserAdmin FROM DilabMusicGroups 
-                                    JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
-                                    JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
-                                    LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-                                    WHERE groupName="${groupName}"; */
+            /*1 (Group basic informations)*/
+            /*SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,adminTb.pseudo as admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : "NULL"} AS isUserAdmin FROM DilabMusicGroups 
+            JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
+            JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
+            LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
+            WHERE groupName="${groupName}"; */
 
             /*2 (Group's main releases)*/
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, projectBirthDate,name,releasePicture,duration,dr.id,lyrics,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.name,DilabProject.projectPicture AS releasePicture,duration,DilabProject.audioFileDir,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
-            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             WHERE DilabMusicGroups.groupName="${groupName}"
             ORDER BY nb_streams DESC LIMIT 3;
 
             /*3 (Group's active projects number)*/
             SELECT COUNT(*) as nb_projets_actifs FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabMusicGroups.groupName="${groupName}" AND DilabProject.isReleased=FALSE;
+                WHERE DilabMusicGroups.groupName="${groupName}" AND DilabProject.currentPhase<3;
 
             /*4 (Group's nb of releases)*/
             SELECT COUNT(*) as nb_releases FROM DilabReleases
-                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabReleases.groupAuthor
+                JOIN DilabProject ON DilabProject.id=DilabReleases.associatedProject
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
                 WHERE DilabMusicGroups.groupName="${groupName}";
             /*5 (Group's number of streams since last 30 days)*/
             SELECT COUNT(*) as nb_streams_tot FROM DilabStreams
                 JOIN DilabReleases ON DilabReleases.id=DilabStreams.songId
-                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabReleases.groupAuthor
+                JOIN DilabProject ON DilabProject.id=DilabReleases.associatedProject 
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
                 WHERE DilabMusicGroups.groupName="${groupName}" AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
             /*6 (Group's active projects)*/
             SELECT DilabProject.name, DilabProject.currentPhase,DilabProject.projectPicture,DilabProject.description FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabProject.isReleased=FALSE AND DilabMusicGroups.groupName="${groupName}"
+                WHERE DilabProject.currentPhase<3 AND DilabMusicGroups.groupName="${groupName}"
                 ORDER BY DilabProject.dateOfBirth DESC LIMIT 20;
             `,(err,results,fields)=> {
                     if (err) { // DBS Query Error
@@ -641,7 +646,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id
             JOIN DilabUser ON  DilabUser.id=DilabGroupMembers.memberId
             LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
-            LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabReleases ON DilabProject.groupAuthor=DilabMusicGroups.id
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE DilabUser.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))}
             GROUP BY DilabMusicGroups.id
@@ -676,11 +681,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WITH cte AS (
                 SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
             )
-            SELECT releaseDate, DilabMusicGroups.groupName, projectBirthDate,name,releasePicture,duration,dr.id,COALESCE(nb_streams,0) AS nb_streams
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.name,DilabProject.audioFileDir,DilabProject.projectPicture AS releasePicture,duration,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
             FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
-            JOIN DilabMusicGroups ON DilabMusicGroups.id=dr.groupAuthor
-            WHERE (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            WHERE (${generateSearchPatterns("DilabProject.name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             ORDER BY nb_streams DESC,releaseDate DESC LIMIT 20;
 
             /*2. Projects search */
@@ -695,7 +701,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabProject
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabProject.groupAuthor 
-            WHERE isReleased=false AND (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
+            WHERE currentPhase<3 AND (${generateSearchPatterns("name",req.body.searchPattern)}) OR (${generateSearchPatterns("groupName",req.body.searchPattern)})
             GROUP BY DilabProject.id
             ORDER BY nCollaborators DESC, DilabProject.dateOfBirth DESC LIMIT 20;
 
@@ -704,7 +710,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             COUNT(DISTINCT DilabGroupMembers.id) AS nCollaborators, COUNT(DISTINCT DilabProject.id) AS nProjects, COUNT(DISTINCT DilabReleases.id) AS nReleases FROM DilabMusicGroups
             LEFT JOIN DilabGroupMembers ON DilabGroupMembers.groupId=DilabMusicGroups.id 
             LEFT JOIN DilabProject ON DilabProject.groupAuthor=DilabMusicGroups.id
-            LEFT JOIN DilabReleases ON DilabReleases.groupAuthor=DilabMusicGroups.id
+            LEFT JOIN DilabReleases ON DilabProject.groupAuthor=DilabMusicGroups.id
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
             WHERE  (${generateSearchPatterns("groupName",req.body.searchPattern)})
             GROUP BY DilabMusicGroups.id
@@ -771,7 +777,28 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         }
     } else if (req.params.action=="set") {
-        if (req.body.type=="newJoinRequest" && req.body.groupName && req.session.dilab) {
+        if (req.body.type=="swipeNotification" && req.body.nId && req.session.dilab) {
+                dilabConnection.query(`UPDATE DilabNotificationsList SET hasBeenRead=1 WHERE id=${req.body.nId} AND targetedUser=${req.session.dilab}`,(err,results,fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : false,
+                                "data" : "server error"
+                        }));
+                        return;
+                    }
+                    if (results.affectedRows==1) {
+                        res.end(JSON.stringify(
+                            { "return" : "ok",
+                                "status" : true,
+                                "data" : true
+                            }));
+                    } else {
+                        res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                    }
+                });
+        } else if (req.body.type=="newJoinRequest" && req.body.groupName && req.session.dilab) {
             dilabConnection.query(`INSERT INTO DilabMembersWaitList (waiter,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} LIMIT 1`,(err,results,fields) => {
                 if (err) {
                     console.log("Went here");
@@ -796,6 +823,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         } else if (req.body.type=="answerToJoinRequest" && (req.body.answer===false || req.body.answer===true) && req.body.groupName && req.body.userName && req.session.dilab) {
             if (req.body.answer==true) {
                 dilabConnection.query(`
+                INSERT INTO DilabNotificationsList (targetedUser,content,type,hasBeenRead)
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have accepted in the group <a href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"accept",0 FROM DilabMembersWaitList
+                LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
+                LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
+                WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
+            
                 INSERT INTO DilabGroupMembers (memberId,groupId)
                     SELECT waiter,groupId FROM DilabMembersWaitList
                     LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
@@ -807,12 +840,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                     WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)} ;`,(err,results,fields) => {
                         if (err) {
+                            console.log(err);
                             res.end(JSON.stringify(
                                 { "return" : "ok",
                                     "status" : false,
                                     "data" : "server error"
                             }));
-                        } else if (results[1].affectedRows==1) {
+                        } else if (results[2].affectedRows==1) {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
                                     "status" : true,
@@ -829,7 +863,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             } else {
                 dilabConnection.query(`
                 INSERT INTO DilabNotificationsList (targetedUser,content,type)
-                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"denial" FROM DilabMembersWaitList
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"denial" FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
@@ -861,7 +895,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
             }
-        } else if (req.body.type="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
+        } else if (req.body.type=="passwordViaPreviousPassword" && req.body.prevPassword && req.body.newPassword && req.session.dilab) {
             if (req.files) {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
@@ -897,7 +931,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             }
         // Updating a user's profile picture
-        } else if (req.body.type="projectDescription" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.description) { 
+        } else if (req.body.type=="projectDescription" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.description) { 
             if (typeof req.body.groupName!="string") {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
                 return;    
@@ -924,7 +958,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     k : out.affectedRows
                 }))
             });
-        } else if (req.body.type="projectPhase" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.phase) { 
+        } else if (req.body.type=="projectPhase" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.phase) { 
             console.log(req.body.phase);
             if (typeof req.body.groupName!="string") {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
@@ -948,7 +982,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     k : out.affectedRows
                 }))
             });
-        } else if (req.body.type="projectLyrics" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.lyrics) { 
+        } else if (req.body.type=="projectLyrics" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.lyrics) { 
             console.log(req.body.phase);
             if (typeof req.body.groupName!="string") {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
@@ -977,7 +1011,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     k : out.affectedRows
                 }));
             });
-        } else if (req.body.type="projectName" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.newName) { 
+        } else if (req.body.type=="projectName" && req.body.groupName && req.body.projectName && req.session.dilab && req.body.newName) { 
             if (typeof req.body.groupName!="string") {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid group : is..weird ?"}');
                 return;    
@@ -1044,6 +1078,36 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     k : out.affectedRows
                 }));
             });
+        
+        } else if (req.body.type=="releaseProject" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && typeof req.body.lyricsSynced=="string" && req.body.duration) {
+            // code à tester
+            dilabQuery(`
+            -- 1. Request
+            UPDATE DilabProject SET currentPhase=3,lyrics=${dilabConnection.escape(decodeURI(req.body.lyricsSynced))} 
+            WHERE groupAuthor IN (SELECT groupId 
+                FROM DilabGroupMembers
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabGroupMembers.groupId
+                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};
+            -- 2. Request
+            INSERT INTO DilabReleases (associatedProject,duration) 
+			(SELECT DilabProject.id,${(Math.round(parseFloat(req.body.duration)))}
+            FROM DilabProject 
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=groupAuthor
+            JOIN DilabGroupMembers ON DilabMusicGroups.id=DilabGroupMembers.groupId
+            WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))} AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}
+			);`).catch(err=>{
+                console.log(err);
+                res.end(JSON.stringify({ status : false,return : "error", data: "internal server error"}));
+            }).then(
+                (result)=>{
+                    if (result[0].affectedRows==1 && result[1].affectedRows==1){
+                        res.end(JSON.stringify({ status : true, return : "ok", data : "released project"}));
+                    } else {
+                        res.end(JSON.stringify({ status : false, return : "error", data : "There was a problem while releasing your project. Please try again later."}));
+                    }
+                }
+            )
         } else if (req.files && req.body.profilePictureOnly && req.session.dilab) {
             if (req.files.length<1) {
                 res.end(JSON.stringify({
@@ -1222,6 +1286,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         } else {
+            console.log(req.body);
             res.status(400).end('{ "return" : "invalid POST data" }');
             //Temp file cleanup (to avoid keeping ignored files..)
             if (req.files) {
@@ -1728,6 +1793,32 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     data : "Invalid POST chat message input"
                 }));
             }
+        } else if (req.body.type=="stream" && typeof req.body.songId=="string") { // To count a new stream of a release
+            console.log(req.body.songId);
+            dilabQuery(`INSERT INTO DilabStreams (streamer,songId) VALUES (${req.session.dilab==undefined ? 'NULL' : req.session.dilab},${parseInt(req.body.songId)})`)
+            .catch(err=>{
+                console.log(err);
+                res.end(JSON.stringify({
+                    "status" :false,
+                    return : "error",
+                    data : "Internal server error"
+                }))
+            }).then(results=>{
+                if (results.affectedRows==1) {
+                    res.end(JSON.stringify({
+                        "status" :true,
+                        return : "ok",
+                        data : "success"   
+                    }))
+                } else {
+                    console.log(results);
+                    res.end(JSON.stringify({
+                        "status" :false,
+                        return : "error",
+                        data : "could not count your stream. Your data is probably corrupt."   
+                    }));
+                }
+            })
         } else {
             res.end(JSON.stringify({
                 status : false,
@@ -1930,10 +2021,10 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             JOIN DilabUser ON DilabMembersWaitList.waiter=DilabUser.id
             JOIN DilabMusicGroups ON DilabMembersWaitList.groupId=DilabMusicGroups.id
             WHERE DilabMusicGroups.admin=${req.session.dilab} AND DilabMembersWaitList.hasBeenApproved=FALSE;
-            /* Notifications where person has been approved in a group */
-            SELECT DilabMusicGroups.groupName FROM DilabMembersWaitList
-            JOIN DilabMusicGroups ON DilabMembersWaitList.groupId=DilabMusicGroups.id
-            WHERE DilabMembersWaitList.waiter=${req.session.dilab} AND DilabMembersWaitList.hasBeenApproved=TRUE;`,(err,results,fields)=> {
+            /* Notifications where person has been approved in a group (or not) and other possible notices */
+            SELECT id AS notiId,type,content FROM DilabNotificationsList
+            WHERE DilabNotificationsList.targetedUser=${req.session.dilab} AND DilabNotificationsList.hasBeenRead=0
+            `,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
