@@ -25,7 +25,7 @@ app.get("/Dilab",function(req,res) {
 
 app.get("/Dilab/synchronizeLyrics",(_,res)=> {
     res.render("dilabLyricsSynchronizer.ejs");
-})
+});
 
 app.get("/Dilab/:action",function(req,res) {
     if (req.params.action=="login") {
@@ -824,7 +824,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             if (req.body.answer==true) {
                 dilabConnection.query(`
                 INSERT INTO DilabNotificationsList (targetedUser,content,type,hasBeenRead)
-                SELECT DilabMembersWaitList.waiter,CONCAT("You have accepted in the group <a href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"accept",0 FROM DilabMembersWaitList
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have accepted in the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"accept",0 FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
@@ -862,8 +862,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     });
             } else {
                 dilabConnection.query(`
-                INSERT INTO DilabNotificationsList (targetedUser,content,type)
-                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"denial" FROM DilabMembersWaitList
+                INSERT INTO DilabNotificationsList (targetedUser,content,type,hasBeenRead)
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have been rejected from the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"denial",0 FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
@@ -939,12 +939,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
                 return;
             }
-            console.log(`UPDATE DilabProject SET  DilabProject.description=${dilabConnection.escape(String(req.body.description))} WHERE groupAuthor IN 
-            (SELECT groupId FROM DilabGroupMembers
-                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
-                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(req.body.groupName)}
-            ) AND DilabProject.name=${dilabConnection.escape(req.body.projectName)};
-            `);
             dilabQuery(`UPDATE DilabProject SET  DilabProject.description=${dilabConnection.escape(decodeURI(String(req.body.description)))} WHERE groupAuthor IN 
             (SELECT groupId FROM DilabGroupMembers
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
@@ -974,7 +968,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             (SELECT groupId FROM DilabGroupMembers
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
                 WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
-            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`).catch((err) => {serverError(res,err)})
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))} AND currentPhase<3;`).catch((err) => {serverError(res,err)})
             .then(out=> {
                 res.end(JSON.stringify({
                     status : true,
@@ -994,16 +988,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid project : is..weird ?"}');
                 return;   
             }
-            console.log(`UPDATE DilabProject SET  lyrics=${dilabConnection.escape(decodeURI(req.body.lyrics))} WHERE groupAuthor IN 
-            (SELECT groupId FROM DilabGroupMembers
-                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
-                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
-            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`);
             dilabQuery(`UPDATE DilabProject SET  lyrics=${dilabConnection.escape(decodeURI(req.body.lyrics))} WHERE groupAuthor IN 
             (SELECT groupId FROM DilabGroupMembers
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
                 WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
-            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`).catch((err) => {serverError(res,err)})
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))} AND currentPhase<3;`).catch((err) => {serverError(res,err)})
             .then(out=> {
                 res.end(JSON.stringify({
                     status : true,
@@ -1022,11 +1011,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Invalid new project name : is..weird ?"}');
                 return;   
             }
-            console.log(`UPDATE DilabProject SET  DilabProject.name=${dilabConnection.escape(decodeURI(req.body.newName))} WHERE groupAuthor IN 
-            (SELECT groupId FROM DilabGroupMembers
-                JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
-                WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
-            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};`);
             dilabQuery(`UPDATE DilabProject SET  DilabProject.name=${dilabConnection.escape(decodeURI(req.body.newName))} WHERE groupAuthor IN 
             (SELECT groupId FROM DilabGroupMembers
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
@@ -1080,7 +1064,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             });
         
         } else if (req.body.type=="releaseProject" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && typeof req.body.lyricsSynced=="string" && req.body.duration) {
-            // code à tester
             dilabQuery(`
             -- 1. Request
             UPDATE DilabProject SET currentPhase=3,lyrics=${dilabConnection.escape(decodeURI(req.body.lyricsSynced))} 
@@ -1088,7 +1071,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 FROM DilabGroupMembers
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabGroupMembers.groupId
                 WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
-            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))};
+            ) AND DilabProject.name=${dilabConnection.escape(decodeURI(req.body.projectName))}  AND currentPhase<3;
             -- 2. Request
             INSERT INTO DilabReleases (associatedProject,duration) 
 			(SELECT DilabProject.id,${(Math.round(parseFloat(req.body.duration)))}

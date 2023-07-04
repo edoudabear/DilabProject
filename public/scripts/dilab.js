@@ -33,7 +33,6 @@ function syncNotifications() {
     }).then(out => {
         return out.json();
     }).then(log => {
-        console.log("log :"+JSON.stringify(log));
         if (!log.status) {
             console.log("could not load user notifications");
         } else {
@@ -49,6 +48,14 @@ function syncNotifications() {
                 if (i<log.data[0].length-1 || log.data[1].length>0) {
                     document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
                 }
+            } for (let i=0;i<log.data[0].length;i++) {
+                let el=document.querySelectorAll(".notificationsList .questionNotification")[i];
+                el.querySelector(".accept").addEventListener('click',e=>{
+                    joinResponse(log.data[0][i].requester,log.data[0][i].groupName,true,e);
+                });
+                el.querySelector(".deny").addEventListener("click",e=>{
+                    joinResponse(log.data[0][i].requester,log.data[0][i].groupName,false,e);
+                });
             } for (var i=0;i<log.data[1].length;i++) {
                 document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[1][i].content,log.data[1][i].notiId);
                 if (i<log.data[1].length-1) {
@@ -107,7 +114,17 @@ function syncNotifications() {
                     history.pushState({}, `Dilab (loading..)`, groupLink);
                     pathAnalysis();
                 });
-            })
+            });
+            document.querySelectorAll(".notificationsList [artistLink]").forEach(el=>{
+                el.addEventListener("click",e=>{
+                    console.log("yes !")
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let artistLink=el.getAttribute("href");
+                    history.pushState({}, `Dilab (loading..)`, artistLink);
+                    pathAnalysis();
+                });
+            });
         }
     });
 }
@@ -115,7 +132,8 @@ function syncNotifications() {
 syncNotifications();
 let a=setInterval(()=>{ syncNotifications(); },1000*20); // Iters to request the new notifications
 
-function joinResponse(user,group,response) {
+function joinResponse(user,group,response,e) {
+    console.log(user,group,response);
     fetch('/Dilab/set',{
         headers: {
             'Content-Type': 'application/json'
@@ -124,9 +142,9 @@ function joinResponse(user,group,response) {
         method: 'POST',
         body: JSON.stringify({
             type : "answerToJoinRequest",
+            userName : user,
             groupName : group,
-            answer : response,
-            userName : user
+            answer : response
         }) //data
     }).then(out => {
         return out.json();
@@ -135,7 +153,18 @@ function joinResponse(user,group,response) {
         if (data.status!=true) {
             Toast.fire({icon : "warning", title : "Something went wrong.."});
         } else {
-            Swal.fire("Info","Choice has been saved","info");
+            Toast.fire({ title : "Choice has been saved",icon : "info"});
+            let toRem=e.target.closest(".notification");
+            if (toRem.nextSibling?.localName=='hr') {
+                toRem.nextSibling.remove();
+            }
+            toRem.remove();
+            let lblCnt=document.querySelector(".labelCount");
+            lblCnt.innerHTML=String(parseInt(lblCnt.innerHTML)-1);
+            if (parseInt(lblCnt.innerHTML)==0) {
+                document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+                document.querySelector(".labelCount").style.display="none";
+            }
         }
     });
 }
@@ -1240,7 +1269,7 @@ function pathAnalysis() {
                                             Swal.fire({
                                                 icon : "question",
                                                 title: 'Do you confirm the release ?',
-                                                text : "What a critical moment !",
+                                                text : "Once the song will have been released, you will only be able to change the project's title, description and its project file. Audio and lyrics will become unchangeable.",
                                                 showCancelButton: true,
                                                 confirmButtonText: 'Yes',
                                               }).then((result) => {
@@ -3919,18 +3948,18 @@ function newArtistElement(artistFullName,pseudo,genre,biography,yearOfJoin,artis
 }
 
 function newMemberWaitListNotificationElement(userName,groupName) {
-    return `<div class="notification">
+    return `<div class="notification questionNotification">
         <div class=icon>
             <i class="bi bi-person-plus-fill"></i>
         </div>
         <div class=text>
-            <a href=/Dilab/artist?a=${encodeURI(userName)} ><strong>${userName}</strong></a> wants to join your group <a href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>
+            <a artistLink="${userName}" href=/Dilab/artist?a=${encodeURI(userName)} ><strong>${userName}</strong></a> wants to join your group <a groupLink="${groupName}" href=/Dilab/group?g=${encodeURI(groupName)} ><strong>${groupName}</strong></a>
         </div>
         <div class=options>
-            <div title="Accept join" onclick="joinResponse(\`${userName}\`,\`${groupName}\`,true)" class=accept>
+            <div title="Accept join" class=accept>
                 <i class="bi bi-check2"></i>
             </div>
-            <div title="Block join" onclick="joinResponse(\`${userName}\`,\`${groupName}\`,false)" class=deny>
+            <div title="Block join" class=deny>
                 <i class="bi bi-x"></i>
             </div>
         </div>
