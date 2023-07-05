@@ -740,7 +740,6 @@ document.querySelector(".playlistIcon").addEventListener('click',e=> {
     playlistMenu.style.display=(playlistMenu.style.display=="block") ? "" : "block";
 })
 
-
 // Path analysis
 function pathAnalysis() {
     if (chatReloader!=null) {
@@ -1145,21 +1144,27 @@ function pathAnalysis() {
                         console.log(log);
                         if (log.status==true) {
                             // project info insertion (on html page)
-                           var project=log.data[0];
-                           document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
-                           var dateObj=new Date(project.dateOfBirth),
-                           projectPicturePath=(project.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg";
-                           document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
-                           document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
-                           progress(project.currentPhase,".progressPart .projectProgress");
-                           document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);
-                           document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
-                           document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
-                           document.querySelector(".projectPage .projectGenres").innerHTML= (project.genreName==null) ? "not indicated" : project.genreName;
-                           document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
-                           document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
-                           document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\\n/g,"<br />");
-                           document.querySelector(".projectPage .lyricsCard .lyricsContent").setAttribute("data-lyrics",project.lyrics);
+                            var project=log.data[0];
+                            document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
+                            var dateObj=new Date(project.dateOfBirth),
+                            projectPicturePath=(project.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg";
+                            document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
+                            document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+                            progress(project.currentPhase,".progressPart .projectProgress");
+                            document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);
+                            document.querySelector(".projectPage .groupsFounder").innerHTML=project.groupName;
+                            document.querySelector(".projectPage .projectDescription").innerHTML=project.description;
+                            document.querySelector(".projectPage .projectGenres").innerHTML= (project.genreName==null) ? "not indicated" : project.genreName;
+                            document.querySelector(".projectPage .projectBeginDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+                            document.querySelector(".projectPage .nParticipants").innerHTML=(project.nCollaborators==1 ? "1 participant" : `${project.nCollaborators} participants`)
+                            // Lyrics (and audioFile update control, if currentPhase==3)
+                            document.querySelector(".projectPage .lyricsCard .lyricsContent").setAttribute("data-lyrics",project.lyrics);
+                            if (project.currentPhase==3) {
+                                // Le premier replace est également important : il permet de ne pas sauter de ligne au tout début des paroles
+                                document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\[[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\]/,"").replace(/\[[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\]/g,"<br>");
+                                document.querySelector(".projectPage .lyricsCard .editLyricsBtnContainer .editButton").style.display="none";
+                                document.querySelector(".audioFile .updateButton").style.display="none";
+                            } else { document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\\n/g,"<br />"); }
 
                            // Project file
                            if (project.projectFileDir!=null) {
@@ -1241,6 +1246,10 @@ function pathAnalysis() {
                                 });
                            } else {
                                 document.querySelectorAll(".step")[3].addEventListener('click',()=>{
+                                    if (document.querySelectorAll(".steps .completed").length == 3) {
+                                        Swal.fire("Note","The project has already been released.","info");
+                                        return;
+                                    }
                                     displayPopUp("Release Project","releaseProject",()=>{
                                         let data={
                                             name : project.name,
@@ -1307,7 +1316,7 @@ function pathAnalysis() {
                                                         }).then((result) => {
                                                             console.log(result);
                                                             if (result.status) {
-                                                                progress(parseInt(3),document.querySelector(".infos"))
+                                                                progress(3,document.querySelector(".infos"))
                                                                 Swal.fire("Success !","Your project has been released !","success");
                                                             } else {//Termine
                                                                 Swal.fire({
@@ -1361,6 +1370,10 @@ function pathAnalysis() {
                                 let count=parseInt(el.getAttribute("data-k"));
                                 if (count<3) {
                                     el.addEventListener('click',function(){
+                                        if (document.querySelectorAll(".steps .completed").length == 3) {
+                                            Swal.fire("Note","You cannot change the project phase anymore, as it has been released.","info");
+                                            return;
+                                        }
                                         Swal.fire({
                                             title: 'Change the current phase ?',
                                             showCancelButton: true,
@@ -2758,8 +2771,7 @@ function pathAnalysis() {
                 });
                 break;
         } default :
-            window.location.href="https://e.diskloud.fr/Dilab";
-            location="https://e.diskloud.fr/Dilab";
+        loadTemplate("error404",()=>{});
     }
 }
 
