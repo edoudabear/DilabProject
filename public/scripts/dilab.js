@@ -7,6 +7,7 @@ var mainContent = document.querySelector(".main-content");
 var logoAnimation = gsap.timeline({});
 var searchField = document.querySelector(".search-field");
 var playerNotEmpty=false;
+let fileRegexp=/[^a-zA-Z0-9._-\s()]+/g;
 logoAnimation.from(".title",0,{scale : 1, color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", rotate: "0", transform : "skew(0deg,0deg)"})
             .to(".title",0.4,{scale : 2,color : "red", textShadow :"0 0 3px #FFFFFF, 0 0 5px #FFFFFF", ease : "power3.bounce",rotate : "300deg", y: "30px", transform : "skew(-0.15turn,15deg)"})
             .to(".title",0.4,{scale : 1,color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", ease : "power3.bounce", rotate: "360deg", transform : "skew(-0.15turn,15deg)"},"+=.1");
@@ -1148,7 +1149,7 @@ function pathAnalysis() {
                             document.querySelector(".projectPage .main-content-header").innerHTML=project.name;
                             var dateObj=new Date(project.dateOfBirth),
                             projectPicturePath=(project.projectPicture!="disc.svg") ? `https://e.diskloud.fr/Dilab/project/${project.groupName}/${project.name}` : "https://e.diskloud.fr/Dilab/project/disc.svg";
-                            document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath;
+                            document.querySelector(".projectPage .styledHeadPP img").src=projectPicturePath+ "?" + new Date().getTime();
                             document.querySelector(".projectPage .registrationDate").innerHTML=`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
                             progress(project.currentPhase,".progressPart .projectProgress");
                             document.querySelector(".projectPage .linkToGroup").setAttribute("href",`javascript:loadPage("${project.groupName} Dilab","group",[["g","${project.groupName}"]]);`);
@@ -1166,8 +1167,76 @@ function pathAnalysis() {
                                 document.querySelector(".audioFile .updateButton").style.display="none";
                             } else { document.querySelector(".projectPage .lyricsCard .lyricsContent").innerHTML=project.lyrics.replace(/\\n/g,"<br />"); }
 
-                           // Project file
-                           if (project.projectFileDir!=null) {
+                            // Project file
+                            let projectFileInput=document.querySelector(".projectFile input[type=\"file\"]");
+                            document.querySelector(".projectFile .updateButton")?.addEventListener("click",()=>{
+                                Toast.fire({title : "Please be patient. You will be asked to choose a file" ,icon : "info"});
+                                projectFileInput.click();
+                            });
+                            projectFileInput.addEventListener("change",()=>{
+                                if (projectFileInput.files.length>0) {
+                                    Swal.fire({
+                                        title : "Confirm file update",
+                                        text : "Change project file ?",
+                                        icon : "question",
+                                        showCancelButton : true,
+                                        showConfirmButton : true
+                                    }).then((result) => {
+                                        if (!result.isConfirmed) {
+                                            projectFileInput.value="";
+                                            return;
+                                        }
+                                        if (projectFileInput.files[0].size > 2097152*4){
+                                            Swal.fire("Error","File is too big!","error");
+                                            projectFileInput.value = "";
+                                            return;
+                                        } else if (projectFileInput.files[0].name.replace(fileRegexp,'')!=projectFileInput.files[0].name) {
+                                            Swal.fire("Error","File name can only contain latin letters (without accents), numbers, .,- and _","error");
+                                            audioFileInput.value = "";
+                                            return;
+                                        }
+                                        var data=new FormData();
+                                        data.append("projectName", urlParams.get("p"));
+                                        data.append("groupName", urlParams.get("g"));
+                                        if (projectFileInput.value=='') {
+                                            Swal.fire("Error","No file has been provided","error");
+                                            return;
+                                        } else {
+                                            data.append("type","projectProjectFile");
+                                            data.append("files",projectFileInput.files[0], projectFileInput.files[0].name);
+                                        }
+                                        console.log(FormData);
+                                        Swal.fire({
+                                            allowOutsideClick:false,
+                                            showConfirmButton : false,
+                                            showCancelButton : false,
+                                            text : "Uploading your file.."
+                                        });
+                                        Swal.showLoading();
+                                        fetch('/Dilab/set', {
+                                            headers: {
+                                                //'Content-Type': 'application/x-www-form-urlencoded'
+                                                //'Content-Type': 'multipart/form-data',
+                                            },
+                                            method: 'POST',
+                                            body: data
+                                        }).then(out => {
+                                            return out.json();
+                                        }).then(log => {
+                                            console.log(log);
+                                            if (log.status==true) {
+                                                history.pushState({}, `Dilab (loading..)`, `project?g=${encodeURI(urlParams.get("g"))}&p=${urlParams.get("p")}`)
+                                                pathAnalysis();
+                                                Toast.fire({title : log.data ,icon:"success"});
+                                            } else {
+                                                Swal.fire("Error",log.data,"error");
+                                            }
+                                        });
+                                        projectFileInput.value="";
+                                    });
+                                }
+                            });
+                            if (project.projectFileDir!=null) {
                                 document.querySelector(".projectPage .projectFileName").innerHTML=project.projectFileDir;
                                 var flStudioExtension = /(\.flp)$/i,
                                 abletonExtension = /(\.als|\.alp)$/i;
@@ -1187,11 +1256,81 @@ function pathAnalysis() {
                                document.querySelector(".projectFile .button").setAttribute("title","Cannot be downloaded : There is no project file");
                                document.querySelector(".projectFile .button").style.cursor="not-allowed";
                                document.querySelector(".projectFile .button").classList.add("noHoverActiveButton");
-                               document.querySelector(".projectFile .button").classList.remove("button")
+                               document.querySelector(".projectFile .button").classList.remove("button");
                            }
                            
                            // Audio file
-                           if (project.audioFileDir!=null) {
+                            if (project.currentPhase<3) {
+                                let audioFileInput=document.querySelector(".audioFile input[type=\"file\"]");
+                                document.querySelector(".audioFile .updateButton").addEventListener("click",()=>{
+                                    Toast.fire({title : "Please be patient. You will be asked to choose a file" ,icon : "info"});
+                                    audioFileInput.click();
+                                });
+                                audioFileInput.addEventListener("change",()=>{
+                                    if (audioFileInput.files.length>0) {
+                                        Swal.fire({
+                                            title : "Confirm file update",
+                                            text : "Change project file ?",
+                                            icon : "question",
+                                            showCancelButton : true,
+                                            showConfirmButton : true
+                                        }).then((result) => {
+                                            if (!result.isConfirmed) {
+                                                audioFileInput.value="";
+                                                return;
+                                            }
+                                            if (audioFileInput.files[0].size > 2097152*4){
+                                                Swal.fire("Error","File is too big!","error");
+                                                audioFileInput.value = "";
+                                                return;
+                                            } else if (audioFileInput.files[0].name.replace(fileRegexp,'')!=audioFileInput.files[0].name) {
+                                                Swal.fire("Error","File name can only contain latin letters (without accents), numbers, .,- and _","error");
+                                                audioFileInput.value = "";
+                                                return;
+                                            } 
+                                            var data=new FormData();
+                                            data.append("projectName", urlParams.get("p"));
+                                            data.append("groupName", urlParams.get("g"));
+                                            if (audioFileInput.value=='') {
+                                                Swal.fire("Error","No file has been provided","error");
+                                                return;
+                                            } else {
+                                                data.append("type","projectAudioFile");
+                                                data.append("files",audioFileInput.files[0], audioFileInput.files[0].name);
+                                            }
+                                            Swal.fire({
+                                                allowOutsideClick:false,
+                                                showConfirmButton : false,
+                                                showCancelButton : false,
+                                                text : "Uploading your file.."
+                                            });
+                                            console.log(data);
+                                            Swal.showLoading();
+                                            fetch('/Dilab/set', {
+                                                headers: {
+                                                    //'Content-Type': 'application/x-www-form-urlencoded'
+                                                    //'Content-Type': 'multipart/form-data',
+                                                },
+                                                method: 'POST',
+                                                body: data
+                                            }).then(out => {
+                                                return out.json();
+                                            }).then(log => {
+                                                console.log(log);
+                                                if (log.status==true) {
+                                                    history.pushState({}, `Dilab (loading..)`, `project?g=${encodeURI(urlParams.get("g"))}&p=${urlParams.get("p")}`)
+                                                    pathAnalysis();
+                                                    Toast.fire({title : log.data ,icon:"success"});
+                                                } else {
+                                                    Swal.fire("Error",log.data,"error");
+                                                }
+                                            });
+                                            audioFileInput.value="";
+                                        });
+                                    }
+                                });
+                            }
+                            if (project.audioFileDir!=null) {
                                 var audioExtension = project.audioFileDir.slice(project.audioFileDir.lastIndexOf('.') + 1).toUpperCase();
                                 document.querySelector(".projectPage .audioFileName").innerHTML=project.audioFileDir;
                                 document.querySelector(".projectPage .audioFileType").innerHTML= `${audioExtension} File`
@@ -1242,10 +1381,14 @@ function pathAnalysis() {
                            }
                            if (project.audioFileDir==null) {
                                 document.querySelectorAll(".step")[3].addEventListener('click',()=>{
+                                    if (document.querySelector(".artistCard .editButton")==null)
+                                        return;
                                     Swal.fire("And the audio ?","You didn't upload any audio file yet.<br />Only then can you release the project.","warning");
                                 });
                            } else {
                                 document.querySelectorAll(".step")[3].addEventListener('click',()=>{
+                                    if (document.querySelector(".artistCard .editButton")==null)
+                                        return;
                                     if (document.querySelectorAll(".steps .completed").length == 3) {
                                         Swal.fire("Note","The project has already been released.","info");
                                         return;
@@ -1357,6 +1500,76 @@ function pathAnalysis() {
                             console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
                             return;
                         } if (log.data=="member") {
+                            // Project cover personalization
+                            let projectCover=document.querySelector(".styledHeadPP"),
+                            projectCoverFile=document.querySelector(".projectCoverInput");
+                            projectCover.addEventListener("click",()=>{
+                                Toast.fire({title : "Please be patient. You will be asked to choose a file" ,icon : "info"});
+                                projectCoverFile.click();
+                            });
+                            projectCoverFile.addEventListener("change",()=>{
+                                if (projectCoverFile.files.length>0) {
+                                    Swal.fire({
+                                        title : "Confirm file update",
+                                        text : "Change project cover ?",
+                                        icon : "question",
+                                        showCancelButton : true,
+                                        showConfirmButton : true
+                                    }).then((result) => {
+                                        if (!result.isConfirmed) {
+                                            projectCoverFile.value="";
+                                            return;
+                                        }
+                                        if (projectCoverFile.files[0].size > 2097152*4){
+                                            Swal.fire("Error","File is too big!","error");
+                                            projectCoverFile.value = "";
+                                            return;
+                                        } else if (projectCoverFile.files[0].name.replace(fileRegexp,'')!=projectCoverFile.files[0].name) {
+                                            Swal.fire("Error","File name can only contain latin letters (without accents), numbers, .,- and _","error");
+                                            projectCoverFile.value = "";
+                                            return;
+                                        } 
+                                        var data=new FormData();
+                                        data.append("projectName", urlParams.get("p"));
+                                        data.append("groupName", urlParams.get("g"));
+                                        if (projectCoverFile.value=='') {
+                                            Swal.fire("Error","No file has been provided","error");
+                                            return;
+                                        } else {
+                                            data.append("type","projectCover");
+                                            data.append("files",projectCoverFile.files[0], projectCoverFile.files[0].name);
+                                        }
+                                        Swal.fire({
+                                            allowOutsideClick:false,
+                                            showConfirmButton : false,
+                                            showCancelButton : false,
+                                            text : "Uploading your file.."
+                                        });
+                                        Swal.showLoading();
+                                        fetch('/Dilab/set', {
+                                            headers: {
+                                                //'Content-Type': 'application/x-www-form-urlencoded'
+                                                //'Content-Type': 'multipart/form-data',
+                                            },
+                                            method: 'POST',
+                                            body: data
+                                        }).then(out => {
+                                            return out.json();
+                                        }).then(log => {
+                                            console.log(log);
+                                            if (log.status==true) {
+                                                history.pushState({}, `Dilab (loading..)`, `project?g=${encodeURI(urlParams.get("g"))}&p=${urlParams.get("p")}`)
+                                                pathAnalysis();
+                                                Toast.fire({title : log.data ,icon:"success"});
+                                            } else {
+                                                Swal.fire("Error",log.data,"error");
+                                            }
+                                        });
+                                        projectCoverFile.value="";
+                                    });
+                                }
+                            });
+                            // Chat boot
                             setupChat(urlParams.get("g"),urlParams.get("p"));
                             // Project phase
                             document.querySelectorAll(".step").forEach(el=>{
@@ -1599,6 +1812,8 @@ function pathAnalysis() {
                                   });
                             });
                         } else {
+                            document.querySelector(".styledHeadPP .styledHeadEditIcon").style.display="none";
+                            document.querySelector(".styledHeadPP").style.cursor="default";
                             document.querySelectorAll(".propertyOption").forEach(element=>{
                                 element.style.display="none";
                             });
@@ -1859,7 +2074,7 @@ function pathAnalysis() {
                                 var audio=document.createElement("AUDIO");
                                 audio.controls=false;
                                 audio.style.display="none";
-                                audio.setAttribute("src",`/Dilab/project/${line.groupName}/${line.name}/${line.audioFileDir}`);
+                                audio.setAttribute("src",`/Dilab/project/${encodeURI(line.groupName)}/${encodeURI(line.name)}/${encodeURI(line.audioFileDir)}`);
                                 el.querySelector(".playBtn").addEventListener("click",e=>{
                                     e.stopPropagation();
                                     var el2=document.querySelectorAll(".project");
@@ -2077,8 +2292,12 @@ function pathAnalysis() {
                                 if (this.files[0].size > 2097152*4){
                                     Swal.fire("Error","File is too big (8MB max) !","error");
                                     this.value = "";
-                                } else if (this.files[0].type.slice(0,this.files[0].type.indexOf('/'))!="audio") {
-                                    Swal.fire("Error","Invalid file type<br />Must be an audio","error");
+                                }  else if (this.files[0].name.replace(fileRegexp,'')!=this.files[0].name) {
+                                    Swal.fire("Error","File name can only contain latin letters (without accents), numbers, .,- and _","error");
+                                    audioFileInput.value = "";
+                                    return;
+                                } else if (this.files[0].name.replace(fileRegexp,'')!=this.files[0].name) {
+                                    res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
                                 } else {
                                     // from an input element
                                     var filesToUpload = this.files;
@@ -2106,6 +2325,10 @@ function pathAnalysis() {
                                 if (this.files[0].size > 2097152*4){
                                     Swal.fire("Error","File is too big (8MB max) !","error");
                                     this.value = "";
+                                } else if (this.files[0].name.replace(fileRegexp,'')!=this.files[0].name) {
+                                    Swal.fire("Error","File name can only contain latin letters (without accents), numbers, .,- and _","error");
+                                    audioFileInput.value = "";
+                                    return;
                                 } else {
                                     // from an input element
                                     var filesToUpload = this.files;
@@ -2215,7 +2438,7 @@ function pathAnalysis() {
                                                     elem.querySelector(".confirm").style.pointerEvents="";
                                                     return;
                                                 }
-                                                // Here we (will) create a FormData object containing the user's input and send it to the server
+                                                // Here we create a FormData object containing the user's input and send it to the server
                                                 var data=new FormData();
                                                 data.append("projectName", elem.querySelector("input[name=pName]").value);
                                                 data.append("projectDescription", elem.querySelector("textarea[name=pDescription]").value);

@@ -1,7 +1,9 @@
 <div class=projectPage>
     <div class=styledHead>
         <div class=styledHeadPP>
+            <input type="file" class="projectCoverInput" accept="image/*" />
             <img title="Project cover" src="https://e.diskloud.fr/Dilab/project/disc.svg" />
+            <i title="Edit project cover" class="styledHeadEditIcon bi bi-pen-fill"></i>
         </div>
         <h2 class="main-content-header">
             <div style="width:5em;" class="skeletonLoader"></div>
@@ -57,6 +59,7 @@
             <h4>Files</h4>
             <div class=fileContainer>
                 <div class="file projectFile">
+                    <input type="file" class="projectFiles projectFile" />
                     <div class=projectFileInfos>
                         <h4>Project file</h4>
                         <div class=infoWrapper>
@@ -81,6 +84,7 @@
                     </div>
                 </div>
                 <div class="file audioFile">
+                    <input type="file" accept=".mp3,.wav,.ogg" class="projectFiles audioFile" />
                     <div class=projectFileInfos>
                         <h4>Audio file</h4>
                         <div class=infoWrapper>

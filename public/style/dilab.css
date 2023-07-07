@@ -1803,12 +1803,37 @@ body {
     background: linear-gradient(to right, pink, purple);
 }
 
+.projectPage .styledHeadPP input[type=file] {
+    display: none;
+}
+
 .projectPage .styledHeadPP {
     border-radius: 8px/8px;
+    position: relative;
+    cursor: pointer;
 }
 
 .projectPage .styledHeadPP img {
     border-radius: 8px/8px;
+}
+
+.projectPage .styledHeadEditIcon {
+    opacity: 0;
+    background: lightgrey;
+    transition: 0.2s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projectPage .styledHeadPP:hover .styledHeadEditIcon {
+    opacity: 0.7;
+    color: white;
+    border-radius: 8px/8px;
+    font-size: 80px;
 }
 
 .projectPage .progressPart {
@@ -1834,6 +1859,10 @@ body {
     transform: translate(calc(50% - 7px)) skew(-0.05turn,0deg) ;
     text-align: center;
     color : black;
+}
+
+.projectPage .projectFiles {
+    display: none;
 }
 
 .projectPage .editLyricsBtnContainer {

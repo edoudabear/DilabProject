@@ -5,6 +5,8 @@ Le code ne fonctionne cependant pas de manière indépendante, car il y a certai
 Ne vous laissez pas faire impressionner ! Cela a pris des mois de développement et même si le code est très conséquent, il n'est finalement pas si compliqué. Avec le club Web, vous aurez le moyens de tout comprendre :)
 */
 
+const { decode } = require("punycode");
+let fileRegexp=/[^a-zA-Z0-9._-\s()]+/g;
 dilabConnection.connect();
 var cryptoKey=String(fs.readFileSync(__dirname + '/../expressjs/dilabKey.txt')).replace(/\n/g,'');
 // node native promisify -> Creates an async query function (for "await query()")
@@ -50,11 +52,15 @@ app.get("/Dilab/:action/:file", function(req,res) {
     if (req.params.action == "group" ) {
         if (fs.existsSync(`${dilabPath}groupPP/${req.params.file}`)) {
             res.sendFile(`${dilabPath}groupPP/${req.params.file}`);
+        } else if (fs.existsSync(`${dilabPath}groupPP/${decodeURI(req.params.file)}`)) {
+            res.sendFile(`${dilabPath}groupPP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
         }
     } else if (req.params.action == "user" ) {
         if (fs.existsSync(`${dilabPath}userPP/${req.params.file}`)) {
+            res.sendFile(`${dilabPath}userPP/${req.params.file}`);
+        } else if (fs.existsSync(`${dilabPath}userPP/${decodeURI(req.params.file)}`)) {
             res.sendFile(`${dilabPath}userPP/${req.params.file}`);
         } else {
             res.status(404).end("No such file");
@@ -90,10 +96,9 @@ app.get("/Dilab/:action/:groupName/:projectName/", function(req,res) {
 });
 
 app.get("/Dilab/:action/:groupName/:projectName/:fileName", function(req,res) {
-    console.log(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
     if (req.params.action == "project" ) {
-        if (fs.existsSync(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`)) {
-            res.sendFile(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"")}/${decodeURI(req.params.projectName).replace(/\//g,"")}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
+        if (fs.existsSync(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"").toLowerCase()}/${decodeURI(req.params.projectName).replace(/\//g,"").toLowerCase()}/${decodeURI(req.params.fileName).replace(/\//g,"")}`)) {
+            res.sendFile(`${dilabPath}projectFiles/${decodeURI(req.params.groupName).replace(/\//g,"").toLowerCase()}/${decodeURI(req.params.projectName).replace(/\//g,"").toLowerCase()}/${decodeURI(req.params.fileName).replace(/\//g,"")}`);
         } else {
             res.status(404).end("No such file");
         }
@@ -1035,7 +1040,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 status : true,
                                 return : "ok",
                                 k : out.affectedRows,
-                                issue : "there was a problem move the project cover"
+                                issue : "there was a problem while moving the project cover"
                             }));
                             return;
                         }
@@ -1061,8 +1066,238 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     return : "ok",
                     k : out.affectedRows
                 }));
-            });
-        
+            }); 
+        } else if (req.body.type=="projectProjectFile" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && req.session.dilab) {
+            let projectName=req.body.projectName,
+            groupName=req.body.groupName;
+            if (req.files.length>0) { // Check if file uploaded
+                if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                    if (req.files) {
+                        for (var i=0;i<req.files.length;i++)
+                            fs.unlink(req.files[i].path,()=>{return;});
+                    }
+                    res.end('{ "return" : "error","status" : false,"data" : "Project File is too big !" }');
+                    return;
+                } else if (req.files[0].originalname.length>256) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name must not exceed 255 characters." }');
+                } else if (req.files[0].originalname.replace(fileRegexp,'')!=req.files[0].originalname) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
+                } else {
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
+                    }
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
+                    }
+                    filename1=req.files[0].originalname.replace(/\//g,"");
+                    filePath1=req.files[0].path;
+                    dilabQuery(`
+                    SELECT projectFileDir,audioFileDir FROM DilabProject
+                    JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+                    WHERE DilabProject.name=${dilabConnection.escape(projectName)} AND DilabMusicGroups.groupName=${dilabConnection.escape(groupName)}
+                    AND groupAuthor IN 
+                    (SELECT groupId FROM DilabGroupMembers
+                        JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                        WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+                    );
+                    /* Request n° 2*/
+                    UPDATE DilabProject,DilabMusicGroups 
+                        SET DilabProject.projectFileDir=${dilabConnection.escape(filename1)},lastProjectFileUpdate=CURRENT_TIMESTAMP()
+                        WHERE DilabMusicGroups.id=DilabProject.groupAuthor AND DilabProject.name=${dilabConnection.escape(projectName)} AND DilabMusicGroups.groupName=${dilabConnection.escape(groupName)}
+                        AND groupAuthor IN 
+                        (SELECT groupId FROM DilabGroupMembers
+                            JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                            WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+                        );
+                        `).catch(err=>{
+                        console.log(err);
+                        res.end(JSON.stringify({
+                            status : false,
+                            return : "error",
+                            data : "internal server error"
+                        }));
+                    }).then(result=>{
+                        console.log(result[0][0].projectFileDir,result[0][0].audioFileDir);
+                        console.log("It evaluates to :"+(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+result[0][0].projectFileDir && result[0][0].projectFileDir!=result[0][0].audioFileDir))
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+result[0][0].projectFileDir) && result[0][0].projectFileDir!=result[0][0].audioFileDir) {
+                            console.log("this file is to be deleted (will be replaced)");
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+result[0][0].projectFileDir);
+                        }
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1)) {
+                            console.log("this file is to be deleted (will be replaced)");
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1);
+                        }
+                        fs.move(__dirname+"/"+filePath1,dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1);
+                        res.end(JSON.stringify({
+                            status : true,
+                            data : "Updated project file",
+                            return : "ok"
+                        }));
+                    });             
+                }
+            } else {
+                res.end(JSON.stringify({
+                    status : false,
+                    data : "No input file supplied",
+                    return : "error"
+                }));
+            }
+        } else if (req.body.type=="projectAudioFile" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && req.session.dilab) {
+            let projectName=req.body.projectName,
+            groupName=req.body.groupName;
+            if (req.files.length>0) { // Check if file uploaded
+                if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                    if (req.files) {
+                        for (var i=0;i<req.files.length;i++)
+                            fs.unlink(req.files[i].path,()=>{return;});
+                    }
+                    res.end('{ "return" : "error","status" : false,"data" : "Audio File is too big !" }');
+                    return;
+                } else if (req.files[0].originalname.length>256) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name must not exceed 255 characters." }');
+                } else if (req.files[0].originalname.replace(fileRegexp,'')!=req.files[0].originalname) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
+                }  else {
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
+                    }
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
+                    }
+                    filename1=req.files[0].originalname.replace(/\//g,"");
+                    filePath1=req.files[0].path;
+                    dilabQuery(`
+                    SELECT projectFileDir,audioFileDir FROM DilabProject
+                    JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+                    WHERE DilabProject.name=${dilabConnection.escape(projectName)} AND DilabProject.currentPhase<3 AND DilabMusicGroups.groupName=${dilabConnection.escape(groupName)}
+                    AND groupAuthor IN 
+                    (SELECT groupId FROM DilabGroupMembers
+                        JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                        WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+                    );
+                    UPDATE DilabProject,DilabMusicGroups 
+                        SET DilabProject.audioFileDir=${dilabConnection.escape(filename1)},lastAudioFileUpdate=CURRENT_TIMESTAMP()
+                        WHERE DilabMusicGroups.id=DilabProject.groupAuthor AND DilabProject.name=${dilabConnection.escape(projectName)} AND DilabProject.currentPhase<3 AND DilabMusicGroups.groupName=${dilabConnection.escape(groupName)}
+                        AND groupAuthor IN 
+                        (SELECT groupId FROM DilabGroupMembers
+                            JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                            WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+                        );
+                        `).catch(err=>{
+                        console.log(err);
+                        res.end(JSON.stringify({
+                            status : false,
+                            return : "error",
+                            data : "internal server error"
+                        }));
+                    }).then(result=>{
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+result[0][0].audioFileDir) && result[0][0].projectFileDir!=result[0][0].audioFileDir) {
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+result[0][0].audioFileDir);
+                        }
+                        console.log(filename1);
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1)) {
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1);
+                        }
+                        fs.move(__dirname+"/"+filePath1,dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1);
+                        res.end(JSON.stringify({
+                            status : true,
+                            data : "Updated project file",
+                            return : "ok"
+                        }));
+                    });            
+                }
+            } else {
+                res.end(JSON.stringify({
+                    status : false,
+                    data : "No input file supplied",
+                    return : "error"
+                }));
+            }
+        } else if (req.body.type=="projectCover" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && req.session.dilab) {
+            let projectName=req.body.projectName,
+            groupName=req.body.groupName;
+            if (req.files.length>0) { // Check if file uploaded
+                if (req.files[0].size > 2097152*4){ // Check file size (8MB max)
+                    if (req.files) {
+                        for (var i=0;i<req.files.length;i++)
+                            fs.unlink(req.files[i].path,()=>{return;});
+                    }
+                    res.end('{ "return" : "error","status" : false,"data" : "Audio File is too big !" }');
+                    return;
+                } else if (req.files[0].originalname.length>256) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name must not exceed 255 characters." }');
+                } else if (req.files[0].originalname.replace(fileRegexp,'')!=req.files[0].originalname) {
+                    res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
+                } else if (req.files[0].mimetype.slice(0,req.files[0].mimetype.indexOf('/'))!="image") { // Check file type (image ?)
+                    if (req.files) {
+                        for (var i=0;i<req.files.length;i++)
+                        fs.unlink(req.files[i].path,()=>{return;});
+                    }
+                    res.end('{ "return" : "error","status": false,"data" : "Uploaded profile picture must be.. a picture !" }');
+                    return;
+                } else {
+                    sharp(req.files[0].path)
+                    .rotate()
+                    .resize(1248, 1248)
+                    .toFile("tempUploads/"+projectName+'.PNG', (err, info) => { 
+                        //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
+                        if (err) {
+                            res.end('{"return" : "error", "status" : false, "data":"Could not load your profile picture properly"}');
+                            if (req.files) {
+                                for (var i=0;i<req.files.length;i++)
+                                fs.unlink(req.files[i].path,()=>{return;}) ;
+                            }
+                            return;//throw err
+                        }
+                        //console.log("file sharpened !");
+                        if (!fs.existsSync(`${dilabPath}projectPP/${groupName}/`)) {
+                            fs.mkdirSync(`${dilabPath}projectPP/${groupName}/`);
+                        }
+                        fs.moveSync("tempUploads/"+projectName+".PNG",`${dilabPath}projectPP/${groupName}/`+projectName+".PNG",{overwrite : true});
+                        if (req.files) {
+                            for (var i=0;i<req.files.length;i++)
+                            fs.unlink(req.files[i].path,()=>{return;});
+                        }
+                        dilabQuery(`
+                        UPDATE DilabProject,DilabMusicGroups 
+                        SET DilabProject.projectPicture=${dilabConnection.escape(projectName+".PNG")}
+                        WHERE DilabMusicGroups.id=DilabProject.groupAuthor AND DilabProject.name=${dilabConnection.escape(projectName)} AND DilabMusicGroups.groupName=${dilabConnection.escape(groupName)}
+                        AND groupAuthor IN 
+                        (SELECT groupId FROM DilabGroupMembers
+                            JOIN DilabMusicGroups ON DilabMusicGroups.id=groupId
+                            WHERE memberId=${req.session.dilab} AND groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
+                        );
+                        `).catch(err=>{
+                            console.log(err);
+                            res.end(JSON.stringify({
+                                status : false,
+                                return : "error",
+                                data : "internal server error"
+                            }));
+                        }).then(results=>{
+                            if (results.affectedRows!=1) {
+                                res.end(JSON.stringify({
+                                    status: false,
+                                    return : "error",
+                                    data: "Unexpected change on DB : "+String(results.affectedRows)
+                                }));
+                            }
+                            res.end(JSON.stringify({
+                                status : true,
+                                data : "Updated project cover",
+                                return : "ok"
+                            }));
+                        });
+                        
+                    });          
+                }
+            } else {
+                res.end(JSON.stringify({
+                    status : false,
+                    data : "No input file supplied",
+                    return : "error"
+                }));
+            }
         } else if (req.body.type=="releaseProject" && typeof req.body.groupName=="string" && typeof req.body.projectName=="string" && typeof req.body.lyricsSynced=="string" && req.body.duration) {
             dilabQuery(`
             -- 1. Request
@@ -1127,6 +1362,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     } else {
                         var username=results[0].pseudo;
                         sharp(req.files[0].path)
+                        .rotate()
                         .resize(1248, 1248)
                         .toFile("tempUploads/"+username+'.png', (err, info) => { 
                             //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
@@ -1372,6 +1608,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                     // Valid Case : converting file
                     sharp(req.files[0].path)
+                    .rotate()
                     .resize(1248, 1248)
                     .toFile("tempUploads/"+req.body.username+'.png', (err, info) => { 
                         //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
@@ -1457,6 +1694,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
                 // Valid Case : converting file
                 sharp(req.files[0].path)
+                .rotate()
                 .resize(1248, 1248)
                 .toFile("tempUploads/"+req.body.username+'.png', (err, info) => { 
                     //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
@@ -1533,6 +1771,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             //INSTRUCTION : `INSERT INTO DilabMusicGroups (name, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupPicture}','${groupDescription}',${admin},${founder},'${genres}')`
         } else if (req.body.projectName && req.body.groupName && typeof(req.body.projectLyrics)!="undefined" && typeof(req.body.projectDescription)!="undefined" &&
          req.body.projectPhase && req.body.audioFile && req.body.projectFile && req.body.projectPPFile && req.session.dilab) {
+            
             var projectName=req.body.projectName,
             projectDescription=req.body.projectDescription ? req.body.projectDescription : "",
             projectGenre=req.body.projectGenre ? req.body.projectGenre : "",
@@ -1666,6 +1905,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             fs.move(__dirname+"/"+filePath2,dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename2);
                         } if (projectPPFile) {
                             sharp(__dirname+"/"+filePath3)
+                            .rotate()
                             .resize(1248, 1248)
                             .toFile(dilabPath+"projectPP/"+groupName+"/"+filename3, (err, info) => { 
                                 //When conversion done, the temporary files get deleted, after the profile picture has been saved properly
@@ -2060,6 +2300,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             fs.unlink(req.files[i].path,()=>{return;});
         }
     }
+
 });
 
 function generateSearchPatterns (column,data) {
