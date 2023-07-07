@@ -1083,11 +1083,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 } else if (req.files[0].originalname.replace(fileRegexp,'')!=req.files[0].originalname) {
                     res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
                 } else {
-                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
-                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase())) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase());
                     }
-                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
-                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase())) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase());
                     }
                     filename1=req.files[0].originalname.replace(/\//g,"");
                     filePath1=req.files[0].path;
@@ -1158,11 +1158,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 } else if (req.files[0].originalname.replace(fileRegexp,'')!=req.files[0].originalname) {
                     res.end('{ "return" : "error","status" : false,"data" : "File name can only contain latin letters (without accents), numbers, .,- and _" }');
                 }  else {
-                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
-                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase())) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase());
                     }
-                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
-                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
+                    if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase())) {
+                        fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase());
                     }
                     filename1=req.files[0].originalname.replace(/\//g,"");
                     filePath1=req.files[0].path;
@@ -1191,14 +1191,14 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             data : "internal server error"
                         }));
                     }).then(result=>{
-                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+result[0][0].audioFileDir) && result[0][0].projectFileDir!=result[0][0].audioFileDir) {
-                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+result[0][0].audioFileDir);
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+result[0][0].audioFileDir) && result[0][0].projectFileDir!=result[0][0].audioFileDir) {
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+result[0][0].audioFileDir);
                         }
                         console.log(filename1);
-                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1)) {
-                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1);
+                        if (fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1)) {
+                            fs.unlinkSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1);
                         }
-                        fs.move(__dirname+"/"+filePath1,dilabPath+"projectFiles/"+groupName+"/"+projectName+"/"+filename1);
+                        fs.move(__dirname+"/"+filePath1,dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase()+"/"+filename1);
                         res.end(JSON.stringify({
                             status : true,
                             data : "Updated project file",
@@ -1834,11 +1834,11 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 }
                                 res.end('{ "return" : "error","status": false,"data" : "Uploaded Audio file must be.. an audio !" }');
                             } else {
-                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName)) {
-                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase())) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase());
                                 }
-                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName+"/"+projectName)) {
-                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName+"/"+projectName);
+                                if (!fs.existsSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase())) {
+                                    fs.mkdirSync(dilabPath+"projectFiles/"+groupName.toLowerCase()+"/"+projectName.toLowerCase());
                                 }
                                 filename1=req.files[fileIndex].originalname.replace(/\//g,"");
                                 filePath1=req.files[fileIndex].path;
