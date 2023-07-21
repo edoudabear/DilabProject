@@ -9,7 +9,7 @@
             <div style="width:5em;" class="skeletonLoader"></div>
         </h2>
         <h4>
-            <i class="bi bi-dot"></i>
+            <i class="bi bi-dot" pc></i>
             created the&nbsp;
             <span class=registrationDate>
                 <div style="width:5em;" class="skeletonLoader"></div>

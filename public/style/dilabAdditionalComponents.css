@@ -1,30 +1,53 @@
+/* Structure of the static page */
+html {
+  height: 99% ;
+  margin: 0;
+  padding: 0;
+}
+
+.blocker {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: transparent;
+}
+
+html::before {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat';
+  height: 100%;
+}
+.box-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+}
+
+.main-content > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
 /* When no song is on the player */
 .disabled {
   opacity: 0.5 !important;
   transform: none !important;
   cursor: not-allowed !important;
   user-select: none !important;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 4px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: lightgrey; 
-  border-radius: 4px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: darkgrey; 
 }
  
  .stationProgressWrapper {
@@ -118,3 +141,477 @@
   .searchRecommendations .choice:active {
     background : rgb(131, 129, 129);
   }
+
+  /* Button style */
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 1; /* Firefox */
+}
+
+.button {
+    padding: 0.2em 0.6em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+.noHoverActiveButton {
+    padding: 0.2em 0.6em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.noHoverActiveButton:hover {
+    color : white;
+}
+
+.noHoverActiveButton:active {
+    color : white;
+}
+  
+  .button:before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingbn5 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  @keyframes glowingbn5 {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  .button:active {
+    color: #000;
+  }
+  
+  .button:active:after {
+    background: transparent;
+  }
+
+  .button:hover, .button:active {
+      text-decoration: none;
+      color: white;
+  }
+  
+  .button:hover:before {
+    opacity: 1;
+  }
+  
+  .button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  /* Fullscreen mode */
+.fullScreen:not(:fullscreen) {
+  display: none;
+}
+
+.fullScreen {
+  display : none;
+  position: absolute;
+  top : 0;
+  left : 0;
+  height: 100%;
+  width: 100%;
+}
+
+.fullScreen .fullscreenExit {
+  position: absolute;
+  top : 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  z-index: 5;
+  cursor: pointer;
+}  
+
+.fullScreen:not(:fullscreen) * {
+  width: 0;
+}
+
+@keyframes linear_gradient_bg_animation {
+  0% {background-position: left}
+  50% {background-position: right}
+  100% {background-position: left}
+}
+
+.fullScreen .cover {
+  height: 5em;
+  border-radius: 8px;
+  padding: 5px;
+  transition: 2s cubic-bezier(0.78, -0.01, 0.17, 1);
+  aspect-ratio: 1;
+}
+
+.fullScreen .songInfosCoverWrapper {
+  display: flex;
+  align-items: flex-end;
+  font-size: 2em;
+  justify-content: left; 
+}
+
+.fullScreen .fullScreenPlayingSoundCover {
+  height: 120px;
+  margin: 12px;
+  border-radius: 5px;
+}
+
+.fullScreen:fullscreen  {
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  color: white;
+  background: rgb(3, 25, 71);/*linear-gradient(to top right,rgb(211, 12, 211),rgb(86, 86, 151),green);*/
+  /* animation : linear_gradient_bg_animation 20s infinite;*/
+  background-size: 300%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Fullscreen, lyrics part */
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 300px;
+  --card-width: calc(var(--card-height) / 0.4);
+}
+
+
+/*body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}*/
+
+
+.fullScreen .lyricsCard {
+  background: #191c29;
+  color : white;
+  width: 100%;
+  height: 100%;
+  min-height: fit-content;
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  font-family: Arial;
+  font-weight : bold;
+  
+  display : flex;
+  flex-direction : column;
+}
+
+.fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .mainText, .fullScreen .lyricsCard .bottomText {
+  transition : 0.4s;
+}
+
+.fullScreen {
+  font-size: 0.8em;
+}
+
+.fullScreen .bottomEl {
+  margin-bottom: 0;
+}
+
+/* Default page */
+
+.defaultPage {
+  background :url(https://bandzoogle.com/files/4299/bzblog-17-ways-to-promote-your-music-online-main.jpeg) no-repeat 0, 0 rgb(0,0,0,0.5);
+  background-size: cover;
+  background-blend-mode: multiply;
+  color : white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.defaultPage-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  user-select: none;
+}
+.defaultPage-title > h3 {
+  margin-top : 4px;
+}
+
+.defaultPage-title > h1 {
+  transform : skew(-0.12turn,0deg);
+  font-size: 3em;
+  margin-bottom : 4px;
+  /*background: linear-gradient(to top right,  #ff6b08, #f32170);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;*/
+}
+
+.defaultPage .welcome-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: calc(100% - 4px);
+}
+
+.defaultPage .welcome-buttons > .button {
+  font-size: 1.2em;
+  flex-wrap: wrap;
+}
+
+.progress-load {
+  position: absolute;
+  top : 100%;
+  left : 0%;
+  width : 5%;
+  height : 4px;
+  background-color: rgb(164, 95, 230);
+  transition: width 0.2s;
+  padding : 0;
+}
+
+/* User control elements */
+.userProfileCircleButton {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.userProfileCircleButton > img {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: 0.1s;
+}
+
+.userProfileCircleButton > img:hover {
+  outline: 2px solid white;
+}
+
+.userProfileCircleButton > img:focus {
+  outline: 2px solid white;
+}
+
+.userMainMenu, .notificationsMenu {
+  cursor: initial;
+  display: none;
+  position: absolute;
+  top : calc(100% + 15px);
+  right : 5px;
+  background: white;
+  box-shadow: 0 0 10px rgb(141, 140, 140);
+  border-radius: 8px/8px;
+  color: black;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  transform: translate(-10px);
+  min-width : 200px;
+  z-index: 80;
+}
+
+.notificationsButton .labelCount {
+  display: none;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: white;
+  right: 15px;
+  top: 2px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.userMainMenu > .aButton {
+  width: 100%;
+  font-size: 1.3em;
+  text-decoration: none;
+  color :black;
+  cursor: pointer;
+  transition : 0.2s;
+  border-radius: 4px/4px;
+}
+
+.userMainMenu > .aButton > i {
+  padding-right : 5px;
+  padding-left: 5px;
+}
+.userMainMenu > .infoText {
+  text-align: center;
+}
+.userMainMenu > .menuPP {
+  margin-top : 10px;
+  width : 100%;
+  background: transparent;
+  display : flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userMainMenu > .menuPP > .menuPPImg {
+  height : 48px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border : 2px solid black;
+  background : black
+}
+
+.userMainMenu > .aButton:hover {
+  background : lightgrey;
+}
+
+.userMainMenu > .aButton:active {
+  background : grey;
+}
+
+.userMainMenu  .invisibleLink { /* Used to begin a focus of the userMainMenu */
+  height: 0;
+  width: 0;
+  text-decoration: none;
+}
+
+.userMainMenu  .invisibleLink:focus {
+  outline: none;
+}
+
+/* Notifications menu */
+
+.notificationsMenu {
+  width: 90%;
+}
+
+.notificationsMenu .options {
+  display: flex;
+  align-items: center;
+}
+
+.notificationsMenu .notificationsList .notification .text { 
+  width: calc(100% - 80px);
+}
+
+.notificationsMenu .notificationsList .notification {
+  display: flex;
+  width: 100%;
+}
+
+.notificationsMenu .notificationsList .notification .icon {
+  width : 34px;
+  height: 32px;
+  background: rgb(194, 135, 250);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  margin-right: 4px;
+}
+
+.notificationsMenu .notificationsList .notification .accept,.notificationsMenu .notificationsList .notification .deny, .notificationsMenu .notificationsList .notification .confirm {
+  border-radius: 50%;
+  width : 24px;
+  height: 24px;
+  margin: 2px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition : 0.2s;
+}
+
+.notificationsMenu .notificationsList .notification .confirm {
+  background : lightskyblue;
+}
+
+.notificationsMenu .notificationsList .notification .accept {
+  background: lightgreen;
+  transition: 0.2s;
+}
+
+.notificationsMenu .notificationsList .notification .accept:active {
+  opacity: 0.2 ;
+}
+
+.notificationsMenu .notificationsList .notification .deny {
+  background : red;
+}
+
+.notificationsMenu .notificationsList .notification .accept:hover, .notificationsMenu .notificationsList .notification .deny:hover, .notificationsMenu .notificationsList .notification .confirm:hover {
+  opacity : 0.5;
+}

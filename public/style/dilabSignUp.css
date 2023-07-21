@@ -6,6 +6,15 @@ html {
     background: linear-gradient(to top right, rgb(255, 238, 0), rgb(255, 0, 170));
     background-attachment: fixed;
 }
+
+@media device and (min-width:700px) {
+    
+    .ppAndBio {
+        min-width: 300px;
+    }
+    
+}
+
 body {
     margin: 0;
     display: flex;
@@ -18,7 +27,7 @@ body {
 
 .signUpContainer {
     height: 90%;
-    width: calc(100% - 16px);
+    width: calc(100% - 30px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +41,7 @@ body {
     border-radius: 4px/4px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.575);
     display: flex;
-    width: 90%;
+    width: calc(100% - 80px);
     flex-direction: column;
     justify-content: left;
 }
@@ -63,6 +72,7 @@ body {
 
 .signUp input[name=genre] {
     margin : 0;
+    width: 100%;
 }
 
 .signUpInput .error {
@@ -127,6 +137,9 @@ form > * {
     padding: 0;
     justify-content: left;
     align-items: flex-end;
+    position : inherit;
+    bottom: 4px;
+    left: 4px;
 }
 
 .button {
@@ -169,7 +182,10 @@ form > * {
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
   }
-  
+
+  .inputSearchRecommendationContainer,.genresSelector {
+    width: 100%;
+  }  
   @keyframes glowingbn5 {
     0% {
       background-position: 0 0;
@@ -242,6 +258,7 @@ form > * {
     border-radius: 50%;
     position: relative;
     background: white;
+    cursor: pointer;
 }
 
 .profilePicture img {
@@ -301,7 +318,6 @@ form > * {
 }
 
 .ppAndBio {
-    min-width: 300px;
     margin-left: 10px;
     padding-left: 10px;
     border-left: 2px solid black;
@@ -325,4 +341,9 @@ textarea:hover, textarea:focus {
 
 .bottomButtons > * {
     width : fit-content;
+}
+
+h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -1,0 +1,1138 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+*[pc] {
+    display: none;
+}
+
+.fullScreen .lyricsCard .mainText {
+    font-size : 1.2em;
+    margin-top : 5%;
+    margin-bottom : 5%;
+}
+
+.fullScreen .lyricsCard .topText, .fullScreen .lyricsCard .bottomText {
+    font-size : 1.2em;
+    opacity : 0.6;
+    max-width: 100%;
+} 
+  
+.fullScreen .bottomEl .songInfosWrapper {
+    width: 100%;
+    margin-bottom: 40px;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullScreen .bottomEl .songInfosWrapper .soundName {
+    font-size: 20px;
+    max-width: calc(100% - 70px);
+    text-align: center;
+}
+
+.fullScreen .bottomEl .songInfosWrapper .soundAuthor {
+    font-size: 15px;
+}
+
+.musicControls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width : 100%;
+    font-size: 1.3em;
+}
+
+.fullScreen .musicControls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 30px;
+}
+
+.musicControls .musicButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+.player .musicControls .musicButtons {
+    height: 50px;
+}
+
+.musicControls .musicButtons .musicButton {
+    transition: 0.2s;
+    margin-left : 3px;
+    margin-right: 3px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.musicControls .musicButtons .musicButton:nth-child(2) {
+    font-size: 50px;
+}
+
+.fullScreen .musicControls .musicButtons .musicButton:nth-child(2) {
+    font-size: 1.6em;
+}
+
+.fullScreen .fullscreenExit {
+    font-size: 24px;
+}
+
+.textNavTitle {
+    display: none;
+}
+
+.contextMenu {
+    display: none;
+}
+
+.titleLogo {
+    display: none;
+}
+
+.box-container {
+    background-color: rgb(59, 52, 52);
+
+}
+
+.box-container .top-nav {
+    background-color: rgb(59, 52, 52);
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0px 20px 0 rgb(59, 52, 52);
+    position: relative;
+}
+
+.top-nav .notificationsMenu {
+    display: none;
+}
+
+.top-nav .notificationsButton {
+    height: 24px;
+    width: 24px;
+    color: rgb(203, 203, 203);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.box-container .top-nav .right-menu {
+    margin-right: 20px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popUpWindow {
+    display: none;
+}
+
+.top-nav .left-menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.top-nav .opt {
+    color : rgb(203, 203, 203);
+    font-size: 25px;
+}
+
+.top-nav .right-menu .search-container {
+    display: none;
+}
+
+/* Player */
+.box-container .player .musicInfos {
+    position : static;
+    height : 40px;
+}
+
+.box-container .player .musicInfos .description {
+    width: calc(100% - 65px);
+}
+
+.box-container .player .musicInfos .description > * {
+    max-width: none;
+}
+
+.box-container .player {
+    padding: 4px;
+    box-shadow: none ;
+    display: flex;
+    flex-direction : column;
+    height: fit-content;
+    position: absolute;
+    left: 2px;
+    bottom : 0px;
+    color: white;
+    width: calc(100% - 4px);
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: 20;
+    background: linear-gradient(to top,rgba(68, 65, 65, 1),rgba(68, 65, 65, 0.7));
+    backdrop-filter: blur(5px);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+.box-container .player .soundControl {
+    display : none;
+}
+
+.box-container .player .cover {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    /*width: 90px; version avec microphone icone*/
+    width: 60px;
+}
+
+.box-container .cover img{
+    border-radius: 8px/8px;
+    margin-bottom : 4px;
+    height: 50px;
+    width: 50px;
+}
+
+.box-container .player .cover svg {
+    height: 25px;
+    width: 25px;
+    display: none;
+    transition : 0.2s;
+}
+
+.main-content {
+    height: calc(100% - 46px);
+    position: relative;
+    color: white;
+}
+
+.main-content > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 140px;
+}
+
+.loginButton[mobile] {
+    font-size: 35px;
+}
+
+.loginButton[pc] {
+    display: none;
+}
+
+.player .musicInfos {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.player .likeIt {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.musicControls .musicBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.musicControls .musicBar .progressBarContainer {
+    height: 10px;
+    width: 80%;
+}
+
+.musicBar .musicDuration, .musicBar .musicProgressTime {
+    user-select: none;
+    width: 40px;
+    font-size: 15px;
+    display: flex;
+    justify-content:  center;
+}
+
+/* Progress Bars */
+/*
+<div class="progressBar">
+    <div class=fullBar>
+        <div class=filledPart>
+            <div class=dotPosition></div>
+        </div>
+    </div>
+</div>
+*/
+.progressBar {
+    position : relative;
+    height : 4px;
+    border-radius: 2px/2px;
+    background: rgb(163, 163, 163);
+    cursor: pointer;
+    margin: 10px;
+}
+
+.progressBar .filledPart {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 4px/4px;
+    width : 20%;
+    background: red;
+}
+
+.progressBar .filledPart .dotPosition {
+    position: absolute;
+    right : 0;
+    top : 50%;
+    transform: translate(50%,-50%);
+    height : 300%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: white;
+    /* z-index: 2; */
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    transition: opacity 0.2s;
+}
+
+.musicBar .musicDuration, .musicBar .musicProgressTime {
+    user-select: none;
+    width: 50px;
+    display: flex;
+    justify-content:  center;
+}
+
+.progressBar .filledPart .dotPosition:hover {
+    cursor : pointer;
+    background: rgb(231, 231, 231);
+}
+
+.progressBarContainer:active .filledPart .dotPosition {
+    background: rgb(143, 143, 143);
+}
+
+/* Sound Controls */
+
+.soundControl {
+    display: block;
+}
+
+.soundControl .playlistIcon {
+    display: none;
+}
+
+.soundControl .progressBarContainer {
+    display: none;
+}
+
+/* Search (2?)*/
+.searchField input {
+    border: none;
+    outline : none;
+}
+
+/* Releases */
+.releases {
+    width: 100%;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.release {
+    height: 60px;
+    width: calc( 100% - 20px );
+    border-radius: 4px/4px;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left : 4px;
+    padding-right: 4px;
+    transition: 0.2s;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.release * {
+    cursor: pointer;
+}
+
+.release:hover {
+    background :rgb(231, 231, 231) ;
+}
+
+.release .left-content {
+    display: flex;
+    align-items: center;
+    max-width: calc(100% - 50px);
+}
+
+.release .cover {
+    margin-right: 4px;
+}
+
+.release .cover img {
+    width: 50px;
+    height: 50px;
+}
+
+.release .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    cursor: auto;
+}
+.release .infos {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+.release .infos .groupAuthors {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+.release .control {
+    font-size: 2em;
+    margin-right : 8px;
+    cursor : pointer;
+    transition : 0.2s;
+}
+
+.release .control:hover {
+    transform: scale(1.2);
+}
+
+.release .duration {
+    display: none;
+}
+
+.groupsWrapper, .projectsWrapper {
+    display: flex;
+    flex-direction: column;
+    width : 100%;
+}
+
+.groupsContainer, .artistsContainer, .projectsContainer {
+    position: relative;
+}
+
+.leftBtn, .rightBtn {
+    display: none;
+}
+
+/* group (card) */
+.group {
+    height : 150px;
+    width: 95%;
+    color : rgb(207, 207, 207);
+    background: linear-gradient(to top right, rgb(58, 58, 58), grey);
+    margin-right: 4px;
+    padding-left : 0px;
+    border-radius: 8px/8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin : 8px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.group .textContent {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    width : 100%;
+    height : 100%;
+}
+
+.group .title {
+    width : calc(100% - 4px);
+    margin-top : 4px;
+    color : white;
+    font-size: 1.5em;
+}
+
+.group .cover {
+    margin-right : 8px;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    height : 100%;
+    max-width: 60%;
+}
+
+.group .cover img {
+    width : 100%;
+    height: 100%;
+    border-radius: 8px/8px;
+}
+
+.group .infos {
+    display : flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    width : 100%;
+    font-size: 0.8em;
+}
+
+.group .infos .members {
+    display: flex;
+    align-items: center;
+}
+
+.group .infos .groupProjects {
+    display: flex;
+    align-items: center;
+}
+
+.group .biography {
+    width : 100%;
+}
+
+/* Project (cards) */
+
+.projects {
+    width: 100%;
+}
+
+.projects .projectProgress {
+    display : flex;
+    align-items: center;
+    width : 100%;
+    justify-content: center;
+    font-size: 0.6em;
+    text-align: center;
+}
+
+.projects .projectProgress .stationProgressWrapper {
+    width: calc(100% - 60px);
+}
+
+.projects .project {
+    background :rgb(97, 95, 95);
+    border-radius: 8px/8px;
+    width : 95%;
+    height : 200px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    padding : 4px;
+    margin : 8px;
+    transition: 0.2s;
+    color : lightgray;
+    cursor: pointer;
+}
+
+.projects .project .steps {
+    width: 100%;
+    transition: 1.2s;
+}
+
+.projects .project .mainDescription {
+    width: calc(100% - 150px);
+    height: 100%;
+    margin-left : 10px;
+}
+
+.projects .project .cover img{
+    height : 140px;
+    width : 140px;
+    border-radius: 8px/8px;
+    margin-bottom : 4px;
+}
+
+.projects .project .cover{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height : 200px;
+    width : 140px;
+    font-size : 2em;
+}
+
+.projects .header {
+    display : flex;
+    align-items: flex-end;
+    width : 100%;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.projects .header .title {
+    color : white;
+}
+
+.projects .project .header > * {
+    margin-right : 5px;
+    text-overflow: ellipsis;
+}
+
+.projects .project .description {
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    font-size: 0.8em;
+}
+
+.projects .project .playBtn {
+    transition: 0.2s;
+    color : white;
+    cursor: pointer;
+}
+
+/*/playBtn, when not pointless*/
+.projects .project .enabled:hover {
+    transform: scale(1.2);
+}
+
+.projects .project .projectGroup {
+    font-size: 0.8em;
+    padding-bottom : 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* Artist (card) */
+.search-results .artist .title {
+    width: 116px;
+    text-align: center;
+    font-size : 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Do not remove the rule just above. Otherwise the the font-size will increase by 50% */
+}
+
+.search-results .artist .cover {
+    width : 100px;
+    height : 100px;
+    border-radius: 50%;
+}
+
+.search-results .artist .cover img {
+    vertical-align: unset;
+    width : 100px;
+    height : 100px;
+    border-radius: 50%;
+}
+
+.search-results .artist .furtherInfos {
+    color : lightgrey;
+    font-size: 0.8em;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-results .artist {
+    width : 120px;
+    height : 240px;
+    background : linear-gradient(to top right, rgb(58, 58, 58), grey);
+    border-radius: 8px/8px;
+    color : white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    margin : 8px;
+    cursor: pointer;
+}
+
+.artistsWrapper {
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
+}
+
+/* ChatBox */
+
+.chat {
+    height: 600px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    border-radius: 8px/8px;
+    margin-bottom: 20px;
+}
+
+.chat > .messagesHeader {
+    width: 100%;
+    height: 50px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: linear-gradient(to right, red,purple);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 10px;
+    color: white;
+}
+
+.chat > .messagesHeader > h4 {
+    margin : 0;
+    display: flex;
+    align-items: center;
+}
+
+.chat > .messagesContainer {
+    height :500px;
+    background : rgb(127, 127, 127);
+    width : 100%;
+    /*overflow-y: auto; /*TO DYNAMISE : must be set to auto when available*/
+    box-shadow: 
+        inset 0px 11px 8px -10px rgb(163, 163, 163),
+        inset 0px -11px 8px -10px rgb(163, 163, 163);
+    position: relative;
+}
+
+.chat > .messagesContainer > .noMessage {
+    text-align: center;
+}
+
+.chat > .messagesContainer > .messagesUnavailable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    background: rgb(90 90 90 / 50%);
+    user-select: none;
+}
+
+.chat > .messagesContainer > .messagesUnavailable > * {
+    margin-top : 5px;
+}
+
+.chat > .messagesContainer > .globalMessage > .messageWrapper {
+    width : 100%;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: 2px;
+}
+
+.chat > .messagesContainer > .globalMessage > .messageWrapper > .message {
+    border-radius : 16px/16px;
+    font-size: 16px;
+    width: fit-content;
+    padding: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.chat > .messagesContainer > .globalMessage > .messageWrapper > .message > p {
+    margin: 0;
+}
+
+.chat > .messagesContainer > .globalMessage > .messageTimeWrapper {
+    width : 100%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #9e9e9e;
+}
+
+.chat > .messagesContainer > .local > .messageWrapper > .message {
+    background-color: black;
+    color: white;
+}
+
+.chat > .messagesContainer > .dist > .messageWrapper > .message > .author {
+    width: fit-content;
+    color: rgb(218, 217, 217);
+    font-size : 12px;
+    text-decoration: none;
+}
+
+.chat > .messagesContainer > .dist > .messageWrapper > .message {
+    background : rgb(248, 14, 14);
+    color: white;
+    max-width: 90%;
+}
+
+.chat > .messagesContainer > .local > .messageWrapper, .chat > .messagesContainer > .local > .messageTimeWrapper {
+    justify-content : right;
+    padding-right: 5px;
+}
+
+.chat > .messagesContainer > .dist > .messageWrapper, .chat > .messagesContainer > .dist > .messageTimeWrapper {
+    justify-content : left;
+    padding-left : 5px;
+}
+
+.chat > .chatInputContainer {
+    width : 100%;
+    height : 50px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: linear-gradient(to right, red,purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color : white;
+    position: relative;
+}
+
+.chat > .chatInputContainer > .hider {
+    position: absolute;
+    display : block ; /* must be set to none if chat available */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, red, purple);
+    opacity: 0.9;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor:default;
+}
+
+.chat > .chatInputContainer > div {
+    cursor: pointer;
+}
+
+.chat > .chatInputContainer > .chatInput {
+    transition: 0.2s;
+    border-radius: 16px/16px;
+    height: 32px;
+    width : calc(100% - 80px);
+    border : none;
+    padding-left : 8px;
+    margin-right: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    outline : none;
+}
+
+.chat > .chatInputContainer > .chatInput:focus {
+    box-shadow: 0 0 5px 2px white;
+}
+
+.chat > .chatInputContainer > .chatInput::placeholder {
+    color : rgb(85, 85, 85);
+}
+
+.chat > .chatInputContainer > .chatSendBtn, .chat > .chatInputContainer > .chatAttachBtn {
+    height: 32px;
+    width: 32px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.chat > .chatInputContainer > .chatSendBtn > svg, .chat > .chatInputContainer > .chatAttachBtn > svg {
+    height: 90%;
+    width: 90%;
+    aspect-ratio: 1;
+}
+
+.chat > .chatInputContainer > .chatSendBtn:hover, .chat > .chatInputContainer > .chatAttachBtn:hover {
+    opacity: 0.6;
+}
+
+.chat > .chatInputContainer > .chatAttachBtn > .chatFileInput {
+    display: none;
+}
+
+.chat > .messagesContainer::-webkit-scrollbar-thumb
+{
+	background-color: #9e9e9e;
+}
+
+.chat > .messagesContainer > .dateAnouncement {
+    display: flex;
+    justify-content: center;
+}
+
+.chat > .messagesContainer > .dateAnouncement > .datePopUp {
+    background: purple;
+    margin: 4px;
+    color: white;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 4px/4px;
+    font-size: 0.8em;
+}
+
+/* New projects/groups */
+.newProject, .newGroup {
+    cursor: pointer;
+    user-select: none;
+    width : 95%;
+    height : 200px;
+    background : linear-gradient(to top right, rgb(132, 182, 132), rgb(127, 127, 200));
+    border-radius: 8px/8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color : white;
+    margin-left: 8px;
+    margin-bottom: 16px ;
+    transition: 0.2s;
+}
+
+.newProject .newProjectIcon, .newGroup .newGroupIcon {
+    aspect-ratio: 1;
+    height: 90%;
+    background: rgb(211, 211, 211,0.2);
+    font-size: 130px;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px/8px;
+}
+
+/* Project page*/
+/*steps*/
+.projectPage .progressPart {
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectPage .progressPart .projectProgress {
+    width: 75%;
+    margin-bottom: 40px;
+}
+
+.projectPage .progressPart .projectProgress .steps .step {
+    position : relative;
+}
+
+.projectPage .progressPart .projectProgress .steps .step .stage {
+    position: absolute;
+    top : 120%;
+    right: 0;
+    transform: translate(calc(50% - 7px)) skew(-0.05turn,0deg) ;
+    text-align: center;
+    color : white;
+}
+
+/* Project page */
+
+.projectPage .projectFiles {
+    display: none;
+}
+
+.projectPage .editLyricsBtnContainer {
+    display: flex;
+    align-items: center;
+}
+
+.projectPage .cancelButton[button-action="cancelEditLyrics"] {
+    margin-left: 4px;
+}
+
+.projectPage .cancelButton {
+    display: none;
+}
+
+.projectPage .lyricsContent {
+    box-shadow: 5 0 0 -5 rgba(255, 255, 255, 0.8);
+    user-select: none;
+    outline: none;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.projectPage .lyricsContent[contenteditable="true"] {
+    box-shadow: 5 0 0 -5 rgba(255, 255, 255, 0.8);
+    outline: none;
+}
+
+.projectPage .lyricsCard {
+    height: fit-content;
+    max-height: 400px;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    width: 95%;
+    padding: 10px;
+    text-overflow: ellipsis;
+    border-radius: 8px/8px;
+    background: linear-gradient(to top right, lightgreen, green);
+    color : white;
+    margin-bottom: 10px ;
+}
+
+.projectPage .lyricsCard > .lyricsCardHeader, .projectPage .projectCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projectPage .lyricsCard > .lyricsCard > button {
+    height: fit-content;
+}
+
+.lyricsCard > p {
+    margin-bottom: 0;
+    font-size : 18px
+}
+
+/* File containers */
+
+.file {
+    border-radius: 8px/8px;
+    padding: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+}
+
+.file .optBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file .optBtns .separator {
+    width : 8px;
+}
+
+.projectFile {
+    color : white;
+    background: linear-gradient(to right, rgb(3, 3, 94), rgb(4, 85, 112));
+}
+
+.projectFile .infoWrapper, .audioFile .infoWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.projectFile h4 {
+    margin-bottom : 0;
+}
+
+.audioFile {
+    background: linear-gradient(to right, rgb(28 74 68), rgb(18, 104, 133));
+}
+
+.projectPage .styledHead,.groupPage .styledHead {
+    background: linear-gradient(to right, pink, purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+}
+
+.groupPage .styledHead h4 {
+    text-align: center;
+}
+
+.styledHeadPP input[type=file] {
+    display: none;
+}
+
+.styledHeadPP {
+    border-radius: 8px/8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.styledHeadPP img {
+    border-radius: 8px/8px;
+}
+
+.styledHeadEditIcon {
+    display: none;
+}
+
+.styledHeadPP {
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    height : 140px;
+    width: 140px;
+    display : flex;
+    justify-content: left;
+    align-items: center;
+    background: rgb(90, 76, 76);
+}
+
+.styledHeadPP img {
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.main-content-header {
+    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.projectPage a {
+    color : white;
+}

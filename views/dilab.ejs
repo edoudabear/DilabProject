@@ -4,7 +4,8 @@
 		<title>Dilab (by Diskloud)</title>
 		<meta charset='utf-8' />
         <link rel='icon' href="https://dev.diskloud.fr/mediaCE/gifgit%20(3).png" />
-        <link rel="stylesheet" media="screen" type="text/css" href="https://www.diskloud.fr/node/dilabRessources/style/dilab.css">
+        <link rel="stylesheet" media="screen and (min-width: 700px)" type="text/css" href="https://www.diskloud.fr/node/dilabRessources/style/dilab.css">
+        <link rel="stylesheet" media="screen and (max-width: 700px)" type="text/css" href="https://www.diskloud.fr/node/dilabRessources/style/dilabMobile.css">
         <link rel="stylesheet" media="screen" type="text/css" href="https://www.diskloud.fr/node/dilabRessources/style/dilabAdditionalComponents.css">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
@@ -21,22 +22,24 @@
 		<div class="box-container">
 			<div class="top-nav">
 				<div class=left-menu>
-					<h4 class="title">Dilab</h4>
-					<h4 class="opt">Releases</h4>
-					<h4 class="opt">Projects</h4>
-					<h5 class="opt">Groups</h5>
+					<h4 tabindex="1" class="title titleLogo">Dilab</h4>
+					<h4 tabindex="2" class="opt"><i class="bi bi-music-note-beamed"></i> <span class="textNavTitle">Releases</span></h4>
+					<h4 tabindex="3" class="opt"><i class="bi bi-vinyl"></i> <span class="textNavTitle">Projects</span></h4>
+					<h5 tabindex="4" class="opt"><i class="bi bi-people-fill"></i> <span class="textNavTitle">Groups</span></h5>
+					<h6 class="opt mobileOpt"><i class="bi bi-search"></i></h6>
 				</div>
 				<div class=right-menu>
 					<div class=search-container>
-						<input class=search-field maxlength="40" type=text placeholder="Search content..">
+						<input tabindex="5" class=search-field maxlength="40" type=text placeholder="Search content..">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 						</svg>
 					</div>
 					<% if (connected==false) {%>
-						<button class="button loginButton">Login</button>
+						<h4 tabindex="7" class="opt loginButton" mobile><i class="bi bi-box-arrow-in-right"></i></h4>
+						<button tabindex="7" class="button loginButton" pc><i class="bi bi-box-arrow-in-right"></i>&nbsp;&nbsp;Login</button>
 					<% } else { %>
-						<div class="notificationsButton">
+						<div tabindex="6" class="notificationsButton">
 							<div class="labelCount"></div>
 							<i class="bi bi-bell"></i>
 						</div>
@@ -75,8 +78,8 @@
 								</div>
 							</div>
 						</div>
-						<div class=userProfileCircleButton><img class=userPPImg src=/dilab/user/person-circle.svg /></div>
-						<div class=userMainMenu></a><div class=menuPP><img class=menuPPImg src=/dilab/user/person-circle.svg /></div><div class=infoText>Welcome,<br /><span class=nameAndSurname></span> !</div><div class="settingsBtn aButton"><i class="bi bi-gear-fill"></i>Settings</div><div class="aButton disconnectBtn"><i class="bi bi-power"></i>Log Out</div></div>
+						<div tabindex="7" class=userProfileCircleButton><img class=userPPImg src=/dilab/user/person-circle.svg /></div>
+						<div class=userMainMenu></a><div class=menuPP><img class=menuPPImg src=/dilab/user/person-circle.svg /></div><div class=infoText>Welcome,<br /><span class=nameAndSurname></span> !</div><div class="settingsBtn aButton" tabindex="8"><i class="bi bi-gear-fill"></i>Settings</div><div class="aButton disconnectBtn" tabindex="9"><i class="bi bi-power"></i>Log Out</div></div>
 					<%}%>
 				</div>
 				<div class=progress-load></div>
@@ -90,7 +93,7 @@
 			</div>
 			<div class=player>
 				<div class="musicInfos">
-					<div title="Display lyrics (if available)" class="cover">
+					<div tabindex="10" title="Display lyrics (if available)" class="cover">
 						<svg title="Display lyrics (if available)" class="musicPlayerCoverHover" xmlns="http://www.w3.org/2000/svg" width="59" height="58" viewBox="0 0 59 58"><path fill="#000" fill-rule="evenodd" d="M51.52 21.388a9.723 9.723 0 0 1-8.333 2.729 9.661 9.661 0 0 1-5.352-2.73 9.627 9.627 0 0 1-2.704-5.179c-.52-3.112.488-6.292 2.704-8.506a9.615 9.615 0 0 1 6.844-2.832 9.61 9.61 0 0 1 6.842 2.832 9.618 9.618 0 0 1 2.831 6.844 9.614 9.614 0 0 1-2.831 6.842zM18.125 45.47l-4.262-4.26 18.579-20.892a13.572 13.572 0 0 0 2.657 3.806c1.158 1.157 2.503 2.053 3.958 2.719L18.124 45.47zM54.258 4.965A13.452 13.452 0 0 0 44.678 1a13.46 13.46 0 0 0-9.58 3.966c-2.866 2.865-4.267 6.88-3.886 10.914L9.757 40.001a1.935 1.935 0 0 0 .077 2.656l1.837 1.837L.567 55.596a1.933 1.933 0 0 0 1.369 3.303c.495 0 .99-.187 1.368-.567L14.408 47.23l2.27 2.269a1.932 1.932 0 0 0 2.654.077l24.232-21.561c.362.029.724.083 1.084.083 3.569 0 7.053-1.415 9.61-3.973a13.459 13.459 0 0 0 3.965-9.58 13.46 13.46 0 0 0-3.965-9.58z" transform="translate(0 -1)"/></svg>
 						<img  title="Display lyrics (if available)"  class="coverOfCurrentlyPlayingSound" src="https://e.diskloud.fr/Dilab/project/music-note-beamed.svg" />
 					</div>
@@ -102,19 +105,19 @@
 							No group chosen
 						</div>
 					</div>
-					<div class="likeIt disabled">
+				<div class="likeIt disabled">
 						<i class="bi bi-heart"></i>
 					</div>
 				</div>
 				<div draggable="false" class=musicControls>
 					<div class=musicButtons>
-						<div class="musicButton disabled">
+						<div tabindex="11" class="musicButton disabled">
 							<i class="bi bi-skip-backward"></i>
 						</div>
-						<div class="musicButton disabled">
+						<div tabindex="12" class="musicButton disabled">
 							<i class="bi bi-play-circle"></i>
 						</div>
-						<div class="musicButton disabled">
+						<div tabindex="13" class="musicButton disabled">
 							<i class="bi bi-skip-forward"></i>
 						</div>
 					</div>
@@ -135,7 +138,7 @@
 					</div>
 				</div>
 				<div draggable="false" class=soundControl>
-					<div class="playlistIcon disabled">
+					<div tabindex="14" class="playlistIcon disabled">
 						<i class="bi bi-music-note-list"></i>
 						<div class="playlistMenu">
 							<div class=playlistMenuHeader>
@@ -268,7 +271,7 @@
 							</div>
 						</div>
 					</div>
-					<div class=soundIcon>
+					<div tabindex="15" class=soundIcon>
 						<i class="bi bi-volume-mute-fill"></i>
 					</div>
 					<div class="progressBarContainer">
@@ -310,17 +313,17 @@
 					</div>
 				</div>
 				<div draggable="false" class=musicControls>
-				<div class=musicButtons>
-					<div class="musicButton disabled">
-						<i class="bi bi-skip-backward"></i>
+					<div class=musicButtons>
+						<div class="musicButton disabled">
+							<i class="bi bi-skip-backward"></i>
+						</div>
+						<div class="musicButton disabled">
+							<i class="bi bi-play-circle"></i>
+						</div>
+						<div class="musicButton disabled">
+							<i class="bi bi-skip-forward"></i>
+						</div> 
 					</div>
-					<div class="musicButton disabled">
-						<i class="bi bi-play-circle"></i>
-					</div>
-					<div class="musicButton disabled">
-						<i class="bi bi-skip-forward"></i>
-					</div> 
-				</div>
 				</div>
 			</div>
 		</div>

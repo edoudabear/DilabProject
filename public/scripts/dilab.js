@@ -6,6 +6,7 @@ var loadBar=document.querySelector(".progress-load");
 var mainContent = document.querySelector(".main-content");
 var logoAnimation = gsap.timeline({});
 var searchField = document.querySelector(".search-field");
+let searchField2 = document.querySelector(".searchField input"); // For mobile interface
 var playerNotEmpty=false;
 let fileRegexp=/[^a-zA-Z0-9._-\s()]+/g;
 logoAnimation.from(".title",0,{scale : 1, color : "white", textShadow :"0 0 0 #FFFFFF, 0 0 0 #FFFFFF", rotate: "0", transform : "skew(0deg,0deg)"})
@@ -760,6 +761,8 @@ function pathAnalysis() {
     document.querySelector(".opt").style.fontWeight="";
     document.querySelectorAll(".opt")[1].style.fontWeight="";
     document.querySelectorAll(".opt")[2].style.fontWeight="";
+    document.querySelectorAll(".opt").forEach(el=>{el.style.color="";});
+    console.log(path)
     switch (path) {
         case "" :
             loadTemplate("home",()=>{
@@ -1833,6 +1836,7 @@ function pathAnalysis() {
         case "/releases" :
             loadTemplate("releases",()=>{
                 document.querySelector(".opt").style.fontWeight="bold";
+                document.querySelector(".opt").style.color="white";
                 document.querySelector(".projectLink").addEventListener("click",()=>{loadPage("Projects","projects",[])});
             
                 fetch(`/Dilab/get`, {
@@ -2026,6 +2030,7 @@ function pathAnalysis() {
         case "/projects" :
             loadTemplate("projects",()=>{
                 document.querySelectorAll(".opt")[1].style.fontWeight="bold";
+                document.querySelectorAll(".opt")[1].style.color="white";
                 document.querySelectorAll(".projectsContainer .leftBtn")[0].addEventListener("click", () => {
                     document.querySelectorAll(".projectsContainer > .projects")[0].scrollBy(-window.innerWidth+200, 0);
                 });
@@ -2522,6 +2527,7 @@ function pathAnalysis() {
         case "/groups" :
             loadTemplate("groups",()=>{
                 document.querySelectorAll(".opt")[2].style.fontWeight="bold";
+                document.querySelectorAll(".opt")[2].style.color="white";
                 document.querySelectorAll(".groupsContainer .leftBtn")[0].addEventListener("click", () => {
                     document.querySelectorAll(".groupsContainer > .groups")[0].scrollBy(-window.innerWidth+200, 0);
                 });
@@ -2765,12 +2771,33 @@ function pathAnalysis() {
                 }
             });
             break;
+        case "/searchpage" :
+            loadTemplate("searchpage",()=>{
+                document.querySelectorAll(".opt")[3].style.color="white";
+                searchField2 = document.querySelector(".searchField input"); // For mobile interface
+                if (searchField2?.value)
+                    searchField2.value=query;
+                searchField2?.addEventListener("keypress",function(e) {
+                    if (e.key=="Enter") {
+                        searchLoad();
+                    }
+                });
+            });
+            break;
         case "/search" :
             query=urlParams.get("q")
             if (query!=null && query!="") {
                 loadTemplate("search",()=>{
+                    searchField2 = document.querySelector(".searchField input"); // For mobile interface
                     searchField.value=query;
-                    document.querySelector(".main-content-header").innerHTML+=' "'+query.replace(/ /g,"&nbsp;")+'"';
+                    if (searchField2!=null)
+                        searchField2.value=query;
+                    searchField2?.addEventListener("keypress",function(e) {
+                        if (e.key=="Enter") {
+                            searchLoad();
+                        }
+                    });
+                    document.querySelectorAll(".main-content-header")[1].innerHTML+=' "'+query.replace(/ /g,"&nbsp;")+'"';
                     window.onresize= (e)=> {
                         var elements = document.querySelectorAll(".search-results .release .streams");
                         if (document.querySelector(".search-results .release") && document.querySelector(".search-results .release").offsetWidth < 600) {
@@ -2994,7 +3021,9 @@ function pathAnalysis() {
                 });
                 break;
         } default :
-        loadTemplate("error404",()=>{});
+        loadTemplate("error404",()=>{
+            document.querySelector(".bg-wrap svg").setAttribute("viewBox",`0 0 ${window.innerWidth} ${window.innerHeight}`)
+        });
     }
 }
 
@@ -3170,6 +3199,7 @@ function reloadUserData(firstConnection=false) {
 
 function loadPage(title,url,params=[]) {
     url = 'https://e.diskloud.fr/Dilab/'+url;
+    console.log(url);
     for (var i=0;i<params.length;i++) {
         if (i==0) {
             url+="?"
@@ -3192,12 +3222,14 @@ window.onpopstate = function(event) {
 var templateLoadTimeout=null;
 
 function loadTemplate(link,callBack) {
+    console.log("link :" +link);
     if (templateLoadTimeout!=null) {
         clearTimeout(templateLoadTimeout); // ensures that timeout hiding progress bar does not trigger after if calling this function too quickly
     }
     loadBar.style.display="block";
     loadBar.style.width="5%";
     xhr= new XMLHttpRequest;
+    console.log("https://e.diskloud.fr/DilabRessources/dilabTemplates/"+link+".txt");
     xhr.open("GET","https://e.diskloud.fr/DilabRessources/dilabTemplates/"+link+".txt");
     xhr.onload=function() {
         if (xhr.statusCode!=200) {
@@ -3216,8 +3248,11 @@ function loadTemplate(link,callBack) {
 }
 
 function searchLoad() {
-    if (searchField.value.trim()!="")
+    if (searchField.value.trim()!="" && window.innerWidth>700)
         loadPage("Search results","search",[["q",searchField.value]]);
+    else if (searchField2?.value.trim()!="" && window.innerWidth<=700) {
+        loadPage("Search results","search",[["q",searchField2.value]]);
+    }
 }
 
 function outerWidth(el) {
@@ -3230,12 +3265,13 @@ document.querySelector(".title").addEventListener("click",()=>{loadPage("Dilab",
 document.querySelectorAll(".opt")[0].addEventListener("click",()=>{loadPage("Releases","releases",[])});
 document.querySelectorAll(".opt")[1].addEventListener("click",()=>{loadPage("Projects","projects",[])});
 document.querySelectorAll(".opt")[2].addEventListener("click",()=>{loadPage("Groups","groups",[])});
+document.querySelectorAll(".opt")[3].addEventListener("click",()=>{loadPage("Search","searchpage",[])})
 document.querySelector(".bi-search").addEventListener("click",()=>{searchLoad()});
 searchField.addEventListener("keypress",function(e) {
     if (e.key=="Enter") {
         searchLoad();
     }
-})
+});
 document.querySelector(".title").addEventListener("mouseover",()=>{
     if (!logoAnimation.isActive())
         logoAnimation.play(0);
@@ -3245,12 +3281,14 @@ document.querySelector(".title").addEventListener("mouseover",()=>{
 // Première connection ?
 if (document.querySelector(".loginButton")) {
     pathAnalysis();
-    document.querySelector(".loginButton").addEventListener("click",()=> {
-        var path=window.location.href.toLowerCase().replace("https://e.diskloud.fr/dilab","");
-        if (path[0]=="/") {
-            path=path.slice(1,path.length);
-        }
-        redirect("https://e.diskloud.fr/Dilab/login?redirect="+encodeURIComponent(path));
+    document.querySelectorAll(".loginButton").forEach(el=>{
+        el.addEventListener("click",()=> {
+            var path=window.location.href.toLowerCase().replace("https://e.diskloud.fr/dilab","");
+            if (path[0]=="/") {
+                path=path.slice(1,path.length);
+            }
+            redirect("https://e.diskloud.fr/Dilab/login?redirect="+encodeURIComponent(path));
+        });
     });
 } else {
     var userBtn=document.querySelector(".userProfileCircleButton"),
@@ -3594,7 +3632,35 @@ document.addEventListener('mouseup',() => {
     if (soughtProgress!=null) {
         audioObj.currentTime=soughtProgress;
     }
-})
+});
+
+document.addEventListener('touchstart',e=> { // Listener to allow drag when click begun by user
+    clickedElement=e.target;
+    while (document.querySelector(".playlistMenu")!=clickedElement && document.querySelector(".progressBarContainer")!=clickedElement  && clickedElement!=document.querySelectorAll(".progressBarContainer")[1] && clickedElement!=document.body) {
+        clickedElement=clickedElement.parentNode;
+    }
+    clicking=true;
+    soughtProgress=null;
+    clickedElement.querySelector(".dotPosition").style.transform="scale(1.4) translate(35%,-35%)";
+    var evt = new MouseEvent("touchmove", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX:e.touches[0].clientX,
+        clientY:e.touches[0].clientY
+    });
+    document.querySelector(".progressBarContainer").dispatchEvent(evt);
+});
+
+document.addEventListener('touchend',() => {
+    if (clickedElement!=null)
+        clickedElement.querySelector(".dotPosition").style.transform="";
+    clickedElement=null;
+    clicking=false;
+    if (soughtProgress!=null) {
+        audioObj.currentTime=soughtProgress;
+    }
+});
 
 //Music Progress Control
 document.querySelector(".progressBarContainer").addEventListener('click', e => {
@@ -3719,6 +3785,45 @@ document.addEventListener('mousemove', e => {
                 updateSoundIcon(x);
                 audioObj.volume=x/100;
             }
+        }
+    }
+});
+
+document.querySelector(".progressBarContainer").addEventListener('touchmove', e => {
+    if (!clicking && clickedElement==null) { // Check if mouse is held
+        return;
+    }
+    else {
+        if (clickedElement==document.body) {
+            return;
+        }
+        if (clickedElement==document.querySelector(".progressBarContainer")) {
+            var progress= document.querySelectorAll(".progressBarContainer")[0].querySelector(".progressBar");
+            let bounds = progress.getBoundingClientRect();
+            var x;
+            if (((e.clientX - bounds.left)/progress.offsetWidth)*100>100) {
+                x=100;
+            } else if (((e.clientX - bounds.left)/progress.offsetWidth)*100<0) {
+                x=0;
+            } else if (e.clientX) {
+                x = ((e.clientX - bounds.left)/progress.offsetWidth)*100;
+            } else if (((e.touches[0].clientX - bounds.left)/progress.offsetWidth)*100>100) {
+                x=100;
+            } else if (((e.touches[0].clientX - bounds.left)/progress.offsetWidth)*100<0) {
+                x=0;
+            } else {
+                x = ((e.touches[0].clientX - bounds.left)/progress.offsetWidth)*100;
+            }
+            //y = e.clientY - bounds.top;
+            progress.querySelector(".filledPart").style.width = x+"%";
+            if (audioObj.paused) {
+                updateMusicProgressTime(x/100*audioObj.duration);
+            }
+            soughtProgress=x/100*audioObj.duration;
+            /*
+                updateSoundIcon(x);
+                audioObj.volume=x/100;
+            */
         }
     }
 });
@@ -4265,3 +4370,11 @@ function timestampToNormalTime(timestamp) {
     }
     return time+secs;
 }
+
+document.querySelectorAll("*[tabindex]").forEach(el=>{
+    el.addEventListener("keyup",e=>{
+        if (e.key=="Enter" || e.key==" ") {
+            el.click();
+        }
+    })
+})
