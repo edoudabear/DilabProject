@@ -15,8 +15,13 @@
     opacity : 0.6;
     max-width: 100%;
 } 
+
+.fullScreen .bottomEl .fullScreen .songInfosCoverWrapper {
+    width: 100%;
+    position: relative;
+}
   
-.fullScreen .bottomEl .songInfosWrapper {
+.fullScreen .bottomEl .fullScreen .songInfosWrapper {
     width: 100%;
     margin-bottom: 40px;
     position: absolute;
@@ -25,7 +30,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -107,14 +112,15 @@
 }
 
 .box-container .top-nav {
+    order: 3;
     background-color: rgb(59, 52, 52);
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid rgb(59, 52, 52);
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0px 20px 0 rgb(59, 52, 52);
     position: relative;
+    height: 60px;
 }
 
 .top-nav .notificationsMenu {
@@ -138,16 +144,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.popUpWindow {
-    display: none;
+    margin-top: 5px;
 }
 
 .top-nav .left-menu {
     display: flex;
     width: 100%;
     justify-content: space-around;
+    align-items: center;
+    margin-top: 8px;
 }
 
 .top-nav .opt {
@@ -174,6 +179,7 @@
 }
 
 .box-container .player {
+    order: 2;
     padding: 4px;
     box-shadow: none ;
     display: flex;
@@ -181,13 +187,13 @@
     height: fit-content;
     position: absolute;
     left: 2px;
-    bottom : 0px;
+    bottom : 55px;
     color: white;
     width: calc(100% - 4px);
     left: 50%;
     transform: translate(-50%,0);
     z-index: 20;
-    background: linear-gradient(to top,rgba(68, 65, 65, 1),rgba(68, 65, 65, 0.7));
+    background: linear-gradient(to top,rgb(59, 52, 52),rgba(58, 58, 58, 0.848));
     backdrop-filter: blur(5px);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -226,6 +232,7 @@
     height: calc(100% - 46px);
     position: relative;
     color: white;
+    order: 1;
 }
 
 .main-content > * {
@@ -360,10 +367,38 @@
     display: none;
 }
 
-/* Search (2?)*/
-.searchField input {
+/* Search */
+
+.searchField input::placeholder {
+    color: #929292;
+}
+
+.searchField input[type="text"] {
+    outline: none;
+    width: calc(100% - 60px);
     border: none;
-    outline : none;
+}
+
+.searchField svg {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    margin-right: 2px;
+    color: black;
+}
+
+.searchField {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 2px/2px;
+    width: 95%;
+    border: none;
+    height: 40px;
+    font-size: 25px;
+    margin-left: 10px;
 }
 
 /* Releases */
@@ -697,8 +732,9 @@
 
 .artistsWrapper {
     display: flex;
-    width: fit-content;
+    width: 95%;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* ChatBox */
@@ -1136,3 +1172,468 @@
 .projectPage a {
     color : white;
 }
+
+/* Settings page */
+
+.settingsPage {
+    width: 100%;
+}
+
+.settingsPage > .main-content-header {
+    text-align: left;
+}
+
+.settingsPageWrapper {
+    width: 100%;
+    padding: 5px;
+}
+
+.settingsPageWrapper > * {
+    margin-left: 8px;
+}
+
+.settingsPage .pictureIcon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.settingsPage .userProfile {
+    height: fit-content;
+}
+
+.settingsPage .profilePicture {
+    height : 180px;
+    aspect-ratio: 1;
+    background : darkslategrey;
+    border: 2px solid darkslategrey;
+    border-radius: 50%;
+    position: relative;
+}
+
+.settingsPage .profilePicture img {
+    height : 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.settingsPage .profilePicture .svgContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    height : 100%;
+    aspect-ratio: 1;
+    opacity: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background : lightgray;
+    transition: 0.2s;
+}
+
+.settingsPage .profilePictureInput {
+    display: none;
+}
+
+.settingsPage .profilePicture .svgContainer svg {
+    height : 50%;
+    aspect-ratio: 1;
+    background : lightgray;
+    color: white;
+}
+
+.settingsPage .profilePicture:hover .svgContainer {
+    opacity: 1;
+}
+
+.settingsPage .profilePicture:hover .svgContainer svg{
+    display : block;
+}
+
+.settingsPage .pictureRemButton {
+    display: none;
+    font-size: 0.7em;
+    margin:10px;
+}
+
+.settingsPage .biographyInput {
+    resize: none;
+    max-width: 600px;
+    width: 80%;
+    margin-bottom: 8px;
+}
+
+
+.settingsPage .button {
+    margin : 4px;
+}
+
+/* FORM WINDOWS */
+.popUpWindowContainer {
+    width: 100%;
+    height: 100%;
+    top : 0;
+    left : 0;
+    position: fixed;
+    background : rgb(0,0,0,0.6);
+    z-index: 20;
+    display: none;
+}
+
+.popUpWindowContainer .popUpWindow {
+    background-color: rgb(69, 69, 69);
+    position: absolute;
+    right : 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    width: 90%;
+    height : 95%;
+    border-radius: 8px/8px;
+    color: white;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+}
+
+.popUpWindowContainer .popUpWindow .popUpHeader {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding : 2px;
+    background: #929292;
+    border-bottom: 0.5px solid grey;
+    /*position : absolute;
+    top : 0;*/
+    width : 100%;
+    height : 32px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popUpWindowContainer .popUpWindow .popUpHeader .popUpTitle {
+    width : calc(100% - 27px);
+    display: flex;
+    justify-content: center;
+}
+
+.popUpWindowContainer .popUpWindow .popUpHeader .popUpCloseBtn {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    aspect-ratio : 1;
+    border-radius: 50%;
+    width : 27px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.popUpWindowContainer .popUpWindow .popUpHeader .popUpCloseBtn:hover {
+    opacity: 0.8;
+    background : grey;
+    color : white;
+}
+
+.popUpWindowContainer .popUpWindow .popUpMainContent {
+    width: 100%;
+    height: calc(100% - 32px);
+    overflow : auto;
+    padding : 4px;
+    transition: elastic 0.2s;
+}
+
+.popUpWindowContainer .popUpWindow .popUpMainContent  input {
+    font-size: 20px;
+}
+
+.popUpWindowContainer .popUpWindow .popUpMainContent  input::placeholder, .popUpWindowContainer .popUpWindow .popUpMainContent  textarea::placeholder {
+    color: grey;
+}
+
+.popUpWindowContainer .popUpWindow .popUpMainContent  textarea {
+    resize : none;
+    font-size: 20px;
+}
+  
+
+/*Loader*/
+.kabobloader {
+    top:0;
+    right:0;
+    position:absolute;
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .kabobloader > div {
+    width: 18px;
+    height: 18px;
+    margin : 4px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+  
+  .kabobloader .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  
+  .kabobloader .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  
+  @-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+  
+  @keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+  }
+
+  /* inputformFlow (in flex mode) */
+.popUpWindow .inputFlow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.popUpWindow .inputFlow > * {
+    margin : 20px;
+    border-left: 1px solid black;
+    padding-left: 8px ;
+}
+
+
+/* Error message */
+.popUpWindow .error {
+    background-color: red;
+    color : white;
+    display: none;
+    border-radius: 4px/4px;
+    max-width: 380px;
+}
+
+.popUpWindow input[type=text],
+.popUpWindow select, .popUpWindow input[type=password],
+.popUpWindow input[type=select],
+.popUpWindow input[type=mail],
+.popUpWindow textarea,
+.settingsPage input[type=text],
+.settingsPage select, .popUpWindow input[type=password],
+.settingsPage input[type=select],
+.settingsPage input[type=mail],
+.settingsPage textarea {
+    background : rgba(187, 184, 184, 0.7);
+    border : none;
+    outline: none;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 4px/4px;
+    opacity: 0.6;
+    transition: 0.2s;
+    border-bottom: 2px solid purple;
+}
+
+.popUpWindow textarea {
+    width : 300px;
+    height : 100px;
+}
+
+.popUpWindow input[type=text]:hover,
+.popUpWindow select:hover,
+.popUpWindow input[type=password]:hover,
+.popUpWindow input[type=select]:hover,
+.popUpWindow input[type=mail]:hover,
+.popUpWindow textarea:hover,
+.settingsPage input[type=text]:hover,
+.settingsPage select, .popUpWindow input[type=password]:hover,
+.settingsPage input[type=select]:hover,
+.settingsPage input[type=mail]:hover,
+.settingsPage textarea:hover {
+    opacity: 1;
+}
+.popUpWindow input[type=text]:focus,
+.popUpWindow select:focus,
+.popUpWindow input[type=password]:focus,
+.popUpWindow input[type=select]:focus,
+.popUpWindow input[type=mail]:focus,
+.popUpWindow textarea:focus,
+.settingsPage input[type=text]:focus,
+.settingsPage select, .popUpWindow input[type=password]:focus,
+.settingsPage input[type=select]:focus,
+.settingsPage input[type=mail]:focus,
+.settingsPage textarea:focus {
+    opacity: 1;
+}
+
+.popUpWindow .projectInput {
+    user-select: none;
+    cursor: pointer;
+    margin: 4px;
+    border-radius: 10px/10px;
+    padding-left: 5px;
+    width: 20em;
+    transition: 0.2s;
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popUpWindow .projectInput .button {
+    font-size: 0.8em;
+}
+
+.popUpWindow .projectInput:hover, .popUpWindow .projectInput:focus {
+    opacity: 0.8;
+}
+
+/* Profile picture input style */
+
+.ppContainer .profilePicture {
+    height : 200px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    background: white;
+    margin: 10px;
+}
+
+.ppContainer .profilePicture img {
+    height : 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ppContainer .profilePicture .svgContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    height : 100%;
+    width: 100%;
+    aspect-ratio: 1;
+    opacity: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background : lightgray;
+    transition: 0.2s;
+}
+
+.ppContainer .profilePictureInput {
+    display: none;
+}
+
+.ppContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 200px;
+    width: fit-content;
+}
+
+.ppContainer .profilePicture .svgContainer svg {
+    height : 50%;
+    aspect-ratio: 1;
+    background : lightgray;
+    color: white;
+}
+
+.ppContainer .profilePicture:hover .svgContainer {
+    opacity: 1;
+}
+
+.ppContainer .profilePicture:hover .svgContainer svg{
+    display : block;
+}
+
+.ppContainer .pictureRemButton {
+    display: none;
+    font-size: 15px;
+    margin:20px;
+    border-radius: 20px/20px;
+    width: 150px;
+}
+
+.skeletonLoader {
+    height : 1em;
+    background: rgba(209, 209, 209, 0.603);
+    border-radius: .25em;
+    margin : 2px;
+    animation : opacer 1.2s infinite;
+}
+
+@keyframes opacer {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Notifications Menu */
+.userMainMenu, .notificationsMenu {
+    cursor: initial;
+    display: none;
+    position: fixed;
+    bottom : 50%;
+    right : 50%;
+    background: rgb(78, 78, 78);
+    color: white;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    border-radius: 8px/8px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    transform: translate(50%,50%);
+    min-width : 200px;
+    z-index: 80;
+  }
+
+  .notificationsButton .labelCount {
+    display: none;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: white;
+    right: 15px;
+    top: 2px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  .userMainMenu > .aButton {
+    width: 100%;
+    font-size: 1.3em;
+    text-decoration: none;
+    color :white;
+    cursor: pointer;
+    transition : 0.2s;
+    border-radius: 4px/4px;
+  }

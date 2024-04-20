@@ -26,9 +26,9 @@
         </div>
         <h4>Change biography</h4>
         <textarea class=biographyInput type=text placeholder="biography" ></textarea>
+        <button class="button inputConfirm">Apply changes</button>
         <h3 class="main-content-header">Security</h3>
         <button class="button changePswdBtn">Change Password</button>
         <br />
-        <button class="button inputConfirm">Apply changes</button>
     </div>
 </div>

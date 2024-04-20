@@ -2175,3 +2175,50 @@
 .loginButton[mobile] {
     display: none;
 }
+
+/* Notifications Menu */
+
+.userMainMenu, .notificationsMenu {
+    cursor: initial;
+    display: none;
+    position: absolute;
+    top : calc(100% + 15px);
+    right : 5px;
+    background: white;
+    box-shadow: 0 0 10px rgb(141, 140, 140);
+    border-radius: 8px/8px;
+    color: black;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    transform: translate(-10px);
+    min-width : 200px;
+    z-index: 80;
+  }
+
+  .notificationsButton .labelCount {
+    display: none;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: white;
+    right: 15px;
+    top: 2px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  .userMainMenu > .aButton {
+    width: 100%;
+    font-size: 1.3em;
+    text-decoration: none;
+    color :black;
+    cursor: pointer;
+    transition : 0.2s;
+    border-radius: 4px/4px;
+  }

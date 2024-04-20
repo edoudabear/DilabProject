@@ -1092,7 +1092,7 @@ function pathAnalysis() {
                         return out.json();
                     }).then(log => {
                         if (!log.status) {
-                            console.log("somethin went wrong with the request..");
+                            console.log("something went wrong with the request..");
                             return;
                         }
                         log=log.data;
@@ -1107,7 +1107,7 @@ function pathAnalysis() {
                         document.querySelector(".userJoinDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
                         document.querySelector(".userGenres").innerHTML=log[0][0].genre;
                         var date=new Date(log[0][0].dateCreation);
-                        document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}`;
+                        document.querySelector(".styledHead .registrationDate").innerHTML=`${date.getDay()+1}/${date.getMonth()+1}/${date.getFullYear()}, ${log[3][0].nb_streams_tot} monthly listeners`;
 
                         var groupsContainer=document.querySelector(".groups");
                         groupsContainer.innerHTML="<h4>Groups he's in</h4>";
@@ -1118,6 +1118,42 @@ function pathAnalysis() {
                         if (log[1].length==0) {
                             groupsContainer.innerHTML+="No projects where he participates yet";
                         }
+                        // artist's main releases
+                        document.querySelector(".releases").innerHTML="";
+                        let authorsGroup=[], urlsGroup=[],picturePathGroup=[],titlesGroup=[], lyricsGroup=[];
+                        for (var i=0;i<log[2].length;i++) {
+                            console.log(log[2][i].duration);
+                            authorsGroup.push(log[2][i].groupName);
+                            titlesGroup.push(log[2][i].name);
+                            urlsGroup.push(`https://e.diskloud.fr/Dilab/project/${authorsGroup[i]}/${titlesGroup[i]}/`+log[2][i].audioFileDir);
+                            picturePathGroup.push(log[2][i].releasePicture);
+                            lyricsGroup.push(log[2][i].lyrics);
+                            var duree=timestampToNormalTime(log[2][i].duration);
+                            document.querySelector(".releases").innerHTML+=newReleaseElement(log[2][i].name,log[2][i].groupName,new Date(log[2][i].releaseDate).getFullYear(),log[2][i].nb_streams+" streams",duree,log[2][i].releasePicture,log[2][i].id,i);
+                        }
+                        for (var i=0;i<log[2].length;i++) {
+                            document.querySelector(`.release[dataPlaylistId="${i}"]`).addEventListener("click",e=>{
+                                let log=JSON.parse(e.target.closest(".releases").getAttribute("playlistData"));
+                                let k=e.target.closest(".release").getAttribute("dataPlaylistId");
+                                playlistIndex=k;
+                                soundTitles=log.titles;
+                                soundAuthors=log.authors;
+                                soundUrls=log.urls;
+                                lyrics=log.lyrics;
+                                soundPictures=log.picturePath;
+                                updatePlayerData();
+                                let songId=e.target.closest(".release").querySelector(".control").getAttribute("soundId");
+                                playSound(k,false,songId);
+                                audioObj.play();
+                            });
+                        }
+                        document.querySelector(".releases").setAttribute("playlistData",JSON.stringify({
+                                titles : titlesGroup,
+                                authors : authorsGroup,
+                                urls : urlsGroup,
+                                lyrics : lyricsGroup,
+                                picturePath : picturePathGroup
+                        }));
                     });
                 } else {
                     window.location.href="https://e.diskloud.fr/Dilab";
@@ -1126,7 +1162,9 @@ function pathAnalysis() {
             });
             break;
         case "/release" :
-            loadTemplate("release",()=>{});
+            loadTemplate("release",()=>{
+
+            });
             break;
         case "/project" :
             loadTemplate("project",()=>{
@@ -3507,7 +3545,7 @@ function setupChat(groupName,projectName=null) {
 }
 
 function updateChat(groupName,projectName=null) {
-    var body={
+    var body={ // Attention, problème de fuseau horaire (serveur décalé d'une heure. Pour le client, ça peut être différent)
         type : projectName==null ? "groupChat" : "projectChat",
         "groupName" : groupName,
     }
@@ -3528,6 +3566,7 @@ function updateChat(groupName,projectName=null) {
         return out.json();
     }).then(log => {
         if (log.status) {
+            console.log(log.data);
             // This code part is very badly written
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
@@ -3641,7 +3680,8 @@ document.addEventListener('touchstart',e=> { // Listener to allow drag when clic
     }
     clicking=true;
     soughtProgress=null;
-    clickedElement.querySelector(".dotPosition").style.transform="scale(1.4) translate(35%,-35%)";
+    if (clickedElement==document.querySelector(".progressBarContainer"))
+        clickedElement.querySelector(".dotPosition").style.transform="scale(1.4) translate(35%,-35%)";
     var evt = new MouseEvent("touchmove", {
         view: window,
         bubbles: true,

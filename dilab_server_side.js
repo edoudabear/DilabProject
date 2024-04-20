@@ -507,7 +507,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
             LEFT JOIN DilabProject ON DilabChats.groupProjectPVChatId = DilabProject.id
             LEFT JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(2).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
+            WHERE isGroupOrProject="p"AND DilabProject.name=${dilabConnection.escape(decodeURIComponent(req.body.projectName))} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} 
+            ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(1).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
             ORDER BY sendTime`,(err,results,fields)=> {
                 if (err) {
                     console.log(err);
@@ -554,7 +555,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
             WHERE DilabMusicGroups.groupName="${groupName}"
-            ORDER BY nb_streams DESC LIMIT 3;
+            ORDER BY nb_streams DESC LIMIT 5;
 
             /*3 (Group's active projects number)*/
             SELECT COUNT(*) as nb_projets_actifs FROM DilabProject
@@ -613,7 +614,8 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             FROM DilabChats
             LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
             LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
-            WHERE isGroupOrProject="g"AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(2).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
+            WHERE isGroupOrProject="g"AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURIComponent(req.body.groupName))} 
+            ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(1).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
             ORDER BY sendTime`,(err,results,fields)=> {
                 if (err) {
                     res.end(JSON.stringify({
@@ -656,7 +658,32 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             WHERE DilabUser.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))}
             GROUP BY DilabMusicGroups.id
             ORDER BY nCollaborators DESC, dateOfBirth DESC LIMIT 10;
-            
+            /* Query 3 */
+            /*(user's main releases)*/
+            WITH cte AS (
+                SELECT songId,COUNT(*) as nb_streams FROM DilabStreams GROUP BY songId
+            )
+            SELECT releaseDate, DilabMusicGroups.groupName, DilabProject.dateOfBirth AS projectBirthDate,DilabProject.name,DilabProject.projectPicture AS releasePicture,duration,DilabProject.audioFileDir,dr.id,DilabProject.lyrics,COALESCE(nb_streams,0) AS nb_streams
+            FROM DilabReleases dr
+            JOIN DilabProject ON DilabProject.id=dr.associatedProject
+            LEFT JOIN cte ON dr.id=cte.songId
+            JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+            WHERE DilabMusicGroups.id IN 
+				(SELECT g.groupId FROM DilabGroupMembers AS g 
+					JOIN DilabUser as l ON g.memberId=l.id
+                    WHERE l.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))})
+            ORDER BY nb_streams DESC LIMIT 5;
+            /* Query 4 (number of streams in the last 30 days) */
+            SELECT COUNT(*) as nb_streams_tot FROM DilabStreams
+                JOIN DilabReleases ON DilabReleases.id=DilabStreams.songId
+                JOIN DilabProject ON DilabProject.id=DilabReleases.associatedProject 
+                JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
+                WHERE DilabMusicGroups.id IN 
+                    (SELECT g.groupId FROM DilabGroupMembers AS g
+                        JOIN DilabUser AS l ON g.memberId=l.id
+                        WHERE l.pseudo=${dilabConnection.escape(decodeURI(req.body.artistName))}
+                    )
+                AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
             `,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(

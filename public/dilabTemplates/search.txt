@@ -1,33 +1,4 @@
 <div class="search-results">
-    <style>
-        .searchPage input[type="text"] {
-            outline: none;
-            width: calc(100% - 30px);
-            border: none;
-        }
-
-        .searchField svg {
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            margin-right: 2px;
-        }
-
-        .searchField {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: center;
-            background-color: white;
-            border-radius: 2px/2px;
-            width: 80%;
-            border: none;
-            height: 40px;
-            font-size: 25px;
-            margin-left: 5%;
-            margin-right: 4px;
-        }
-    </style>
     <h1 class="main-content-header mobile">&nbsp;Search</h1>
     <div class="searchField mobile">
         <input type="text" placeholder="Search.." />
