@@ -372,6 +372,7 @@
                         <div style="width:4em;" class="skeletonLoader"></div>
                     </span></h4>
                 </div>
+                <div class=hider ></div>
                 <div class="messagesContainer">
                     <div class="globalMessage local">
                         <div class="messageWrapper">

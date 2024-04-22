@@ -631,6 +631,37 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }));
                 }
             });
+        } else if (req.body.type=="artistChat" && req.body.artist && req.session.dilab) {
+            dilabConnection.query(`
+            SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, (${parseInt(req.session.dilab)}=DilabChats.author) AS isAuthorRequester
+            FROM DilabChats
+            LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
+            LEFT JOIN DilabPVChats ON DilabPVChats.id=DilabChats.groupProjectPVChatId
+            WHERE isGroupOrProject="t"AND DilabPVChats.id=
+            (WITH d1 AS (SELECT d.id FROM DilabUser AS d WHERE d.pseudo=${dilabConnection.escape(decodeURI(req.body.artist))} LIMIT 1)
+                SELECT D.id FROM DilabPVChats AS D,d1
+                WHERE 
+                    (user1= ${req.session.dilab} AND user2=d1.id AND ${req.session.dilab}<d1.id)
+                    OR
+                    (user2= ${req.session.dilab} AND user1=d1.id AND ${req.session.dilab}>d1.id)
+                LIMIT 1)
+            ${(req.body.minTime) ? ` AND DilabChats.sendTime>="${new Date(req.body.minTime).addHours(1).toISOString().slice(0, 19).replace('T', ' ')}"` : `` }
+            ORDER BY sendTime`,(err,results,fields)=> {
+                if (err) {
+                    console.log(err)
+                    res.end(JSON.stringify({
+                        return : "error",
+                        status : false,
+                        data : "internal server error"
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        return : "ok",
+                        status : true,
+                        data : results
+                    }));
+                }
+            });
         } else if (req.body.type=="artist" && req.body.artistName) {
             dilabConnection.query(`
             /* Query 1 */
@@ -776,29 +807,6 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         data : JSON.stringify(results)
                         })
                     );
-                }
-            });
-        } else if (req.body.type=="artistChat" && req.body.artistName && req.session.dilab) {
-            dilabConnection.query(`
-            /* NOT OPTIMIZED YET */
-            SELECT DilabChats.message, DilabUser.pseudo, DilabChats.sendTime, DilabChats.isFileDir, DilabChats.isGroupOrProject, DilabMusicGroups.groupName, (15=DilabChats.author) AS isAuthorRequester
-            FROM DilabChats
-            LEFT JOIN DilabUser ON DilabUser.id=DilabChats.author
-            LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabChats.groupProjectPVChatId
-            WHERE isGroupOrProject="t"AND DilabMusicGroups.groupName="Edoudé"
-            ORDER BY sendTime`,(err,results,fields)=> {
-                if (err) {
-                    res.end(JSON.stringify({
-                        return : "error",
-                        status : false,
-                        data : "internal server error"
-                    }));
-                } else {
-                    res.end(JSON.stringify({
-                        return : "ok",
-                        status : true,
-                        data : results
-                    }));
                 }
             });
         } else {
@@ -2043,6 +2051,71 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     data : "Invalid POST chat message input"
                 }));
             }
+        } else if (req.body.type=="PVmessage" && req.body.destination && req.session.dilab) {
+                    // Malheureusement, on est obligé de faire deux requêtes chaînées ici
+                    dilabConnection.query(`
+                    SELECT d.id FROM DilabUser AS d WHERE d.pseudo=${dilabConnection.escape(decodeURI(req.body.destination))} LIMIT 1;
+                    SELECT d.pseudo FROM DilabUser AS d WHERE d.id=${req.session.dilab} LIMIT 1;
+                    `,(err,out,fields) => {
+                        if (err) { // DBS Query Error
+                            console.log(err);
+                            res.end(JSON.stringify(
+                                { "return" : "error",
+                                    "data" : "internal server error (1)",
+                                }));
+                        } else {
+                                    let destId=out[0][0].id, pseudo=out[1][0].pseudo;
+                                    if (destId==req.session.dilab) {
+                                        res.end(JSON.stringify({
+                                            return : "error",
+                                            status : false,
+                                            data : "You are not allowed to write to yourself."
+                                        }))
+                                    }
+                                    dilabConnection.query(`
+                                    -- D'abord on s'assure que le PVChat existe, sinon on l'ajoute
+                                    INSERT INTO DilabPVChats (user1,user2)
+                                    (SELECT * FROM (SELECT ${Math.min(req.session.dilab,destId)},${Math.max(req.session.dilab,destId)}) AS tmp
+                                    WHERE NOT EXISTS (
+                                        SELECT user1,user2 FROM DilabPVChats WHERE 
+                                            user1= ${Math.min(req.session.dilab,destId)} AND user2=${Math.max(req.session.dilab,destId)}
+                                        LIMIT 1));
+                                    -- ensuite on insère le message
+                                    INSERT INTO DilabChats (message, author, groupProjectPvChatId,isGroupOrProject,isFileDir)
+                                    (SELECT ${dilabConnection.escape(decodeURIComponent(req.body.messageContent))},${req.session.dilab},DilabPVChats.id,"t",0
+                                    FROM DilabPVChats
+                                    WHERE 
+                                        user1= ${Math.min(req.session.dilab,destId)} AND user2=${Math.max(req.session.dilab,destId)}
+                                    LIMIT 1);
+                                    -- enfin, on génère une notification pour le destinataire
+                                    INSERT INTO DilabNotificationsList (type,content,targetedUser,hasBeenRead)
+                                    (SELECT * FROM (SELECT 'message',${dilabConnection.escape(`You have received a message from <a href=artist?a=${encodeURI(pseudo)}>${pseudo}</a>.`)},${destId},0) AS tmp
+                                    WHERE NOT EXISTS (
+                                        SELECT type,content,targetedUser,hasBeenRead FROM DilabNotificationsList WHERE 
+                                            type="message"
+                                            AND content=${dilabConnection.escape(`You have received a message from <a artistLink="${pseudo}" href=/Dilab/artist?a=${encodeURI(pseudo)}>${pseudo}</a>.`)}
+                                            AND targetedUser=${destId}
+                                            AND hasBeenRead=0
+                                        LIMIT 1));`,(err,results,fields) => {
+                            if (err) { // DBS Query Error
+                                console.log(err);
+                                res.end(JSON.stringify(
+                                    { "return" : "error",
+                                        "data" : "internal server error (1)",
+                                    }));
+                            }
+                            else if (results.affectedRows!=0) {
+                                res.end(JSON.stringify(
+                                    { "return" : "ok",
+                                        "status" : true,
+                                        "data" : true
+                                    }));
+                            } else {
+                                res.end('{ "return" : "ok", "status" : false, "data" : "data seems to be invalid" }');
+                            }
+                        });
+                }
+            });
         } else if (req.body.type=="stream" && typeof req.body.songId=="string") { // To count a new stream of a release
             console.log(req.body.songId);
             dilabQuery(`INSERT INTO DilabStreams (streamer,songId) VALUES (${req.session.dilab==undefined ? 'NULL' : req.session.dilab},${parseInt(req.body.songId)})`)

@@ -59,7 +59,14 @@ function syncNotifications() {
                     joinResponse(log.data[0][i].requester,log.data[0][i].groupName,false,e);
                 });
             } for (var i=0;i<log.data[1].length;i++) {
-                document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[1][i].content,log.data[1][i].notiId);
+                switch (log.data[1][i].type) {
+                    case "message" :
+                        console.log("OK3");
+                        document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newMessageNotificationElement(log.data[1][i].content,log.data[1][i].notiId);
+                        break;
+                    default :
+                        document.querySelector(".notificationsMenu .notificationsList").innerHTML+=newConfirmNotificationElement(log.data[1][i].content,log.data[1][i].notiId);
+                }
                 if (i<log.data[1].length-1) {
                     document.querySelector(".notificationsMenu .notificationsList").innerHTML+="<hr />";
                 }
@@ -67,6 +74,57 @@ function syncNotifications() {
                     let data=el.getAttribute("notifData");
                     if (data!=null) {
                         el.addEventListener('click',e=>{
+                            e.preventDefault();
+                            e.stopPropagation();
+                            data=parseInt(data);
+                            fetch('/Dilab/set', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    type : "swipeNotification",
+                                    nId : String(data),
+                                }) //data
+                            }).then(out => {
+                                return out.json();
+                            }).then(data=>{
+                                if (data.status==false) {
+                                    Toast.fire({icon : "warning", title : "Something went wrong.."});
+                                    console.log(data);
+                                } else {
+                                    let parentNotif=el.closest(".notification");
+                                    if (parentNotif.nextSibling && parentNotif.nextSibling.localName=='hr') {
+                                        parentNotif.nextSibling.remove();
+                                    }
+                                    else if (document.querySelectorAll(".notificationsList .notification").length==2) {
+                                        document.querySelector(".notificationsList hr").remove();
+                                    }
+                                    parentNotif.remove();
+                                    let lblCnt=document.querySelector(".labelCount");
+                                    lblCnt.innerHTML=String(parseInt(lblCnt.innerHTML)-1);
+                                    if (parseInt(lblCnt.innerHTML)==0) {
+                                        document.querySelector(".notificationsMenu .notificationsList").innerHTML="No New Notification";
+                                        document.querySelector(".labelCount").style.display="none";
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+                document.querySelectorAll(".notificationsMenu .notificationsList .confirmMessage").forEach(el=>{
+                    let data=el.getAttribute("notifData");
+                    if (data!=null) {
+                        el.addEventListener('click',e=>{
+                            console.log("HEREHEREHERE")
+                            let str=e.target.closest(".notification").querySelector(".text a").getAttribute("href");
+                            let g=new URLSearchParams(str.slice(str.indexOf('?')+1));
+                            console.log(g);
+                            console.log(str);
+                            if (window.location.href!="https://e.diskloud.fr/Dilab/artist?a="+g.get("a")) {
+                                loadPage("Dilab | Diskloud","artist",[["a",g.get("a")]]);
+                            }
                             e.preventDefault();
                             e.stopPropagation();
                             data=parseInt(data);
@@ -1091,6 +1149,7 @@ function pathAnalysis() {
                     }).then(out => {
                         return out.json();
                     }).then(log => {
+                        setupPrivateChat(urlParams.get("a"));
                         if (!log.status) {
                             console.log("something went wrong with the request..");
                             return;
@@ -3543,7 +3602,6 @@ function setupChat(groupName,projectName=null) {
         }
     });
 }
-
 function updateChat(groupName,projectName=null) {
     var body={ // Attention, problème de fuseau horaire (serveur décalé d'une heure. Pour le client, ça peut être différent)
         type : projectName==null ? "groupChat" : "projectChat",
@@ -3569,6 +3627,11 @@ function updateChat(groupName,projectName=null) {
             console.log(log.data);
             // This code part is very badly written
             var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
+            if (minIndex > -1 ) {
+                while (minIndex< log.data.length+1 && JSON.stringify(lastMessage) == JSON.stringify(log.data[minIndex+1])) {
+                    minIndex++;
+                }
+            }
             for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
                 if (lastMessage==null) {
                     document.querySelector(".messagesContainer").innerHTML="";
@@ -3593,7 +3656,7 @@ function updateChat(groupName,projectName=null) {
                 lastMessage=log.data[log.data.length-1];
                 document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
             }
-            if (log.data.length>1) {
+            if (log.data.length-minIndex>1) {
                 document.querySelector(".messagesContainer").scrollTo({
                     left: 0,
                     top : document.querySelector(".messagesContainer").scrollHeight,
@@ -3608,8 +3671,8 @@ function updateChat(groupName,projectName=null) {
         }
     });
 }
-
 function sendMessage(message,groupName,projectName=null) {
+    if (message.length == 0) return;
     var body={
         type : "message",
         messageDestType : projectName==null ? "g" : "p",
@@ -3639,6 +3702,178 @@ function sendMessage(message,groupName,projectName=null) {
     });
 }
 
+function setupPrivateChat(user) {
+    var body={
+        type : "artistChat",
+        artist : user
+    }
+    fetch('https://e.diskloud.fr/Dilab/get', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify(body) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log(log);
+        if (log.status) {
+            document.querySelector(".messagesContainer").innerHTML="";
+            document.querySelector(".messagesContainer").style.overflow = "auto";
+            for (var i=0;i<log.data.length;i++) {
+                if (i==0) {
+                    document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime)
+                } else {
+                    var date1=new Date(log.data[i-1].sendTime),
+                    date2=new Date(log.data[i].sendTime);
+                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                    }
+                }
+                document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
+            } if (log.data.length==0) {
+                document.querySelector(".messagesContainer").innerHTML=`<div class="noMessage">No message has been sent yet..</div>`
+            } else {
+                document.querySelector(".messagesContainer").scrollTo({
+                    left: 0,
+                    top : document.querySelector(".messagesContainer").scrollHeight
+                });
+            }
+            document.querySelector(".hider").style.display="none";
+            document.querySelector(".chatInput").disabled=false;
+
+            document.querySelector(".chatAttachBtn").addEventListener("click",()=>{
+                Swal.fire("Info","Sharing files via the chat is not available yet (will come later)","info");
+            });
+
+            document.querySelector(".chatInput").addEventListener("keyup",e=> {
+                if (e.key=="Enter") {
+                    e.preventDefault();
+                    var message=document.querySelector(".chatInput").value;
+                    const queryString = window.location.search;
+                    const urlParams = new URLSearchParams(queryString);
+                    sendPrivateMessage(message,urlParams.get("a"));
+                    document.querySelector(".chatInput").value="";
+                }
+            });
+
+            document.querySelector(".chatSendBtn").addEventListener("click",()=>{
+                var message=document.querySelector(".chatInput").value;
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                sendPrivateMessage(message,urlParams.get("a"));
+                document.querySelector(".chatInput").value="";    
+            });
+            chatReloader=setTimeout(()=>{
+                updatePrivateChat(user);
+            },4000);
+            lastMessage=(log.data[log.data.length-1]) ? log.data[log.data.length-1] : null;
+        } else {
+            document.querySelector(".messagesUnavailable").innerHTML="We couldn't load the messages.. sorry"
+        }
+    });
+}
+function updatePrivateChat(user) {
+    var body={ // Attention, problème de fuseau horaire (serveur décalé d'une heure. Pour le client, ça peut être différent)
+        type : "artistChat",
+        "artist" : user,
+    }
+    if (lastMessage!=null) {
+        body.minTime =  lastMessage.sendTime
+    }
+    fetch('/Dilab/get', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify(body) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        if (log.status) {
+            console.log(log.data);
+            // This code part is very badly written
+            var minIndex=(lastMessage==null) ? -1 :log.data.findIndex(message => JSON.stringify(lastMessage) == JSON.stringify(message));
+            if (minIndex > -1 ) {
+                while (minIndex< log.data.length+1 && JSON.stringify(lastMessage) == JSON.stringify(log.data[minIndex+1])) {
+                    minIndex++;
+                }
+            }
+            for (var i=minIndex+1;i<log.data.length && (minIndex>-1 || lastMessage==null);i++) {
+                if (lastMessage==null) {
+                    document.querySelector(".messagesContainer").innerHTML="";
+                }
+                if (i==minIndex+1) {
+                    if (lastMessage==null) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[0].sendTime);
+                    } else {
+                        var date1=new Date(lastMessage.sendTime),
+                        date2=new Date(log.data[i].sendTime);
+                        if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                            document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                        }
+                    }
+                } else {
+                    var date1=new Date(log.data[i-1].sendTime),
+                    date2=new Date(log.data[i].sendTime);
+                    if (date1.getDate()!=date2.getDate() || date1.getMonth()!=date2.getMonth() || date1.getFullYear()!=date2.getFullYear()) {
+                        document.querySelector(".messagesContainer").innerHTML+=generateNewDateAnouncement(log.data[i].sendTime)
+                    }
+                }
+                lastMessage=log.data[log.data.length-1];
+                document.querySelector(".messagesContainer").innerHTML+=generateNewMessageElement(log.data[i].isAuthorRequester,log.data[i].message,log.data[i].pseudo,log.data[i].sendTime);
+            }
+            if (log.data.length-minIndex>1) {
+                document.querySelector(".messagesContainer").scrollTo({
+                    left: 0,
+                    top : document.querySelector(".messagesContainer").scrollHeight,
+                    behavior : "smooth"
+                });
+            }
+            chatReloader=setTimeout(()=>{
+                updatePrivateChat(user);
+            },4000);
+            document.querySelectorAll(".notification").forEach(el => {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                if (document.querySelector(".confirmMessage") != null && document.querySelector(".text").innerHTML.indexOf(urlParams.get("a"))>-1) {
+                    document.querySelector(".confirmMessage").click();
+                }
+            })
+        } else {
+            Swal.fire("Error","We had troubles loading new messages.","error");
+        }
+    });
+}
+function sendPrivateMessage(message,artistDest) { // artistDest est le pseudo de l'artiste
+    if (message.length == 0) return;
+    var body={
+        type : "PVmessage",
+        messageDestType : "t",
+        "destination" : artistDest,
+        messageContent : message
+    }
+    fetch('/Dilab/add', {
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: 'POST',
+        body: JSON.stringify(body) //data
+    }).then(out => {
+        return out.json();
+    }).then(log => {
+        console.log(log);
+        if (log.status) {
+            clearTimeout(chatReloader);
+            updatePrivateChat(artistDest);
+        } else {
+            Swal.fire("Error","Apparently, your message wasn't sent. Try again later","error");
+        }
+    });
+}
 
 //PopUp Window handler
 document.querySelector(".popUpWindow").addEventListener('click', e => {
@@ -4345,6 +4580,24 @@ function newMemberWaitListNotificationElement(userName,groupName) {
         </div>
     </div>`
 
+}
+
+function newMessageNotificationElement(content,notification_id) {
+    return `<div class="notification">
+        <div class=icon>
+            <i class="bi bi-chat-dots-fill"></i>
+        </div>
+        <div class=text>
+           ${content}
+        </div>
+        <div class=options>
+            <div notifData=${String(notification_id)} title="Go to message" class=confirmMessage >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+          </svg>
+            </div>
+        </div>
+    </div>`
 }
 
 function newConfirmNotificationElement(content,notification_id) {
