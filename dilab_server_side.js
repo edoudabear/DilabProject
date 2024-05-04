@@ -116,7 +116,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         }
     } if (req.params.action=="connect") { // Path sort, THEN POST body analysis
         if (req.body.username && req.body.password) {
-            dilabConnection.query(`SELECT id,nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.username)}" AND motDePasse=aes_encrypt("${mysql_real_escape_string(req.body.password)}","${cryptoKey}");`,(err,results,fields) => {
+            dilabConnection.query(`SELECT id,nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName FROM DilabUser WHERE pseudo=${dilabConnection.escape(req.body.username)} AND motDePasse=aes_encrypt(${dilabConnection.escape(req.body.password)},"${cryptoKey}");`,(err,results,fields) => {
                 if (err) throw err;
 
                 if (results.length!=0) {
@@ -417,7 +417,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 fs.unlink(req.files[i].path,()=>{return;});
             }
         } else if (req.body.type=="groupsWhereUserIsAdmin" && req.session.dilab) {
-            dilabConnection.query(`SELECT groupName FROM DilabMusicGroups WHERE admin=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
+            dilabConnection.query(`SELECT groupName FROM DilabMusicGroups WHERE admin=${req.session.dilab};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -434,7 +434,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     }
                 });
         } else if (req.body.type=="userData" && req.session.dilab) {
-            dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName,currentlyPlayedSong FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)};`,(err,results,fields) => {
+            dilabConnection.query(`SELECT nom,pseudo,prenom,biographie,genres,dateCreation,profilePictureName,currentlyPlayedSong FROM DilabUser WHERE id=${req.session.dilab};`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -526,7 +526,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 }
             });
         } else if (req.body.type=="group" && req.body.groupName) {
-            var groupName=decodeURI(mysql_real_escape_string(req.body.groupName));
+            var groupName=decodeURI(dilabConnection.escape(req.body.groupName));
             dilabConnection.query(`
             /*1 (Group basic informations)*/
             SELECT DilabMusicGroups.groupPicture,DilabMusicGroups.groupName,DilabMusicGroups.description,COUNT(*) AS nCollaborators,adminTb.pseudo AS admin,DilabMusicGroups.dateOfBirth,founderTb.pseudo as founder,DilabGenres.genreName AS genres, DilabMusicGroups.admin=${typeof req.session.dilab=="number" ? req.session.dilab : "NULL"} AS isUserAdmin FROM DilabMusicGroups
@@ -534,7 +534,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-            WHERE groupName="${groupName}"
+            WHERE groupName=${groupName}
             GROUP BY DilabMusicGroups.id
             LIMIT 1;
 
@@ -543,7 +543,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             JOIN DilabUser AS founderTb ON founderTb.id=DilabMusicGroups.founder
             JOIN DilabUser AS adminTb ON adminTb.id=DilabMusicGroups.admin
             LEFT JOIN DilabGenres ON DilabMusicGroups.genres=DilabGenres.id
-            WHERE groupName="${groupName}"; */
+            WHERE groupName=${groupName}; */
 
             /*2 (Group's main releases)*/
             WITH cte AS (
@@ -554,29 +554,29 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             JOIN DilabProject ON DilabProject.id=dr.associatedProject
             LEFT JOIN cte ON dr.id=cte.songId
             JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-            WHERE DilabMusicGroups.groupName="${groupName}"
+            WHERE DilabMusicGroups.groupName=${groupName}
             ORDER BY nb_streams DESC LIMIT 5;
 
             /*3 (Group's active projects number)*/
             SELECT COUNT(*) as nb_projets_actifs FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabMusicGroups.groupName="${groupName}" AND DilabProject.currentPhase<3;
+                WHERE DilabMusicGroups.groupName=${groupName} AND DilabProject.currentPhase<3;
 
             /*4 (Group's nb of releases)*/
             SELECT COUNT(*) as nb_releases FROM DilabReleases
                 JOIN DilabProject ON DilabProject.id=DilabReleases.associatedProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabMusicGroups.groupName="${groupName}";
+                WHERE DilabMusicGroups.groupName=${groupName};
             /*5 (Group's number of streams since last 30 days)*/
             SELECT COUNT(*) as nb_streams_tot FROM DilabStreams
                 JOIN DilabReleases ON DilabReleases.id=DilabStreams.songId
                 JOIN DilabProject ON DilabProject.id=DilabReleases.associatedProject 
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabMusicGroups.groupName="${groupName}" AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
+                WHERE DilabMusicGroups.groupName=${groupName} AND DilabStreams.date>=ADDTIME(CURRENT_TIMESTAMP(), '-30 0:0:0');
             /*6 (Group's active projects)*/
             SELECT DilabProject.name, DilabProject.currentPhase,DilabProject.projectPicture,DilabProject.description FROM DilabProject
                 JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabProject.groupAuthor
-                WHERE DilabProject.currentPhase<3 AND DilabMusicGroups.groupName="${groupName}"
+                WHERE DilabProject.currentPhase<3 AND DilabMusicGroups.groupName=${groupName}
                 ORDER BY DilabProject.dateOfBirth DESC LIMIT 20;
             `,(err,results,fields)=> {
                     if (err) { // DBS Query Error
@@ -950,7 +950,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                             "status" : false
                                         }));
                 } else {
-                    dilabConnection.query(`UPDATE DilabUser SET motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.newPassword)}","${cryptoKey}") WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.prevPassword)}","${cryptoKey}");`,(err,results,fields) => {
+                    dilabConnection.query(`UPDATE DilabUser SET motDePasse=AES_ENCRYPT(${dilabConnection.escape(req.body.newPassword)},"${cryptoKey}") WHERE id=${req.session.dilab} AND motDePasse=AES_ENCRYPT(${dilabConnection.escape(req.body.prevPassword)},"${cryptoKey}");`,(err,results,fields) => {
                         if (err) {
                             res.end(JSON.stringify(
                                 { "return" : "ok",
@@ -1386,7 +1386,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     return;
                 }
                 // Valid Case : converting file (and first getting the user's name via it's id)
-                dilabQuery(`SELECT pseudo FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+                dilabQuery(`SELECT pseudo FROM DilabUser WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
                 .then((results)=> {
                     if (results.length==0) {
                         res.end(JSON.stringify({status : false, return : "error", data : "Internal server error. Try again later (its an unconscionable issue to say the least..)."}))
@@ -1416,7 +1416,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                                 fs.unlink(req.files[i].path,()=>{return;});
                             }
 
-                            dilabQuery(`UPDATE DilabUser SET  profilePictureName='${mysql_real_escape_string(username)}.png' WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+                            dilabQuery(`UPDATE DilabUser SET  profilePictureName=${dilabConnection.escape(username+'.png')} WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
                             .then(()=> {
                                 res.end(JSON.stringify({
                                     status : true,
@@ -1436,7 +1436,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "First name is too long"}');
                 return;
             } else {
-                dilabQuery(`UPDATE DilabUser SET prenom="${mysql_real_escape_string(req.body.firstNameOnly)}" WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+                dilabQuery(`UPDATE DilabUser SET prenom=${dilabConnection.escape(req.body.firstNameOnly)} WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
                 .then(() => {
                     res.end(JSON.stringify({
                         status : true,
@@ -1458,7 +1458,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Last name is too long"}');
                 return;
             }
-            dilabQuery(`UPDATE DilabUser SET nom="${mysql_real_escape_string(req.body.lastNameOnly)}" WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+            dilabQuery(`UPDATE DilabUser SET nom=${dilabConnection.escape(req.body.lastNameOnly)} WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
             .then(() => {
                 res.end(JSON.stringify({
                     status : true,
@@ -1479,13 +1479,13 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Username is too long."}');
                 return;
             }
-            dilabQuery(`SELECT pseudo FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.usernameOnly)}"`).catch((err) => {serverError(res,err)})
+            dilabQuery(`SELECT pseudo FROM DilabUser WHERE pseudo=${dilabConnection.escape(req.body.usernameOnly)}`).catch((err) => {serverError(res,err)})
             .then((output) => {
                 if(output.length>0) {
                     res.end('{ "return" : "error", "status" : false, "data" : "Username is already taken by someone else"}');
                     return; 
                 }
-                dilabQuery(`UPDATE DilabUser SET pseudo="${mysql_real_escape_string(req.body.usernameOnly)}" WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+                dilabQuery(`UPDATE DilabUser SET pseudo=${dilabConnection.escape(req.body.usernameOnly)} WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
                 .then(()=> {
                     res.end(JSON.stringify({
                         status : true,
@@ -1509,7 +1509,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 res.end('{ "return" : "error", "status" : false, "data" : "Biography is too long"}');
                 return;
             }
-            dilabQuery(`UPDATE DilabUser SET biographie="${mysql_real_escape_string(req.body.userBiographyOnly)}" WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+            dilabQuery(`UPDATE DilabUser SET biographie=${dilabConnection.escape(req.body.userBiographyOnly)} WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
             .then(()=> {
                 res.end(JSON.stringify({
                     status : true,
@@ -1527,7 +1527,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             if (typeof req.body.genresOnly!="string" && req.body.genresOnly!=null) {
                 res.end('{ "return" : "error", "status" : false, "data" : "Genres is..weird ?"}');      
             }
-            dilabQuery(`UPDATE DilabUser SET genres="${mysql_real_escape_string(req.body.genresOnly)}" WHERE id=${mysql_real_escape_string(req.session.dilab)}`).catch((err) => {serverError(res,err)})
+            dilabQuery(`UPDATE DilabUser SET genres="${parseInt(req.body.genresOnly)}" WHERE id=${req.session.dilab}`).catch((err) => {serverError(res,err)})
             .then(()=> {
                 res.end(JSON.stringify({
                     status : true,
@@ -1558,7 +1558,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             } else if (req.body.username.length>128) {
                 res.end('{ "return" : "error", "status" : false, "data" : "Username is too long"}');
             }
-            dilabQuery("SELECT pseudo FROM DilabUser WHERE pseudo='"+mysql_real_escape_string(req.body.username)+"'").catch((err) => {serverError(res,err)})
+            dilabQuery("SELECT pseudo FROM DilabUser WHERE pseudo="+dilabConnection.escape(req.body.username)).catch((err) => {serverError(res,err)})
             .then(output=> {
             if (output.length>0) {
                 res.end('{ "return" : "error", "status" : false, "data" : "Username is not available"}');
@@ -1598,7 +1598,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 } else if (req.body.username.email>64) {
                     res.end('{ "return" : "error", "status" : false, "data" : "Email too long"}');
                 }
-                dilabQuery("SELECT email FROM DilabUser WHERE email='"+mysql_real_escape_string(req.body.email)+"'").catch((err) => {serverError(res,err)})
+                dilabQuery("SELECT email FROM DilabUser WHERE email="+dilabConnection.escape(req.body.email)).catch((err) => {serverError(res,err)})
                 .then(output=> {
                     console.log(output)
                     if (output.length>0) {
@@ -1661,7 +1661,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             for (var i=0;i<req.files.length;i++)
                             fs.unlink(req.files[i].path,()=>{return;});
                         }
-                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", ${mysql_real_escape_string(req.body.genres)}, "${mysql_real_escape_string(req.body.username)}.png")`).catch((err) => {serverError(res,err)})
+                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES (${dilabConnection.escape(req.body.lastName)}, ${dilabConnection.escape(req.body.firstName)}, ${dilabConnection.escape(req.body.username)}, AES_ENCRYPT(${dilabConnection.escape(req.body.password)},"${cryptoKey}"), ${dilabConnection.escape(req.body.email)}, ${dilabConnection.escape(req.body.biography)}, ${parseInt(req.body.genres)}, ${dilabConnection.escape(req.body.username+".png")})`).catch((err) => {serverError(res,err)})
                         .then(()=> {
                             res.end('{ "return" : "ok","status" : true, "data" : "Account created ! Make sure you confirm your account by mail."}')
                             transporter.sendMail(mailOptions, function(error, info) {
@@ -1674,7 +1674,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         });
                     });
                 } else { //Query for no personalized profile picture
-                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES ("${mysql_real_escape_string(req.body.lastName)}", "${mysql_real_escape_string(req.body.firstName)}", "${mysql_real_escape_string(req.body.username)}", AES_ENCRYPT("${mysql_real_escape_string(req.body.password)}","${cryptoKey}"), "${mysql_real_escape_string(req.body.email)}", "${mysql_real_escape_string(req.body.biography)}", ${mysql_real_escape_string(req.body.genres)})`).catch((err) => {serverError(res,err)})
+                    dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres) VALUES (${dilabConnection.escape(req.body.lastName)}, ${dilabConnection.escape(req.body.firstName)}, ${dilabConnection.escape(req.body.username)}, AES_ENCRYPT(${dilabConnection.escape(req.body.password)},"${cryptoKey}"), ${dilabConnection.escape(req.body.email)}, ${dilabConnection.escape(req.body.biography)}, ${parseInt(req.body.genres)})`).catch((err) => {serverError(res,err)})
                     .then(()=> {
                         res.end('{ "return": "ok","status" : true, "data":"Account Created ! Make sure you confirm your account by email." }');                        
                         transporter.sendMail(mailOptions, function(error, info) {
@@ -1690,9 +1690,9 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             });}});
         // Group Creation
         } else if (req.body.groupName && req.body.groupDescription && req.body.groupOrientation && req.session.dilab) {
-            var groupName=mysql_real_escape_string(req.body.groupName),
-            groupOrientation=mysql_real_escape_string(req.body.groupOrientation),
-            groupDescription=mysql_real_escape_string(req.body.groupDescription);
+            var groupName=req.body.groupName,
+            groupOrientation=req.body.groupOrientation,
+            groupDescription=req.body.groupDescription;
             if (groupName.length>122 || groupOrientation.length > 256 || groupDescription.length > 512) {
                 res.end(JSON.stringify({
                     return : "error",
@@ -1747,7 +1747,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         for (var i=0;i<req.files.length;i++)
                         fs.unlink(req.files[i].path,()=>{return;});
                     }
-                    dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES ('${groupName}','${groupName}.png','${groupDescription}',${req.session.dilab},${req.session.dilab},${dilabConnection.escape(groupOrientation)}); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}";`,function(err,results,fields) {
+                    dilabConnection.query(`INSERT INTO DilabMusicGroups (groupName, groupPicture,description, admin, founder, genres) VALUES (${dilabConnection.escape(groupName)},${dilabConnection.escape(groupName+".png")},${dilabConnection.escape(groupDescription)},${req.session.dilab},${req.session.dilab},${dilabConnection.escape(groupOrientation)}); INSERT INTO DilabGroupMembers (memberId,groupId) SELECT ${req.session.dilab},id FROM DilabMusicGroups WHERE groupName="${groupName}";`,function(err,results,fields) {
                         if (err) {
                             console.log("ERROR : "+err.errno);
                             if (err.errno==1062) {
@@ -2156,7 +2156,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
-            dilabConnection.query(`SELECT * FROM DilabUser WHERE id=${mysql_real_escape_string(req.session.dilab)} AND motDePasse=AES_ENCRYPT("${mysql_real_escape_string(req.body.value)}","${cryptoKey}");`,(err,results,fields) => {
+            dilabConnection.query(`SELECT * FROM DilabUser WHERE id=${req.session.dilab} AND motDePasse=AES_ENCRYPT(${dilabConnection.escape(req.body.value)},"${cryptoKey}");`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -2179,7 +2179,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
-            dilabConnection.query(`SELECT pseudo FROM DilabUser WHERE pseudo="${mysql_real_escape_string(req.body.value)}"`,(err,results,fields) => {
+            dilabConnection.query(`SELECT pseudo FROM DilabUser WHERE pseudo=${dilabConnection.escape(req.body.value)}`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -2206,7 +2206,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 for (var i=0;i<req.files.length;i++)
                 fs.unlink(req.files[i].path,()=>{return;});
             }
-            dilabConnection.query(`SELECT pseudo FROM DilabUser WHERE email="${mysql_real_escape_string(req.body.value)}"`,(err,results,fields) => {
+            dilabConnection.query(`SELECT pseudo FROM DilabUser WHERE email=${dilabConnection.escape(req.body.value)}`,(err,results,fields) => {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -2230,7 +2230,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
         } else if (req.body.type=="projectNameAvailable" && req.body.projectName && req.body.groupName) {
             dilabConnection.query(`SELECT name FROM DilabProject
             JOIN DilabMusicGroups ON DilabProject.groupAuthor=DilabMusicGroups.id
-            WHERE DilabProject.name="${mysql_real_escape_string(req.body.projectName)}" AND DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
+            WHERE DilabProject.name=${dilabConnection.escape(req.body.projectName)} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -2258,7 +2258,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             }
         } else if (req.body.type=="groupNameAvailable" && req.body.groupName) {
             dilabConnection.query(`SELECT groupName FROM DilabMusicGroups
-            WHERE DilabMusicGroups.groupName="${mysql_real_escape_string(req.body.groupName)}" LIMIT 1;`,(err,results,fields)=> {
+            WHERE DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1;`,(err,results,fields)=> {
                 if (err) { // DBS Query Error
                     res.end(JSON.stringify(
                         { "return" : "error",
@@ -2292,6 +2292,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                     "status" : true
                 }));
             }
+            console.log(dilabConnection.escape(decodeURI(req.body.groupName)));
             dilabConnection.query(`WITH cte AS (
                 SELECT id FROM DilabMusicGroups WHERE groupName=${dilabConnection.escape(decodeURI(req.body.groupName))}
               ) SELECT cte.id, DilabGroupMembers.rule FROM cte
@@ -2313,7 +2314,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                 } else {
                     dilabConnection.query(`SELECT DilabMembersWaitList.id FROM DilabMembersWaitList 
                     LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
-                    WHERE DilabMembersWaitList.waiter=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} LIMIT 1`,(err,results,fields) => {
+                    WHERE DilabMembersWaitList.waiter=${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(decodeURI(req.body.groupName))} LIMIT 1`,(err,results,fields) => {
                         if (err) { // DBS Query Error
                             res.end(JSON.stringify(
                                 { "return" : "error",

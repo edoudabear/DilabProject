@@ -923,8 +923,8 @@ function pathAnalysis() {
                                                                     return out.json();
                                                                 }).then(log => {
                                                                     if (log.status===false) {
-                                                                        Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later : "+log.data,"error");
-                                                                        console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
+                                                                        Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later.<br />Message : "+log.data,"error");
+                                                                        console.log("An error occured while checking");
                                                                         return;
                                                                     } else {
                                                                         document.querySelector(".joinButton").innerHTML="Waiting for admin to accept you";
@@ -965,7 +965,7 @@ function pathAnalysis() {
                                                 return out.json();
                                             }).then(log => {
                                                 if (log.status===false) {
-                                                    Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later","error");
+                                                    Swal.fire("Error","Something went wrong : the server responded unexpectedly. Please try later.<br />Message : "+log.data,"error");
                                                     console.log("An error occured while checking if the user was a member, waiting, or nothing at all");
                                                     return;
                                                 } else {
