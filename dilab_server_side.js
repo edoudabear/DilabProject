@@ -1551,7 +1551,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
     } else if (req.params.action=="add") {
         // Account creation case
         if (req.body.username && req.body.firstName && req.body.lastName && req.body.password && req.files 
-            && req.body.email && req.body.genres && req.body.biography) {
+            && req.body.email && req.body.genres) {
             //Username Control
             if (req.body.username.indexOf('/')!=-1) {
                 res.end('{ "return" : "error", "status" : false, "data" : "Username is not available"}');
@@ -1606,10 +1606,12 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                         return;
                     }
                 //biography control
-                if (typeof req.body.biography!="string") {
-                    res.end('{ "return" : "error", "status" : false, "data" : "Biography is..weird ?"}');      
-                } else if (req.body.biography.length>4000) {
-                    res.end('{ "return" : "error", "status" : false, "data" : "Biography is too long"}');
+                if (req.body.biography) {
+                    if (typeof req.body.biography!="string") {
+                        res.end('{ "return" : "error", "status" : false, "data" : "Biography is..weird ?"}');      
+                    } else if (req.body.biography.length>4000) {
+                        res.end('{ "return" : "error", "status" : false, "data" : "Biography is too long"}');
+                    }
                 }
                 //Genres control
                 if (typeof req.body.genres!="number" && String(parseInt(req.body.genres))!=req.body.genres) {
@@ -1661,7 +1663,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
                             for (var i=0;i<req.files.length;i++)
                             fs.unlink(req.files[i].path,()=>{return;});
                         }
-                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES (${dilabConnection.escape(req.body.lastName)}, ${dilabConnection.escape(req.body.firstName)}, ${dilabConnection.escape(req.body.username)}, AES_ENCRYPT(${dilabConnection.escape(req.body.password)},"${cryptoKey}"), ${dilabConnection.escape(req.body.email)}, ${dilabConnection.escape(req.body.biography)}, ${parseInt(req.body.genres)}, ${dilabConnection.escape(req.body.username+".png")})`).catch((err) => {serverError(res,err)})
+                        dilabQuery(`INSERT INTO DilabUser (nom,prenom,pseudo,motDePasse,email,biographie,genres,profilePictureName) VALUES (${dilabConnection.escape(req.body.lastName)}, ${dilabConnection.escape(req.body.firstName)}, ${dilabConnection.escape(req.body.username)}, AES_ENCRYPT(${dilabConnection.escape(req.body.password)},"${cryptoKey}"), ${dilabConnection.escape(req.body.email)}, ${dilabConnection.escape((req.body.biography) ? req.body.biography : "")}, ${parseInt(req.body.genres)}, ${dilabConnection.escape(req.body.username+".png")})`).catch((err) => {serverError(res,err)})
                         .then(()=> {
                             res.end('{ "return" : "ok","status" : true, "data" : "Account created ! Make sure you confirm your account by mail."}')
                             transporter.sendMail(mailOptions, function(error, info) {

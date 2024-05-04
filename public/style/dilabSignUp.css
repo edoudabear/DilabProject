@@ -347,3 +347,50 @@ h4 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+/* Search-recommendations styling */
+
+.savedGenreContainer {
+    font-size: 16px;
+}
+
+.inputSearchRecommendationContainer {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+.searchRecommendations {
+    position : absolute;
+    top : 100%;
+    left : 0;
+    width: 100%;
+    min-height: 5px;
+    box-shadow: 0 0 4px 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius : 5px;
+    background-color: white ;
+    z-index : 5;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+}
+
+.searchRecommendations .choice {
+    height : 25px;
+    color: black;
+    transition: 0.2s;
+    cursor: pointer;
+    font-weight: normal;
+    user-select: none;
+}
+
+.searchRecommendations .choice:hover {
+    background : rgb(160, 159, 159);
+}
+
+.searchRecommendations .choice:active {
+    background : rgb(131, 129, 129);
+}
