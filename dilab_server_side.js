@@ -864,7 +864,7 @@ app.post("/Dilab/:action", upload.array("files"), (req,res,err) => {
             if (req.body.answer==true) {
                 dilabConnection.query(`
                 INSERT INTO DilabNotificationsList (targetedUser,content,type,hasBeenRead)
-                SELECT DilabMembersWaitList.waiter,CONCAT("You have accepted in the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"accept",0 FROM DilabMembersWaitList
+                SELECT DilabMembersWaitList.waiter,CONCAT("You have been accepted in the group <a groupLink=,DilabMusicGroups.groupName, href=\\"/Dilab/group?g=",DilabMusicGroups.groupName,"\\">",DilabMusicGroups.groupName,"</a>"),"accept",0 FROM DilabMembersWaitList
                 LEFT JOIN DilabMusicGroups ON DilabMusicGroups.id=DilabMembersWaitList.groupId
                 LEFT JOIN DilabUser ON DilabUser.id=DilabMembersWaitList.waiter
                 WHERE DilabMusicGroups.admin = ${req.session.dilab} AND DilabMusicGroups.groupName=${dilabConnection.escape(req.body.groupName)} AND DilabUser.pseudo=${dilabConnection.escape(req.body.userName)}  LIMIT 1;
